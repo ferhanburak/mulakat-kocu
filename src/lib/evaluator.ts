@@ -92,8 +92,16 @@ const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 /** True when `stem` starts a word in `text` (so "get" doesn't match "target"). */
 const startsWord = (text: string, stem: string) =>
   new RegExp(`(^|[^a-z0-9çğıöşüâîû])${escapeRe(stem)}`).test(text);
+/**
+ * Turkish softens a final p/ç/t/k before a vowel suffix (önbellek → önbelleğe, kitap → kitabı),
+ * so for longer Turkish stems the last letter is allowed to change.
+ */
+const variants = (stem: string, locale: string) =>
+  locale === 'tr-TR' && stem.length >= 5 && /[pçtk]$/.test(stem) && !stem.includes(' ') ? [stem, stem.slice(0, -1)] : [stem];
 const hasAny = (text: string, stems: (string | RegExp)[], locale: string) =>
-  stems.some((s) => (typeof s === 'string' ? startsWord(text, s.toLocaleLowerCase(locale)) : s.test(text)));
+  stems.some((s) =>
+    typeof s === 'string' ? variants(s.toLocaleLowerCase(locale), locale).some((v) => startsWord(text, v)) : s.test(text),
+  );
 const clamp = (n: number) => Math.max(0, Math.min(100, Math.round(n)));
 
 function scoreAnswer(q: Question, raw: string, lang: AnswerLang) {
