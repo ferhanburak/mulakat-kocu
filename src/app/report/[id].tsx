@@ -19,6 +19,7 @@ import {
   scoreColor,
   shade,
   type IconName,
+  themedStyles,
 } from '@/components/ui';
 import { findUnit } from '@/data/professions';
 import { PASS_SCORE, categoryLabel, type CategoryKey } from '@/lib/evaluator';
@@ -123,7 +124,7 @@ export default function ReportScreen() {
               <View style={styles.focusIcon}>
                 <Ionicons name="locate" size={22} color="#fff" />
               </View>
-              <T w="bold" size={14} color="#7A4300" style={{ flex: 1, lineHeight: 20 }}>
+              <T w="bold" size={14} color={colors.onOrange} style={{ flex: 1, lineHeight: 20 }}>
                 {r.nextFocus}
               </T>
             </View>
@@ -160,10 +161,10 @@ export default function ReportScreen() {
                     {(a.covered.length > 0 || a.missing.length > 0) && (
                       <View style={styles.tags}>
                         {a.covered.map((c) => (
-                          <Chip key={c} icon="checkmark-circle" label={c} color={colors.success} bg="#E6F8F0" />
+                          <Chip key={c} icon="checkmark-circle" label={c} color={colors.success} bg={colors.tintGreen} />
                         ))}
                         {a.missing.map((c) => (
-                          <Chip key={c} icon="close-circle" label={c} color={colors.danger} bg="#FDECEC" />
+                          <Chip key={c} icon="close-circle" label={c} color={colors.danger} bg={colors.tintRed} />
                         ))}
                       </View>
                     )}
@@ -175,7 +176,7 @@ export default function ReportScreen() {
                         {a.answer}
                       </T>
                     </View>
-                    <View style={[styles.answerBox, { backgroundColor: '#E8F8F1' }]}>
+                    <View style={[styles.answerBox, { backgroundColor: colors.tintGreen }]}>
                       <T w="black" size={11} color={colors.success} style={styles.boxLabel}>
                         {t('ÖRNEK GÜÇLÜ CEVAP', 'EXAMPLE STRONG ANSWER')}
                       </T>
@@ -235,7 +236,8 @@ function ListCard({ title, icon, color, items }: { title: string; icon: IconName
   );
 }
 
-const styles = StyleSheet.create({
+const styles = themedStyles(() =>
+  StyleSheet.create({
   hero: { alignItems: 'center', paddingBottom: 30, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
   close: { position: 'absolute', left: 16, zIndex: 2 },
   ringBg: { padding: 8, borderRadius: 100, backgroundColor: 'rgba(255,255,255,0.12)' },
@@ -254,11 +256,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 12,
     marginTop: 14,
-    backgroundColor: '#FFF3E0',
+    backgroundColor: colors.tintOrange,
     borderRadius: 20,
     padding: 16,
     borderWidth: 2,
-    borderColor: '#FFE0B3',
+    borderColor: colors.tintOrangeBorder,
   },
   focusIcon: {
     width: 40,
@@ -270,7 +272,7 @@ const styles = StyleSheet.create({
   },
   qHead: { flexDirection: 'row', alignItems: 'flex-start', gap: 10 },
   qNum: { minWidth: 38, height: 30, borderRadius: 10, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 6 },
-  tip: { flexDirection: 'row', gap: 8, marginTop: 10, backgroundColor: '#FFF9EC', borderRadius: 12, padding: 10 },
+  tip: { flexDirection: 'row', gap: 8, marginTop: 10, backgroundColor: colors.tintOrange, borderRadius: 12, padding: 10 },
   tags: { flexDirection: 'row', flexWrap: 'wrap', gap: 6 },
   answerBox: { backgroundColor: colors.bg, borderRadius: 14, padding: 12 },
   boxLabel: { letterSpacing: 0.8, marginBottom: 4 },
@@ -287,4 +289,5 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: colors.border,
   },
-});
+  }),
+);

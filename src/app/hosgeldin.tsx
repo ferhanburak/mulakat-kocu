@@ -2,7 +2,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Button, FadeIn, Ionicons, T, colors, shadow, tap, type IconName } from '@/components/ui';
+import { Button, FadeIn, Ionicons, T, colors, shadow, tap, type IconName, themedStyles } from '@/components/ui';
 import { pick, setLang, useLang, useT, type Bi } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 
@@ -89,7 +89,8 @@ export default function Welcome() {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = themedStyles(() =>
+  StyleSheet.create({
   hero: { paddingHorizontal: 24, paddingBottom: 36, borderBottomLeftRadius: 36, borderBottomRightRadius: 36 },
   langBtn: {
     position: 'absolute',
@@ -135,4 +136,5 @@ const styles = StyleSheet.create({
   },
   actions: { paddingHorizontal: 20, paddingTop: 28 },
   guest: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, marginTop: 20, paddingVertical: 6 },
-});
+  }),
+);

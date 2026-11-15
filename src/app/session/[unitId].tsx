@@ -14,7 +14,7 @@ import {
   View,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Bar, FadeIn, GradientIcon, Ionicons, T, colors, fonts, goBack, shade, shadow, tap, type IconName } from '@/components/ui';
+import { Bar, FadeIn, GradientIcon, Ionicons, T, colors, fonts, goBack, shade, shadow, tap, type IconName, themedStyles } from '@/components/ui';
 import { SignupPrompt } from '@/components/SignupPrompt';
 import { findInterviewer, lineFor } from '@/data/interviewers';
 import { findUnit, type QuestionKind } from '@/data/professions';
@@ -249,8 +249,8 @@ export default function SessionScreen() {
                 style={[
                   styles.send,
                   {
-                    backgroundColor: canSend ? profession.color : '#E2DFEC',
-                    borderBottomColor: canSend ? shade(profession.color, -0.28) : '#CFCBDD',
+                    backgroundColor: canSend ? profession.color : colors.track,
+                    borderBottomColor: canSend ? shade(profession.color, -0.28) : colors.trackStrong,
                     borderBottomWidth: pressed ? 1 : 4,
                     marginTop: pressed ? 3 : 0,
                   },
@@ -384,7 +384,8 @@ function Typing() {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = themedStyles(() =>
+  StyleSheet.create({
   top: { flexDirection: 'row', alignItems: 'center', gap: 14, paddingHorizontal: 18, paddingBottom: 12 },
   chat: { padding: 16, paddingBottom: 24 },
   interviewer: {
@@ -454,4 +455,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+  }),
+);

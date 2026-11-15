@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Animated, Easing, Platform, Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useStore } from '@/lib/store';
-import { Ionicons, T, colors, notify, shade, shadow, type IconName } from './ui';
+import { Ionicons, T, colors, notify, shade, shadow, type IconName, themedStyles } from './ui';
 
 /** Celebratory banner that slides in from the top for unlocked achievements and level-ups. */
 export function AchievementToast() {
@@ -49,17 +49,19 @@ export function AchievementToast() {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = themedStyles(() =>
+  StyleSheet.create({
   wrap: { position: 'absolute', left: 12, right: 12, zIndex: 100 },
   card: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
-    backgroundColor: '#fff',
+    backgroundColor: colors.card,
     borderRadius: 20,
     borderWidth: 2,
     padding: 12,
     ...shadow(2),
   },
   badge: { width: 50, height: 50, borderRadius: 25, alignItems: 'center', justifyContent: 'center', borderBottomWidth: 4 },
-});
+  }),
+);

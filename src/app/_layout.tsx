@@ -11,7 +11,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { AchievementToast } from '@/components/AchievementToast';
-import { colors, fonts, resetTo } from '@/components/ui';
+import { colors, fonts, resetTo, useTheme } from '@/components/ui';
 import { StoreProvider, useStore } from '@/lib/store';
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
@@ -45,20 +45,11 @@ function AuthGate() {
   return null;
 }
 
-export default function RootLayout() {
-  const [loaded, error] = useFonts({
-    Nunito_400Regular,
-    Nunito_600SemiBold,
-    Nunito_700Bold,
-    Nunito_800ExtraBold,
-    Nunito_900Black,
-  });
-
-  if (!loaded && !error) return null;
-
+function Shell() {
+  const { scheme } = useTheme();
   return (
-    <StoreProvider>
-      <StatusBar style="dark" />
+    <>
+      <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       <Stack
         screenOptions={{
           headerStyle: { backgroundColor: colors.bg },
@@ -84,6 +75,24 @@ export default function RootLayout() {
         <Stack.Screen name="ilerleme" options={{ headerShown: false }} />
         <Stack.Screen name="report/[id]" options={{ headerShown: false, gestureEnabled: false, animation: 'fade' }} />
       </Stack>
+    </>
+  );
+}
+
+export default function RootLayout() {
+  const [loaded, error] = useFonts({
+    Nunito_400Regular,
+    Nunito_600SemiBold,
+    Nunito_700Bold,
+    Nunito_800ExtraBold,
+    Nunito_900Black,
+  });
+
+  if (!loaded && !error) return null;
+
+  return (
+    <StoreProvider>
+      <Shell />
       <AuthGate />
       <AchievementToast />
     </StoreProvider>

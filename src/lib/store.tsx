@@ -8,6 +8,7 @@ import { currentAccount, signOutAccount, type Account } from './auth';
 import { loadLang, pick, tt, useLang } from './i18n';
 import { hasPendingPush, markPending, pullProgress, pushProgress } from './cloud';
 import { cancelReminders, scheduleReminders } from './reminders';
+import { loadThemePref, useTheme, type Scheme } from './theme';
 
 type Progress = {
   xp: number;
@@ -156,6 +157,8 @@ function logActivity(s: Progress, xp: number, unitId?: string): Progress {
 
 type Ctx = Progress & {
   ready: boolean;
+  /** Active colour scheme; part of the value so every screen re-renders when it changes. */
+  scheme: Scheme;
   toast: Toast | undefined;
   dismissToast: () => void;
   addReport: (r: Report) => void;
@@ -185,9 +188,10 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
   const level = useRef<number | null>(null);
   const lang = useLang();
+  const { scheme } = useTheme();
 
   useEffect(() => {
-    Promise.all([AsyncStorage.getItem(KEY), loadLang()])
+    Promise.all([AsyncStorage.getItem(KEY), loadLang(), loadThemePref()])
       .then(([raw]) => {
         if (!raw) return;
         setState(hydrate(JSON.parse(raw)));
@@ -399,6 +403,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     () => ({
       ...state,
       ready,
+      scheme,
       toast: toasts[0],
       dismissToast,
       addReport,
@@ -418,7 +423,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       isUnlocked: (unitIds, index) => index === 0 || (state.bestByUnit[unitIds[index - 1]] ?? 0) >= PASS_SCORE,
       reset: () => setState(EMPTY),
     }),
-    [state, ready, toasts, dismissToast, addReport, addQuizResult, addDailyResult, recordQuizAnswer, addReviewResult, setReminder, setVoice, startGuest, signedIn, signOut, saveProfile, renameAccount, setInterviewer],
+    [state, ready, scheme, toasts, dismissToast, addReport, addQuizResult, addDailyResult, recordQuizAnswer, addReviewResult, setReminder, setVoice, startGuest, signedIn, signOut, saveProfile, renameAccount, setInterviewer],
   );
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;

@@ -16,6 +16,7 @@ import {
   shadow,
   tap,
   type IconName,
+  themedStyles,
 } from '@/components/ui';
 import { SignupPrompt } from '@/components/SignupPrompt';
 import { allUnits, dailyQuestion, findTrack, findUnit, professions } from '@/data/professions';
@@ -111,7 +112,7 @@ export default function Home() {
       <View style={styles.body}>
         <FadeIn>
           <Card style={styles.goalCard}>
-            <Ring value={Math.min(100, (todayCount / goal) * 100)} size={74} stroke={9} color={colors.streak} track="#FFE8D6">
+            <Ring value={Math.min(100, (todayCount / goal) * 100)} size={74} stroke={9} color={colors.streak} track={colors.tintOrange}>
               {goalDone || goal === 1 ? (
                 <Ionicons name={goalDone ? 'checkmark' : 'flame'} size={28} color={colors.streak} />
               ) : (
@@ -179,10 +180,10 @@ export default function Home() {
               style={styles.reminderCta}
             >
               <Ionicons name="notifications" size={20} color={colors.streak} />
-              <T w="extrabold" size={13} color="#8A4B00" style={{ flex: 1 }}>
+              <T w="extrabold" size={13} color={colors.onOrange} style={{ flex: 1 }}>
                 {t('Serini kaybetme! Günlük hatırlatıcıyı aç', "Don't lose your streak! Turn on the daily reminder")}
               </T>
-              <Ionicons name="chevron-forward" size={18} color="#C98A3A" />
+              <Ionicons name="chevron-forward" size={18} color={colors.onOrange} />
             </Pressable>
           </FadeIn>
         )}
@@ -263,9 +264,9 @@ export default function Home() {
               if (access.canDaily) router.push('/gunluk');
               else setLocked('daily');
             }}
-            style={({ pressed }) => [styles.mini, { borderColor: '#FFD7A3', transform: [{ scale: pressed ? 0.97 : 1 }] }]}
+            style={({ pressed }) => [styles.mini, { borderColor: colors.tintOrangeBorder, transform: [{ scale: pressed ? 0.97 : 1 }] }]}
           >
-            <View style={[styles.miniIcon, { backgroundColor: '#FFF1DC' }]}>
+            <View style={[styles.miniIcon, { backgroundColor: colors.tintOrange }]}>
               <Ionicons name={dailyDone ? 'checkmark-circle' : 'today'} size={22} color="#F07A1A" />
             </View>
             <T w="black" size={14} style={{ marginTop: 8 }}>
@@ -291,9 +292,9 @@ export default function Home() {
               tap();
               router.push('/hatalar');
             }}
-            style={({ pressed }) => [styles.mini, { borderColor: '#F9C4C4', transform: [{ scale: pressed ? 0.97 : 1 }] }]}
+            style={({ pressed }) => [styles.mini, { borderColor: colors.tintRedBorder, transform: [{ scale: pressed ? 0.97 : 1 }] }]}
           >
-            <View style={[styles.miniIcon, { backgroundColor: '#FDECEC' }]}>
+            <View style={[styles.miniIcon, { backgroundColor: colors.tintRed }]}>
               <Ionicons name="journal" size={22} color="#EF5A5A" />
             </View>
             <T w="black" size={14} style={{ marginTop: 8 }}>
@@ -481,7 +482,8 @@ function Stat({ icon, color, value, label }: { icon: IconName; color: string; va
   );
 }
 
-const styles = StyleSheet.create({
+const styles = themedStyles(() =>
+  StyleSheet.create({
   hero: { paddingHorizontal: 20, paddingBottom: 56, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
   heroTop: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   mineCard: {
@@ -501,9 +503,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
     marginTop: 12,
-    backgroundColor: '#EEEBFF',
+    backgroundColor: colors.tintPurple,
     borderWidth: 2,
-    borderColor: '#D9D3FF',
+    borderColor: colors.tintPurpleBorder,
     borderRadius: 16,
     paddingHorizontal: 14,
     paddingVertical: 10,
@@ -513,9 +515,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
     marginTop: 12,
-    backgroundColor: '#FFF3E0',
+    backgroundColor: colors.tintOrange,
     borderWidth: 2,
-    borderColor: '#FFE0B3',
+    borderColor: colors.tintOrangeBorder,
     borderRadius: 16,
     paddingHorizontal: 14,
     paddingVertical: 11,
@@ -598,4 +600,5 @@ const styles = StyleSheet.create({
   progressLink: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   reportRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12 },
   scorePill: { borderRadius: 12, paddingHorizontal: 10, paddingVertical: 4 },
-});
+  }),
+);

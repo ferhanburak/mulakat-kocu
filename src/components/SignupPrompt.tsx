@@ -4,7 +4,7 @@ import { Modal, Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { GUEST_INTERVIEWS, type Locked } from '@/lib/access';
 import { pick, useLang, useT, type Bi } from '@/lib/i18n';
-import { Button, FadeIn, Ionicons, T, colors, type IconName } from './ui';
+import { Button, FadeIn, Ionicons, T, colors, type IconName, themedStyles } from './ui';
 
 const REASONS: Record<Locked, { icon: IconName; title: Bi; desc: Bi }> = {
   unit: {
@@ -100,7 +100,8 @@ export function SignupPrompt({ reason, onClose }: { reason: Locked | null; onClo
   );
 }
 
-const styles = StyleSheet.create({
+const styles = themedStyles(() =>
+  StyleSheet.create({
   backdrop: { flex: 1, backgroundColor: 'rgba(23,21,43,0.45)' },
   sheet: { backgroundColor: colors.bg, borderTopLeftRadius: 28, borderTopRightRadius: 28, paddingHorizontal: 20, paddingTop: 10 },
   grabber: { alignSelf: 'center', width: 44, height: 5, borderRadius: 3, backgroundColor: colors.border, marginBottom: 16 },
@@ -108,4 +109,5 @@ const styles = StyleSheet.create({
   perks: { backgroundColor: colors.card, borderRadius: 18, padding: 14, gap: 8, marginTop: 18, marginBottom: 18, borderWidth: 2, borderColor: colors.border },
   perk: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   links: { flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 12, marginTop: 16 },
-});
+  }),
+);

@@ -5,7 +5,7 @@ import { Animated, Easing, Modal, Platform, Pressable, ScrollView, StyleSheet, V
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Path } from 'react-native-svg';
 import { SignupPrompt } from '@/components/SignupPrompt';
-import { Bar, FadeIn, Ionicons, T, colors, goBack, shade, shadow, tap, type IconName } from '@/components/ui';
+import { Bar, FadeIn, Ionicons, T, colors, goBack, shade, shadow, tap, type IconName, themedStyles } from '@/components/ui';
 import { INTERVIEWERS } from '@/data/interviewers';
 import { findTrack, type Unit } from '@/data/professions';
 import { GUEST_INTERVIEWS, useAccess, type Locked } from '@/lib/access';
@@ -95,7 +95,7 @@ export default function TrackScreen() {
                     <Path
                       key={i}
                       d={`M ${a.x} ${a.y} C ${a.x} ${my}, ${b.x} ${my}, ${b.x} ${b.y}`}
-                      stroke={done ? p.color : '#DCD9E8'}
+                      stroke={done ? p.color : colors.track}
                       strokeWidth={7}
                       strokeLinecap="round"
                       strokeDasharray="1 14"
@@ -113,7 +113,7 @@ export default function TrackScreen() {
                 const current = i === currentIdx;
                 const size = current ? 86 : 74;
                 const c = center(i);
-                const fill = passed ? colors.success : unlocked ? p.color : '#E2DFEC';
+                const fill = passed ? colors.success : unlocked ? p.color : colors.track;
                 return (
                   <View key={u.id} style={[styles.nodeWrap, { left: c.x - 80, top: c.y - size / 2 }]}>
                     {current && <StartBubble color={p.color} />}
@@ -144,7 +144,7 @@ export default function TrackScreen() {
                             <Ionicons
                               name={passed ? 'checkmark' : unlocked && !guestLocked ? 'mic' : 'lock-closed'}
                               size={size * 0.42}
-                              color={unlocked || passed ? '#fff' : '#B3AFC4'}
+                              color={unlocked || passed ? '#fff' : colors.locked}
                             />
                           </View>
                         </View>
@@ -154,7 +154,7 @@ export default function TrackScreen() {
                       {passed && (
                         <View style={styles.stars}>
                           {[1, 2, 3].map((s) => (
-                            <Ionicons key={s} name="star" size={15} color={s <= stars(best ?? 0) ? '#FFC53D' : '#E2DFEC'} />
+                            <Ionicons key={s} name="star" size={15} color={s <= stars(best ?? 0) ? '#FFC53D' : colors.track} />
                           ))}
                           <T w="black" size={12} color={colors.muted} style={{ marginLeft: 4 }}>
                             {best}
@@ -177,7 +177,7 @@ export default function TrackScreen() {
                 return (
                   <View style={[styles.nodeWrap, { left: c.x - 80, top: c.y - 40 }]}>
                     <View style={[styles.trophy, allDone && { backgroundColor: '#FFC53D', borderColor: '#E0A100' }]}>
-                      <Ionicons name="trophy" size={36} color={allDone ? '#fff' : '#C9C5D8'} />
+                      <Ionicons name="trophy" size={36} color={allDone ? '#fff' : colors.locked} />
                     </View>
                     <T w="black" size={15} style={{ marginTop: 8 }} color={allDone ? colors.text : colors.faint}>
                       {allDone ? t('Uzman rozeti kazanıldı!', 'Expert badge earned!') : t('Uzman rozeti', 'Expert badge')}
@@ -259,7 +259,8 @@ function StartBubble({ color }: { color: string }) {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = themedStyles(() =>
+  StyleSheet.create({
   header: { paddingHorizontal: 18, paddingBottom: 20, borderBottomLeftRadius: 28, borderBottomRightRadius: 28 },
   back: { width: 36, height: 36, justifyContent: 'center', marginLeft: -6 },
   headRow: { flexDirection: 'row', alignItems: 'center', gap: 14, marginTop: 4 },
@@ -281,16 +282,16 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#EFEDF6',
+    backgroundColor: colors.track,
     borderWidth: 3,
-    borderColor: '#E2DFEC',
+    borderColor: colors.track,
     alignItems: 'center',
     justifyContent: 'center',
   },
   bubble: {
     position: 'absolute',
     top: -46,
-    backgroundColor: '#fff',
+    backgroundColor: colors.card,
     borderRadius: 12,
     paddingHorizontal: 14,
     paddingVertical: 7,
@@ -304,13 +305,14 @@ const styles = StyleSheet.create({
     bottom: -7,
     width: 12,
     height: 12,
-    backgroundColor: '#fff',
+    backgroundColor: colors.card,
     borderRightWidth: 2,
     borderBottomWidth: 2,
     borderColor: colors.border,
     transform: [{ rotate: '45deg' }],
   },
-});
+  }),
+);
 
 function ModeSheet({
   unit,
@@ -455,7 +457,7 @@ function ModeCard({
             <T w="semibold" size={13} color={colors.muted} style={{ lineHeight: 18, marginTop: 2 }}>
               {desc}
             </T>
-            <T w="extrabold" size={12} color={primary ? color : '#B5791A'} style={{ marginTop: 6 }}>
+            <T w="extrabold" size={12} color={primary ? color : colors.onOrange} style={{ marginTop: 6 }}>
               {meta}
             </T>
           </View>
@@ -466,7 +468,8 @@ function ModeCard({
   );
 }
 
-const sheetStyles = StyleSheet.create({
+const sheetStyles = themedStyles(() =>
+  StyleSheet.create({
   backdrop: { flex: 1, backgroundColor: 'rgba(23,21,43,0.45)' },
   sheet: {
     backgroundColor: colors.bg,
@@ -500,4 +503,5 @@ const sheetStyles = StyleSheet.create({
     marginBottom: 12,
   },
   cardIcon: { width: 48, height: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
-});
+  }),
+);

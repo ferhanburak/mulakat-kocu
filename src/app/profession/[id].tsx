@@ -2,7 +2,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Bar, FadeIn, GradientIcon, Ionicons, T, colors, goBack, shade, shadow, tap, type IconName } from '@/components/ui';
+import { Bar, FadeIn, GradientIcon, Ionicons, T, colors, goBack, shade, shadow, tap, type IconName, themedStyles } from '@/components/ui';
 import { allUnits, findProfession } from '@/data/professions';
 import { useT } from '@/lib/i18n';
 import { PASS_SCORE } from '@/lib/evaluator';
@@ -124,7 +124,8 @@ export default function ProfessionScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = themedStyles(() =>
+  StyleSheet.create({
   header: { paddingHorizontal: 18, paddingBottom: 20, borderBottomLeftRadius: 28, borderBottomRightRadius: 28 },
   back: { width: 36, height: 36, justifyContent: 'center', marginLeft: -6 },
   headRow: { flexDirection: 'row', alignItems: 'center', gap: 14, marginTop: 4 },
@@ -147,4 +148,5 @@ const styles = StyleSheet.create({
   level: { flexDirection: 'row', alignItems: 'center', gap: 4, borderWidth: 1, borderRadius: 999, paddingHorizontal: 7, paddingVertical: 2 },
   levelDot: { width: 6, height: 6, borderRadius: 3 },
   progressRow: { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 8 },
-});
+  }),
+);

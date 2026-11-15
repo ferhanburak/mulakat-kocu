@@ -12,7 +12,7 @@ import {
   type TextInputProps,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { FadeIn, Ionicons, T, colors, fonts, goBack, shadow, type IconName } from './ui';
+import { FadeIn, Ionicons, T, colors, fonts, goBack, shadow, type IconName, themedStyles } from './ui';
 
 /** Gradient header + keyboard-safe scrolling body shared by the sign-up and sign-in screens. */
 export function AuthScaffold({
@@ -112,7 +112,8 @@ export function FormError({ message }: { message: string | null }) {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = themedStyles(() =>
+  StyleSheet.create({
   hero: { alignItems: 'center', paddingHorizontal: 20, paddingBottom: 26, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
   back: { position: 'absolute', left: 14, zIndex: 2 },
   heroIcon: { width: 64, height: 64, borderRadius: 22, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center', marginTop: 18, ...shadow(1) },
@@ -139,10 +140,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
-    backgroundColor: '#FDECEC',
+    backgroundColor: colors.tintRed,
     borderRadius: 14,
     paddingHorizontal: 12,
     paddingVertical: 10,
     marginBottom: 14,
   },
-});
+  }),
+);

@@ -17,25 +17,12 @@ import {
   type ViewStyle,
 } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
+import { colors, themedStyles } from '@/lib/theme';
 
 export type IconName = ComponentProps<typeof Ionicons>['name'];
 export { Ionicons };
 
-export const colors = {
-  bg: '#F7F6FB',
-  card: '#FFFFFF',
-  text: '#17152B',
-  muted: '#7A7690',
-  faint: '#B5B1C8',
-  border: '#ECEAF4',
-  primary: '#5B4BDB',
-  primary2: '#8B5CF6',
-  success: '#1FB57A',
-  warn: '#F5A524',
-  danger: '#EF5A5A',
-  streak: '#FF7A1A',
-  xp: '#5B4BDB',
-};
+export { colors, themedStyles, useTheme } from '@/lib/theme';
 
 export const fonts = {
   regular: 'Nunito_400Regular',
@@ -58,7 +45,7 @@ export function shade(hex: string, amt: number) {
 }
 
 export const shadow = (level: 1 | 2 = 1): ViewStyle => ({
-  shadowColor: '#2A1F7A',
+  shadowColor: colors.shadow,
   shadowOpacity: level === 1 ? 0.06 : 0.12,
   shadowRadius: level === 1 ? 10 : 18,
   shadowOffset: { width: 0, height: level === 1 ? 4 : 8 },
@@ -114,8 +101,8 @@ export function Button({
   style?: StyleProp<ViewStyle>;
 }) {
   const solid = variant === 'solid';
-  const base = disabled ? '#DAD7E6' : solid ? color : '#fff';
-  const edge = disabled ? '#C4C0D4' : solid ? shade(color, -0.28) : colors.border;
+  const base = disabled ? colors.trackStrong : solid ? color : colors.card;
+  const edge = disabled ? colors.trackEdge : solid ? shade(color, -0.28) : colors.border;
   const fg = disabled ? '#fff' : solid ? '#fff' : color;
   return (
     <Pressable
@@ -272,7 +259,8 @@ export function Chip({ icon, label, color, bg }: { icon?: IconName; label: strin
   );
 }
 
-const styles = StyleSheet.create({
+const styles = themedStyles(() =>
+  StyleSheet.create({
   btnEdge: { borderRadius: 18 },
   btn: {
     flexDirection: 'row',
@@ -293,4 +281,5 @@ const styles = StyleSheet.create({
     ...shadow(1),
   },
   chip: { flexDirection: 'row', alignItems: 'center', gap: 5, paddingHorizontal: 10, paddingVertical: 5, borderRadius: 999 },
-});
+  }),
+);

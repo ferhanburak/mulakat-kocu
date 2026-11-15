@@ -19,6 +19,7 @@ import {
   tap,
   scoreColor,
   type IconName,
+  themedStyles,
 } from '@/components/ui';
 import { SignupPrompt } from '@/components/SignupPrompt';
 import { dailyQuestion } from '@/data/professions';
@@ -175,7 +176,7 @@ function DailyResultView({
                   ? t('İyi deneme 👍', 'Good try 👍')
                   : t('Geliştirilebilir 💪', 'Room to improve 💪')}
             </T>
-            <Chip icon="flash" label={`+${result.xp} XP`} color={colors.primary} bg="#EEEBFF" />
+            <Chip icon="flash" label={`+${result.xp} XP`} color={colors.primary} bg={colors.tintPurple} />
             <T w="semibold" size={12} color={colors.muted}>
               {t('Yarın yeni bir soru seni bekliyor.', 'A new question is waiting for you tomorrow.')}
             </T>
@@ -193,10 +194,10 @@ function DailyResultView({
           {(fb.covered.length > 0 || fb.missing.length > 0) && (
             <View style={styles.tags}>
               {fb.covered.map((c) => (
-                <Chip key={c} icon="checkmark-circle" label={c} color={colors.success} bg="#E6F8F0" />
+                <Chip key={c} icon="checkmark-circle" label={c} color={colors.success} bg={colors.tintGreen} />
               ))}
               {fb.missing.map((c) => (
-                <Chip key={c} icon="close-circle" label={c} color={colors.danger} bg="#FDECEC" />
+                <Chip key={c} icon="close-circle" label={c} color={colors.danger} bg={colors.tintRed} />
               ))}
             </View>
           )}
@@ -208,7 +209,7 @@ function DailyResultView({
               {fb.answer}
             </T>
           </View>
-          <View style={[styles.box, { backgroundColor: '#E8F8F1' }]}>
+          <View style={[styles.box, { backgroundColor: colors.tintGreen }]}>
             <T w="black" size={11} color={colors.success} style={styles.boxLabel}>
               {t('ÖRNEK GÜÇLÜ CEVAP', 'EXAMPLE STRONG ANSWER')}
             </T>
@@ -226,7 +227,8 @@ function DailyResultView({
   );
 }
 
-const styles = StyleSheet.create({
+const styles = themedStyles(() =>
+  StyleSheet.create({
   hero: { alignItems: 'center', paddingHorizontal: 20, paddingBottom: 24, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
   back: { alignSelf: 'flex-start', width: 36, height: 36, justifyContent: 'center', marginLeft: -6 },
   heroIcon: { width: 64, height: 64, borderRadius: 22, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
@@ -248,7 +250,8 @@ const styles = StyleSheet.create({
   meterRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10 },
   scoreCard: { flexDirection: 'row', alignItems: 'center', gap: 16, marginTop: 14 },
   score: { fontFamily: fonts.black, fontSize: 34 },
-  tip: { flexDirection: 'row', gap: 8, backgroundColor: '#FFF9EC', borderRadius: 12, padding: 12 },
+  tip: { flexDirection: 'row', gap: 8, backgroundColor: colors.tintOrange, borderRadius: 12, padding: 12 },
   box: { backgroundColor: colors.bg, borderRadius: 14, padding: 12 },
   boxLabel: { letterSpacing: 0.8, marginBottom: 4 },
-});
+  }),
+);

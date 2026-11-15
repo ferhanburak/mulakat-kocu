@@ -3,17 +3,23 @@ import { router } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Bar, Button, Card, FadeIn, Ionicons, T, colors, goBack, shadow, tap, type IconName } from '@/components/ui';
+import { Bar, Button, Card, FadeIn, Ionicons, T, colors, goBack, shadow, tap, type IconName, themedStyles } from '@/components/ui';
 import { INTERVIEWERS } from '@/data/interviewers';
 import { findTrack } from '@/data/professions';
 import { GUEST_INTERVIEWS } from '@/lib/access';
 import { ACHIEVEMENTS } from '@/lib/achievements';
 import { locale, pick, setLang, useLang, useT, type Lang } from '@/lib/i18n';
+import { setThemePref, useTheme, type ThemePref } from '@/lib/theme';
 import { goalLabel, stageLabel } from '@/lib/profileOptions';
 import { enableReminders, remindersSupported } from '@/lib/reminders';
 import { levelOf, useStore } from '@/lib/store';
 
 const HOURS = [9, 12, 18, 20, 22];
+const THEMES: { id: ThemePref; icon: IconName; label: { tr: string; en: string } }[] = [
+  { id: 'system', icon: 'phone-portrait', label: { tr: 'Sistem', en: 'System' } },
+  { id: 'light', icon: 'sunny', label: { tr: 'Açık', en: 'Light' } },
+  { id: 'dark', icon: 'moon', label: { tr: 'Koyu', en: 'Dark' } },
+];
 const LANGS: { id: Lang; label: string; flag: string }[] = [
   { id: 'tr', label: 'Türkçe', flag: '🇹🇷' },
   { id: 'en', label: 'English', flag: '🇬🇧' },
@@ -24,6 +30,7 @@ export default function ProfileScreen() {
   const store = useStore();
   const t = useT();
   const lang = useLang();
+  const theme = useTheme();
   const { xp, streak, stats, unlocked, reminder, bestByUnit, setReminder, voice, setVoice, session, profile, signOut, interviewer, setInterviewer } =
     store;
   const account = session?.mode === 'user' ? session.account : null;
@@ -129,7 +136,7 @@ export default function ProfileScreen() {
         </Card>
 
         <T w="black" size={18} style={styles.section}>
-          {t('Dil & Mülakatçı', 'Language & Interviewer')}
+          {t('Dil, Tema & Mülakatçı', 'Language, Theme & Interviewer')}
         </T>
         <Card>
           <View style={styles.row}>
@@ -159,6 +166,39 @@ export default function ProfileScreen() {
                 >
                   <T w="black" size={14} color={on ? '#fff' : colors.muted}>
                     {l.flag} {l.label}
+                  </T>
+                </Pressable>
+              );
+            })}
+          </View>
+          <View style={[styles.row, styles.rowDivider]}>
+            <View style={[styles.rowIcon, { backgroundColor: colors.primary + '1A' }]}>
+              <Ionicons name={theme.scheme === 'dark' ? 'moon' : 'sunny'} size={20} color={colors.primary} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <T w="black" size={15}>
+                {t('Tema', 'Theme')}
+              </T>
+              <T w="semibold" size={12} color={colors.muted}>
+                {t('Sistem, telefonunun açık/koyu ayarını izler.', "System follows your phone's light/dark setting.")}
+              </T>
+            </View>
+          </View>
+          <View style={styles.hours}>
+            {THEMES.map((th) => {
+              const on = theme.pref === th.id;
+              return (
+                <Pressable
+                  key={th.id}
+                  onPress={() => {
+                    tap();
+                    setThemePref(th.id);
+                  }}
+                  style={[styles.langPill, styles.themePill, on && { backgroundColor: colors.primary, borderColor: colors.primary }]}
+                >
+                  <Ionicons name={th.icon} size={15} color={on ? '#fff' : colors.muted} />
+                  <T w="black" size={13} color={on ? '#fff' : colors.muted}>
+                    {pick(th.label, lang)}
                   </T>
                 </Pressable>
               );
@@ -300,10 +340,10 @@ export default function ProfileScreen() {
                       styles.achBadge,
                       done
                         ? { backgroundColor: a.color, borderBottomColor: 'rgba(0,0,0,0.22)' }
-                        : { backgroundColor: '#ECEAF4', borderBottomColor: '#DAD7E6' },
+                        : { backgroundColor: colors.track, borderBottomColor: colors.trackStrong },
                     ]}
                   >
-                    <Ionicons name={(done ? a.icon : 'lock-closed') as IconName} size={24} color={done ? '#fff' : '#B5B1C8'} />
+                    <Ionicons name={(done ? a.icon : 'lock-closed') as IconName} size={24} color={done ? '#fff' : colors.locked} />
                   </View>
                   <T w="black" size={12} style={{ textAlign: 'center', marginTop: 8, minHeight: 32, lineHeight: 16 }} numberOfLines={2}>
                     {pick(a.title)}
@@ -388,7 +428,8 @@ function StatBox({ icon, color, value, label }: { icon: IconName; color: string;
   );
 }
 
-const styles = StyleSheet.create({
+const styles = themedStyles(() =>
+  StyleSheet.create({
   hero: { alignItems: 'center', paddingHorizontal: 20, paddingBottom: 22, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
   back: { position: 'absolute', left: 14, zIndex: 2 },
   avatar: { width: 84, height: 84, borderRadius: 42, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center', marginTop: 14 },
@@ -425,6 +466,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: colors.border,
   },
+  themePill: { flexDirection: 'row', justifyContent: 'center', gap: 6 },
   langPill: {
     flex: 1,
     alignItems: 'center',
@@ -443,4 +485,5 @@ const styles = StyleSheet.create({
   achWrap: { width: '33.33%', padding: 5 },
   ach: { backgroundColor: colors.card, borderRadius: 18, padding: 10, alignItems: 'center', ...shadow(1) },
   achBadge: { width: 54, height: 54, borderRadius: 27, alignItems: 'center', justifyContent: 'center', borderBottomWidth: 4 },
-});
+  }),
+);

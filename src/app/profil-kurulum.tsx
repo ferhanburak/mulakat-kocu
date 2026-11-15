@@ -4,7 +4,7 @@ import { useState, type ReactNode } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Field } from '@/components/AuthForm';
-import { Bar, Button, FadeIn, GradientIcon, Ionicons, T, colors, goBack, resetTo, shadow, tap, type IconName } from '@/components/ui';
+import { Bar, Button, FadeIn, GradientIcon, Ionicons, T, colors, goBack, resetTo, shadow, tap, type IconName, themedStyles } from '@/components/ui';
 import { findProfession, findTrack, professions } from '@/data/professions';
 import { updateName } from '@/lib/auth';
 import { pick, useLang, useT, type Bi } from '@/lib/i18n';
@@ -274,7 +274,8 @@ function Option({
   );
 }
 
-const styles = StyleSheet.create({
+const styles = themedStyles(() =>
+  StyleSheet.create({
   header: { paddingHorizontal: 18, paddingBottom: 22, borderBottomLeftRadius: 28, borderBottomRightRadius: 28 },
   headRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   back: { width: 28, height: 32, justifyContent: 'center' },
@@ -286,4 +287,5 @@ const styles = StyleSheet.create({
   option: { flexDirection: 'row', alignItems: 'center', gap: 14, borderWidth: 2, borderRadius: 20, padding: 14, marginBottom: 12 },
   optionIcon: { width: 46, height: 46, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
   footer: { paddingHorizontal: 16, paddingTop: 12, backgroundColor: colors.bg, borderTopWidth: 1, borderTopColor: colors.border },
-});
+  }),
+);

@@ -3,7 +3,7 @@ import { router } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Circle, Line, Path, Text as SvgText } from 'react-native-svg';
-import { Bar, Button, Card, FadeIn, Ionicons, T, colors, fonts, goBack, scoreColor, shadow, tap, type IconName } from '@/components/ui';
+import { Bar, Button, Card, FadeIn, Ionicons, T, colors, fonts, goBack, scoreColor, shadow, tap, type IconName, themedStyles } from '@/components/ui';
 import { findUnit } from '@/data/professions';
 import { PASS_SCORE, categoryLabel, type CategoryKey, type Report } from '@/lib/evaluator';
 import { locale, useLang, useT } from '@/lib/i18n';
@@ -100,13 +100,13 @@ export default function ProgressScreen() {
                   <Ionicons name={CAT_ICON[weakest]} size={22} color="#fff" />
                 </View>
                 <View style={{ flex: 1 }}>
-                  <T w="black" size={12} color="#8A4B00" style={{ letterSpacing: 0.8 }}>
+                  <T w="black" size={12} color={colors.onOrange} style={{ letterSpacing: 0.8 }}>
                     {t('EN ZAYIF KATEGORİN', 'YOUR WEAKEST CATEGORY')}
                   </T>
-                  <T w="black" size={18} color="#7A4300">
+                  <T w="black" size={18} color={colors.onOrange}>
                     {categoryLabel(weakest)} · {catAvg[weakest]}
                   </T>
-                  <T w="semibold" size={13} color="#7A4300" style={{ marginTop: 2, lineHeight: 19 }}>
+                  <T w="semibold" size={13} color={colors.onOrange} style={{ marginTop: 2, lineHeight: 19 }}>
                     {TIPS[weakest][lang]}
                   </T>
                 </View>
@@ -267,7 +267,8 @@ function Stat({ icon, color, value, label }: { icon: IconName; color: string; va
   );
 }
 
-const styles = StyleSheet.create({
+const styles = themedStyles(() =>
+  StyleSheet.create({
   hero: { alignItems: 'center', paddingHorizontal: 24, paddingBottom: 22, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
   back: { alignSelf: 'flex-start', width: 36, height: 36, justifyContent: 'center', marginLeft: -10 },
   heroIcon: { width: 64, height: 64, borderRadius: 22, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
@@ -275,9 +276,10 @@ const styles = StyleSheet.create({
   empty: { alignItems: 'center', paddingVertical: 28 },
   stats: { flexDirection: 'row', gap: 10 },
   stat: { flex: 1, alignItems: 'center', backgroundColor: colors.card, borderRadius: 18, paddingVertical: 12, paddingHorizontal: 6, ...shadow(1) },
-  weak: { flexDirection: 'row', gap: 12, marginTop: 14, backgroundColor: '#FFF3E0', borderRadius: 20, padding: 16, borderWidth: 2, borderColor: '#FFE0B3' },
+  weak: { flexDirection: 'row', gap: 12, marginTop: 14, backgroundColor: colors.tintOrange, borderRadius: 20, padding: 16, borderWidth: 2, borderColor: colors.tintOrangeBorder },
   weakIcon: { width: 44, height: 44, borderRadius: 14, backgroundColor: '#F5A524', alignItems: 'center', justifyContent: 'center' },
   catRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   catIcon: { width: 36, height: 36, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   catHead: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 6 },
-});
+  }),
+);

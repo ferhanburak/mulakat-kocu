@@ -20,6 +20,7 @@ import {
   shadow,
   tap,
   type IconName,
+  themedStyles,
 } from '@/components/ui';
 import { SignupPrompt } from '@/components/SignupPrompt';
 import { findUnit } from '@/data/professions';
@@ -130,7 +131,7 @@ export default function QuizScreen() {
             <Button
               title={t('MÜLAKATA GEÇ', 'GO TO INTERVIEW')}
               icon="mic"
-              color={good ? '#0E7A50' : shade(color, -0.3)}
+              color={good ? colors.onGreen : shade(color, -0.3)}
               variant="outline"
               onPress={() => router.replace(`/session/${found.unit.id}`)}
             />
@@ -239,22 +240,22 @@ export default function QuizScreen() {
           <Button title={t('KONTROL ET', 'CHECK')} color={color} disabled={!ready} onPress={check} />
         </View>
       ) : (
-        <FadeIn style={[styles.feedback, { backgroundColor: checked ? '#E3F8EE' : '#FDE8E8', paddingBottom: insets.bottom + 14 }]}>
+        <FadeIn style={[styles.feedback, { backgroundColor: checked ? colors.tintGreen : colors.tintRed, paddingBottom: insets.bottom + 14 }]}>
           <View style={styles.feedbackHead}>
             <View style={[styles.feedbackIcon, { backgroundColor: checked ? colors.success : colors.danger }]}>
               <Ionicons name={checked ? 'checkmark' : 'close'} size={22} color="#fff" />
             </View>
-            <T w="black" size={19} color={checked ? '#0E7A50' : '#B42323'}>
+            <T w="black" size={19} color={checked ? colors.onGreen : colors.onRed}>
               {checked ? t('Harika!', 'Great!') : t('Doğru cevap:', 'Correct answer:')}
             </T>
           </View>
           {!checked && (
-            <T w="semibold" size={13} color="#7A1C1C" style={{ lineHeight: 19, marginBottom: 4 }} numberOfLines={6}>
+            <T w="semibold" size={13} color={colors.onRed} style={{ lineHeight: 19, marginBottom: 4 }} numberOfLines={6}>
               {item.type === 'choice' ? item.options[item.answer] : item.parts.map((p, i) => `${i + 1}. ${p}`).join('\n')}
             </T>
           )}
           {item.type === 'choice' && (
-            <T w="semibold" size={12} color={checked ? '#1C6B4B' : '#8A3A3A'} style={{ lineHeight: 17 }}>
+            <T w="semibold" size={12} color={checked ? colors.onGreen : colors.onRed} style={{ lineHeight: 17 }}>
               {item.explain}
             </T>
           )}
@@ -290,7 +291,7 @@ function ChoiceList({
         const reveal = checked !== null;
         const isAnswer = i === item.answer;
         const border = reveal && isAnswer ? colors.success : reveal && isSel ? colors.danger : isSel ? color : colors.border;
-        const bg = reveal && isAnswer ? '#E3F8EE' : reveal && isSel ? '#FDE8E8' : isSel ? color + '12' : colors.card;
+        const bg = reveal && isAnswer ? colors.tintGreen : reveal && isSel ? colors.tintRed : isSel ? color + '12' : colors.card;
         return (
           <FadeIn key={i} delay={60 + i * 50}>
             <Pressable disabled={reveal} onPress={() => onSelect(i)}>
@@ -342,7 +343,7 @@ function OrderBoard({
           const border = reveal ? (right ? colors.success : colors.danger) : color;
           return (
             <Pressable key={p} disabled={reveal} onPress={() => onRemove(p)}>
-              <View style={[styles.piece, { borderColor: border, backgroundColor: reveal ? (right ? '#E3F8EE' : '#FDE8E8') : color + '10' }]}>
+              <View style={[styles.piece, { borderColor: border, backgroundColor: reveal ? (right ? colors.tintGreen : colors.tintRed) : color + '10' }]}>
                 <View style={[styles.num, { backgroundColor: border }]}>
                   <T w="black" size={12} color="#fff">
                     {pos + 1}
@@ -374,7 +375,8 @@ function OrderBoard({
   );
 }
 
-const styles = StyleSheet.create({
+const styles = themedStyles(() =>
+  StyleSheet.create({
   top: { flexDirection: 'row', alignItems: 'center', gap: 14, paddingHorizontal: 18, paddingBottom: 12 },
   body: { padding: 16, paddingBottom: 30 },
   promptRow: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12 },
@@ -415,4 +417,5 @@ const styles = StyleSheet.create({
     padding: 12,
     marginHorizontal: 8,
   },
-});
+  }),
+);
