@@ -1,4 +1,4 @@
-import type { Question } from '@/data/professions';
+import { findUnit, type Question } from '@/data/professions';
 import { pick, tt, type Bi } from './i18n';
 
 /**
@@ -42,42 +42,78 @@ export type Report = {
   xp: number;
 };
 
-// Turkish + English markers so the English interview track is scored fairly too.
-const FILLERS = ['yani', 'işte', 'şey', 'aslında', 'falan', 'filan', 'hani', 'açıkçası', 'um', 'uh', 'erm', 'basically', 'like', 'actually'];
-const STRUCTURE_MARKERS = [
-  'önce', 'öncelikle', 'ilk olarak', 'sonra', 'ardından', 'ikinci', 'son olarak', 'sonuç olarak', 'çünkü', 'bu yüzden',
-  'first', 'then', 'after that', 'finally', 'because', 'as a result', 'that is why', 'secondly', 'next',
-];
-const STAR = {
-  durum: ['durum', 'projede', 'çalışırken', 'şirkette', 'bir gün', 'geçen', 'in my last', 'at my', 'once', 'situation', 'project'],
-  gorev: ['görev', 'amacım', 'hedef', 'sorumluluğum', 'gerekiyordu', 'my task', 'my goal', 'i had to', 'i needed to', 'responsib'],
-  aksiyon: ['yaptım', 'ettim', 'kurdum', 'önerdim', 'konuştum', 'başlattım', 'hazırladım', 'çözdüm', 'i suggested', 'i set up', 'i built', 'i decided', 'i talked', 'i started'],
-  sonuc: ['sonuç', 'sonunda', 'başardık', 'arttı', 'azaldı', 'tamamladık', 'öğrendim', '%', 'as a result', 'in the end', 'we delivered', 'i learned', 'increased', 'reduced', 'percent'],
+type AnswerLang = 'tr' | 'en';
+
+/** Language-specific signals. Phrases are matched from the start of a word. */
+const RULES: Record<
+  AnswerLang,
+  {
+    locale: string;
+    fillers: string[];
+    fillerPhrases: string[];
+    structure: string[];
+    star: { durum: string[]; gorev: string[]; aksiyon: (string | RegExp)[]; sonuc: string[] };
+    example: RegExp;
+  }
+> = {
+  tr: {
+    locale: 'tr-TR',
+    fillers: ['yani', 'işte', 'şey', 'aslında', 'falan', 'filan', 'hani', 'açıkçası', 'ıı', 'ee'],
+    fillerPhrases: ['ne bileyim', 'nasıl desem'],
+    structure: ['önce', 'öncelikle', 'ilk olarak', 'sonra', 'ardından', 'ikinci', 'son olarak', 'sonuç olarak', 'çünkü', 'bu yüzden', 'bu nedenle', 'özetle', 'kısacası'],
+    star: {
+      durum: ['durum', 'projede', 'çalışırken', 'şirkette', 'bir gün', 'geçen', 'önceki', 'ekibimde', 'bir keresinde'],
+      gorev: ['görev', 'amacım', 'hedef', 'sorumluluğum', 'gerekiyordu', 'benden beklenen', 'rolüm'],
+      aksiyon: ['yaptım', 'ettim', 'kurdum', 'önerdim', 'konuştum', 'başlattım', 'hazırladım', 'çözdüm', 'düzenledim', 'analiz ettim', 'yönettim', 'geliştirdim', 'aldım', 'verdim', 'üstlendim'],
+      sonuc: ['sonuç', 'sonunda', 'başardık', 'arttı', 'azaldı', 'tamamladık', 'öğrendim', '%', 'teslim ettik', 'kazandık', 'düştü', 'yükseldi'],
+    },
+    example: /örneğin|mesela|bir keresinde|geçen yıl|projede|önceki işimde|bir projede/,
+  },
+  en: {
+    locale: 'en-US',
+    fillers: ['um', 'uh', 'erm', 'like', 'basically', 'actually', 'literally', 'honestly'],
+    fillerPhrases: ['you know', 'kind of', 'sort of', 'i mean'],
+    structure: ['first', 'firstly', 'second', 'secondly', 'third', 'then', 'next', 'after that', 'finally', 'lastly', 'because', 'therefore', 'as a result', "that's why", 'that is why', 'so that', 'to sum up', 'in short', 'overall', 'for this reason'],
+    star: {
+      durum: ['when i was', 'in my last', 'in my previous', 'at my previous', 'at my last', 'last year', 'once', 'we were', 'our team', 'the project', 'situation', 'at the time'],
+      gorev: ['my task', 'my goal', 'my role', 'i was responsible', 'i had to', 'i needed to', 'the goal was', 'we needed to', 'objective', 'responsib'],
+      aksiyon: [/\bi (?:\w+ed|built|set up|led|wrote|met|spoke|took|made|ran|chose|drove|brought|sought|began|found|gave|held|kept|broke|put)\b/, 'we decided', 'i decided'],
+      sonuc: ['as a result', 'in the end', 'which led to', 'resulted in', 'we delivered', 'i learned', 'increased', 'reduced', 'improved', 'saved', 'cut ', 'grew', 'percent', '%', 'on time'],
+    },
+    example: /for example|for instance|such as|e\.g\.|in my last|in my previous|at my previous|last year|\bonce\b|when i was/,
+  },
 };
 
-const lower = (s: string) => s.toLocaleLowerCase('tr-TR');
-const has = (text: string, stems: string[]) => stems.some((s) => text.includes(lower(s)));
+const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+/** True when `stem` starts a word in `text` (so "get" doesn't match "target"). */
+const startsWord = (text: string, stem: string) =>
+  new RegExp(`(^|[^a-z0-9çğıöşüâîû])${escapeRe(stem)}`).test(text);
+const hasAny = (text: string, stems: (string | RegExp)[], locale: string) =>
+  stems.some((s) => (typeof s === 'string' ? startsWord(text, s.toLocaleLowerCase(locale)) : s.test(text)));
 const clamp = (n: number) => Math.max(0, Math.min(100, Math.round(n)));
 
-function scoreAnswer(q: Question, raw: string) {
-  const text = lower(raw);
+function scoreAnswer(q: Question, raw: string, lang: AnswerLang) {
+  const R = RULES[lang];
+  const text = raw.toLocaleLowerCase(R.locale);
   const words = text.split(/\s+/).filter(Boolean);
   const wc = words.length;
 
-  const covered = q.concepts.filter((cn) => has(text, cn.stems)).map((cn) => cn.label);
-  const missing = q.concepts.filter((cn) => !has(text, cn.stems)).map((cn) => cn.label);
+  const covered = q.concepts.filter((cn) => hasAny(text, cn.stems, R.locale)).map((cn) => cn.label);
+  const missing = q.concepts.filter((cn) => !hasAny(text, cn.stems, R.locale)).map((cn) => cn.label);
   const icerik = clamp((covered.length / Math.max(1, q.concepts.length)) * 100);
 
   let yapi: number;
   if (q.kind === 'davranissal') {
-    const parts = Object.values(STAR).filter((stems) => has(text, stems)).length;
+    const parts = Object.values(R.star).filter((stems) => hasAny(text, stems, R.locale)).length;
     yapi = clamp((parts / 4) * 100);
   } else {
-    const markers = STRUCTURE_MARKERS.filter((m) => text.includes(m)).length;
+    const markers = R.structure.filter((m) => startsWord(text, m)).length;
     yapi = clamp(30 + markers * 25);
   }
 
-  const fillerCount = words.filter((w) => FILLERS.includes(w.replace(/[.,!?]/g, ''))).length;
+  const fillerCount =
+    words.filter((w) => R.fillers.includes(w.replace(/[.,!?;:]/g, ''))).length +
+    R.fillerPhrases.reduce((n, p) => n + (text.split(p).length - 1), 0);
   const sentences = raw.split(/[.!?]+/).map((s) => s.trim()).filter(Boolean);
   const avgSentence = wc / Math.max(1, sentences.length);
   let netlik = 100;
@@ -89,7 +125,7 @@ function scoreAnswer(q: Question, raw: string) {
   netlik = clamp(netlik);
 
   const numbers = (raw.match(/\d+/g) || []).length;
-  const example = /örneğin|mesela|bir keresinde|geçen yıl|projede|for example|for instance|in my last|last year|such as|once/.test(text);
+  const example = R.example.test(text);
   const somutluk = clamp(20 + Math.min(3, numbers) * 20 + (example ? 30 : 0));
 
   const score = clamp(icerik * 0.45 + yapi * 0.2 + netlik * 0.2 + somutluk * 0.15);
@@ -101,7 +137,8 @@ function scoreAnswer(q: Question, raw: string) {
   else if (q.kind === 'davranissal' && yapi < 75)
     tip = tt('Durum → Görev → Aksiyon → Sonuç sırasını belirgin kur, sonucu rakamla bitir.', 'Make the Situation → Task → Action → Result order clear, and end with a number.');
   else if (somutluk < 60) tip = tt('Bir rakam veya gerçek bir örnek ekle; somutluk ikna ediciliği artırır.', 'Add a number or a real example; being concrete makes you more convincing.');
-  else if (fillerCount > 1) tip = tt(`Dolgu kelimeleri azalt (${fillerCount} adet “yani/işte/şey”).`, `Cut down on filler words (${fillerCount} like “um/like/basically”).`);
+  else if (fillerCount > 1)
+    tip = lang === 'en' ? `Cut down on filler words (${fillerCount} like “um/like/basically”).` : `Dolgu kelimeleri azalt (${fillerCount} adet “yani/işte/şey”).`;
   else tip = tt('Güçlü bir cevap. Daha kısa ve vurucu bir açılış cümlesiyle bir üst seviyeye çıkar.', 'A strong answer. A shorter, punchier opening sentence would take it to the next level.');
 
   return { score, covered, missing, tip, cats: { icerik, yapi, netlik, somutluk }, fillerCount, wc };
@@ -112,7 +149,8 @@ export async function evaluateSession(
   unitId: string,
   items: { question: Question; answer: string }[],
 ): Promise<Report> {
-  const scored = items.map((it) => ({ it, r: scoreAnswer(it.question, it.answer) }));
+  const lang: AnswerLang = findUnit(unitId)?.track.lang === 'en' ? 'en' : 'tr';
+  const scored = items.map((it) => ({ it, r: scoreAnswer(it.question, it.answer, lang) }));
   const n = Math.max(1, scored.length);
   const avg = (k: CategoryKey) => clamp(scored.reduce((s, x) => s + x.r.cats[k], 0) / n);
   const categories: Record<CategoryKey, number> = {
