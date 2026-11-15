@@ -1,6 +1,7 @@
-import { tt } from '@/lib/i18n';
+import { AuthError, resendConfirmation } from '@/lib/auth';
+import { tt, useT } from '@/lib/i18n';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useState, type ComponentRef, type ReactNode, type Ref } from 'react';
+import { useEffect, useState, type ComponentRef, type ReactNode, type Ref } from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -12,7 +13,7 @@ import {
   type TextInputProps,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { FadeIn, Ionicons, T, colors, fonts, goBack, shadow, type IconName, themedStyles } from './ui';
+import { Button, FadeIn, Ionicons, T, colors, fonts, goBack, shadow, type IconName, themedStyles } from './ui';
 
 /** Gradient header + keyboard-safe scrolling body shared by the sign-up and sign-in screens. */
 export function AuthScaffold({
@@ -108,6 +109,63 @@ export function FormError({ message }: { message: string | null }) {
       <T w="bold" size={13} color={colors.danger} style={{ flex: 1 }}>
         {message}
       </T>
+    </View>
+  );
+}
+
+const RESEND_WAIT = 60;
+
+/**
+ * Shown after sign-up while the account waits for email confirmation. Offers to send
+ * the email again, with a short wait in between (Supabase rate-limits these).
+ */
+export function CheckInbox({ email, onSignIn }: { email: string; onSignIn: () => void }) {
+  const t = useT();
+  const [wait, setWait] = useState(RESEND_WAIT);
+  const [busy, setBusy] = useState(false);
+  const [note, setNote] = useState<{ ok: boolean; text: string } | null>(null);
+
+  useEffect(() => {
+    if (wait <= 0) return;
+    const id = setTimeout(() => setWait((w) => w - 1), 1000);
+    return () => clearTimeout(id);
+  }, [wait]);
+
+  const resend = async () => {
+    if (busy || wait > 0) return;
+    setBusy(true);
+    setNote(null);
+    try {
+      await resendConfirmation(email);
+      setNote({ ok: true, text: t('E-postayı tekrar gönderdik.', 'We sent the email again.') });
+      setWait(RESEND_WAIT);
+    } catch (e) {
+      setNote({ ok: false, text: e instanceof AuthError ? e.message : t('Gönderilemedi, tekrar dene.', "Couldn't send it, please try again.") });
+    }
+    setBusy(false);
+  };
+
+  const resendTitle = wait > 0 ? t(`TEKRAR GÖNDER (${wait})`, `RESEND (${wait})`) : busy ? t('GÖNDERİLİYOR…', 'SENDING…') : t('TEKRAR GÖNDER', 'RESEND EMAIL');
+
+  return (
+    <View style={{ alignItems: 'center', gap: 10, paddingVertical: 8 }}>
+      <Ionicons name="mail-unread" size={44} color={colors.primary} />
+      <T w="black" size={17} style={{ textAlign: 'center' }}>
+        {t('E-postanı onayla', 'Confirm your email')}
+      </T>
+      <T w="semibold" size={14} color={colors.muted} style={{ textAlign: 'center', lineHeight: 20 }}>
+        {t(
+          `${email} adresine bir onay bağlantısı gönderdik. Bağlantıya tıklayınca hesabın açılır. Gelmediyse spam klasörüne bak.`,
+          `We sent a confirmation link to ${email}. Open it to activate your account. If it doesn't arrive, check your spam folder.`,
+        )}
+      </T>
+      {note && (
+        <T w="bold" size={13} color={note.ok ? colors.success : colors.danger} style={{ textAlign: 'center' }}>
+          {note.text}
+        </T>
+      )}
+      <Button title={resendTitle} icon="refresh" variant="outline" onPress={resend} disabled={busy || wait > 0} style={{ alignSelf: 'stretch', marginTop: 8 }} />
+      <Button title={t('GİRİŞ YAP', 'SIGN IN')} icon="log-in" onPress={onSignIn} style={{ alignSelf: 'stretch' }} />
     </View>
   );
 }

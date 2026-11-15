@@ -1,6 +1,6 @@
 import type { AuthError as SupabaseAuthError, User } from '@supabase/supabase-js';
 import * as Linking from 'expo-linking';
-import { tt } from './i18n';
+import { getLang, onLangChange, tt } from './i18n';
 import { supabase } from './supabase';
 
 /**
@@ -9,17 +9,22 @@ import { supabase } from './supabase';
  */
 export type Account = { id: string; name: string; email: string; createdAt: string };
 
-export class AuthError extends Error {}
+export class AuthError extends Error {
+  constructor(
+    message: string,
+    /** Set for errors a screen reacts to, e.g. offering to resend the confirmation email. */
+    readonly code?: 'email_not_confirmed',
+  ) {
+    super(message);
+  }
+}
+
+/** Where links in auth emails return to: the app (scheme URL) or, on the web, this site. */
+const linkTo = (path: string) => Linking.createURL(path);
 
 const normEmail = (e: string) => e.trim().toLocaleLowerCase('en-US');
 export const isValidEmail = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e.trim());
 export const MIN_PASSWORD = 6;
-
-const confirmMsg = () =>
-  tt(
-    'Hesabın oluşturuldu. E-postana gelen bağlantıyla adresini onayla, sonra giriş yap.',
-    'Your account was created. Confirm your address with the link we emailed you, then sign in.',
-  );
 
 export const toAccount = (u: User): Account => ({
   id: u.id,
@@ -38,7 +43,10 @@ function fail(e: SupabaseAuthError): never {
     throw new AuthError(tt('Bu e-posta ile zaten bir hesap var. Giriş yapmayı dene.', 'An account with this email already exists. Try signing in.'));
   if (code === 'invalid_credentials') throw new AuthError(tt('E-posta veya şifre hatalı.', 'Incorrect email or password.'));
   if (code === 'email_not_confirmed')
-    throw new AuthError(tt('E-posta adresin henüz onaylanmadı. Gelen kutundaki bağlantıya tıkla.', "Your email isn't confirmed yet. Click the link in your inbox."));
+    throw new AuthError(
+      tt('E-posta adresin henüz onaylanmadı. Gelen kutundaki bağlantıya tıkla.', "Your email isn't confirmed yet. Click the link in your inbox."),
+      'email_not_confirmed',
+    );
   if (code === 'weak_password') throw new AuthError(passwordMsg());
   if (code === 'over_request_rate_limit' || code === 'over_email_send_rate_limit')
     throw new AuthError(tt('Çok fazla deneme yapıldı. Biraz bekleyip tekrar dene.', 'Too many attempts. Wait a moment and try again.'));
@@ -47,17 +55,33 @@ function fail(e: SupabaseAuthError): never {
   throw new AuthError(tt('Bir şeyler ters gitti, tekrar dene.', 'Something went wrong, please try again.'));
 }
 
-export async function signUp(input: { name: string; email: string; password: string }): Promise<Account> {
+/** Either signed in right away, or waiting for the user to click the confirmation link. */
+export type SignUpResult = { account: Account } | { confirmEmail: string };
+
+export async function signUp(input: { name: string; email: string; password: string }): Promise<SignUpResult> {
   const name = input.name.trim();
   const email = normEmail(input.email);
   if (name.length < 2) throw new AuthError(tt('Lütfen adını yaz.', 'Please enter your name.'));
   if (!isValidEmail(email)) throw new AuthError(emailMsg());
   if (input.password.length < MIN_PASSWORD) throw new AuthError(passwordMsg());
-  const { data, error } = await supabase.auth.signUp({ email, password: input.password, options: { data: { name } } });
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password: input.password,
+    // `lang` picks the language of the emails (see supabase/templates).
+    options: { data: { name, lang: getLang() }, emailRedirectTo: linkTo('/eposta-onay') },
+  });
   if (error) fail(error);
   // With email confirmation on, there is no session until the address is confirmed.
-  if (!data.session || !data.user) throw new AuthError(confirmMsg());
-  return toAccount(data.user);
+  if (!data.session || !data.user) return { confirmEmail: email };
+  return { account: toAccount(data.user) };
+}
+
+/** Sends the sign-up confirmation email again. */
+export async function resendConfirmation(rawEmail: string) {
+  const email = normEmail(rawEmail);
+  if (!isValidEmail(email)) throw new AuthError(emailMsg());
+  const { error } = await supabase.auth.resend({ type: 'signup', email, options: { emailRedirectTo: linkTo('/eposta-onay') } });
+  if (error) fail(error);
 }
 
 export async function signIn(input: { email: string; password: string }): Promise<Account> {
@@ -65,6 +89,7 @@ export async function signIn(input: { email: string; password: string }): Promis
   if (!isValidEmail(email)) throw new AuthError(emailMsg());
   const { data, error } = await supabase.auth.signInWithPassword({ email, password: input.password });
   if (error) fail(error);
+  if (data.user.user_metadata?.lang !== getLang()) supabase.auth.updateUser({ data: { lang: getLang() } }).catch(() => {});
   return toAccount(data.user);
 }
 
@@ -89,15 +114,16 @@ export async function updateName(name: string) {
 export async function requestPasswordReset(rawEmail: string) {
   const email = normEmail(rawEmail);
   if (!isValidEmail(email)) throw new AuthError(emailMsg());
-  const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: Linking.createURL('/sifre-yenile') });
+  const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: linkTo('/sifre-yenile') });
   if (error) fail(error);
 }
 
 /**
- * Signs in with the one-time session carried by a password reset link
- * (tokens in the URL fragment, or a `code` with the PKCE flow). Returns whether it worked.
+ * Signs in with the one-time session carried by an email link (password reset or
+ * sign-up confirmation): tokens in the URL fragment, or a `code` with the PKCE flow.
+ * Returns whether it worked.
  */
-export async function sessionFromRecoveryUrl(url: string): Promise<boolean> {
+export async function sessionFromEmailLink(url: string): Promise<boolean> {
   const params = new URLSearchParams(url.split('#')[1] ?? url.split('?')[1] ?? '');
   const access_token = params.get('access_token');
   const refresh_token = params.get('refresh_token');
@@ -127,3 +153,15 @@ export async function deleteAccount() {
   if (error) throw new AuthError(tt('Hesap silinemedi, tekrar dene.', "Couldn't delete the account, please try again."));
   await supabase.auth.signOut().catch(() => {});
 }
+
+/**
+ * Keeps the account's email language in step with the app language, so reset and
+ * other emails arrive in the language the user is using now.
+ */
+onLangChange(async (lang) => {
+  try {
+    const { data } = await supabase.auth.getSession();
+    const user = data.session?.user;
+    if (user && user.user_metadata?.lang !== lang) await supabase.auth.updateUser({ data: { lang } });
+  } catch {}
+});

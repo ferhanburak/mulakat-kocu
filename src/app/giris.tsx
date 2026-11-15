@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { Pressable } from 'react-native';
 import { AuthScaffold, Field, FormError, type InputRef } from '@/components/AuthForm';
 import { Button, resetTo, T, colors, notify } from '@/components/ui';
-import { AuthError, signIn } from '@/lib/auth';
+import { AuthError, resendConfirmation, signIn } from '@/lib/auth';
 import { useT } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 
@@ -14,12 +14,15 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [unconfirmed, setUnconfirmed] = useState(false);
+  const [resent, setResent] = useState(false);
   const passRef = useRef<InputRef>(null);
 
   const submit = async () => {
     if (busy) return;
     setBusy(true);
     setError(null);
+    setUnconfirmed(false);
     try {
       const account = await signIn({ email, password });
       notify(true);
@@ -28,7 +31,19 @@ export default function SignIn() {
     } catch (e) {
       notify(false);
       setError(e instanceof AuthError ? e.message : t('Bir şeyler ters gitti, tekrar dene.', 'Something went wrong, please try again.'));
+      setUnconfirmed(e instanceof AuthError && e.code === 'email_not_confirmed');
+      setResent(false);
       setBusy(false);
+    }
+  };
+
+  const resend = async () => {
+    try {
+      await resendConfirmation(email);
+      setResent(true);
+      setError(null);
+    } catch (e) {
+      setError(e instanceof AuthError ? e.message : t('Gönderilemedi, tekrar dene.', "Couldn't send it, please try again."));
     }
   };
 
@@ -71,6 +86,13 @@ export default function SignIn() {
         </T>
       </Pressable>
       <FormError message={error} />
+      {unconfirmed && (
+        <Pressable onPress={resend} disabled={resent} hitSlop={8} style={{ alignSelf: 'center', marginTop: -4, marginBottom: 14 }}>
+          <T w="extrabold" size={13} color={resent ? colors.success : colors.primary}>
+            {resent ? t('Onay e-postası tekrar gönderildi.', 'Confirmation email sent again.') : t('Onay e-postasını tekrar gönder', 'Resend confirmation email')}
+          </T>
+        </Pressable>
+      )}
       <Button title={busy ? t('GİRİŞ YAPILIYOR…', 'SIGNING IN…') : t('GİRİŞ YAP', 'SIGN IN')} icon="arrow-forward" onPress={submit} disabled={busy} />
       <Pressable onPress={() => router.replace('/kayit')} hitSlop={8} style={{ alignSelf: 'center', marginTop: 22 }}>
         <T w="bold" size={14} color={colors.muted}>

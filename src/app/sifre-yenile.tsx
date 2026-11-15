@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { ActivityIndicator, Platform, View } from 'react-native';
 import { AuthScaffold, Field, FormError } from '@/components/AuthForm';
 import { Button, Ionicons, T, colors, notify, resetTo } from '@/components/ui';
-import { AuthError, MIN_PASSWORD, sessionFromRecoveryUrl, setNewPassword } from '@/lib/auth';
+import { AuthError, MIN_PASSWORD, sessionFromEmailLink, setNewPassword } from '@/lib/auth';
 import { useT } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 
@@ -21,7 +21,7 @@ export default function NewPassword() {
   useEffect(() => {
     // On the web the tokens are in the address bar's #fragment.
     const url = Platform.OS === 'web' && typeof window !== 'undefined' ? window.location.href : linkUrl;
-    sessionFromRecoveryUrl(url ?? '')
+    sessionFromEmailLink(url ?? '')
       .then((ok) => setStatus(ok ? 'ready' : 'invalid'))
       .catch(() => setStatus('invalid'));
   }, [linkUrl]);
