@@ -48,6 +48,7 @@ export default function RootLayout() {
         <Stack.Screen name="hosgeldin" options={{ headerShown: false, animation: 'fade' }} />
         <Stack.Screen name="kayit" options={{ headerShown: false }} />
         <Stack.Screen name="giris" options={{ headerShown: false }} />
+        <Stack.Screen name="profil-kurulum" options={{ headerShown: false }} />
         <Stack.Screen name="profession/[id]" options={{ headerShown: false }} />
         <Stack.Screen name="track/[id]" options={{ headerShown: false }} />
         <Stack.Screen name="session/[unitId]" options={{ headerShown: false, gestureEnabled: false }} />
