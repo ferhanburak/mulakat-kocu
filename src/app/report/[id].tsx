@@ -21,7 +21,8 @@ import {
   type IconName,
 } from '@/components/ui';
 import { findUnit } from '@/data/professions';
-import { PASS_SCORE, categoryLabels, type CategoryKey } from '@/lib/evaluator';
+import { PASS_SCORE, categoryLabel, type CategoryKey } from '@/lib/evaluator';
+import { useT } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 
 const CAT_ICON: Record<CategoryKey, IconName> = {
@@ -35,6 +36,7 @@ export default function ReportScreen() {
   const insets = useSafeAreaInsets();
   const { id } = useLocalSearchParams<{ id: string }>();
   const { getReport, ready, streak } = useStore();
+  const t = useT();
   const r = getReport(id);
   const [open, setOpen] = useState<string | null>(null);
   const passed = (r?.overall ?? 0) >= PASS_SCORE;
@@ -43,7 +45,7 @@ export default function ReportScreen() {
     if (r) notify(passed);
   }, [r?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (!r) return <T style={{ padding: 20 }}>{ready ? 'Rapor bulunamadı.' : 'Yükleniyor…'}</T>;
+  if (!r) return <T style={{ padding: 20 }}>{ready ? t('Rapor bulunamadı.', 'Report not found.') : t('Yükleniyor…', 'Loading…')}</T>;
   const f = findUnit(r.unitId);
   const accent = passed ? colors.success : colors.warn;
 
@@ -69,15 +71,15 @@ export default function ReportScreen() {
               </Ring>
             </View>
             <T w="black" size={24} color="#fff" style={{ marginTop: 14 }}>
-              {passed ? 'Ünite geçildi! 🎉' : 'Az kaldı! 💪'}
+              {passed ? t('Ünite geçildi! 🎉', 'Unit passed! 🎉') : t('Az kaldı! 💪', 'Almost there! 💪')}
             </T>
             <T w="semibold" size={14} color="rgba(255,255,255,0.9)">
               {f?.track.name} · {f?.unit.title}
             </T>
             <View style={styles.chips}>
               <Chip icon="flash" label={`+${r.xp} XP`} color="#5B4BDB" bg="#fff" />
-              <Chip icon="flame" label={`${streak} gün seri`} color={colors.streak} bg="#fff" />
-              {!passed && <Chip icon="lock-open" label={`Geçmek için ${PASS_SCORE}`} color="#B5621A" bg="#fff" />}
+              <Chip icon="flame" label={t(`${streak} gün seri`, `${streak}-day streak`)} color={colors.streak} bg="#fff" />
+              {!passed && <Chip icon="lock-open" label={t(`Geçmek için ${PASS_SCORE}`, `${PASS_SCORE} to pass`)} color="#B5621A" bg="#fff" />}
             </View>
           </FadeIn>
         </LinearGradient>
@@ -86,7 +88,7 @@ export default function ReportScreen() {
           <FadeIn delay={150}>
             <Card>
               <T w="black" size={17} style={{ marginBottom: 14 }}>
-                Kategori puanları
+                {t('Kategori puanları', 'Category scores')}
               </T>
               {(Object.keys(r.categories) as CategoryKey[]).map((k, i) => (
                 <View key={k} style={styles.catRow}>
@@ -96,7 +98,7 @@ export default function ReportScreen() {
                   <View style={{ flex: 1 }}>
                     <View style={styles.catHead}>
                       <T w="extrabold" size={14}>
-                        {categoryLabels[k]}
+                        {categoryLabel(k)}
                       </T>
                       <T w="black" size={14} color={scoreColor(r.categories[k])}>
                         {r.categories[k]}
@@ -110,10 +112,10 @@ export default function ReportScreen() {
           </FadeIn>
 
           <FadeIn delay={250}>
-            <ListCard title="Güçlü yanların" icon="thumbs-up" color={colors.success} items={r.strengths} />
+            <ListCard title={t('Güçlü yanların', 'Your strengths')} icon="thumbs-up" color={colors.success} items={r.strengths} />
           </FadeIn>
           <FadeIn delay={320}>
-            <ListCard title="Geliştirmen gerekenler" icon="trending-up" color={colors.danger} items={r.weaknesses} />
+            <ListCard title={t('Geliştirmen gerekenler', 'What to improve')} icon="trending-up" color={colors.danger} items={r.weaknesses} />
           </FadeIn>
 
           <FadeIn delay={380}>
@@ -128,7 +130,7 @@ export default function ReportScreen() {
           </FadeIn>
 
           <T w="black" size={18} style={{ marginTop: 26, marginBottom: 12 }}>
-            Soru soru geri bildirim
+            {t('Soru soru geri bildirim', 'Feedback by question')}
           </T>
           {r.answers.map((a, i) => {
             const isOpen = open === a.questionId;
@@ -167,7 +169,7 @@ export default function ReportScreen() {
                     )}
                     <View style={styles.answerBox}>
                       <T w="black" size={11} color={colors.muted} style={styles.boxLabel}>
-                        SENİN CEVABIN
+                        {t('SENİN CEVABIN', 'YOUR ANSWER')}
                       </T>
                       <T w="semibold" size={13} style={{ lineHeight: 19 }}>
                         {a.answer}
@@ -175,7 +177,7 @@ export default function ReportScreen() {
                     </View>
                     <View style={[styles.answerBox, { backgroundColor: '#E8F8F1' }]}>
                       <T w="black" size={11} color={colors.success} style={styles.boxLabel}>
-                        ÖRNEK GÜÇLÜ CEVAP
+                        {t('ÖRNEK GÜÇLÜ CEVAP', 'EXAMPLE STRONG ANSWER')}
                       </T>
                       <T w="semibold" size={13} style={{ lineHeight: 19 }}>
                         {a.ideal}
@@ -191,7 +193,7 @@ export default function ReportScreen() {
 
       <View style={[styles.footer, { paddingBottom: insets.bottom + 14 }]}>
         <Button
-          title="TEKRAR"
+          title={t('TEKRAR', 'RETRY')}
           icon="refresh"
           variant="outline"
           color={f?.profession.color ?? colors.primary}
@@ -199,7 +201,7 @@ export default function ReportScreen() {
           style={{ flex: 1 }}
         />
         <Button
-          title="DEVAM"
+          title={t('DEVAM', 'CONTINUE')}
           icon="arrow-forward"
           color={accent === colors.success ? colors.success : f?.profession.color ?? colors.primary}
           onPress={() => (f ? router.dismissTo(`/track/${f.track.id}`) : router.dismissTo('/'))}

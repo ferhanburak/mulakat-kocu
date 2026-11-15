@@ -3,7 +3,9 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import { findUnit } from '@/data/professions';
 import { ACHIEVEMENTS, EMPTY_STATS, isDone, type Stats } from './achievements';
 import { PASS_SCORE, type AnswerFeedback, type Report } from './evaluator';
+import { DEFAULT_INTERVIEWER, type InterviewerId } from '@/data/interviewers';
 import { currentAccount, signOutAccount, type Account } from './auth';
+import { loadLang, pick, tt, useLang } from './i18n';
 import { hasPendingPush, markPending, pullProgress, pushProgress } from './cloud';
 import { cancelReminders, scheduleReminders } from './reminders';
 
@@ -32,6 +34,8 @@ type Progress = {
   session: Session;
   /** What the user is preparing for; drives the personalised home. */
   profile: UserProfile | null;
+  /** Chosen interviewer character. */
+  interviewer: InterviewerId;
 };
 
 export type Session = { mode: 'user'; account: Account } | { mode: 'guest'; since: string } | null;
@@ -100,6 +104,7 @@ const EMPTY: Progress = {
   voice: true,
   session: null,
   profile: null,
+  interviewer: DEFAULT_INTERVIEWER,
 };
 const KEY = 'mulakat-kocu/progress/v2';
 
@@ -166,6 +171,7 @@ type Ctx = Progress & {
   signOut: () => Promise<void>;
   saveProfile: (p: UserProfile) => void;
   renameAccount: (name: string) => void;
+  setInterviewer: (id: InterviewerId) => void;
   getReport: (id: string) => Report | undefined;
   isUnlocked: (unitIds: string[], index: number) => boolean;
   reset: () => void;
@@ -178,10 +184,11 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
   const [toasts, setToasts] = useState<Toast[]>([]);
   const level = useRef<number | null>(null);
+  const lang = useLang();
 
   useEffect(() => {
-    AsyncStorage.getItem(KEY)
-      .then((raw) => {
+    Promise.all([AsyncStorage.getItem(KEY), loadLang()])
+      .then(([raw]) => {
         if (!raw) return;
         setState(hydrate(JSON.parse(raw)));
       })
@@ -267,9 +274,18 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     setToasts((t) => [
       ...t,
       ...(leveledUp
-        ? [{ key: `lvl-${lvl}`, label: 'SEVİYE ATLADIN', title: `Seviye ${lvl}!`, desc: 'Böyle devam, bir sonraki seviyeye 100 XP.', icon: 'arrow-up-circle', color: '#5B4BDB' }]
+        ? [
+            {
+              key: `lvl-${lvl}`,
+              label: tt('SEVİYE ATLADIN', 'LEVEL UP'),
+              title: tt(`Seviye ${lvl}!`, `Level ${lvl}!`),
+              desc: tt('Böyle devam, bir sonraki seviyeye 100 XP.', 'Keep it up, 100 XP to the next level.'),
+              icon: 'arrow-up-circle',
+              color: '#5B4BDB',
+            },
+          ]
         : []),
-      ...fresh.map((a) => ({ key: a.id, label: 'BAŞARIM AÇILDI', title: a.title, desc: a.desc, icon: a.icon, color: a.color })),
+      ...fresh.map((a) => ({ key: a.id, label: tt('BAŞARIM AÇILDI', 'BADGE UNLOCKED'), title: pick(a.title), desc: pick(a.desc), icon: a.icon, color: a.color })),
     ]);
   }, [ready, state.stats, state.xp, state.bestByUnit, state.unlocked]);
 
@@ -281,7 +297,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       ? scheduleReminders(state.reminder.hour, state.streak, practicedToday)
       : cancelReminders();
     task.catch(() => {});
-  }, [ready, state.reminder.enabled, state.reminder.hour, state.lastDay, state.streak]);
+  }, [ready, state.reminder.enabled, state.reminder.hour, state.lastDay, state.streak, lang]);
 
   const addReport = useCallback((r: Report) => {
     setState((s) => {
@@ -375,6 +391,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     [],
   );
 
+  const setInterviewer = useCallback((interviewer: InterviewerId) => setState((s) => ({ ...s, interviewer })), []);
+
   const dismissToast = useCallback(() => setToasts((t) => t.slice(1)), []);
 
   const value = useMemo<Ctx>(
@@ -395,11 +413,12 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       signOut,
       saveProfile,
       renameAccount,
+      setInterviewer,
       getReport: (id) => state.reports.find((r) => r.id === id),
       isUnlocked: (unitIds, index) => index === 0 || (state.bestByUnit[unitIds[index - 1]] ?? 0) >= PASS_SCORE,
       reset: () => setState(EMPTY),
     }),
-    [state, ready, toasts, dismissToast, addReport, addQuizResult, addDailyResult, recordQuizAnswer, addReviewResult, setReminder, setVoice, startGuest, signedIn, signOut, saveProfile, renameAccount],
+    [state, ready, toasts, dismissToast, addReport, addQuizResult, addDailyResult, recordQuizAnswer, addReviewResult, setReminder, setVoice, startGuest, signedIn, signOut, saveProfile, renameAccount, setInterviewer],
   );
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;

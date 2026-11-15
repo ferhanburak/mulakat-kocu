@@ -7,6 +7,7 @@ import { Button, Card, Chip, FadeIn, Ionicons, T, colors, goBack, tap, type Icon
 import { SignupPrompt } from '@/components/SignupPrompt';
 import { findQuestion } from '@/data/professions';
 import { useAccess, type Locked } from '@/lib/access';
+import { useT } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 
 const RED = '#EF5A5A';
@@ -14,6 +15,7 @@ const RED = '#EF5A5A';
 export default function MistakeNotebook() {
   const insets = useSafeAreaInsets();
   const { mistakes, stats } = useStore();
+  const t = useT();
   const [open, setOpen] = useState<string | null>(null);
   const [locked, setLocked] = useState<Locked | null>(null);
   const { canReview } = useAccess();
@@ -33,14 +35,14 @@ export default function MistakeNotebook() {
             <Ionicons name="journal" size={30} color={RED} />
           </View>
           <T w="black" size={24} color="#fff" style={{ marginTop: 10 }}>
-            Hata Defteri
+            {t('Hata Defteri', 'Mistake Notebook')}
           </T>
           <T w="semibold" size={13} color="rgba(255,255,255,0.9)" style={{ textAlign: 'center' }}>
-            Zorlandığın sorular burada. Doğru yaptıkça defterden silinir.
+            {t('Zorlandığın sorular burada. Doğru yaptıkça defterden silinir.', 'Questions you struggled with live here. They leave as you get them right.')}
           </T>
           <View style={styles.heroStats}>
-            <Chip icon="alert-circle" label={`${entries.length} soru`} color={RED} bg="#fff" />
-            <Chip icon="checkmark-done" label={`${stats.resolved} temizlendi`} color={colors.success} bg="#fff" />
+            <Chip icon="alert-circle" label={t(`${entries.length} soru`, `${entries.length} questions`)} color={RED} bg="#fff" />
+            <Chip icon="checkmark-done" label={t(`${stats.resolved} temizlendi`, `${stats.resolved} cleared`)} color={colors.success} bg="#fff" />
           </View>
         </LinearGradient>
 
@@ -50,10 +52,13 @@ export default function MistakeNotebook() {
               <Card style={styles.empty}>
                 <T size={44}>🎉</T>
                 <T w="black" size={18} style={{ marginTop: 8 }}>
-                  Defterin tertemiz!
+                  {t('Defterin tertemiz!', 'Your notebook is spotless!')}
                 </T>
                 <T w="semibold" size={13} color={colors.muted} style={{ textAlign: 'center', marginTop: 4 }}>
-                  Mülakatta 60’ın altında kalan veya pratikte yanlış yaptığın sorular buraya eklenir.
+                  {t(
+                    'Mülakatta 60’ın altında kalan veya pratikte yanlış yaptığın sorular buraya eklenir.',
+                    'Questions you score under 60 on in an interview, or get wrong in practice, are added here.',
+                  )}
                 </T>
               </Card>
             </FadeIn>
@@ -88,7 +93,7 @@ export default function MistakeNotebook() {
                         </View>
                       )}
                       <T w="bold" size={12} color={colors.primary} style={{ marginTop: 10 }}>
-                        {isOpen ? 'Gizle ▲' : 'Örnek güçlü cevabı gör ▼'}
+                        {isOpen ? t('Gizle ▲', 'Hide ▲') : t('Örnek güçlü cevabı gör ▼', 'See an example strong answer ▼')}
                       </T>
                       {isOpen && (
                         <View style={styles.ideal}>
@@ -109,7 +114,7 @@ export default function MistakeNotebook() {
       {entries.length > 0 && (
         <View style={[styles.footer, { paddingBottom: insets.bottom + 14 }]}>
           <Button
-            title={`TEKRAR ET (${Math.min(entries.length, 8)} SORU)`}
+            title={t(`TEKRAR ET (${Math.min(entries.length, 8)} SORU)`, `REVIEW (${Math.min(entries.length, 8)} QUESTIONS)`)}
             icon={canReview ? 'refresh' : 'lock-closed'}
             color={RED}
             onPress={() => (canReview ? router.push('/quiz/review') : setLocked('review'))}

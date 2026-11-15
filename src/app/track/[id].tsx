@@ -6,9 +6,11 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Path } from 'react-native-svg';
 import { SignupPrompt } from '@/components/SignupPrompt';
 import { Bar, FadeIn, Ionicons, T, colors, goBack, shade, shadow, tap, type IconName } from '@/components/ui';
+import { INTERVIEWERS } from '@/data/interviewers';
 import { findTrack, type Unit } from '@/data/professions';
 import { GUEST_INTERVIEWS, useAccess, type Locked } from '@/lib/access';
 import { PASS_SCORE } from '@/lib/evaluator';
+import { pick, upper, useLang, useT } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 
 const ROW = 200;
@@ -25,7 +27,8 @@ export default function TrackScreen() {
   const [sheet, setSheet] = useState<string | null>(null);
   const [locked, setLocked] = useState<Locked | null>(null);
   const access = useAccess();
-  if (!found) return <T style={{ padding: 20 }}>Alan bulunamadı.</T>;
+  const t = useT();
+  if (!found) return <T style={{ padding: 20 }}>{t('Alan bulunamadı.', 'Field not found.')}</T>;
   const { profession, track } = found;
   const p = {
     color: profession.color,
@@ -73,7 +76,7 @@ export default function TrackScreen() {
             <Bar value={(passedCount / p.units.length) * 100} color="#fff" height={8} />
           </View>
           <T w="black" size={13} color="#fff">
-            {passedCount}/{p.units.length} ünite
+            {passedCount}/{p.units.length} {t('ünite', 'units')}
           </T>
         </View>
       </LinearGradient>
@@ -162,7 +165,7 @@ export default function TrackScreen() {
                         {u.title}
                       </T>
                       <T w="bold" size={12} color={colors.muted}>
-                        {u.level} · {u.questions.length} soru
+                        {u.level} · {u.questions.length} {t('soru', 'questions')}
                       </T>
                     </View>
                   </View>
@@ -177,7 +180,7 @@ export default function TrackScreen() {
                       <Ionicons name="trophy" size={36} color={allDone ? '#fff' : '#C9C5D8'} />
                     </View>
                     <T w="black" size={15} style={{ marginTop: 8 }} color={allDone ? colors.text : colors.faint}>
-                      {allDone ? 'Uzman rozeti kazanıldı!' : 'Uzman rozeti'}
+                      {allDone ? t('Uzman rozeti kazanıldı!', 'Expert badge earned!') : t('Uzman rozeti', 'Expert badge')}
                     </T>
                   </View>
                 );
@@ -231,6 +234,7 @@ function Pulse({ size, color }: { size: number; color: string }) {
 }
 
 function StartBubble({ color }: { color: string }) {
+  const t = useT();
   const a = useState(() => new Animated.Value(0))[0];
   useEffect(() => {
     const loop = Animated.loop(
@@ -248,7 +252,7 @@ function StartBubble({ color }: { color: string }) {
       style={[styles.bubble, { transform: [{ translateY: a.interpolate({ inputRange: [0, 1], outputRange: [0, -5] }) }] }]}
     >
       <T w="black" size={13} color={color} style={{ letterSpacing: 1 }}>
-        BAŞLA
+        {t('BAŞLA', 'START')}
       </T>
       <View style={styles.bubbleTip} />
     </Animated.View>
@@ -326,6 +330,9 @@ function ModeSheet({
   onLocked: (reason: Locked) => void;
 }) {
   const insets = useSafeAreaInsets();
+  const t = useT();
+  const lang = useLang();
+  const { interviewer, setInterviewer } = useStore();
   const go = (path: '/session' | '/quiz') => {
     if (!unit) return;
     tap();
@@ -339,22 +346,56 @@ function ModeSheet({
         <FadeIn style={[sheetStyles.sheet, { paddingBottom: insets.bottom + 20 }]}>
           <View style={sheetStyles.grabber} />
           <T w="black" size={12} color={colors.muted} style={{ letterSpacing: 1 }}>
-            {unit.level.toLocaleUpperCase('tr-TR')} · {unit.questions.length} SORU
+            {upper(unit.level)} · {unit.questions.length} {t('SORU', 'QUESTIONS')}
           </T>
           <T w="black" size={22} style={{ marginTop: 2, marginBottom: 16 }}>
             {unit.title}
           </T>
+          <T w="black" size={12} color={colors.muted} style={{ letterSpacing: 1, marginBottom: 8 }}>
+            {t('MÜLAKATÇIN', 'YOUR INTERVIEWER')}
+          </T>
+          <View style={sheetStyles.people}>
+            {INTERVIEWERS.map((i) => {
+              const on = i.id === interviewer;
+              return (
+                <Pressable
+                  key={i.id}
+                  onPress={() => {
+                    tap();
+                    setInterviewer(i.id);
+                  }}
+                  style={[sheetStyles.person, on && { borderColor: i.color, backgroundColor: i.color + '12' }]}
+                >
+                  <View style={[sheetStyles.personIcon, { backgroundColor: on ? i.color : i.color + '1F' }]}>
+                    <Ionicons name={i.icon as IconName} size={20} color={on ? '#fff' : i.color} />
+                  </View>
+                  <T w="black" size={13} numberOfLines={1}>
+                    {pick(i.name, lang)}
+                  </T>
+                  <T w="bold" size={10} color={colors.muted} numberOfLines={1}>
+                    {pick(i.role, lang)}
+                  </T>
+                </Pressable>
+              );
+            })}
+          </View>
+          <T w="semibold" size={12} color={colors.muted} style={{ marginBottom: 14 }}>
+            {pick(INTERVIEWERS.find((i) => i.id === interviewer)?.style ?? INTERVIEWERS[0].style, lang)}
+          </T>
           <ModeCard
             icon="mic"
             color={color}
-            title="Mülakat Simülasyonu"
-            desc="Açık uçlu cevapla, güçlü ve zayıf yanlarını gösteren detaylı rapor al."
+            title={t('Mülakat Simülasyonu', 'Interview Simulation')}
+            desc={t(
+              'Açık uçlu cevapla, güçlü ve zayıf yanlarını gösteren detaylı rapor al.',
+              'Answer open-ended questions and get a detailed report on your strengths and weaknesses.',
+            )}
             meta={
               Number.isFinite(interviewsLeft)
-                ? `Misafir hakkı: ${interviewsLeft}/${GUEST_INTERVIEWS} mülakat`
+                ? t(`Misafir hakkı: ${interviewsLeft}/${GUEST_INTERVIEWS} mülakat`, `Guest interviews left: ${interviewsLeft}/${GUEST_INTERVIEWS}`)
                 : best !== undefined
-                  ? `En iyi: ${best}/100`
-                  : '~10 dk · Üniteyi geçmek için'
+                  ? t(`En iyi: ${best}/100`, `Best: ${best}/100`)
+                  : t('~10 dk · Üniteyi geçmek için', '~10 min · Passes the unit')
             }
             primary
             onPress={() => (interviewsLeft <= 0 ? onLocked('interviews') : go('/session'))}
@@ -362,9 +403,9 @@ function ModeSheet({
           <ModeCard
             icon="flash"
             color="#F5A524"
-            title="Hızlı Pratik"
-            desc="Çoktan seçmeli ve sıralama sorularıyla konuyu hızlıca tekrar et."
-            meta={bestQuiz !== undefined ? `En iyi: %${bestQuiz}` : '~3 dk · XP kazandırır'}
+            title={t('Hızlı Pratik', 'Quick Practice')}
+            desc={t('Çoktan seçmeli ve sıralama sorularıyla konuyu hızlıca tekrar et.', 'Review the topic quickly with multiple-choice and ordering questions.')}
+            meta={bestQuiz !== undefined ? t(`En iyi: %${bestQuiz}`, `Best: ${bestQuiz}%`) : t('~3 dk · XP kazandırır', '~3 min · Earns XP')}
             onPress={() => go('/quiz')}
           />
         </FadeIn>
@@ -436,6 +477,19 @@ const sheetStyles = StyleSheet.create({
     gap: 0,
   },
   grabber: { alignSelf: 'center', width: 44, height: 5, borderRadius: 3, backgroundColor: colors.border, marginBottom: 14 },
+  people: { flexDirection: 'row', gap: 8, marginBottom: 8 },
+  person: {
+    flex: 1,
+    alignItems: 'center',
+    gap: 4,
+    paddingVertical: 10,
+    paddingHorizontal: 6,
+    borderRadius: 16,
+    borderWidth: 2,
+    borderColor: colors.border,
+    backgroundColor: colors.card,
+  },
+  personIcon: { width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center' },
   card: {
     flexDirection: 'row',
     alignItems: 'center',

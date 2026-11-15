@@ -4,10 +4,12 @@ import { Pressable, View } from 'react-native';
 import { AuthScaffold, Field, FormError, type InputRef } from '@/components/AuthForm';
 import { Button, resetTo, Ionicons, T, colors, notify } from '@/components/ui';
 import { AuthError, MIN_PASSWORD, signUp } from '@/lib/auth';
+import { useT } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 
 export default function SignUp() {
   const { signedIn, session } = useStore();
+  const t = useT();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,7 +30,7 @@ export default function SignUp() {
       resetTo(hasProfile ? '/' : '/profil-kurulum');
     } catch (e) {
       notify(false);
-      setError(e instanceof AuthError ? e.message : 'Bir şeyler ters gitti, tekrar dene.');
+      setError(e instanceof AuthError ? e.message : t('Bir şeyler ters gitti, tekrar dene.', 'Something went wrong, please try again.'));
       setBusy(false);
     }
   };
@@ -36,13 +38,17 @@ export default function SignUp() {
   return (
     <AuthScaffold
       icon="person-add"
-      title="Hesap oluştur"
-      subtitle={fromGuest ? 'Üye ol, şimdiye kadarki ilerlemen korunur.' : 'Ücretsiz üye ol, ilerlemen hep seninle kalsın.'}
+      title={t('Hesap oluştur', 'Create account')}
+      subtitle={
+        fromGuest
+          ? t('Üye ol, şimdiye kadarki ilerlemen korunur.', 'Sign up and keep the progress you have made so far.')
+          : t('Ücretsiz üye ol, ilerlemen hep seninle kalsın.', 'Sign up free and keep your progress with you.')
+      }
     >
       <Field
-        label="Adın"
+        label={t('Adın', 'Your name')}
         icon="person"
-        placeholder="Örn. Ayşe Yılmaz"
+        placeholder={t('Örn. Ayşe Yılmaz', 'e.g. Jane Smith')}
         value={name}
         onChangeText={setName}
         autoCapitalize="words"
@@ -53,9 +59,9 @@ export default function SignUp() {
       />
       <Field
         ref={emailRef}
-        label="E-posta"
+        label={t('E-posta', 'Email')}
         icon="mail"
-        placeholder="ornek@eposta.com"
+        placeholder={t('ornek@eposta.com', 'you@example.com')}
         value={email}
         onChangeText={setEmail}
         autoCapitalize="none"
@@ -67,9 +73,9 @@ export default function SignUp() {
       />
       <Field
         ref={passRef}
-        label="Şifre"
+        label={t('Şifre', 'Password')}
         icon="lock-closed"
-        placeholder={`En az ${MIN_PASSWORD} karakter`}
+        placeholder={t(`En az ${MIN_PASSWORD} karakter`, `At least ${MIN_PASSWORD} characters`)}
         value={password}
         onChangeText={setPassword}
         secret
@@ -80,18 +86,21 @@ export default function SignUp() {
         onSubmitEditing={submit}
       />
       <FormError message={error} />
-      <Button title={busy ? 'OLUŞTURULUYOR…' : 'HESAP OLUŞTUR'} icon="checkmark" onPress={submit} disabled={busy} />
+      <Button title={busy ? t('OLUŞTURULUYOR…', 'CREATING…') : t('HESAP OLUŞTUR', 'CREATE ACCOUNT')} icon="checkmark" onPress={submit} disabled={busy} />
       <View style={{ flexDirection: 'row', gap: 8, alignItems: 'flex-start', marginTop: 16 }}>
         <Ionicons name="cloud-done" size={15} color={colors.muted} style={{ marginTop: 1 }} />
         <T w="semibold" size={12} color={colors.muted} style={{ flex: 1 }}>
-          İlerlemen hesabında saklanır; telefon değiştirsen de kaldığın yerden devam edersin.
+          {t(
+            'İlerlemen hesabında saklanır; telefon değiştirsen de kaldığın yerden devam edersin.',
+            'Your progress is saved to your account, so you can continue even on a new phone.',
+          )}
         </T>
       </View>
       <Pressable onPress={() => router.replace('/giris')} hitSlop={8} style={{ alignSelf: 'center', marginTop: 22 }}>
         <T w="bold" size={14} color={colors.muted}>
-          Zaten hesabın var mı?{' '}
+          {t('Zaten hesabın var mı?', 'Already have an account?')}{' '}
           <T w="black" size={14} color={colors.primary}>
-            Giriş yap
+            {t('Giriş yap', 'Sign in')}
           </T>
         </T>
       </Pressable>

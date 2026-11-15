@@ -24,6 +24,7 @@ import { SignupPrompt } from '@/components/SignupPrompt';
 import { dailyQuestion } from '@/data/professions';
 import { useAccess, type Locked } from '@/lib/access';
 import { evaluateSession } from '@/lib/evaluator';
+import { locale, useLang, useT } from '@/lib/i18n';
 import { dayKey, useStore } from '@/lib/store';
 import { speak, stopSpeaking } from '@/lib/voice';
 
@@ -33,7 +34,9 @@ const dailyXp = (score: number) => 15 + Math.round(score / 5);
 
 export default function DailyScreen() {
   const insets = useSafeAreaInsets();
-  const { daily, addDailyResult } = useStore();
+  const { daily, addDailyResult, interviewer } = useStore();
+  const t = useT();
+  const lang = useLang();
   const today = dayKey(new Date());
   const ref = dailyQuestion(today);
   const done = daily?.day === today ? daily : null;
@@ -44,7 +47,7 @@ export default function DailyScreen() {
   const { canDaily } = useAccess();
   useEffect(() => () => stopSpeaking(), []);
   const words = draft.trim().split(/\s+/).filter(Boolean).length;
-  const dateLabel = new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', weekday: 'long' });
+  const dateLabel = new Date().toLocaleDateString(locale(lang), { day: 'numeric', month: 'long', weekday: 'long' });
 
   const submit = async () => {
     if (words < MIN_WORDS || busy) return;
@@ -69,10 +72,10 @@ export default function DailyScreen() {
             <Ionicons name="today" size={30} color={GOLD} />
           </View>
           <T w="black" size={24} color="#fff" style={{ marginTop: 10 }}>
-            Günün Sorusu
+            {t('Günün Sorusu', 'Question of the Day')}
           </T>
           <T w="semibold" size={13} color="rgba(255,255,255,0.9)">
-            {dateLabel} · herkese aynı soru
+            {dateLabel} · {t('herkese aynı soru', 'same question for everyone')}
           </T>
         </LinearGradient>
 
@@ -90,7 +93,7 @@ export default function DailyScreen() {
                       setSpeaking(false);
                     } else {
                       setSpeaking(true);
-                      speak(ref.question.text, ref.track.lang ?? 'tr', { onDone: () => setSpeaking(false) });
+                      speak(ref.question.text, ref.track.lang ?? 'tr', { interviewer, onDone: () => setSpeaking(false) });
                     }
                   }}
                   hitSlop={8}
@@ -98,7 +101,7 @@ export default function DailyScreen() {
                 >
                   <Ionicons name={speaking ? 'stop-circle' : 'volume-medium'} size={15} color={speaking ? GOLD : colors.muted} />
                   <T w="extrabold" size={11} color={speaking ? GOLD : colors.muted}>
-                    {speaking ? 'Durdur' : 'Dinle'}
+                    {speaking ? t('Durdur', 'Stop') : t('Dinle', 'Listen')}
                   </T>
                 </Pressable>
               </View>
@@ -107,7 +110,10 @@ export default function DailyScreen() {
               </T>
               {!done && (
                 <T w="semibold" size={12} color={colors.muted} style={{ marginTop: 8 }}>
-                  Cevapla, anında geri bildirim ve +{dailyXp(0)}–{dailyXp(100)} XP kazan.
+                  {t(
+                    `Cevapla, anında geri bildirim ve +${dailyXp(0)}–${dailyXp(100)} XP kazan.`,
+                    `Answer to get instant feedback and +${dailyXp(0)}–${dailyXp(100)} XP.`,
+                  )}
                 </T>
               )}
             </Card>
@@ -121,7 +127,7 @@ export default function DailyScreen() {
                 <TextInput
                   value={draft}
                   onChangeText={setDraft}
-                  placeholder="Cevabını yaz…"
+                  placeholder={t('Cevabını yaz…', 'Type your answer…')}
                   placeholderTextColor={colors.faint}
                   multiline
                   style={styles.input}
@@ -131,10 +137,10 @@ export default function DailyScreen() {
                     <Bar value={(words / 40) * 100} color={words >= 40 ? colors.success : GOLD} height={5} />
                   </View>
                   <T w="bold" size={12} color={colors.muted}>
-                    {words} / 40 kelime
+                    {words} / 40 {t('kelime', 'words')}
                   </T>
                 </View>
-                <Button title={busy ? 'DEĞERLENDİRİLİYOR…' : 'GÖNDER'} icon="send" color={GOLD} disabled={words < MIN_WORDS || busy} onPress={submit} style={{ marginTop: 14 }} />
+                <Button title={busy ? t('DEĞERLENDİRİLİYOR…', 'EVALUATING…') : t('GÖNDER', 'SUBMIT')} icon="send" color={GOLD} disabled={words < MIN_WORDS || busy} onPress={submit} style={{ marginTop: 14 }} />
               </Card>
             </FadeIn>
           )}
@@ -153,6 +159,7 @@ function DailyResultView({
   trackId: string;
 }) {
   const fb = result.feedback;
+  const t = useT();
   return (
     <>
       <FadeIn delay={80}>
@@ -162,11 +169,15 @@ function DailyResultView({
           </Ring>
           <View style={{ flex: 1, gap: 6 }}>
             <T w="black" size={18}>
-              {result.overall >= 70 ? 'Harika cevap! 🌟' : result.overall >= 50 ? 'İyi deneme 👍' : 'Geliştirilebilir 💪'}
+              {result.overall >= 70
+                ? t('Harika cevap! 🌟', 'Great answer! 🌟')
+                : result.overall >= 50
+                  ? t('İyi deneme 👍', 'Good try 👍')
+                  : t('Geliştirilebilir 💪', 'Room to improve 💪')}
             </T>
             <Chip icon="flash" label={`+${result.xp} XP`} color={colors.primary} bg="#EEEBFF" />
             <T w="semibold" size={12} color={colors.muted}>
-              Yarın yeni bir soru seni bekliyor.
+              {t('Yarın yeni bir soru seni bekliyor.', 'A new question is waiting for you tomorrow.')}
             </T>
           </View>
         </Card>
@@ -191,7 +202,7 @@ function DailyResultView({
           )}
           <View style={styles.box}>
             <T w="black" size={11} color={colors.muted} style={styles.boxLabel}>
-              SENİN CEVABIN
+              {t('SENİN CEVABIN', 'YOUR ANSWER')}
             </T>
             <T w="semibold" size={13} style={{ lineHeight: 19 }}>
               {fb.answer}
@@ -199,7 +210,7 @@ function DailyResultView({
           </View>
           <View style={[styles.box, { backgroundColor: '#E8F8F1' }]}>
             <T w="black" size={11} color={colors.success} style={styles.boxLabel}>
-              ÖRNEK GÜÇLÜ CEVAP
+              {t('ÖRNEK GÜÇLÜ CEVAP', 'EXAMPLE STRONG ANSWER')}
             </T>
             <T w="semibold" size={13} style={{ lineHeight: 19 }}>
               {fb.ideal}
@@ -208,8 +219,8 @@ function DailyResultView({
         </Card>
       </FadeIn>
       <View style={{ gap: 12, marginTop: 16 }}>
-        <Button title="BU ALANDA PRATİK YAP" icon="map" color={colors.primary} onPress={() => router.push(`/track/${trackId}`)} />
-        <Button title="ANA SAYFA" variant="outline" color={colors.muted} onPress={() => goBack('/')} />
+        <Button title={t('BU ALANDA PRATİK YAP', 'PRACTISE THIS FIELD')} icon="map" color={colors.primary} onPress={() => router.push(`/track/${trackId}`)} />
+        <Button title={t('ANA SAYFA', 'HOME')} variant="outline" color={colors.muted} onPress={() => goBack('/')} />
       </View>
     </>
   );

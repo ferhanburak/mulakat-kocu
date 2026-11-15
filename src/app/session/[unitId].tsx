@@ -16,25 +16,30 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Bar, FadeIn, GradientIcon, Ionicons, T, colors, fonts, goBack, shade, shadow, tap, type IconName } from '@/components/ui';
 import { SignupPrompt } from '@/components/SignupPrompt';
+import { findInterviewer, lineFor } from '@/data/interviewers';
 import { findUnit, type QuestionKind } from '@/data/professions';
 import { useAccess } from '@/lib/access';
 import { evaluateSession } from '@/lib/evaluator';
+import { pick, upper, useT, type Bi } from '@/lib/i18n';
 import { speak, stopSpeaking } from '@/lib/voice';
 import { useStore } from '@/lib/store';
 
-const KIND: Record<QuestionKind, { label: string; icon: IconName; color: string }> = {
-  teknik: { label: 'Teknik', icon: 'construct', color: '#2F7FE0' },
-  davranissal: { label: 'Davranışsal', icon: 'people', color: '#D9437A' },
-  vaka: { label: 'Vaka', icon: 'bulb', color: '#E0761B' },
+const KIND: Record<QuestionKind, { label: Bi; icon: IconName; color: string }> = {
+  teknik: { label: { tr: 'Teknik', en: 'Technical' }, icon: 'construct', color: '#2F7FE0' },
+  davranissal: { label: { tr: 'Davranışsal', en: 'Behavioural' }, icon: 'people', color: '#D9437A' },
+  vaka: { label: { tr: 'Vaka', en: 'Case' }, icon: 'bulb', color: '#E0761B' },
 };
-const STAR_STEPS = ['Durum', 'Görev', 'Aksiyon', 'Sonuç'];
+const STAR_STEPS: Bi<string[]> = { tr: ['Durum', 'Görev', 'Aksiyon', 'Sonuç'], en: ['Situation', 'Task', 'Action', 'Result'] };
 const TARGET_WORDS = 40;
 
 export default function SessionScreen() {
   const insets = useSafeAreaInsets();
   const { unitId } = useLocalSearchParams<{ unitId: string }>();
   const found = findUnit(unitId);
-  const { addReport, voice, setVoice } = useStore();
+  const { addReport, voice, setVoice, interviewer: interviewerId } = useStore();
+  const t = useT();
+  const interviewer = findInterviewer(interviewerId);
+  const lang = found?.track.lang ?? 'tr';
   const access = useAccess();
   // Checked once on entry, so finishing the guest's last allowed interview doesn't block its report.
   const [block] = useState(() => access.interviewBlock(unitId));
@@ -44,21 +49,25 @@ export default function SessionScreen() {
   const [draft, setDraft] = useState('');
   const [busy, setBusy] = useState(false);
   const [speakingId, setSpeakingId] = useState<string | null>(null);
+  const [ending, setEnding] = useState(false);
   const scroll = useRef<ComponentRef<typeof ScrollView>>(null);
 
-  const say = (questionId: string, text: string) => {
-    const lang = findUnit(unitId)?.track.lang ?? 'tr';
-    setSpeakingId(questionId);
-    speak(text, lang, { onDone: () => setSpeakingId((id) => (id === questionId ? null : id)) });
+  const say = (bubbleId: string, text: string | string[]) => {
+    setSpeakingId(bubbleId);
+    speak(text, lang, { interviewer: interviewer.id, onDone: () => setSpeakingId((id) => (id === bubbleId ? null : id)) });
   };
+  const intro = interviewer.intro[lang][0];
+  const ackFor = (i: number) => lineFor(interviewer.ack[lang], i - 1);
 
   // Read each newly revealed question aloud; stop talking when leaving the screen.
   useEffect(() => {
     if (!voice || shownCount === 0) return;
     const q = findUnit(unitId)?.unit.questions[shownCount - 1];
+    // The interviewer opens (or reacts to the last answer) and then asks the question.
+    const lead = shownCount === 1 ? intro : ackFor(shownCount - 1);
     // Starts speech (an external system); its state update only marks which bubble is playing.
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (q) say(q.id, q.text);
+    if (q) say(q.id, [lead, q.text]);
   }, [shownCount]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => () => stopSpeaking(), []);
 
@@ -82,7 +91,7 @@ export default function SessionScreen() {
     return () => clearTimeout(t);
   }, [shownCount, answers.length, typing]);
 
-  if (!found) return <T style={{ padding: 20 }}>Ünite bulunamadı.</T>;
+  if (!found) return <T style={{ padding: 20 }}>{t('Ünite bulunamadı.', 'Unit not found.')}</T>;
   if (block)
     return (
       <View style={{ flex: 1, backgroundColor: colors.bg }}>
@@ -105,6 +114,10 @@ export default function SessionScreen() {
     setAnswers(next);
     setDraft('');
     if (next.length < total) return;
+    // The interviewer closes the interview before the evaluation screen.
+    setEnding(true);
+    if (voice) say('outro', interviewer.outro[lang]);
+    await new Promise((r) => setTimeout(r, 2200));
     setBusy(true);
     const [report] = await Promise.all([
       evaluateSession(
@@ -112,7 +125,7 @@ export default function SessionScreen() {
         unit.id,
         unit.questions.map((q, i) => ({ question: q, answer: next[i] })),
       ),
-      new Promise((r) => setTimeout(r, 1400)),
+      new Promise((r) => setTimeout(r, 1200)),
     ]);
     addReport(report);
     router.replace(`/report/${report.id}`);
@@ -126,10 +139,10 @@ export default function SessionScreen() {
             <Ionicons name="analytics" size={44} color={profession.color} />
           </View>
           <T w="black" size={22} color="#fff" style={{ marginTop: 22 }}>
-            Cevapların değerlendiriliyor
+            {t('Cevapların değerlendiriliyor', 'Evaluating your answers')}
           </T>
           <T w="semibold" size={14} color="rgba(255,255,255,0.85)" style={{ marginTop: 6, textAlign: 'center' }}>
-            İçerik, yapı, netlik ve somutluk puanlanıyor…
+            {t('İçerik, yapı, netlik ve somutluk puanlanıyor…', 'Scoring content, structure, clarity and concreteness…')}
           </T>
           <ActivityIndicator color="#fff" style={{ marginTop: 24 }} />
         </FadeIn>
@@ -167,25 +180,22 @@ export default function SessionScreen() {
 
       <ScrollView ref={scroll} contentContainerStyle={styles.chat} keyboardShouldPersistTaps="handled">
         <FadeIn style={styles.interviewer}>
-          <GradientIcon icon="person" color={profession.color} size={52} radius={26} />
+          <GradientIcon icon={interviewer.icon as IconName} color={interviewer.color} size={52} radius={26} />
           <View style={{ flex: 1 }}>
             <T w="black" size={16}>
-              {/mülakat/i.test(track.name) ? track.name : `${track.name} Mülakatı`}
+              {pick(interviewer.name, lang)} · {pick(interviewer.role, lang)}
             </T>
-            <T w="semibold" size={13} color={colors.muted}>
-              {unit.title} · {unit.level} · {total} soru
+            <T w="semibold" size={13} color={colors.muted} numberOfLines={1}>
+              {track.name} · {unit.title} · {unit.level} · {total} {t('soru', 'questions')}
             </T>
           </View>
         </FadeIn>
 
-        <Bubble who="ai">
-          {track.lang === 'en'
-            ? "Hi! I'll be your interviewer today. Relax and answer as if this were a real interview. Let's begin."
-            : 'Merhaba! Ben bugünkü mülakatçınım. Rahat ol, gerçek bir mülakattaymış gibi cevapla. Hazırsan başlayalım.'}
-        </Bubble>
+        <Bubble who="ai">{intro}</Bubble>
 
         {unit.questions.slice(0, shownCount).map((q, i) => (
           <View key={q.id}>
+            {i > 0 && <Bubble who="ai">{ackFor(i)}</Bubble>}
             <Bubble
               who="ai"
               kind={q.kind}
@@ -203,6 +213,7 @@ export default function SessionScreen() {
             {answers[i] !== undefined && <Bubble who="me">{answers[i]}</Bubble>}
           </View>
         ))}
+        {ending && <Bubble who="ai">{interviewer.outro[lang]}</Bubble>}
         {typing && <Typing />}
       </ScrollView>
 
@@ -210,10 +221,10 @@ export default function SessionScreen() {
         {currentQ?.kind === 'davranissal' && waitingForAnswer && (
           <View style={styles.starRow}>
             <Ionicons name="sparkles" size={14} color={KIND.davranissal.color} />
-            {STAR_STEPS.map((s, i) => (
+            {STAR_STEPS[lang].map((s, i) => (
               <T key={s} w="extrabold" size={12} color={colors.muted}>
                 {s}
-                {i < STAR_STEPS.length - 1 ? '  →' : ''}
+                {i < STAR_STEPS[lang].length - 1 ? '  →' : ''}
               </T>
             ))}
           </View>
@@ -223,7 +234,11 @@ export default function SessionScreen() {
             value={draft}
             onChangeText={setDraft}
             editable={waitingForAnswer}
-            placeholder={waitingForAnswer ? 'Cevabını yaz…' : 'Mülakatçı yazıyor…'}
+            placeholder={
+              waitingForAnswer
+                ? t('Cevabını yaz…', 'Type your answer…')
+                : t(`${interviewer.name.tr} yazıyor…`, `${interviewer.name.en} is typing…`)
+            }
             placeholderTextColor={colors.faint}
             multiline
             style={styles.input}
@@ -251,7 +266,7 @@ export default function SessionScreen() {
             <Bar value={(words / TARGET_WORDS) * 100} color={words >= TARGET_WORDS ? colors.success : colors.warn} height={5} />
           </View>
           <T w="bold" size={12} color={words >= TARGET_WORDS ? colors.success : colors.muted}>
-            {words} / {TARGET_WORDS} kelime
+            {words} / {TARGET_WORDS} {t('kelime', 'words')}
           </T>
         </View>
       </View>
@@ -273,6 +288,7 @@ function Bubble({
   children: React.ReactNode;
 }) {
   const me = who === 'me';
+  const t = useT();
   const k = kind ? KIND[kind] : undefined;
   return (
     <FadeIn style={[styles.bubbleRow, { justifyContent: me ? 'flex-end' : 'flex-start' }]}>
@@ -282,14 +298,14 @@ function Bubble({
             <View style={[styles.kind, { backgroundColor: k.color + '18' }]}>
               <Ionicons name={k.icon} size={12} color={k.color} />
               <T w="black" size={11} color={k.color} style={{ letterSpacing: 0.6 }}>
-                {k.label.toLocaleUpperCase('tr-TR')}
+                {upper(pick(k.label))}
               </T>
             </View>
             {onListen && (
               <Pressable onPress={onListen} hitSlop={10} style={styles.listen}>
                 {speaking ? <SoundWave /> : <Ionicons name="volume-medium" size={15} color={colors.muted} />}
                 <T w="extrabold" size={11} color={speaking ? colors.primary : colors.muted}>
-                  {speaking ? 'Durdur' : 'Dinle'}
+                  {speaking ? t('Durdur', 'Stop') : t('Dinle', 'Listen')}
                 </T>
               </Pressable>
             )}

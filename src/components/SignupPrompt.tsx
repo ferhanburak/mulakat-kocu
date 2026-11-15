@@ -3,36 +3,46 @@ import { router } from 'expo-router';
 import { Modal, Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { GUEST_INTERVIEWS, type Locked } from '@/lib/access';
+import { pick, useLang, useT, type Bi } from '@/lib/i18n';
 import { Button, FadeIn, Ionicons, T, colors, type IconName } from './ui';
 
-const REASONS: Record<Locked, { icon: IconName; title: string; desc: string }> = {
+const REASONS: Record<Locked, { icon: IconName; title: Bi; desc: Bi }> = {
   unit: {
     icon: 'lock-closed',
-    title: 'Bu ünite üyelere açık',
-    desc: 'Misafir modunda her alanın ilk ünitesini deneyebilirsin. Tüm üniteler için üye ol.',
+    title: { tr: 'Bu ünite üyelere açık', en: 'This unit is for members' },
+    desc: {
+      tr: 'Misafir modunda her alanın ilk ünitesini deneyebilirsin. Tüm üniteler için üye ol.',
+      en: 'As a guest you can try the first unit of each field. Sign up for every unit.',
+    },
   },
   interviews: {
     icon: 'mic-off',
-    title: `${GUEST_INTERVIEWS} mülakat hakkını kullandın`,
-    desc: 'Sınırsız mülakat simülasyonu ve detaylı raporlar için üye ol.',
+    title: { tr: `${GUEST_INTERVIEWS} mülakat hakkını kullandın`, en: `You've used your ${GUEST_INTERVIEWS} guest interviews` },
+    desc: { tr: 'Sınırsız mülakat simülasyonu ve detaylı raporlar için üye ol.', en: 'Sign up for unlimited interview simulations and detailed reports.' },
   },
   daily: {
     icon: 'today',
-    title: 'Günün Sorusu üyelere özel',
-    desc: 'Her gün yeni bir soruyla serini büyütmek için üye ol.',
+    title: { tr: 'Günün Sorusu üyelere özel', en: 'Question of the Day is for members' },
+    desc: { tr: 'Her gün yeni bir soruyla serini büyütmek için üye ol.', en: 'Sign up to grow your streak with a new question every day.' },
   },
   review: {
     icon: 'journal',
-    title: 'Hata Defteri tekrarı üyelere özel',
-    desc: 'Zorlandığın soruları tekrar edip defterden silmek için üye ol.',
+    title: { tr: 'Hata Defteri tekrarı üyelere özel', en: 'Notebook review is for members' },
+    desc: { tr: 'Zorlandığın soruları tekrar edip defterden silmek için üye ol.', en: 'Sign up to review the questions you struggled with and clear them.' },
   },
 };
 
-const PERKS = ['Tüm meslek ve alanlarda sınırsız pratik', 'Günün Sorusu ve Hata Defteri tekrarı', 'Seri, XP ve başarımların kaybolmaz'];
+const PERKS: Bi[] = [
+  { tr: 'Tüm meslek ve alanlarda sınırsız pratik', en: 'Unlimited practice in every profession and field' },
+  { tr: 'Günün Sorusu ve Hata Defteri tekrarı', en: 'Question of the Day and Mistake Notebook review' },
+  { tr: 'Seri, XP ve başarımların kaybolmaz', en: 'Your streak, XP and badges are never lost' },
+];
 
 /** Bottom sheet shown when a guest reaches a limit. Signing up keeps the guest's progress. */
 export function SignupPrompt({ reason, onClose }: { reason: Locked | null; onClose: () => void }) {
   const insets = useSafeAreaInsets();
+  const t = useT();
+  const lang = useLang();
   const r = reason ? REASONS[reason] : null;
   const go = (path: '/kayit' | '/giris') => {
     onClose();
@@ -49,30 +59,30 @@ export function SignupPrompt({ reason, onClose }: { reason: Locked | null; onClo
               <Ionicons name={r.icon} size={30} color="#fff" />
             </LinearGradient>
             <T w="black" size={21} style={{ marginTop: 12, textAlign: 'center' }}>
-              {r.title}
+              {pick(r.title, lang)}
             </T>
             <T w="semibold" size={14} color={colors.muted} style={{ marginTop: 4, textAlign: 'center', lineHeight: 20 }}>
-              {r.desc}
+              {pick(r.desc, lang)}
             </T>
           </View>
           <View style={styles.perks}>
             <T w="black" size={14} color={colors.primary}>
-              Ücretsiz üye ol, ilerlemen korunur
+              {t('Ücretsiz üye ol, ilerlemen korunur', 'Sign up free and keep your progress')}
             </T>
             {PERKS.map((p) => (
-              <View key={p} style={styles.perk}>
+              <View key={p.en} style={styles.perk}>
                 <Ionicons name="checkmark-circle" size={18} color={colors.success} />
                 <T w="bold" size={13} style={{ flex: 1 }}>
-                  {p}
+                  {pick(p, lang)}
                 </T>
               </View>
             ))}
           </View>
-          <Button title="ÜCRETSİZ ÜYE OL" icon="person-add" onPress={() => go('/kayit')} />
+          <Button title={t('ÜCRETSİZ ÜYE OL', 'SIGN UP FREE')} icon="person-add" onPress={() => go('/kayit')} />
           <View style={styles.links}>
             <Pressable onPress={() => go('/giris')} hitSlop={8}>
               <T w="extrabold" size={14} color={colors.primary}>
-                Giriş yap
+                {t('Giriş yap', 'Sign in')}
               </T>
             </Pressable>
             <T w="bold" size={14} color={colors.faint}>
@@ -80,7 +90,7 @@ export function SignupPrompt({ reason, onClose }: { reason: Locked | null; onClo
             </T>
             <Pressable onPress={onClose} hitSlop={8}>
               <T w="extrabold" size={14} color={colors.muted}>
-                Şimdi değil
+                {t('Şimdi değil', 'Not now')}
               </T>
             </Pressable>
           </View>

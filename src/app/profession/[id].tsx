@@ -4,6 +4,7 @@ import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Bar, FadeIn, GradientIcon, Ionicons, T, colors, goBack, shade, shadow, tap, type IconName } from '@/components/ui';
 import { allUnits, findProfession } from '@/data/professions';
+import { useT } from '@/lib/i18n';
 import { PASS_SCORE } from '@/lib/evaluator';
 import { useStore } from '@/lib/store';
 
@@ -14,7 +15,8 @@ export default function ProfessionScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const p = findProfession(id);
   const { bestByUnit } = useStore();
-  if (!p) return <T style={{ padding: 20 }}>Meslek bulunamadı.</T>;
+  const tx = useT();
+  if (!p) return <T style={{ padding: 20 }}>{tx('Meslek bulunamadı.', 'Profession not found.')}</T>;
 
   const passed = (unitId: string) => (bestByUnit[unitId] ?? 0) >= PASS_SCORE;
   const units = allUnits(p);
@@ -40,7 +42,7 @@ export default function ProfessionScreen() {
               {p.name}
             </T>
             <T w="semibold" size={13} color="rgba(255,255,255,0.85)">
-              {p.tracks.length} alan · {units.length} ünite
+              {p.tracks.length} {tx('alan', 'fields')} · {units.length} {tx('ünite', 'units')}
             </T>
           </View>
         </View>
@@ -49,7 +51,7 @@ export default function ProfessionScreen() {
             <Bar value={(totalPassed / units.length) * 100} color="#fff" height={8} />
           </View>
           <T w="black" size={13} color="#fff">
-            {totalPassed}/{units.length} ünite
+            {totalPassed}/{units.length} {tx('ünite', 'units')}
           </T>
         </View>
       </LinearGradient>
@@ -59,7 +61,7 @@ export default function ProfessionScreen() {
           Alanını seç
         </T>
         <T w="semibold" size={13} color={colors.muted} style={{ marginBottom: 14 }}>
-          Her alanın kendi Junior → Senior yolu var.
+          {tx('Her alanın kendi Junior → Senior yolu var.', 'Each field has its own Junior → Senior path.')}
         </T>
         {p.tracks.map((t, i) => {
           const done = t.units.filter((u) => passed(u.id)).length;
@@ -85,7 +87,7 @@ export default function ProfessionScreen() {
                     ) : started ? (
                       <View style={[styles.badge, { backgroundColor: p.color + '1A' }]}>
                         <T w="black" size={10} color={p.color}>
-                          DEVAM
+                          {tx('DEVAM', 'CONTINUE')}
                         </T>
                       </View>
                     ) : null}

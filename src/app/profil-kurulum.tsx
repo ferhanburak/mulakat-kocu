@@ -7,23 +7,37 @@ import { Field } from '@/components/AuthForm';
 import { Bar, Button, FadeIn, GradientIcon, Ionicons, T, colors, goBack, resetTo, shadow, tap, type IconName } from '@/components/ui';
 import { findProfession, findTrack, professions } from '@/data/professions';
 import { updateName } from '@/lib/auth';
+import { pick, useLang, useT, type Bi } from '@/lib/i18n';
 import { GOALS, STAGES } from '@/lib/profileOptions';
 import { useStore, type CareerStage, type UserProfile } from '@/lib/store';
 
-const careers = professions.filter((p) => !p.general);
-
 type Step = 'name' | 'profession' | 'track' | 'stage' | 'goal';
 
-const COPY: Record<Step, { title: string; sub: string }> = {
-  name: { title: 'Adın', sub: 'Sana nasıl hitap edelim?' },
-  profession: { title: 'Hangi alanda mülakata hazırlanıyorsun?', sub: 'Ana sayfan bu seçime göre şekillenir.' },
-  track: { title: 'Hangi rol?', sub: 'Pratiklerin bu rolden başlar; diğerlerine her zaman geçebilirsin.' },
-  stage: { title: 'Kariyerinde neredesin?', sub: 'Sorularının zorluğunu buna göre öneririz.' },
-  goal: { title: 'Günlük hedefin ne olsun?', sub: 'Hedefini tamamladığın her gün serin büyür.' },
+const COPY: Record<Step, { title: Bi; sub: Bi }> = {
+  name: { title: { tr: 'Adın', en: 'Your name' }, sub: { tr: 'Sana nasıl hitap edelim?', en: 'What should we call you?' } },
+  profession: {
+    title: { tr: 'Hangi alanda mülakata hazırlanıyorsun?', en: 'Which field are you preparing for?' },
+    sub: { tr: 'Ana sayfan bu seçime göre şekillenir.', en: 'Your home screen is shaped by this choice.' },
+  },
+  track: {
+    title: { tr: 'Hangi rol?', en: 'Which role?' },
+    sub: { tr: 'Pratiklerin bu rolden başlar; diğerlerine her zaman geçebilirsin.', en: 'Your practice starts with this role; you can switch to others anytime.' },
+  },
+  stage: {
+    title: { tr: 'Kariyerinde neredesin?', en: 'Where are you in your career?' },
+    sub: { tr: 'Sorularının zorluğunu buna göre öneririz.', en: 'We suggest question difficulty based on this.' },
+  },
+  goal: {
+    title: { tr: 'Günlük hedefin ne olsun?', en: 'What should your daily goal be?' },
+    sub: { tr: 'Hedefini tamamladığın her gün serin büyür.', en: 'Every day you hit your goal, your streak grows.' },
+  },
 };
 
 export default function ProfileSetup() {
   const insets = useSafeAreaInsets();
+  const t = useT();
+  const lang = useLang();
+  const careers = professions.filter((p) => !p.general);
   const { edit } = useLocalSearchParams<{ edit?: string }>();
   const editing = edit === '1';
   const { profile, session, saveProfile, renameAccount } = useStore();
@@ -100,10 +114,10 @@ export default function ProfileSetup() {
           </T>
         </View>
         <T w="black" size={23} color="#fff" style={{ marginTop: 18 }}>
-          {COPY[step].title}
+          {pick(COPY[step].title, lang)}
         </T>
         <T w="semibold" size={13} color="rgba(255,255,255,0.88)" style={{ marginTop: 2 }}>
-          {COPY[step].sub}
+          {pick(COPY[step].sub, lang)}
         </T>
       </LinearGradient>
 
@@ -111,7 +125,7 @@ export default function ProfileSetup() {
         <FadeIn key={step}>
           {step === 'name' && (
             <Field
-              label="Ad soyad"
+              label={t('Ad soyad', 'Full name')}
               icon="person"
               value={name}
               onChangeText={setName}
@@ -163,7 +177,7 @@ export default function ProfileSetup() {
 
           {step === 'stage' &&
             STAGES.map((s) => (
-              <Option key={s.id} on={s.id === stage} color={colors.primary} icon={s.icon} title={s.label} desc={s.desc} onPress={() => setStage(s.id)} />
+              <Option key={s.id} on={s.id === stage} color={colors.primary} icon={s.icon} title={pick(s.label, lang)} desc={pick(s.desc, lang)} onPress={() => setStage(s.id)} />
             ))}
 
           {step === 'goal' &&
@@ -173,8 +187,8 @@ export default function ProfileSetup() {
                 on={g.id === goal}
                 color={colors.streak}
                 icon={g.icon}
-                title={g.label}
-                desc={g.desc}
+                title={pick(g.label, lang)}
+                desc={pick(g.desc, lang)}
                 onPress={() => setGoal(g.id)}
                 right={
                   <T w="black" size={22} color={g.id === goal ? colors.streak : colors.faint}>
@@ -188,7 +202,7 @@ export default function ProfileSetup() {
 
       <View style={[styles.footer, { paddingBottom: insets.bottom + 16 }]}>
         <Button
-          title={index === steps.length - 1 ? (editing ? 'KAYDET' : 'BAŞLAYALIM') : 'DEVAM'}
+          title={index === steps.length - 1 ? (editing ? t('KAYDET', 'SAVE') : t('BAŞLAYALIM', "LET'S GO")) : t('DEVAM', 'CONTINUE')}
           icon={index === steps.length - 1 ? 'checkmark' : 'arrow-forward'}
           onPress={next}
           disabled={!canContinue}

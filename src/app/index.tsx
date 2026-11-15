@@ -21,17 +21,19 @@ import { SignupPrompt } from '@/components/SignupPrompt';
 import { allUnits, dailyQuestion, findTrack, findUnit, professions } from '@/data/professions';
 import { GUEST_INTERVIEWS, useAccess, type Locked } from '@/lib/access';
 import { PASS_SCORE } from '@/lib/evaluator';
+import { locale, useLang, useT } from '@/lib/i18n';
 import { remindersSupported } from '@/lib/reminders';
 import { dayKey, useStore } from '@/lib/store';
 
-const general = professions.find((p) => p.general);
-const careers = professions.filter((p) => !p.general);
-
-const DAYS = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
+const DAYS = { tr: ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'], en: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] };
 const sameDay = (a: Date, b: Date) => a.toDateString() === b.toDateString();
 
 export default function Home() {
   const insets = useSafeAreaInsets();
+  const t = useT();
+  const lang = useLang();
+  const general = professions.find((p) => p.general);
+  const careers = professions.filter((p) => !p.general);
   const { xp, streak, bestByUnit, reports, isUnlocked, days, unlocked, reminder, daily, mistakes, session, profile } = useStore();
   const firstName = session?.mode === 'user' ? session.account.name.split(/\s+/)[0] : null;
   const goal = profile?.dailyGoal ?? 1;
@@ -47,7 +49,7 @@ export default function Home() {
   const now = new Date();
   const monday = new Date(now);
   monday.setDate(now.getDate() - ((now.getDay() + 6) % 7));
-  const week = DAYS.map((label, i) => {
+  const week = DAYS[lang].map((label, i) => {
     const d = new Date(monday);
     d.setDate(monday.getDate() + i);
     return { label, done: (days[dayKey(d)] ?? 0) > 0, today: sameDay(d, now) };
@@ -75,10 +77,10 @@ export default function Home() {
         <View style={styles.heroTop}>
           <View>
             <T w="bold" size={14} color="rgba(255,255,255,0.8)">
-              {firstName ? `Merhaba ${firstName} 👋` : 'Merhaba 👋'}
+              {firstName ? t(`Merhaba ${firstName} 👋`, `Hi ${firstName} 👋`) : t('Merhaba 👋', 'Hi 👋')}
             </T>
             <T w="black" size={26} color="#fff">
-              Mülakat Koçu
+              {t('Mülakat Koçu', 'Interview Coach')}
             </T>
           </View>
           <Pressable
@@ -91,7 +93,7 @@ export default function Home() {
             <Ionicons name="person-circle" size={30} color="#fff" />
             <View>
               <T w="black" size={10} color="rgba(255,255,255,0.8)">
-                SEVİYE
+                {t('SEVİYE', 'LEVEL')}
               </T>
               <T w="black" size={18} color="#fff" style={{ marginTop: -3 }}>
                 {level}
@@ -100,9 +102,9 @@ export default function Home() {
           </Pressable>
         </View>
         <View style={styles.statsRow}>
-          <Stat icon="flame" color="#FFB547" value={`${streak}`} label="gün seri" />
-          <Stat icon="flash" color="#FFE066" value={`${xp}`} label="toplam XP" />
-          <Stat icon="trophy" color="#9EF0C9" value={`${Object.keys(unlocked).length}`} label="başarım" />
+          <Stat icon="flame" color="#FFB547" value={`${streak}`} label={t('gün seri', 'day streak')} />
+          <Stat icon="flash" color="#FFE066" value={`${xp}`} label={t('toplam XP', 'total XP')} />
+          <Stat icon="trophy" color="#9EF0C9" value={`${Object.keys(unlocked).length}`} label={t('başarım', 'badges')} />
         </View>
       </LinearGradient>
 
@@ -120,7 +122,7 @@ export default function Home() {
             </Ring>
             <View style={{ flex: 1 }}>
               <T w="black" size={17}>
-                {goalDone ? 'Günlük hedef tamam!' : `Günlük hedef: ${goal} pratik`}
+                {goalDone ? t('Günlük hedef tamam!', 'Daily goal done!') : t(`Günlük hedef: ${goal} pratik`, `Daily goal: ${goal} practice${goal > 1 ? 's' : ''}`)}
               </T>
               <View style={styles.weekRow}>
                 {week.map((d) => (
@@ -156,10 +158,10 @@ export default function Home() {
               <Ionicons name="person-circle" size={22} color={colors.primary} />
               <View style={{ flex: 1 }}>
                 <T w="black" size={13} color={colors.primary}>
-                  Misafir modu · {access.interviewsLeft}/{GUEST_INTERVIEWS} mülakat hakkı
+                  {t('Misafir modu', 'Guest mode')} · {access.interviewsLeft}/{GUEST_INTERVIEWS} {t('mülakat hakkı', 'interviews left')}
                 </T>
                 <T w="semibold" size={12} color={colors.muted}>
-                  Ücretsiz üye ol, ilerlemen korunur
+                  {t('Ücretsiz üye ol, ilerlemen korunur', 'Sign up free and keep your progress')}
                 </T>
               </View>
               <Ionicons name="chevron-forward" size={18} color={colors.primary} />
@@ -178,7 +180,7 @@ export default function Home() {
             >
               <Ionicons name="notifications" size={20} color={colors.streak} />
               <T w="extrabold" size={13} color="#8A4B00" style={{ flex: 1 }}>
-                Serini kaybetme! Günlük hatırlatıcıyı aç
+                {t('Serini kaybetme! Günlük hatırlatıcıyı aç', "Don't lose your streak! Turn on the daily reminder")}
               </T>
               <Ionicons name="chevron-forward" size={18} color="#C98A3A" />
             </Pressable>
@@ -203,13 +205,13 @@ export default function Home() {
               >
                 <View style={{ flex: 1 }}>
                   <T w="extrabold" size={12} color="rgba(255,255,255,0.8)" style={{ letterSpacing: 1 }}>
-                    {reports.length ? 'KALDIĞIN YERDEN DEVAM' : 'İLK MÜLAKATINA BAŞLA'}
+                    {reports.length ? t('KALDIĞIN YERDEN DEVAM', 'PICK UP WHERE YOU LEFT OFF') : t('İLK MÜLAKATINA BAŞLA', 'START YOUR FIRST INTERVIEW')}
                   </T>
                   <T w="black" size={19} color="#fff" style={{ marginTop: 2 }}>
                     {nextUnit.title}
                   </T>
                   <T w="semibold" size={13} color="rgba(255,255,255,0.85)">
-                    {lastTrack.name} · {nextUnit.level} · {nextUnit.questions.length} soru
+                    {lastTrack.name} · {nextUnit.level} · {nextUnit.questions.length} {t('soru', 'questions')}
                   </T>
                 </View>
                 <View style={styles.playBtn}>
@@ -232,7 +234,7 @@ export default function Home() {
               <GradientIcon icon={mine.track.icon as IconName} color={mine.profession.color} size={50} radius={16} />
               <View style={{ flex: 1 }}>
                 <T w="extrabold" size={11} color={mine.profession.color} style={{ letterSpacing: 1 }}>
-                  SENİN ALANIN
+                  {t('SENİN ALANIN', 'YOUR FIELD')}
                 </T>
                 <T w="black" size={16} numberOfLines={1}>
                   {mine.track.name}
@@ -245,7 +247,7 @@ export default function Home() {
                     <Bar value={(minePassed / mine.track.units.length) * 100} color={mine.profession.color} height={7} />
                   </View>
                   <T w="extrabold" size={11} color={colors.muted}>
-                    {minePassed}/{mine.track.units.length} ünite
+                    {minePassed}/{mine.track.units.length} {t('ünite', 'units')}
                   </T>
                 </View>
               </View>
@@ -267,10 +269,14 @@ export default function Home() {
               <Ionicons name={dailyDone ? 'checkmark-circle' : 'today'} size={22} color="#F07A1A" />
             </View>
             <T w="black" size={14} style={{ marginTop: 8 }}>
-              Günün Sorusu
+              {t('Günün Sorusu', 'Question of the Day')}
             </T>
             <T w="semibold" size={11} color={colors.muted} numberOfLines={2} style={{ minHeight: 30 }}>
-              {dailyDone ? `Bugün tamam · ${daily?.overall} puan` : access.canDaily ? dailyRef.track.name : 'Üyelere özel'}
+              {dailyDone
+                ? t(`Bugün tamam · ${daily?.overall} puan`, `Done today · ${daily?.overall} points`)
+                : access.canDaily
+                  ? dailyRef.track.name
+                  : t('Üyelere özel', 'Members only')}
             </T>
             {!dailyDone && (
               <View style={[styles.miniBadge, { backgroundColor: '#F07A1A' }]}>
@@ -291,10 +297,12 @@ export default function Home() {
               <Ionicons name="journal" size={22} color="#EF5A5A" />
             </View>
             <T w="black" size={14} style={{ marginTop: 8 }}>
-              Hata Defteri
+              {t('Hata Defteri', 'Mistake Notebook')}
             </T>
             <T w="semibold" size={11} color={colors.muted} numberOfLines={2} style={{ minHeight: 30 }}>
-              {mistakeCount ? `${mistakeCount} soru tekrar bekliyor` : 'Henüz hata yok 🎉'}
+              {mistakeCount
+                ? t(`${mistakeCount} soru tekrar bekliyor`, `${mistakeCount} question${mistakeCount > 1 ? 's' : ''} to review`)
+                : t('Henüz hata yok 🎉', 'No mistakes yet 🎉')}
             </T>
             {mistakeCount > 0 && (
               <View style={[styles.miniBadge, { backgroundColor: '#EF5A5A' }]}>
@@ -310,10 +318,10 @@ export default function Home() {
           <>
             <View style={styles.sectionRow}>
               <T w="black" size={19}>
-                Mülakat Türleri
+                {general.name}
               </T>
               <T w="bold" size={12} color={colors.muted}>
-                Her meslek için
+                {t('Her meslek için', 'For every profession')}
               </T>
             </View>
             <ScrollView
@@ -322,14 +330,14 @@ export default function Home() {
               contentContainerStyle={styles.typesRow}
               style={{ marginHorizontal: -16 }}
             >
-              {general.tracks.map((t, i) => {
-                const done = t.units.filter((u) => (bestByUnit[u.id] ?? 0) >= PASS_SCORE).length;
+              {general.tracks.map((tr, i) => {
+                const done = tr.units.filter((u) => (bestByUnit[u.id] ?? 0) >= PASS_SCORE).length;
                 return (
-                  <FadeIn key={t.id} delay={100 + i * 50}>
+                  <FadeIn key={tr.id} delay={100 + i * 50}>
                     <Pressable
                       onPress={() => {
                         tap();
-                        router.push(`/track/${t.id}`);
+                        router.push(`/track/${tr.id}`);
                       }}
                       style={({ pressed }) => [styles.typeCard, { transform: [{ scale: pressed ? 0.97 : 1 }] }]}
                     >
@@ -339,16 +347,16 @@ export default function Home() {
                         end={{ x: 1, y: 1 }}
                         style={styles.typeIcon}
                       >
-                        <Ionicons name={t.icon as IconName} size={22} color="#fff" />
+                        <Ionicons name={tr.icon as IconName} size={22} color="#fff" />
                       </LinearGradient>
                       <T w="black" size={14} numberOfLines={2} style={{ marginTop: 10, minHeight: 36 }}>
-                        {t.name}
+                        {tr.name}
                       </T>
                       <T w="semibold" size={11} color={colors.muted} numberOfLines={2} style={{ minHeight: 30 }}>
-                        {t.tagline}
+                        {tr.tagline}
                       </T>
                       <View style={{ marginTop: 8 }}>
-                        <Bar value={(done / t.units.length) * 100} color={general.color} height={5} />
+                        <Bar value={(done / tr.units.length) * 100} color={general.color} height={5} />
                       </View>
                     </Pressable>
                   </FadeIn>
@@ -359,7 +367,7 @@ export default function Home() {
         )}
 
         <T w="black" size={19} style={styles.section}>
-          Meslekler
+          {t('Meslekler', 'Professions')}
         </T>
         <View style={styles.grid}>
           {careers.map((p, i) => {
@@ -384,7 +392,7 @@ export default function Home() {
                   <View style={[styles.trackPill, { backgroundColor: p.color + '14' }]}>
                     <Ionicons name="git-branch" size={12} color={p.color} />
                     <T w="extrabold" size={11} color={p.color}>
-                      {p.tracks.length} alan
+                      {p.tracks.length} {t('alan', p.tracks.length > 1 ? 'fields' : 'field')}
                     </T>
                   </View>
                   <View style={styles.tileFoot}>
@@ -404,7 +412,7 @@ export default function Home() {
         {reports.length > 0 && (
           <>
             <T w="black" size={19} style={styles.section}>
-              Son raporlar
+              {t('Son raporlar', 'Recent reports')}
             </T>
             <Card style={{ paddingVertical: 6 }}>
               {reports.slice(0, 4).map((r, i) => {
@@ -421,7 +429,7 @@ export default function Home() {
                         {f?.unit.title}
                       </T>
                       <T w="semibold" size={12} color={colors.muted}>
-                        {f?.track.name} · {new Date(r.createdAt).toLocaleDateString('tr-TR', { day: 'numeric', month: 'short' })}
+                        {f?.track.name} · {new Date(r.createdAt).toLocaleDateString(locale(lang), { day: 'numeric', month: 'short' })}
                       </T>
                     </View>
                     <View style={[styles.scorePill, { backgroundColor: scoreColor(r.overall) + '1F' }]}>

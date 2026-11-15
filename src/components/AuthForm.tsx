@@ -1,3 +1,4 @@
+import { tt } from '@/lib/i18n';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState, type ComponentRef, type ReactNode, type Ref } from 'react';
 import {
@@ -89,7 +90,7 @@ export function Field({ label, icon, secret, style, ref, ...rest }: FieldProps) 
             onPress={() => setHidden((h) => !h)}
             hitSlop={10}
             accessibilityRole="button"
-            accessibilityLabel={hidden ? 'Şifreyi göster' : 'Şifreyi gizle'}
+            accessibilityLabel={hidden ? tt('Şifreyi göster', 'Show password') : tt('Şifreyi gizle', 'Hide password')}
           >
             <Ionicons name={hidden ? 'eye' : 'eye-off'} size={20} color={colors.muted} />
           </Pressable>

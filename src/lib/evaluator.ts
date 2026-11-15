@@ -1,4 +1,5 @@
 import type { Question } from '@/data/professions';
+import { pick, tt, type Bi } from './i18n';
 
 /**
  * Offline, rule-based evaluator. It produces the same Report shape an LLM
@@ -8,12 +9,13 @@ import type { Question } from '@/data/professions';
 
 export type CategoryKey = 'icerik' | 'yapi' | 'netlik' | 'somutluk';
 
-export const categoryLabels: Record<CategoryKey, string> = {
-  icerik: 'İçerik / Bilgi',
-  yapi: 'Yapı',
-  netlik: 'Netlik',
-  somutluk: 'Somutluk',
+const CATEGORY_LABELS: Record<CategoryKey, Bi> = {
+  icerik: { tr: 'İçerik / Bilgi', en: 'Content / Knowledge' },
+  yapi: { tr: 'Yapı', en: 'Structure' },
+  netlik: { tr: 'Netlik', en: 'Clarity' },
+  somutluk: { tr: 'Somutluk', en: 'Concreteness' },
 };
+export const categoryLabel = (k: CategoryKey) => pick(CATEGORY_LABELS[k]);
 
 export type AnswerFeedback = {
   questionId: string;
@@ -41,10 +43,10 @@ export type Report = {
 };
 
 // Turkish + English markers so the English interview track is scored fairly too.
-const FILLERS = ['yani', 'işte', 'şey', 'aslında', 'falan', 'filan', 'hani', 'açıkçası', 'um', 'uh', 'erm', 'basically'];
+const FILLERS = ['yani', 'işte', 'şey', 'aslında', 'falan', 'filan', 'hani', 'açıkçası', 'um', 'uh', 'erm', 'basically', 'like', 'actually'];
 const STRUCTURE_MARKERS = [
   'önce', 'öncelikle', 'ilk olarak', 'sonra', 'ardından', 'ikinci', 'son olarak', 'sonuç olarak', 'çünkü', 'bu yüzden',
-  'first', 'then', 'after that', 'finally', 'because', 'as a result', 'that is why', 'secondly',
+  'first', 'then', 'after that', 'finally', 'because', 'as a result', 'that is why', 'secondly', 'next',
 ];
 const STAR = {
   durum: ['durum', 'projede', 'çalışırken', 'şirkette', 'bir gün', 'geçen', 'in my last', 'at my', 'once', 'situation', 'project'],
@@ -87,18 +89,20 @@ function scoreAnswer(q: Question, raw: string) {
   netlik = clamp(netlik);
 
   const numbers = (raw.match(/\d+/g) || []).length;
-  const example = /örneğin|mesela|bir keresinde|geçen yıl|projede|for example|for instance|in my last|last year/.test(text);
+  const example = /örneğin|mesela|bir keresinde|geçen yıl|projede|for example|for instance|in my last|last year|such as|once/.test(text);
   const somutluk = clamp(20 + Math.min(3, numbers) * 20 + (example ? 30 : 0));
 
   const score = clamp(icerik * 0.45 + yapi * 0.2 + netlik * 0.2 + somutluk * 0.15);
 
   let tip: string;
-  if (wc < 25) tip = 'Cevap çok kısa. Düşünceni 3–5 cümlede, gerekçesiyle anlat.';
-  else if (missing.length > 0) tip = `Şunlara değinseydin daha güçlü olurdu: ${missing.slice(0, 2).join(', ')}.`;
-  else if (q.kind === 'davranissal' && yapi < 75) tip = 'Durum → Görev → Aksiyon → Sonuç sırasını belirgin kur, sonucu rakamla bitir.';
-  else if (somutluk < 60) tip = 'Bir rakam veya gerçek bir örnek ekle; somutluk ikna ediciliği artırır.';
-  else if (fillerCount > 1) tip = `Dolgu kelimeleri azalt (${fillerCount} adet “yani/işte/şey”).`;
-  else tip = 'Güçlü bir cevap. Daha kısa ve vurucu bir açılış cümlesiyle bir üst seviyeye çıkar.';
+  const gaps = missing.slice(0, 2).join(', ');
+  if (wc < 25) tip = tt('Cevap çok kısa. Düşünceni 3–5 cümlede, gerekçesiyle anlat.', 'The answer is too short. Explain your thinking in 3–5 sentences, with your reasoning.');
+  else if (missing.length > 0) tip = tt(`Şunlara değinseydin daha güçlü olurdu: ${gaps}.`, `It would be stronger if you had covered: ${gaps}.`);
+  else if (q.kind === 'davranissal' && yapi < 75)
+    tip = tt('Durum → Görev → Aksiyon → Sonuç sırasını belirgin kur, sonucu rakamla bitir.', 'Make the Situation → Task → Action → Result order clear, and end with a number.');
+  else if (somutluk < 60) tip = tt('Bir rakam veya gerçek bir örnek ekle; somutluk ikna ediciliği artırır.', 'Add a number or a real example; being concrete makes you more convincing.');
+  else if (fillerCount > 1) tip = tt(`Dolgu kelimeleri azalt (${fillerCount} adet “yani/işte/şey”).`, `Cut down on filler words (${fillerCount} like “um/like/basically”).`);
+  else tip = tt('Güçlü bir cevap. Daha kısa ve vurucu bir açılış cümlesiyle bir üst seviyeye çıkar.', 'A strong answer. A shorter, punchier opening sentence would take it to the next level.');
 
   return { score, covered, missing, tip, cats: { icerik, yapi, netlik, somutluk }, fillerCount, wc };
 }
@@ -122,22 +126,35 @@ export async function evaluateSession(
   const strengths: string[] = [];
   const weaknesses: string[] = [];
   const say = {
-    icerik: ['Konuya hâkimsin, temel kavramlara değindin.', 'Bazı temel kavramları atladın; cevaplar yüzeysel kaldı.'],
-    yapi: ['Cevapların düzenli ve takip edilmesi kolay.', 'Cevaplarda net bir yapı yok; STAR veya “önce/sonra” akışı kullan.'],
-    netlik: ['Açık ve öz konuşuyorsun.', 'Cevaplar ya çok kısa ya çok dağınık; uzunluğu ve cümleleri dengele.'],
-    somutluk: ['Örnek ve rakamlarla ikna edicisin.', 'Rakam ve gerçek örnek eksik; iddialarını kanıtla.'],
-  } as const;
+    icerik: [
+      tt('Konuya hâkimsin, temel kavramlara değindin.', 'You know the subject and covered the key concepts.'),
+      tt('Bazı temel kavramları atladın; cevaplar yüzeysel kaldı.', 'You skipped some key concepts; the answers stayed shallow.'),
+    ],
+    yapi: [
+      tt('Cevapların düzenli ve takip edilmesi kolay.', 'Your answers are well organized and easy to follow.'),
+      tt('Cevaplarda net bir yapı yok; STAR veya “önce/sonra” akışı kullan.', 'Your answers lack a clear structure; use STAR or a “first/then” flow.'),
+    ],
+    netlik: [
+      tt('Açık ve öz konuşuyorsun.', 'You speak clearly and concisely.'),
+      tt('Cevaplar ya çok kısa ya çok dağınık; uzunluğu ve cümleleri dengele.', 'Answers are either too short or too scattered; balance length and sentences.'),
+    ],
+    somutluk: [
+      tt('Örnek ve rakamlarla ikna edicisin.', 'You are convincing with examples and numbers.'),
+      tt('Rakam ve gerçek örnek eksik; iddialarını kanıtla.', 'Numbers and real examples are missing; back up your claims.'),
+    ],
+  };
   (Object.keys(categories) as CategoryKey[]).forEach((k) => {
     if (categories[k] >= 70) strengths.push(say[k][0]);
     else if (categories[k] < 55) weaknesses.push(say[k][1]);
   });
   const totalFillers = scored.reduce((s, x) => s + x.r.fillerCount, 0);
-  if (totalFillers >= 3) weaknesses.push(`Toplam ${totalFillers} dolgu kelime kullandın (“yani”, “işte”...).`);
-  if (strengths.length === 0) strengths.push('Tüm soruları cevaplayarak seansı tamamladın, devam!');
-  if (weaknesses.length === 0) weaknesses.push('Belirgin bir eksik yok; bir üst seviyeyi dene.');
+  if (totalFillers >= 3)
+    weaknesses.push(tt(`Toplam ${totalFillers} dolgu kelime kullandın (“yani”, “işte”...).`, `You used ${totalFillers} filler words in total (“um”, “like”...).`));
+  if (strengths.length === 0) strengths.push(tt('Tüm soruları cevaplayarak seansı tamamladın, devam!', 'You answered every question and finished the session, keep going!'));
+  if (weaknesses.length === 0) weaknesses.push(tt('Belirgin bir eksik yok; bir üst seviyeyi dene.', 'No clear gaps; try the next level.'));
 
   const weakest = (Object.keys(categories) as CategoryKey[]).sort((a, b) => categories[a] - categories[b])[0];
-  const nextFocus = `Sonraki odak: ${categoryLabels[weakest]}. ${say[weakest][1]}`;
+  const nextFocus = tt('Sonraki odak: ', 'Next focus: ') + `${categoryLabel(weakest)}. ${say[weakest][1]}`;
 
   return {
     id: `${Date.now()}`,

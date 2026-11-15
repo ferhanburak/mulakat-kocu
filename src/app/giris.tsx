@@ -4,10 +4,12 @@ import { Pressable } from 'react-native';
 import { AuthScaffold, Field, FormError, type InputRef } from '@/components/AuthForm';
 import { Button, resetTo, T, colors, notify } from '@/components/ui';
 import { AuthError, signIn } from '@/lib/auth';
+import { useT } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 
 export default function SignIn() {
   const { signedIn } = useStore();
+  const t = useT();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -25,17 +27,21 @@ export default function SignIn() {
       resetTo(hasProfile ? '/' : '/profil-kurulum');
     } catch (e) {
       notify(false);
-      setError(e instanceof AuthError ? e.message : 'Bir şeyler ters gitti, tekrar dene.');
+      setError(e instanceof AuthError ? e.message : t('Bir şeyler ters gitti, tekrar dene.', 'Something went wrong, please try again.'));
       setBusy(false);
     }
   };
 
   return (
-    <AuthScaffold icon="log-in" title="Tekrar hoş geldin" subtitle="Kaldığın yerden devam etmek için giriş yap.">
+    <AuthScaffold
+      icon="log-in"
+      title={t('Tekrar hoş geldin', 'Welcome back')}
+      subtitle={t('Kaldığın yerden devam etmek için giriş yap.', 'Sign in to pick up where you left off.')}
+    >
       <Field
-        label="E-posta"
+        label={t('E-posta', 'Email')}
         icon="mail"
-        placeholder="ornek@eposta.com"
+        placeholder={t('ornek@eposta.com', 'you@example.com')}
         value={email}
         onChangeText={setEmail}
         autoCapitalize="none"
@@ -47,9 +53,9 @@ export default function SignIn() {
       />
       <Field
         ref={passRef}
-        label="Şifre"
+        label={t('Şifre', 'Password')}
         icon="lock-closed"
-        placeholder="Şifren"
+        placeholder={t('Şifren', 'Your password')}
         value={password}
         onChangeText={setPassword}
         secret
@@ -60,12 +66,12 @@ export default function SignIn() {
         onSubmitEditing={submit}
       />
       <FormError message={error} />
-      <Button title={busy ? 'GİRİŞ YAPILIYOR…' : 'GİRİŞ YAP'} icon="arrow-forward" onPress={submit} disabled={busy} />
+      <Button title={busy ? t('GİRİŞ YAPILIYOR…', 'SIGNING IN…') : t('GİRİŞ YAP', 'SIGN IN')} icon="arrow-forward" onPress={submit} disabled={busy} />
       <Pressable onPress={() => router.replace('/kayit')} hitSlop={8} style={{ alignSelf: 'center', marginTop: 22 }}>
         <T w="bold" size={14} color={colors.muted}>
-          Hesabın yok mu?{' '}
+          {t('Hesabın yok mu?', "Don't have an account?")}{' '}
           <T w="black" size={14} color={colors.primary}>
-            Hesap oluştur
+            {t('Hesap oluştur', 'Create one')}
           </T>
         </T>
       </Pressable>

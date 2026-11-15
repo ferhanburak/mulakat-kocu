@@ -24,6 +24,7 @@ import {
 import { SignupPrompt } from '@/components/SignupPrompt';
 import { findUnit } from '@/data/professions';
 import { useAccess, type Locked } from '@/lib/access';
+import { tt, useLang, useT } from '@/lib/i18n';
 import { generateQuiz, generateReviewQuiz, type ChoiceItem, type OrderItem } from '@/lib/quiz';
 import { quizXp, useStore } from '@/lib/store';
 
@@ -37,6 +38,8 @@ export default function QuizScreen() {
   const found = review ? undefined : findUnit(unitId);
   const { addQuizResult, addReviewResult, recordQuizAnswer, mistakes } = useStore();
   const access = useAccess();
+  const t = useT();
+  const lang = useLang();
   const [block] = useState<Locked | null>(() => (review ? (access.canReview ? null : 'review') : access.canOpenUnit(unitId) ? null : 'unit'));
   const [round, setRound] = useState(0);
   // Keyed on the id (findUnit returns a fresh object each render) and the retry round;
@@ -50,7 +53,7 @@ export default function QuizScreen() {
     }
     const f = findUnit(unitId);
     return f ? generateQuiz(f.unit, f.profession) : [];
-  }, [unitId, round]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [unitId, round, lang]); // eslint-disable-line react-hooks/exhaustive-deps
   const [idx, setIdx] = useState(0);
   const [choice, setChoice] = useState<number | null>(null);
   const [order, setOrder] = useState<number[]>([]);
@@ -58,7 +61,7 @@ export default function QuizScreen() {
   const [correct, setCorrect] = useState(0);
   const [done, setDone] = useState(false);
 
-  if (!found && !review) return <T style={{ padding: 20 }}>Ünite bulunamadı.</T>;
+  if (!found && !review) return <T style={{ padding: 20 }}>{t('Ünite bulunamadı.', 'Unit not found.')}</T>;
   if (block)
     return (
       <View style={{ flex: 1, backgroundColor: colors.bg }}>
@@ -67,7 +70,7 @@ export default function QuizScreen() {
     );
   const color = found ? found.profession.color : '#EF5A5A';
   const backTo = found ? (`/track/${found.track.id}` as const) : ('/hatalar' as const);
-  const subtitle = found ? `${found.track.name} · ${found.unit.title}` : 'Hata Defteri tekrarı';
+  const subtitle = found ? `${found.track.name} · ${found.unit.title}` : t('Hata Defteri tekrarı', 'Mistake Notebook review');
   const item = items[idx];
   const total = items.length;
 
@@ -91,18 +94,18 @@ export default function QuizScreen() {
       >
         <FadeIn style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
           <T w="black" size={14} color="rgba(255,255,255,0.85)" style={{ letterSpacing: 1.2 }}>
-            {review ? 'TEKRAR TAMAMLANDI' : 'HIZLI PRATİK TAMAMLANDI'}
+            {review ? t('TEKRAR TAMAMLANDI', 'REVIEW COMPLETE') : t('HIZLI PRATİK TAMAMLANDI', 'QUICK PRACTICE COMPLETE')}
           </T>
           <View style={{ marginTop: 18 }}>
             <Ring value={pct} size={160} stroke={14} color="#fff" track="rgba(255,255,255,0.25)">
               <CountUp value={correct} style={styles.doneScore} />
               <T w="extrabold" size={13} color="rgba(255,255,255,0.85)" style={{ marginTop: -6 }}>
-                / {total} doğru
+                / {total} {t('doğru', 'correct')}
               </T>
             </Ring>
           </View>
           <T w="black" size={24} color="#fff" style={{ marginTop: 18 }}>
-            {pct === 100 ? 'Kusursuz! 🌟' : good ? 'Çok iyi! 🎯' : 'Biraz daha pratik 💪'}
+            {pct === 100 ? t('Kusursuz! 🌟', 'Flawless! 🌟') : good ? t('Çok iyi! 🎯', 'Great job! 🎯') : t('Biraz daha pratik 💪', 'A bit more practice 💪')}
           </T>
           <T w="semibold" size={14} color="rgba(255,255,255,0.9)" style={{ textAlign: 'center', marginTop: 4 }}>
             {subtitle}
@@ -114,15 +117,18 @@ export default function QuizScreen() {
             <Ionicons name={review ? 'journal' : 'mic'} size={18} color="#fff" />
             <T w="semibold" size={13} color="#fff" style={{ flex: 1, lineHeight: 19 }}>
               {review
-                ? `Doğru yaptığın sorular defterden silindi. Defterde ${Object.keys(mistakes).length} soru kaldı.`
-                : 'Üniteyi geçmek için açık uçlu mülakat simülasyonunu tamamla.'}
+                ? t(
+                    `Doğru yaptığın sorular defterden silindi. Defterde ${Object.keys(mistakes).length} soru kaldı.`,
+                    `Questions you got right were removed from the notebook. ${Object.keys(mistakes).length} left.`,
+                  )
+                : t('Üniteyi geçmek için açık uçlu mülakat simülasyonunu tamamla.', 'Complete the open-ended interview simulation to pass the unit.')}
             </T>
           </View>
         </FadeIn>
         <View style={{ gap: 12, alignSelf: 'stretch' }}>
           {found && (
             <Button
-              title="MÜLAKATA GEÇ"
+              title={t('MÜLAKATA GEÇ', 'GO TO INTERVIEW')}
               icon="mic"
               color={good ? '#0E7A50' : shade(color, -0.3)}
               variant="outline"
@@ -131,10 +137,10 @@ export default function QuizScreen() {
           )}
           <View style={{ flexDirection: 'row', gap: 12 }}>
             {(found || Object.keys(mistakes).length > 0) && (
-              <Button title="TEKRAR" icon="refresh" color={shade(color, -0.3)} onPress={restart} style={{ flex: 1 }} />
+              <Button title={t('TEKRAR', 'AGAIN')} icon="refresh" color={shade(color, -0.3)} onPress={restart} style={{ flex: 1 }} />
             )}
             <Button
-              title={review ? 'DEFTERE DÖN' : 'YOLA DÖN'}
+              title={review ? t('DEFTERE DÖN', 'BACK TO NOTEBOOK') : t('YOLA DÖN', 'BACK TO PATH')}
               icon={review ? 'journal' : 'map'}
               color={shade(color, -0.3)}
               onPress={() => goBack(backTo)}
@@ -149,7 +155,9 @@ export default function QuizScreen() {
   if (!item)
     return (
       <T style={{ padding: 20 }}>
-        {review ? 'Hata defterinde tekrar edilecek soru yok. 🎉' : 'Bu ünite için pratik sorusu üretilemedi.'}
+        {review
+          ? t('Hata defterinde tekrar edilecek soru yok. 🎉', 'No questions to review in the notebook. 🎉')
+          : t('Bu ünite için pratik sorusu üretilemedi.', "Couldn't create practice questions for this unit.")}
       </T>
     );
 
@@ -204,7 +212,7 @@ export default function QuizScreen() {
           </View>
           <View style={[styles.questionCard, { borderLeftColor: color }]}>
             <T w="black" size={11} color={colors.muted} style={{ letterSpacing: 0.8, marginBottom: 4 }}>
-              MÜLAKAT SORUSU
+              {t('MÜLAKAT SORUSU', 'INTERVIEW QUESTION')}
             </T>
             <T w="bold" size={15} style={{ lineHeight: 22 }}>
               {item.question}
@@ -228,7 +236,7 @@ export default function QuizScreen() {
 
       {checked === null ? (
         <View style={[styles.footer, { paddingBottom: insets.bottom + 14 }]}>
-          <Button title="KONTROL ET" color={color} disabled={!ready} onPress={check} />
+          <Button title={t('KONTROL ET', 'CHECK')} color={color} disabled={!ready} onPress={check} />
         </View>
       ) : (
         <FadeIn style={[styles.feedback, { backgroundColor: checked ? '#E3F8EE' : '#FDE8E8', paddingBottom: insets.bottom + 14 }]}>
@@ -237,7 +245,7 @@ export default function QuizScreen() {
               <Ionicons name={checked ? 'checkmark' : 'close'} size={22} color="#fff" />
             </View>
             <T w="black" size={19} color={checked ? '#0E7A50' : '#B42323'}>
-              {checked ? 'Harika!' : 'Doğru cevap:'}
+              {checked ? t('Harika!', 'Great!') : t('Doğru cevap:', 'Correct answer:')}
             </T>
           </View>
           {!checked && (
@@ -251,7 +259,7 @@ export default function QuizScreen() {
             </T>
           )}
           <Button
-            title={idx + 1 >= total ? 'SONUCU GÖR' : 'DEVAM'}
+            title={idx + 1 >= total ? t('SONUCU GÖR', 'SEE RESULT') : t('DEVAM', 'CONTINUE')}
             color={checked ? colors.success : colors.danger}
             onPress={next}
             style={{ marginTop: 12 }}
@@ -326,7 +334,7 @@ function OrderBoard({
       <View style={[styles.slotArea, order.length === 0 && styles.slotEmpty]}>
         {order.length === 0 && (
           <T w="bold" size={13} color={colors.faint} style={{ textAlign: 'center' }}>
-            Aşağıdaki parçalara sırayla dokun
+            {tt('Aşağıdaki parçalara sırayla dokun', 'Tap the pieces below in order')}
           </T>
         )}
         {order.map((p, pos) => {

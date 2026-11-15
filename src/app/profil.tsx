@@ -4,19 +4,28 @@ import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Bar, Button, Card, FadeIn, Ionicons, T, colors, goBack, shadow, tap, type IconName } from '@/components/ui';
+import { INTERVIEWERS } from '@/data/interviewers';
 import { findTrack } from '@/data/professions';
 import { GUEST_INTERVIEWS } from '@/lib/access';
 import { ACHIEVEMENTS } from '@/lib/achievements';
+import { locale, pick, setLang, useLang, useT, type Lang } from '@/lib/i18n';
 import { goalLabel, stageLabel } from '@/lib/profileOptions';
 import { enableReminders, remindersSupported } from '@/lib/reminders';
 import { levelOf, useStore } from '@/lib/store';
 
 const HOURS = [9, 12, 18, 20, 22];
+const LANGS: { id: Lang; label: string; flag: string }[] = [
+  { id: 'tr', label: 'Türkçe', flag: '🇹🇷' },
+  { id: 'en', label: 'English', flag: '🇬🇧' },
+];
 
 export default function ProfileScreen() {
   const insets = useSafeAreaInsets();
   const store = useStore();
-  const { xp, streak, stats, unlocked, reminder, bestByUnit, setReminder, voice, setVoice, session, profile, signOut } = store;
+  const t = useT();
+  const lang = useLang();
+  const { xp, streak, stats, unlocked, reminder, bestByUnit, setReminder, voice, setVoice, session, profile, signOut, interviewer, setInterviewer } =
+    store;
   const account = session?.mode === 'user' ? session.account : null;
   const target = profile ? findTrack(profile.trackId) : undefined;
   const [permError, setPermError] = useState(false);
@@ -57,10 +66,10 @@ export default function ProfileScreen() {
           </View>
         </View>
         <T w="black" size={22} color="#fff" style={{ marginTop: 10 }}>
-          {account?.name ?? 'Misafir'}
+          {account?.name ?? t('Misafir', 'Guest')}
         </T>
         <T w="semibold" size={13} color="rgba(255,255,255,0.85)">
-          {account ? account.email : 'Üye olmadan deniyorsun'} · Seviye {level} · {xp} XP
+          {account ? account.email : t('Üye olmadan deniyorsun', 'Trying without an account')} · {t('Seviye', 'Level')} {level} · {xp} XP
         </T>
         <View style={{ alignSelf: 'stretch', marginTop: 12 }}>
           <Bar value={xp % 100} color="#fff" height={8} />
@@ -69,17 +78,17 @@ export default function ProfileScreen() {
 
       <View style={styles.body}>
         <View style={styles.statsGrid}>
-          <StatBox icon="flame" color={colors.streak} value={streak} label="Güncel seri" />
-          <StatBox icon="podium" color="#E0A100" value={stats.maxStreak} label="En uzun seri" />
-          <StatBox icon="mic" color={colors.primary} value={stats.interviews} label="Mülakat" />
-          <StatBox icon="flash" color="#F5A524" value={stats.quizzes} label="Hızlı pratik" />
-          <StatBox icon="ribbon" color={colors.success} value={stats.bestInterview} label="En yüksek puan" />
-          <StatBox icon="compass" color="#2F7FE0" value={stats.professions.length} label="Meslek" />
+          <StatBox icon="flame" color={colors.streak} value={streak} label={t('Güncel seri', 'Current streak')} />
+          <StatBox icon="podium" color="#E0A100" value={stats.maxStreak} label={t('En uzun seri', 'Longest streak')} />
+          <StatBox icon="mic" color={colors.primary} value={stats.interviews} label={t('Mülakat', 'Interviews')} />
+          <StatBox icon="flash" color="#F5A524" value={stats.quizzes} label={t('Hızlı pratik', 'Quick practice')} />
+          <StatBox icon="ribbon" color={colors.success} value={stats.bestInterview} label={t('En yüksek puan', 'Top score')} />
+          <StatBox icon="compass" color="#2F7FE0" value={stats.professions.length} label={t('Meslek', 'Professions')} />
         </View>
 
         <View style={styles.achHead}>
           <T w="black" size={18}>
-            Hedefin
+            {t('Hedefin', 'Your goal')}
           </T>
           <Pressable
             onPress={() => {
@@ -91,18 +100,91 @@ export default function ProfileScreen() {
           >
             <Ionicons name="create" size={15} color={colors.primary} />
             <T w="black" size={13} color={colors.primary}>
-              Düzenle
+              {t('Düzenle', 'Edit')}
             </T>
           </Pressable>
         </View>
         <Card style={{ paddingVertical: 6 }}>
-          <InfoRow icon="briefcase" color={target?.profession.color ?? colors.primary} label="Alan" value={target ? `${target.profession.name} · ${target.track.name}` : '—'} />
-          <InfoRow icon="podium" color="#2F7FE0" label="Kariyer" value={profile ? stageLabel(profile.stage) : '—'} divider />
-          <InfoRow icon="flame" color={colors.streak} label="Günlük hedef" value={profile ? goalLabel(profile.dailyGoal) : '—'} divider />
+          <InfoRow icon="briefcase" color={target?.profession.color ?? colors.primary} label={t('Alan', 'Field')} value={target ? `${target.profession.name} · ${target.track.name}` : '—'} />
+          <InfoRow icon="podium" color="#2F7FE0" label={t('Kariyer', 'Career')} value={profile ? stageLabel(profile.stage) : '—'} divider />
+          <InfoRow icon="flame" color={colors.streak} label={t('Günlük hedef', 'Daily goal')} value={profile ? goalLabel(profile.dailyGoal) : '—'} divider />
         </Card>
 
         <T w="black" size={18} style={styles.section}>
-          Bildirimler & Ses
+          {t('Dil & Mülakatçı', 'Language & Interviewer')}
+        </T>
+        <Card>
+          <View style={styles.row}>
+            <View style={[styles.rowIcon, { backgroundColor: '#2F7FE0' + '1A' }]}>
+              <Ionicons name="language" size={20} color="#2F7FE0" />
+            </View>
+            <View style={{ flex: 1 }}>
+              <T w="black" size={15}>
+                {t('Uygulama dili', 'App language')}
+              </T>
+              <T w="semibold" size={12} color={colors.muted}>
+                {t('Ekranlar, sorular ve mülakatçının sesi bu dilde olur.', 'Screens, questions and the interviewer’s voice use this language.')}
+              </T>
+            </View>
+          </View>
+          <View style={styles.hours}>
+            {LANGS.map((l) => {
+              const on = lang === l.id;
+              return (
+                <Pressable
+                  key={l.id}
+                  onPress={() => {
+                    tap();
+                    setLang(l.id);
+                  }}
+                  style={[styles.langPill, on && { backgroundColor: '#2F7FE0', borderColor: '#2F7FE0' }]}
+                >
+                  <T w="black" size={14} color={on ? '#fff' : colors.muted}>
+                    {l.flag} {l.label}
+                  </T>
+                </Pressable>
+              );
+            })}
+          </View>
+          <View style={[styles.row, styles.rowDivider]}>
+            <View style={[styles.rowIcon, { backgroundColor: colors.success + '1A' }]}>
+              <Ionicons name="people" size={20} color={colors.success} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <T w="black" size={15}>
+                {t('Mülakatçın', 'Your interviewer')}
+              </T>
+              <T w="semibold" size={12} color={colors.muted}>
+                {pick(INTERVIEWERS.find((i) => i.id === interviewer)?.style ?? INTERVIEWERS[0].style, lang)}
+              </T>
+            </View>
+          </View>
+          <View style={styles.hours}>
+            {INTERVIEWERS.map((i) => {
+              const on = interviewer === i.id;
+              return (
+                <Pressable
+                  key={i.id}
+                  onPress={() => {
+                    tap();
+                    setInterviewer(i.id);
+                  }}
+                  style={[styles.langPill, on && { backgroundColor: i.color, borderColor: i.color }]}
+                >
+                  <T w="black" size={13} color={on ? '#fff' : colors.muted} numberOfLines={1}>
+                    {pick(i.name, lang)}
+                  </T>
+                  <T w="bold" size={10} color={on ? 'rgba(255,255,255,0.85)' : colors.faint} numberOfLines={1}>
+                    {pick(i.role, lang)}
+                  </T>
+                </Pressable>
+              );
+            })}
+          </View>
+        </Card>
+
+        <T w="black" size={18} style={styles.section}>
+          {t('Bildirimler & Ses', 'Notifications & Sound')}
         </T>
         <Card>
           <View style={styles.row}>
@@ -111,10 +193,10 @@ export default function ProfileScreen() {
             </View>
             <View style={{ flex: 1 }}>
               <T w="black" size={15}>
-                Günlük seri hatırlatıcısı
+                {t('Günlük seri hatırlatıcısı', 'Daily streak reminder')}
               </T>
               <T w="semibold" size={12} color={colors.muted}>
-                O gün pratik yapmadıysan seçtiğin saatte hatırlatır.
+                {t('O gün pratik yapmadıysan seçtiğin saatte hatırlatır.', 'Reminds you at the chosen time if you haven’t practised that day.')}
               </T>
             </View>
             <Switch
@@ -148,12 +230,12 @@ export default function ProfileScreen() {
           )}
           {!remindersSupported && (
             <T w="semibold" size={12} color={colors.muted} style={styles.note}>
-              Bildirimler telefonda çalışır; web önizlemesinde kapalıdır.
+              {t('Bildirimler telefonda çalışır; web önizlemesinde kapalıdır.', 'Notifications work on the phone; they are off in the web preview.')}
             </T>
           )}
           {permError && (
             <T w="bold" size={12} color={colors.danger} style={styles.note}>
-              Bildirim izni verilmedi. Telefon ayarlarından izin verebilirsin.
+              {t('Bildirim izni verilmedi. Telefon ayarlarından izin verebilirsin.', 'Notification permission was denied. You can allow it in your phone settings.')}
             </T>
           )}
           <View style={[styles.row, styles.rowDivider]}>
@@ -162,10 +244,10 @@ export default function ProfileScreen() {
             </View>
             <View style={{ flex: 1 }}>
               <T w="black" size={15}>
-                Sesli sorular
+                {t('Sesli sorular', 'Spoken questions')}
               </T>
               <T w="semibold" size={12} color={colors.muted}>
-                Mülakatçı soruları sesli okur. iPhone’da sessiz mod kapalı olmalı.
+                {t('Mülakatçı soruları sesli okur. iPhone’da sessiz mod kapalı olmalı.', 'The interviewer reads questions aloud. On iPhone, silent mode must be off.')}
               </T>
             </View>
             <Switch
@@ -182,7 +264,7 @@ export default function ProfileScreen() {
 
         <View style={styles.achHead}>
           <T w="black" size={18}>
-            Başarımlar
+            {t('Başarımlar', 'Badges')}
           </T>
           <T w="black" size={14} color={colors.primary}>
             {unlockedCount}/{ACHIEVEMENTS.length}
@@ -206,10 +288,10 @@ export default function ProfileScreen() {
                     <Ionicons name={(done ? a.icon : 'lock-closed') as IconName} size={24} color={done ? '#fff' : '#B5B1C8'} />
                   </View>
                   <T w="black" size={12} style={{ textAlign: 'center', marginTop: 8, minHeight: 32, lineHeight: 16 }} numberOfLines={2}>
-                    {a.title}
+                    {pick(a.title)}
                   </T>
                   <T w="semibold" size={11} color={colors.muted} style={{ textAlign: 'center', minHeight: 28 }} numberOfLines={2}>
-                    {a.desc}
+                    {pick(a.desc)}
                   </T>
                   {!done && target > 1 && (
                     <View style={{ alignSelf: 'stretch', marginTop: 6 }}>
@@ -218,7 +300,7 @@ export default function ProfileScreen() {
                   )}
                   {done && (
                     <T w="extrabold" size={10} color={a.color} style={{ marginTop: 6 }}>
-                      {new Date(unlocked[a.id]).toLocaleDateString('tr-TR', { day: 'numeric', month: 'short' })}
+                      {new Date(unlocked[a.id]).toLocaleDateString(locale(lang), { day: 'numeric', month: 'short' })}
                     </T>
                   )}
                 </View>
@@ -228,23 +310,25 @@ export default function ProfileScreen() {
         </View>
 
         <T w="black" size={18} style={styles.section}>
-          Hesap
+          {t('Hesap', 'Account')}
         </T>
         {account ? (
-          <Button title="ÇIKIŞ YAP" icon="log-out" variant="outline" color={colors.danger} onPress={signOut} />
+          <Button title={t('ÇIKIŞ YAP', 'SIGN OUT')} icon="log-out" variant="outline" color={colors.danger} onPress={signOut} />
         ) : (
           <Card>
             <T w="black" size={15}>
-              Ücretsiz üye ol, ilerlemen korunur
+              {t('Ücretsiz üye ol, ilerlemen korunur', 'Sign up free and keep your progress')}
             </T>
             <T w="semibold" size={12} color={colors.muted} style={{ marginTop: 2, marginBottom: 14 }}>
-              Misafir modunda {Math.max(0, GUEST_INTERVIEWS - stats.interviews)}/{GUEST_INTERVIEWS} mülakat hakkın kaldı. Üye olunca tüm üniteler,
-              Günün Sorusu ve Hata Defteri açılır.
+              {t(
+                `Misafir modunda ${Math.max(0, GUEST_INTERVIEWS - stats.interviews)}/${GUEST_INTERVIEWS} mülakat hakkın kaldı. Üye olunca tüm üniteler, Günün Sorusu ve Hata Defteri açılır.`,
+                `You have ${Math.max(0, GUEST_INTERVIEWS - stats.interviews)}/${GUEST_INTERVIEWS} guest interviews left. Members get every unit, the Question of the Day and the Mistake Notebook.`,
+              )}
             </T>
-            <Button title="KAYIT OL" icon="person-add" onPress={() => router.push('/kayit')} />
+            <Button title={t('KAYIT OL', 'SIGN UP')} icon="person-add" onPress={() => router.push('/kayit')} />
             <Pressable onPress={() => router.push('/giris')} hitSlop={8} style={{ alignSelf: 'center', marginTop: 14 }}>
               <T w="extrabold" size={14} color={colors.primary}>
-                Zaten hesabım var
+                {t('Zaten hesabım var', 'I already have an account')}
               </T>
             </Pressable>
           </Card>
@@ -312,6 +396,15 @@ const styles = StyleSheet.create({
   rowDivider: { marginTop: 16, paddingTop: 16, borderTopWidth: 1, borderTopColor: colors.border },
   rowIcon: { width: 40, height: 40, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   hours: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 14 },
+  langPill: {
+    flex: 1,
+    alignItems: 'center',
+    paddingVertical: 9,
+    paddingHorizontal: 6,
+    borderRadius: 14,
+    borderWidth: 2,
+    borderColor: colors.border,
+  },
   hour: { borderWidth: 2, borderColor: colors.border, borderRadius: 12, paddingHorizontal: 12, paddingVertical: 6 },
   note: { marginTop: 10 },
   info: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12 },
