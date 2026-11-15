@@ -6,15 +6,45 @@ import {
   Nunito_900Black,
   useFonts,
 } from '@expo-google-fonts/nunito';
-import { Stack } from 'expo-router';
+import { Stack, router, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { AchievementToast } from '@/components/AchievementToast';
 import { colors, fonts } from '@/components/ui';
-import { StoreProvider } from '@/lib/store';
+import { StoreProvider, useStore } from '@/lib/store';
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
+
+/** Screens reachable without a session. */
+const PUBLIC = ['hosgeldin', 'kayit', 'giris'];
+
+/**
+ * Sends visitors without a session to the welcome screen and new users to profile
+ * setup. Keeps the splash screen up until saved state has loaded, so nothing flashes.
+ */
+function AuthGate() {
+  const { ready, session, profile } = useStore();
+  const segments = useSegments();
+  const first = segments[0] as string | undefined;
+
+  useEffect(() => {
+    if (!ready) return;
+    SplashScreen.hideAsync().catch(() => {});
+    const onPublic = !!first && PUBLIC.includes(first);
+    if (!session) {
+      if (onPublic) return;
+      // Signing out drops the whole history, so "back" can't return into the app.
+      if (router.canDismiss()) router.dismissAll();
+      router.replace('/hosgeldin');
+    } else if (!profile && !onPublic && first !== 'profil-kurulum') {
+      // Sign-up/sign-in screens route on their own after success.
+      router.replace('/profil-kurulum');
+    }
+  }, [ready, session, profile, first]);
+
+  return null;
+}
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
@@ -24,10 +54,6 @@ export default function RootLayout() {
     Nunito_800ExtraBold,
     Nunito_900Black,
   });
-
-  useEffect(() => {
-    if (loaded || error) SplashScreen.hideAsync().catch(() => {});
-  }, [loaded, error]);
 
   if (!loaded && !error) return null;
 
@@ -58,6 +84,7 @@ export default function RootLayout() {
         <Stack.Screen name="hatalar" options={{ headerShown: false }} />
         <Stack.Screen name="report/[id]" options={{ headerShown: false, gestureEnabled: false, animation: 'fade' }} />
       </Stack>
+      <AuthGate />
       <AchievementToast />
     </StoreProvider>
   );
