@@ -3,6 +3,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import { findUnit } from '@/data/professions';
 import { ACHIEVEMENTS, EMPTY_STATS, isDone, type Stats } from './achievements';
 import { PASS_SCORE, type AnswerFeedback, type Report } from './evaluator';
+import type { Account } from './auth';
 import { cancelReminders, scheduleReminders } from './reminders';
 
 type Progress = {
@@ -26,7 +27,15 @@ type Progress = {
   daily: DailyResult | null;
   /** Interviewer reads questions aloud. */
   voice: boolean;
+  /** Who is using the app: a signed-in account, a guest trial, or nobody yet (welcome screen). */
+  session: Session;
+  /** What the user is preparing for; drives the personalised home. */
+  profile: UserProfile | null;
 };
+
+export type Session = { mode: 'user'; account: Account } | { mode: 'guest'; since: string } | null;
+export type CareerStage = 'ogrenci' | 'yeni-mezun' | 'junior' | 'mid' | 'senior';
+export type UserProfile = { professionId: string; trackId: string; stage: CareerStage; dailyGoal: 1 | 2 | 3 };
 
 export type Mistake = { misses: number; concepts: string[]; at: string };
 export type DailyResult = { day: string; questionId: string; feedback: AnswerFeedback; overall: number; xp: number };
@@ -88,6 +97,8 @@ const EMPTY: Progress = {
   mistakes: {},
   daily: null,
   voice: true,
+  session: null,
+  profile: null,
 };
 const KEY = 'mulakat-kocu/progress/v2';
 
@@ -133,6 +144,11 @@ type Ctx = Progress & {
   addReviewResult: (correct: number) => void;
   setReminder: (r: Partial<Progress['reminder']>) => void;
   setVoice: (on: boolean) => void;
+  startGuest: () => void;
+  signedIn: (account: Account) => void;
+  signOut: () => void;
+  saveProfile: (p: UserProfile) => void;
+  renameAccount: (name: string) => void;
   getReport: (id: string) => Report | undefined;
   isUnlocked: (unitIds: string[], index: number) => boolean;
   reset: () => void;
@@ -249,6 +265,17 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
   const setVoice = useCallback((on: boolean) => setState((s) => ({ ...s, voice: on })), []);
 
+  // Session and profile. Guest progress is kept when the guest signs up, so nothing is lost.
+  const startGuest = useCallback(() => setState((s) => ({ ...s, session: { mode: 'guest', since: new Date().toISOString() } })), []);
+  const signedIn = useCallback((account: Account) => setState((s) => ({ ...s, session: { mode: 'user', account } })), []);
+  const signOut = useCallback(() => setState((s) => ({ ...s, session: null })), []);
+  const saveProfile = useCallback((profile: UserProfile) => setState((s) => ({ ...s, profile })), []);
+  const renameAccount = useCallback(
+    (name: string) =>
+      setState((s) => (s.session?.mode === 'user' ? { ...s, session: { mode: 'user', account: { ...s.session.account, name } } } : s)),
+    [],
+  );
+
   const dismissToast = useCallback(() => setToasts((t) => t.slice(1)), []);
 
   const value = useMemo<Ctx>(
@@ -264,11 +291,16 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       addReviewResult,
       setReminder,
       setVoice,
+      startGuest,
+      signedIn,
+      signOut,
+      saveProfile,
+      renameAccount,
       getReport: (id) => state.reports.find((r) => r.id === id),
       isUnlocked: (unitIds, index) => index === 0 || (state.bestByUnit[unitIds[index - 1]] ?? 0) >= PASS_SCORE,
       reset: () => setState(EMPTY),
     }),
-    [state, ready, toasts, dismissToast, addReport, addQuizResult, addDailyResult, recordQuizAnswer, addReviewResult, setReminder, setVoice],
+    [state, ready, toasts, dismissToast, addReport, addQuizResult, addDailyResult, recordQuizAnswer, addReviewResult, setReminder, setVoice, startGuest, signedIn, signOut, saveProfile, renameAccount],
   );
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
