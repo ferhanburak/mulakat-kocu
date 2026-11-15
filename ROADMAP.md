@@ -30,7 +30,7 @@ Durum işaretleri: ✅ tamamlandı · 🚧 yapılıyor · 🔜 sıradaki · 💡
 
 ## Faz 2 — Pratik çeşitliliği (🔜 sıradaki)
 
-- 🔜 Mülakatçı karakterleri: sıcak İK uzmanı, detaycı teknik lider, sert yönetici
+- 🔜 Mülakatçı karakterleri: sıcak İK uzmanı, detaycı teknik lider, sert yönetici; her karakterin her dil için kendi ana dili olan sesi
 - 🔜 Süreli mod: cevap başına 2 dakika
 - 🔜 Yeni pratik tipleri: "zayıf cevaptaki hatayı bul", kavram–tanım eşleştirme, "iki cevaptan hangisi daha iyi?"
 - 🔜 Eksik Senior üniteler (yeni mesleklerin çoğunda)
@@ -56,6 +56,7 @@ Durum işaretleri: ✅ tamamlandı · 🚧 yapılıyor · 🔜 sıradaki · 💡
 ## Faz 5 — Sesli mülakat
 
 - ✅ Soruların cihaz sesiyle okunması (ilk adım)
+- ✅ Doğal yapay zekâ sesi: tüm sorular ana dili Türkçe / İngilizce olan seslerle önceden seslendirildi, uygulamayla birlikte gelir (`scripts/generate_voices.py`)
 - 🔜 Konuşarak cevap verme ve yazıya çevirme (development build gerekir)
 - 🔜 Konuşma analizi: hız, duraksama, dolgu kelimeler
 - 💡 Yapay zekâ ile doğal, gerçek zamanlı sesli mülakat (premium)
@@ -63,6 +64,7 @@ Durum işaretleri: ✅ tamamlandı · 🚧 yapılıyor · 🔜 sıradaki · 💡
 ## Faz 6 — Yayın ve gelir
 
 - 🔜 Telefonda kapsamlı test (bildirimler, ses, titreşim, klavye)
+- 🔜 Mülakatçı seslerini resmî Azure Speech anahtarıyla yeniden üretmek (şu anki klipler ücretsiz Edge servisiyle üretildi)
 - 🔜 Uygulama ikonu, açılış ekranı, mağaza görselleri
 - 🔜 EAS Build ile App Store ve Google Play yayını
 - 🔜 Freemium model: ücretsiz günlük hak, premium'da sınırsız yapay zekâ raporu ve sesli mülakat
