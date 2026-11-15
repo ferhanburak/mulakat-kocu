@@ -411,9 +411,24 @@ export default function Home() {
 
         {reports.length > 0 && (
           <>
-            <T w="black" size={19} style={styles.section}>
-              {t('Son raporlar', 'Recent reports')}
-            </T>
+            <View style={styles.sectionRow}>
+              <T w="black" size={19}>
+                {t('Son raporlar', 'Recent reports')}
+              </T>
+              <Pressable
+                onPress={() => {
+                  tap();
+                  router.push('/ilerleme');
+                }}
+                hitSlop={8}
+                style={styles.progressLink}
+              >
+                <Ionicons name="trending-up" size={15} color={colors.primary} />
+                <T w="black" size={13} color={colors.primary}>
+                  {t('Gelişimin', 'Progress')}
+                </T>
+              </Pressable>
+            </View>
             <Card style={{ paddingVertical: 6 }}>
               {reports.slice(0, 4).map((r, i) => {
                 const f = findUnit(r.unitId);
@@ -580,6 +595,7 @@ const styles = StyleSheet.create({
     paddingVertical: 3,
     marginTop: 8,
   },
+  progressLink: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   reportRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12 },
   scorePill: { borderRadius: 12, paddingHorizontal: 10, paddingVertical: 4 },
 });

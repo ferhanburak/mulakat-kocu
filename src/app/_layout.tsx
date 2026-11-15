@@ -81,6 +81,7 @@ export default function RootLayout() {
         <Stack.Screen name="profil" options={{ headerShown: false }} />
         <Stack.Screen name="gunluk" options={{ headerShown: false }} />
         <Stack.Screen name="hatalar" options={{ headerShown: false }} />
+        <Stack.Screen name="ilerleme" options={{ headerShown: false }} />
         <Stack.Screen name="report/[id]" options={{ headerShown: false, gestureEnabled: false, animation: 'fade' }} />
       </Stack>
       <AuthGate />

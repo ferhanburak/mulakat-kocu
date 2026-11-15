@@ -85,6 +85,24 @@ export default function ProfileScreen() {
           <StatBox icon="ribbon" color={colors.success} value={stats.bestInterview} label={t('En yüksek puan', 'Top score')} />
           <StatBox icon="compass" color="#2F7FE0" value={stats.professions.length} label={t('Meslek', 'Professions')} />
         </View>
+        <Pressable
+          onPress={() => {
+            tap();
+            router.push('/ilerleme');
+          }}
+          style={({ pressed }) => [styles.progressBtn, { opacity: pressed ? 0.85 : 1 }]}
+        >
+          <Ionicons name="trending-up" size={20} color={colors.primary} />
+          <View style={{ flex: 1 }}>
+            <T w="black" size={15}>
+              {t('Gelişimini gör', 'See your progress')}
+            </T>
+            <T w="semibold" size={12} color={colors.muted}>
+              {t('Puan grafiği ve en zayıf kategorin', 'Score chart and your weakest category')}
+            </T>
+          </View>
+          <Ionicons name="chevron-forward" size={18} color={colors.faint} />
+        </Pressable>
 
         <View style={styles.achHead}>
           <T w="black" size={18}>
@@ -396,6 +414,17 @@ const styles = StyleSheet.create({
   rowDivider: { marginTop: 16, paddingTop: 16, borderTopWidth: 1, borderTopColor: colors.border },
   rowIcon: { width: 40, height: 40, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   hours: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 14 },
+  progressBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    marginTop: 12,
+    backgroundColor: colors.card,
+    borderRadius: 18,
+    padding: 14,
+    borderWidth: 2,
+    borderColor: colors.border,
+  },
   langPill: {
     flex: 1,
     alignItems: 'center',
