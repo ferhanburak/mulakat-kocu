@@ -1,9 +1,11 @@
+import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
 import * as Speech from 'expo-speech';
+import { VOICE_CLIPS } from '@/data/voiceClips';
 
 /**
- * Text-to-speech for the interviewer, using the device's own voices (free,
- * works in Expo Go and on web). When an AI interviewer is added later, this is
- * the seam where a cloud voice can replace the device voice.
+ * The interviewer's voice. Catalogue questions play a pre-recorded neural voice clip
+ * (native Turkish or English speaker, see scripts/generate_voices.py); any other text,
+ * or a question without a clip yet, falls back to the device's own text-to-speech.
  */
 export type VoiceLang = 'tr' | 'en';
 
@@ -28,9 +30,48 @@ async function voiceFor(lang: VoiceLang): Promise<string | undefined> {
   return voiceCache[lang] ?? undefined;
 }
 
+let player: AudioPlayer | null = null;
+/** Called when the current clip ends or is interrupted. */
+let clipDone: (() => void) | undefined;
+
+function finishClip() {
+  const done = clipDone;
+  clipDone = undefined;
+  done?.();
+}
+
+function playClip(source: number, onDone?: () => void) {
+  if (!player) {
+    player = createAudioPlayer(source);
+    player.addListener('playbackStatusUpdate', (status) => {
+      if (status.didJustFinish) finishClip();
+    });
+  } else {
+    player.replace(source);
+  }
+  clipDone = onDone;
+  player.seekTo(0).catch(() => {});
+  player.play();
+}
+
+function stopClip() {
+  player?.pause();
+  finishClip();
+}
+
 /** Speaks `text`, interrupting anything already playing. */
 export async function speak(text: string, lang: VoiceLang = 'tr', handlers: { onDone?: () => void } = {}) {
+  stopClip();
   await Speech.stop();
+  const clip = VOICE_CLIPS[text];
+  if (clip !== undefined) {
+    try {
+      playClip(clip, handlers.onDone);
+      return;
+    } catch {
+      clipDone = undefined; // fall through to the device voice
+    }
+  }
   const voice = await voiceFor(lang);
   Speech.speak(text, {
     language: LOCALE[lang],
@@ -44,5 +85,6 @@ export async function speak(text: string, lang: VoiceLang = 'tr', handlers: { on
 }
 
 export function stopSpeaking() {
+  stopClip();
   Speech.stop().catch(() => {});
 }
