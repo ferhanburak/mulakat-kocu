@@ -1,4 +1,5 @@
 import type { AuthError as SupabaseAuthError, User } from '@supabase/supabase-js';
+import * as Linking from 'expo-linking';
 import { tt } from './i18n';
 import { supabase } from './supabase';
 
@@ -82,4 +83,47 @@ export async function updateName(name: string) {
   const { data, error } = await supabase.auth.updateUser({ data: { name: name.trim() } });
   if (error) return;
   await supabase.from('profiles').update({ name: name.trim() }).eq('id', data.user.id);
+}
+
+/** Sends a password reset email whose link opens the app's new-password screen. */
+export async function requestPasswordReset(rawEmail: string) {
+  const email = normEmail(rawEmail);
+  if (!isValidEmail(email)) throw new AuthError(emailMsg());
+  const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: Linking.createURL('/sifre-yenile') });
+  if (error) fail(error);
+}
+
+/**
+ * Signs in with the one-time session carried by a password reset link
+ * (tokens in the URL fragment, or a `code` with the PKCE flow). Returns whether it worked.
+ */
+export async function sessionFromRecoveryUrl(url: string): Promise<boolean> {
+  const params = new URLSearchParams(url.split('#')[1] ?? url.split('?')[1] ?? '');
+  const access_token = params.get('access_token');
+  const refresh_token = params.get('refresh_token');
+  const code = params.get('code') ?? new URLSearchParams(url.split('?')[1]?.split('#')[0] ?? '').get('code');
+  if (access_token && refresh_token) {
+    const { error } = await supabase.auth.setSession({ access_token, refresh_token });
+    return !error;
+  }
+  if (code) {
+    const { error } = await supabase.auth.exchangeCodeForSession(code);
+    return !error;
+  }
+  const { data } = await supabase.auth.getSession();
+  return !!data.session;
+}
+
+export async function setNewPassword(password: string): Promise<Account> {
+  if (password.length < MIN_PASSWORD) throw new AuthError(passwordMsg());
+  const { data, error } = await supabase.auth.updateUser({ password });
+  if (error) fail(error);
+  return toAccount(data.user);
+}
+
+/** Permanently deletes the signed-in account and its cloud progress (see supabase/migrations). */
+export async function deleteAccount() {
+  const { error } = await supabase.rpc('delete_my_account');
+  if (error) throw new AuthError(tt('Hesap silinemedi, tekrar dene.', "Couldn't delete the account, please try again."));
+  await supabase.auth.signOut().catch(() => {});
 }

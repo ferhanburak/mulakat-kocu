@@ -65,6 +65,11 @@ export default function SignIn() {
         returnKeyType="go"
         onSubmitEditing={submit}
       />
+      <Pressable onPress={() => router.push('/sifre-sifirla')} hitSlop={8} style={{ alignSelf: 'flex-end', marginTop: -4, marginBottom: 10 }}>
+        <T w="extrabold" size={13} color={colors.primary}>
+          {t('Şifremi unuttum', 'Forgot password?')}
+        </T>
+      </Pressable>
       <FormError message={error} />
       <Button title={busy ? t('GİRİŞ YAPILIYOR…', 'SIGNING IN…') : t('GİRİŞ YAP', 'SIGN IN')} icon="arrow-forward" onPress={submit} disabled={busy} />
       <Pressable onPress={() => router.replace('/kayit')} hitSlop={8} style={{ alignSelf: 'center', marginTop: 22 }}>

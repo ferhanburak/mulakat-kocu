@@ -17,7 +17,7 @@ import { StoreProvider, useStore } from '@/lib/store';
 SplashScreen.preventAutoHideAsync().catch(() => {});
 
 /** Screens reachable without a session. */
-const PUBLIC = ['hosgeldin', 'kayit', 'giris'];
+const PUBLIC = ['hosgeldin', 'kayit', 'giris', 'sifre-sifirla', 'sifre-yenile'];
 
 /**
  * Sends visitors without a session to the welcome screen and new users to profile
@@ -67,6 +67,8 @@ function Shell() {
         <Stack.Screen name="hosgeldin" options={{ headerShown: false, animation: 'fade' }} />
         <Stack.Screen name="kayit" options={{ headerShown: false }} />
         <Stack.Screen name="giris" options={{ headerShown: false }} />
+        <Stack.Screen name="sifre-sifirla" options={{ headerShown: false }} />
+        <Stack.Screen name="sifre-yenile" options={{ headerShown: false }} />
         <Stack.Screen name="profil-kurulum" options={{ headerShown: false }} />
         <Stack.Screen name="profession/[id]" options={{ headerShown: false }} />
         <Stack.Screen name="track/[id]" options={{ headerShown: false }} />
