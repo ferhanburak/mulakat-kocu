@@ -26,11 +26,12 @@ Durum işaretleri: ✅ tamamlandı · 🚧 yapılıyor · 🔜 sıradaki · 💡
 - ✅ Misafir deneme modu: her alanın ilk ünitesi, 3 mülakat hakkı, kayıtla ilerlemenin korunması
 - ✅ Kişiselleşmiş ana sayfa: "Senin alanın" kartı, hedef alandan devam, isimle selamlama, günlük hedef halkası
 - 🔜 İlerleme grafiği: zaman içinde puan gelişimi, en zayıf kategori
+- ✅ Dil seçeneği: Türkçe ve İngilizce (arayüz, tüm sorular, değerlendirme kavramları, örnek cevaplar, geri bildirimler)
 - 🔜 Karanlık mod
 
 ## Faz 2 — Pratik çeşitliliği (🔜 sıradaki)
 
-- 🔜 Mülakatçı karakterleri: sıcak İK uzmanı, detaycı teknik lider, sert yönetici; her karakterin her dil için kendi ana dili olan sesi
+- ✅ Mülakatçı karakterleri: Elif/Emily (sıcak İK uzmanı), Kerem/Daniel (detaycı alan uzmanı), Murat/Richard (sert departman müdürü); her birinin açılış, geçiş ve kapanış cümleleri ve her dil için ana dili olan sesi var
 - 🔜 Süreli mod: cevap başına 2 dakika
 - 🔜 Yeni pratik tipleri: "zayıf cevaptaki hatayı bul", kavram–tanım eşleştirme, "iki cevaptan hangisi daha iyi?"
 - 🔜 Eksik Senior üniteler (yeni mesleklerin çoğunda)
