@@ -47,6 +47,9 @@ function AuthGate() {
 
 function Shell() {
   const { scheme } = useTheme();
+  const { ready } = useStore();
+  // Wait for the saved language, theme and progress, so screens don't start with defaults.
+  if (!ready) return null;
   return (
     <>
       <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
