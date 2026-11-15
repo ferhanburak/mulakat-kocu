@@ -58,7 +58,7 @@ export default function ProfileSetup() {
     const trimmed = name.trim();
     if (account && trimmed.length >= 2 && trimmed !== account.name) {
       renameAccount(trimmed);
-      updateName(account.email, trimmed).catch(() => {});
+      updateName(trimmed).catch(() => {});
     }
     if (editing) goBack('/profil');
     else resetTo('/');
