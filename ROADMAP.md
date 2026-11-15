@@ -19,15 +19,15 @@ Durum işaretleri: ✅ tamamlandı · 🚧 yapılıyor · 🔜 sıradaki · 💡
 - ✅ Günün Sorusu, Hata Defteri (eksik kavramlara yönelik tekrar)
 - ✅ Seri hatırlatıcı bildirimleri, mülakatçının soruları sesli okuması
 
-## Faz 1 — Hesap ve kişiselleştirme (🚧 yapılıyor)
+## Faz 1 — Hesap ve kişiselleştirme (✅ tamamlandı)
 
 - ✅ Hoş geldin ekranı, kayıt ve giriş (Supabase Auth)
 - ✅ Profil: ad, hedef meslek ve alan, seviye, günlük hedef; sonradan düzenlenebilir
 - ✅ Misafir deneme modu: her alanın ilk ünitesi, 3 mülakat hakkı, kayıtla ilerlemenin korunması
 - ✅ Kişiselleşmiş ana sayfa: "Senin alanın" kartı, hedef alandan devam, isimle selamlama, günlük hedef halkası
-- 🔜 İlerleme grafiği: zaman içinde puan gelişimi, en zayıf kategori
+- ✅ İlerleme grafiği: zaman içinde puan gelişimi, son mülakatlardaki eğilim, en zayıf kategori ve ipucu
 - ✅ Dil seçeneği: Türkçe ve İngilizce (arayüz, tüm sorular, değerlendirme kavramları, örnek cevaplar, geri bildirimler)
-- 🔜 Karanlık mod
+- ✅ Karanlık mod: Sistem / Açık / Koyu seçeneği
 
 ## Faz 2 — Pratik çeşitliliği (🔜 sıradaki)
 
