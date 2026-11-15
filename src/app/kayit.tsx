@@ -7,7 +7,7 @@ import { AuthError, MIN_PASSWORD, signUp } from '@/lib/auth';
 import { useStore } from '@/lib/store';
 
 export default function SignUp() {
-  const { signedIn, profile, session } = useStore();
+  const { signedIn, session } = useStore();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -24,8 +24,8 @@ export default function SignUp() {
     try {
       const account = await signUp({ name, email, password });
       notify(true);
-      signedIn(account);
-      resetTo(profile ? '/' : '/profil-kurulum');
+      const hasProfile = await signedIn(account);
+      resetTo(hasProfile ? '/' : '/profil-kurulum');
     } catch (e) {
       notify(false);
       setError(e instanceof AuthError ? e.message : 'Bir şeyler ters gitti, tekrar dene.');

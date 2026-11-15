@@ -3,7 +3,8 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import { findUnit } from '@/data/professions';
 import { ACHIEVEMENTS, EMPTY_STATS, isDone, type Stats } from './achievements';
 import { PASS_SCORE, type AnswerFeedback, type Report } from './evaluator';
-import type { Account } from './auth';
+import { currentAccount, signOutAccount, type Account } from './auth';
+import { hasPendingPush, markPending, pullProgress, pushProgress } from './cloud';
 import { cancelReminders, scheduleReminders } from './reminders';
 
 type Progress = {
@@ -102,6 +103,21 @@ const EMPTY: Progress = {
 };
 const KEY = 'mulakat-kocu/progress/v2';
 
+/** Restore saved progress, filling fields added in later versions with defaults. */
+function hydrate(saved: Partial<Progress>): Progress {
+  return { ...EMPTY, ...saved, stats: { ...EMPTY_STATS, ...saved.stats }, reminder: { ...EMPTY.reminder, ...saved.reminder } };
+}
+
+/** The part of progress kept in the cloud; session and device settings (reminders, voice) stay local. */
+function cloudPart(s: Progress) {
+  const { session: _s, reminder: _r, voice: _v, ...rest } = s;
+  return rest;
+}
+
+/** Replace the cloud-backed part of local state with the cloud copy. */
+const applyCloud = (s: Progress, cloud: Record<string, unknown>): Progress =>
+  hydrate({ ...(cloud as Partial<Progress>), session: s.session, reminder: s.reminder, voice: s.voice });
+
 export const dayKey = (d: Date) => `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
 export const levelOf = (xp: number) => Math.floor(xp / 100) + 1;
 export const quizXp = (correct: number) => 5 + correct * 3;
@@ -145,8 +161,9 @@ type Ctx = Progress & {
   setReminder: (r: Partial<Progress['reminder']>) => void;
   setVoice: (on: boolean) => void;
   startGuest: () => void;
-  signedIn: (account: Account) => void;
-  signOut: () => void;
+  /** Call after sign-in or sign-up; loads the cloud copy (or uploads guest progress). Resolves to whether a profile exists. */
+  signedIn: (account: Account) => Promise<boolean>;
+  signOut: () => Promise<void>;
   saveProfile: (p: UserProfile) => void;
   renameAccount: (name: string) => void;
   getReport: (id: string) => Report | undefined;
@@ -166,8 +183,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     AsyncStorage.getItem(KEY)
       .then((raw) => {
         if (!raw) return;
-        const saved = JSON.parse(raw);
-        setState({ ...EMPTY, ...saved, stats: { ...EMPTY_STATS, ...saved.stats }, reminder: { ...EMPTY.reminder, ...saved.reminder } });
+        setState(hydrate(JSON.parse(raw)));
       })
       .catch(() => {})
       .finally(() => setReady(true));
@@ -176,6 +192,62 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (ready) AsyncStorage.setItem(KEY, JSON.stringify(state)).catch(() => {});
   }, [state, ready]);
+
+  // Cloud sync: on start, check the stored session is still valid and pick up changes from other devices.
+  const synced = useRef<string | null>(null);
+  const stateRef = useRef(state);
+  useEffect(() => {
+    stateRef.current = state;
+  }, [state]);
+  const started = useRef(false);
+  /** Pushes wait until the start-up check is done, so a stale local copy can't overwrite the cloud. */
+  const canPush = useRef(false);
+  useEffect(() => {
+    if (!ready || started.current) return;
+    started.current = true;
+    if (stateRef.current.session?.mode !== 'user') {
+      canPush.current = true;
+      return;
+    }
+    (async () => {
+      const account = await currentAccount();
+      if (!account) {
+        // Session expired or it was a pre-cloud local account: back to the welcome screen.
+        canPush.current = true;
+        setState((s) => ({ ...EMPTY, reminder: s.reminder, voice: s.voice }));
+        return;
+      }
+      // Unsent local changes win (the push effect uploads them); otherwise take the cloud copy.
+      const pending = await hasPendingPush();
+      const cloud = pending ? null : await pullProgress(account.id);
+      canPush.current = true;
+      setState((s) => {
+        const next: Progress = { ...s, session: { mode: 'user', account } };
+        // pending or nothing in the cloud yet: leave `synced` empty so local progress is uploaded.
+        if (pending || cloud === null) return next;
+        // undefined = couldn't reach the server: keep local data but don't overwrite the cloud with it.
+        const merged = cloud ? applyCloud(next, cloud) : next;
+        synced.current = JSON.stringify(cloudPart(merged));
+        return merged;
+      });
+    })().catch(() => {
+      canPush.current = true;
+    });
+  }, [ready]);
+
+  // Upload changes a moment after they happen (batched), while signed in.
+  const user = state.session?.mode === 'user' ? state.session.account : null;
+  const cloudJson = useMemo(() => (user ? JSON.stringify(cloudPart(state)) : null), [user, state]);
+  useEffect(() => {
+    if (!ready || !canPush.current || !user || !cloudJson || cloudJson === synced.current) return;
+    markPending();
+    const t = setTimeout(() => {
+      pushProgress(user.id, user.name, JSON.parse(cloudJson)).then((ok) => {
+        if (ok) synced.current = cloudJson;
+      });
+    }, 1500);
+    return () => clearTimeout(t);
+  }, [ready, user, cloudJson]);
 
   // Unlock achievements and announce level-ups whenever progress changes.
   useEffect(() => {
@@ -269,8 +341,33 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
   // Session and profile. Guest progress is kept when the guest signs up, so nothing is lost.
   const startGuest = useCallback(() => setState((s) => ({ ...s, session: { mode: 'guest', since: new Date().toISOString() } })), []);
-  const signedIn = useCallback((account: Account) => setState((s) => ({ ...s, session: { mode: 'user', account } })), []);
-  const signOut = useCallback(() => setState((s) => ({ ...s, session: null })), []);
+  const signedIn = useCallback(async (account: Account) => {
+    const cloud = await pullProgress(account.id).catch(() => undefined);
+    const local = stateRef.current;
+    let next: Progress = { ...local, session: { mode: 'user', account } };
+    if (cloud) {
+      // Existing account: its cloud progress replaces whatever was on this device.
+      next = applyCloud(next, cloud);
+      synced.current = JSON.stringify(cloudPart(next));
+    } else {
+      // New account (or nothing saved yet): this device's progress, e.g. from guest mode, is uploaded.
+      synced.current = null;
+    }
+    stateRef.current = next;
+    setState(next);
+    return !!next.profile;
+  }, []);
+  const signOut = useCallback(async () => {
+    const s = stateRef.current;
+    if (s.session?.mode === 'user') {
+      // Make sure the latest progress is in the cloud before it is cleared from this device.
+      const json = JSON.stringify(cloudPart(s));
+      if (json !== synced.current) await pushProgress(s.session.account.id, s.session.account.name, cloudPart(s)).catch(() => false);
+    }
+    await signOutAccount().catch(() => {});
+    synced.current = null;
+    setState((p) => ({ ...EMPTY, reminder: p.reminder, voice: p.voice }));
+  }, []);
   const saveProfile = useCallback((profile: UserProfile) => setState((s) => ({ ...s, profile })), []);
   const renameAccount = useCallback(
     (name: string) =>

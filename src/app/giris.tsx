@@ -7,7 +7,7 @@ import { AuthError, signIn } from '@/lib/auth';
 import { useStore } from '@/lib/store';
 
 export default function SignIn() {
-  const { signedIn, profile } = useStore();
+  const { signedIn } = useStore();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -21,8 +21,8 @@ export default function SignIn() {
     try {
       const account = await signIn({ email, password });
       notify(true);
-      signedIn(account);
-      resetTo(profile ? '/' : '/profil-kurulum');
+      const hasProfile = await signedIn(account);
+      resetTo(hasProfile ? '/' : '/profil-kurulum');
     } catch (e) {
       notify(false);
       setError(e instanceof AuthError ? e.message : 'Bir şeyler ters gitti, tekrar dene.');
