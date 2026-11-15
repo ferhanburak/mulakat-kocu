@@ -4,8 +4,10 @@ import { useEffect, useRef, useState } from 'react';
 import { Animated, Easing, Modal, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Path } from 'react-native-svg';
+import { SignupPrompt } from '@/components/SignupPrompt';
 import { Bar, FadeIn, Ionicons, T, colors, goBack, shade, shadow, tap, type IconName } from '@/components/ui';
 import { findTrack, type Unit } from '@/data/professions';
+import { GUEST_INTERVIEWS, useAccess, type Locked } from '@/lib/access';
 import { PASS_SCORE } from '@/lib/evaluator';
 import { useStore } from '@/lib/store';
 
@@ -21,6 +23,8 @@ export default function TrackScreen() {
   const { bestByUnit, bestQuizByUnit, isUnlocked } = useStore();
   const [width, setWidth] = useState(0);
   const [sheet, setSheet] = useState<string | null>(null);
+  const [locked, setLocked] = useState<Locked | null>(null);
+  const access = useAccess();
   if (!found) return <T style={{ padding: 20 }}>Alan bulunamadı.</T>;
   const { profession, track } = found;
   const p = {
@@ -101,6 +105,7 @@ export default function TrackScreen() {
               {p.units.map((u, i) => {
                 const best = bestByUnit[u.id];
                 const unlocked = isUnlocked(ids, i);
+                const guestLocked = !access.canOpenUnit(u.id);
                 const passed = (best ?? 0) >= PASS_SCORE;
                 const current = i === currentIdx;
                 const size = current ? 86 : 74;
@@ -114,7 +119,8 @@ export default function TrackScreen() {
                       disabled={!unlocked}
                       onPress={() => {
                         tap();
-                        setSheet(u.id);
+                        if (guestLocked) setLocked('unit');
+                        else setSheet(u.id);
                       }}
                     >
                       {({ pressed }) => (
@@ -133,7 +139,7 @@ export default function TrackScreen() {
                         >
                           <View style={[styles.node, { width: size, height: size, borderRadius: size / 2, backgroundColor: fill }]}>
                             <Ionicons
-                              name={passed ? 'checkmark' : unlocked ? 'mic' : 'lock-closed'}
+                              name={passed ? 'checkmark' : unlocked && !guestLocked ? 'mic' : 'lock-closed'}
                               size={size * 0.42}
                               color={unlocked || passed ? '#fff' : '#B3AFC4'}
                             />
@@ -186,7 +192,14 @@ export default function TrackScreen() {
         best={sheet ? bestByUnit[sheet] : undefined}
         bestQuiz={sheet ? bestQuizByUnit[sheet] : undefined}
         onClose={() => setSheet(null)}
+        interviewsLeft={access.interviewsLeft}
+        onLocked={(reason) => {
+          setSheet(null);
+          // iOS can't present a modal while another one is still closing.
+          setTimeout(() => setLocked(reason), Platform.OS === 'ios' ? 400 : 0);
+        }}
       />
+      <SignupPrompt reason={locked} onClose={() => setLocked(null)} />
     </View>
   );
 }
@@ -301,12 +314,16 @@ function ModeSheet({
   best,
   bestQuiz,
   onClose,
+  interviewsLeft,
+  onLocked,
 }: {
   unit: Unit | undefined;
   color: string;
   best: number | undefined;
   bestQuiz: number | undefined;
   onClose: () => void;
+  interviewsLeft: number;
+  onLocked: (reason: Locked) => void;
 }) {
   const insets = useSafeAreaInsets();
   const go = (path: '/session' | '/quiz') => {
@@ -332,9 +349,15 @@ function ModeSheet({
             color={color}
             title="Mülakat Simülasyonu"
             desc="Açık uçlu cevapla, güçlü ve zayıf yanlarını gösteren detaylı rapor al."
-            meta={best !== undefined ? `En iyi: ${best}/100` : '~10 dk · Üniteyi geçmek için'}
+            meta={
+              Number.isFinite(interviewsLeft)
+                ? `Misafir hakkı: ${interviewsLeft}/${GUEST_INTERVIEWS} mülakat`
+                : best !== undefined
+                  ? `En iyi: ${best}/100`
+                  : '~10 dk · Üniteyi geçmek için'
+            }
             primary
-            onPress={() => go('/session')}
+            onPress={() => (interviewsLeft <= 0 ? onLocked('interviews') : go('/session'))}
           />
           <ModeCard
             icon="flash"

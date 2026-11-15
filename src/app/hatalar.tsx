@@ -4,7 +4,9 @@ import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button, Card, Chip, FadeIn, Ionicons, T, colors, goBack, tap, type IconName } from '@/components/ui';
+import { SignupPrompt } from '@/components/SignupPrompt';
 import { findQuestion } from '@/data/professions';
+import { useAccess, type Locked } from '@/lib/access';
 import { useStore } from '@/lib/store';
 
 const RED = '#EF5A5A';
@@ -13,6 +15,8 @@ export default function MistakeNotebook() {
   const insets = useSafeAreaInsets();
   const { mistakes, stats } = useStore();
   const [open, setOpen] = useState<string | null>(null);
+  const [locked, setLocked] = useState<Locked | null>(null);
+  const { canReview } = useAccess();
   const entries = Object.entries(mistakes)
     .map(([id, m]) => ({ id, m, ref: findQuestion(id) }))
     .filter((e) => e.ref)
@@ -104,9 +108,15 @@ export default function MistakeNotebook() {
 
       {entries.length > 0 && (
         <View style={[styles.footer, { paddingBottom: insets.bottom + 14 }]}>
-          <Button title={`TEKRAR ET (${Math.min(entries.length, 8)} SORU)`} icon="refresh" color={RED} onPress={() => router.push('/quiz/review')} />
+          <Button
+            title={`TEKRAR ET (${Math.min(entries.length, 8)} SORU)`}
+            icon={canReview ? 'refresh' : 'lock-closed'}
+            color={RED}
+            onPress={() => (canReview ? router.push('/quiz/review') : setLocked('review'))}
+          />
         </View>
       )}
+      <SignupPrompt reason={locked} onClose={() => setLocked(null)} />
     </View>
   );
 }

@@ -21,7 +21,9 @@ import {
   tap,
   type IconName,
 } from '@/components/ui';
+import { SignupPrompt } from '@/components/SignupPrompt';
 import { findUnit } from '@/data/professions';
+import { useAccess, type Locked } from '@/lib/access';
 import { generateQuiz, generateReviewQuiz, type ChoiceItem, type OrderItem } from '@/lib/quiz';
 import { quizXp, useStore } from '@/lib/store';
 
@@ -34,6 +36,8 @@ export default function QuizScreen() {
   const review = unitId === 'review';
   const found = review ? undefined : findUnit(unitId);
   const { addQuizResult, addReviewResult, recordQuizAnswer, mistakes } = useStore();
+  const access = useAccess();
+  const [block] = useState<Locked | null>(() => (review ? (access.canReview ? null : 'review') : access.canOpenUnit(unitId) ? null : 'unit'));
   const [round, setRound] = useState(0);
   // Keyed on the id (findUnit returns a fresh object each render) and the retry round;
   // a review quiz snapshots the notebook when it starts so answering doesn't reshuffle it.
@@ -55,6 +59,12 @@ export default function QuizScreen() {
   const [done, setDone] = useState(false);
 
   if (!found && !review) return <T style={{ padding: 20 }}>Ünite bulunamadı.</T>;
+  if (block)
+    return (
+      <View style={{ flex: 1, backgroundColor: colors.bg }}>
+        <SignupPrompt reason={block} onClose={() => goBack(found ? `/track/${found.track.id}` : '/hatalar')} />
+      </View>
+    );
   const color = found ? found.profession.color : '#EF5A5A';
   const backTo = found ? (`/track/${found.track.id}` as const) : ('/hatalar' as const);
   const subtitle = found ? `${found.track.name} · ${found.unit.title}` : 'Hata Defteri tekrarı';

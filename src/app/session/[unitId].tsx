@@ -15,7 +15,9 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Bar, FadeIn, GradientIcon, Ionicons, T, colors, fonts, goBack, shade, shadow, tap, type IconName } from '@/components/ui';
+import { SignupPrompt } from '@/components/SignupPrompt';
 import { findUnit, type QuestionKind } from '@/data/professions';
+import { useAccess } from '@/lib/access';
 import { evaluateSession } from '@/lib/evaluator';
 import { speak, stopSpeaking } from '@/lib/voice';
 import { useStore } from '@/lib/store';
@@ -33,6 +35,9 @@ export default function SessionScreen() {
   const { unitId } = useLocalSearchParams<{ unitId: string }>();
   const found = findUnit(unitId);
   const { addReport, voice, setVoice } = useStore();
+  const access = useAccess();
+  // Checked once on entry, so finishing the guest's last allowed interview doesn't block its report.
+  const [block] = useState(() => access.interviewBlock(unitId));
   const [shownCount, setShownCount] = useState(0); // questions revealed so far
   const [typing, setTyping] = useState(true);
   const [answers, setAnswers] = useState<string[]>([]);
@@ -74,6 +79,12 @@ export default function SessionScreen() {
   }, [shownCount, answers.length, typing]);
 
   if (!found) return <T style={{ padding: 20 }}>Ünite bulunamadı.</T>;
+  if (block)
+    return (
+      <View style={{ flex: 1, backgroundColor: colors.bg }}>
+        <SignupPrompt reason={block} onClose={() => goBack(`/track/${found.track.id}`)} />
+      </View>
+    );
   const { profession, track, unit } = found;
   const total = unit.questions.length;
   const words = draft.trim().split(/\s+/).filter(Boolean).length;

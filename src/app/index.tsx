@@ -1,5 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
+import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
@@ -16,7 +17,9 @@ import {
   tap,
   type IconName,
 } from '@/components/ui';
+import { SignupPrompt } from '@/components/SignupPrompt';
 import { allUnits, dailyQuestion, findUnit, professions } from '@/data/professions';
+import { GUEST_INTERVIEWS, useAccess, type Locked } from '@/lib/access';
 import { PASS_SCORE } from '@/lib/evaluator';
 import { remindersSupported } from '@/lib/reminders';
 import { dayKey, useStore } from '@/lib/store';
@@ -34,6 +37,8 @@ export default function Home() {
   const dailyDone = daily?.day === dayKey(new Date());
   const mistakeCount = Object.keys(mistakes).length;
   const level = Math.floor(xp / 100) + 1;
+  const access = useAccess();
+  const [locked, setLocked] = useState<Locked | null>(null);
 
   // Week strip (Mon..Sun) marking days with at least one interview or quiz.
   const now = new Date();
@@ -128,6 +133,29 @@ export default function Home() {
           </Card>
         </FadeIn>
 
+        {access.guest && (
+          <FadeIn delay={20}>
+            <Pressable
+              onPress={() => {
+                tap();
+                router.push('/kayit');
+              }}
+              style={styles.guestBanner}
+            >
+              <Ionicons name="person-circle" size={22} color={colors.primary} />
+              <View style={{ flex: 1 }}>
+                <T w="black" size={13} color={colors.primary}>
+                  Misafir modu · {access.interviewsLeft}/{GUEST_INTERVIEWS} mülakat hakkı
+                </T>
+                <T w="semibold" size={12} color={colors.muted}>
+                  Ücretsiz üye ol, ilerlemen korunur
+                </T>
+              </View>
+              <Ionicons name="chevron-forward" size={18} color={colors.primary} />
+            </Pressable>
+          </FadeIn>
+        )}
+
         {remindersSupported && !reminder.enabled && (
           <FadeIn delay={40}>
             <Pressable
@@ -150,7 +178,9 @@ export default function Home() {
           <Pressable
             onPress={() => {
               tap();
-              router.push(`/session/${nextUnit.id}`);
+              const block = access.interviewBlock(nextUnit.id);
+              if (block) setLocked(block);
+              else router.push(`/session/${nextUnit.id}`);
             }}
           >
             {({ pressed }) => (
@@ -183,7 +213,8 @@ export default function Home() {
           <Pressable
             onPress={() => {
               tap();
-              router.push('/gunluk');
+              if (access.canDaily) router.push('/gunluk');
+              else setLocked('daily');
             }}
             style={({ pressed }) => [styles.mini, { borderColor: '#FFD7A3', transform: [{ scale: pressed ? 0.97 : 1 }] }]}
           >
@@ -194,12 +225,12 @@ export default function Home() {
               Günün Sorusu
             </T>
             <T w="semibold" size={11} color={colors.muted} numberOfLines={2} style={{ minHeight: 30 }}>
-              {dailyDone ? `Bugün tamam · ${daily?.overall} puan` : dailyRef.track.name}
+              {dailyDone ? `Bugün tamam · ${daily?.overall} puan` : access.canDaily ? dailyRef.track.name : 'Üyelere özel'}
             </T>
             {!dailyDone && (
               <View style={[styles.miniBadge, { backgroundColor: '#F07A1A' }]}>
                 <T w="black" size={10} color="#fff">
-                  +XP
+                  {access.canDaily ? '+XP' : '🔒'}
                 </T>
               </View>
             )}
@@ -361,6 +392,7 @@ export default function Home() {
           </>
         )}
       </View>
+      <SignupPrompt reason={locked} onClose={() => setLocked(null)} />
     </ScrollView>
   );
 }
@@ -384,6 +416,18 @@ function Stat({ icon, color, value, label }: { icon: IconName; color: string; va
 const styles = StyleSheet.create({
   hero: { paddingHorizontal: 20, paddingBottom: 56, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
   heroTop: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  guestBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    marginTop: 12,
+    backgroundColor: '#EEEBFF',
+    borderWidth: 2,
+    borderColor: '#D9D3FF',
+    borderRadius: 16,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+  },
   reminderCta: {
     flexDirection: 'row',
     alignItems: 'center',

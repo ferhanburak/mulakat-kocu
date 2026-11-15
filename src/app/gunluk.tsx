@@ -20,7 +20,9 @@ import {
   scoreColor,
   type IconName,
 } from '@/components/ui';
+import { SignupPrompt } from '@/components/SignupPrompt';
 import { dailyQuestion } from '@/data/professions';
+import { useAccess, type Locked } from '@/lib/access';
 import { evaluateSession } from '@/lib/evaluator';
 import { dayKey, useStore } from '@/lib/store';
 import { speak, stopSpeaking } from '@/lib/voice';
@@ -38,12 +40,15 @@ export default function DailyScreen() {
   const [draft, setDraft] = useState('');
   const [busy, setBusy] = useState(false);
   const [speaking, setSpeaking] = useState(false);
+  const [locked, setLocked] = useState<Locked | null>(null);
+  const { canDaily } = useAccess();
   useEffect(() => () => stopSpeaking(), []);
   const words = draft.trim().split(/\s+/).filter(Boolean).length;
   const dateLabel = new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', weekday: 'long' });
 
   const submit = async () => {
     if (words < MIN_WORDS || busy) return;
+    if (!canDaily) return setLocked('daily');
     setBusy(true);
     const report = await evaluateSession(ref.profession.id, ref.unit.id, [{ question: ref.question, answer: draft.trim() }]);
     addDailyResult(
@@ -135,6 +140,7 @@ export default function DailyScreen() {
           )}
         </View>
       </ScrollView>
+      <SignupPrompt reason={locked} onClose={() => setLocked(null)} />
     </KeyboardAvoidingView>
   );
 }
