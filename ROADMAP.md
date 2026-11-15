@@ -21,10 +21,10 @@ Durum işaretleri: ✅ tamamlandı · 🚧 yapılıyor · 🔜 sıradaki · 💡
 
 ## Faz 1 — Hesap ve kişiselleştirme (🚧 yapılıyor)
 
-- 🚧 Hoş geldin ekranı, kayıt ve giriş
-- 🚧 Profil: ad, hedef meslek ve alan, seviye, günlük hedef; sonradan düzenlenebilir
-- 🚧 Misafir deneme modu: üye olmadan gezinme, sınırlı mülakat hakkı, kayıtla ilerlemenin korunması
-- 🚧 Kişiselleşmiş ana sayfa: "Senin alanın" kartı, hedef alandan devam
+- ✅ Hoş geldin ekranı, kayıt ve giriş (şimdilik cihazda, şifreler tuzlu SHA-256 ile)
+- ✅ Profil: ad, hedef meslek ve alan, seviye, günlük hedef; sonradan düzenlenebilir
+- ✅ Misafir deneme modu: her alanın ilk ünitesi, 3 mülakat hakkı, kayıtla ilerlemenin korunması
+- ✅ Kişiselleşmiş ana sayfa: "Senin alanın" kartı, hedef alandan devam, isimle selamlama, günlük hedef halkası
 - 🔜 İlerleme grafiği: zaman içinde puan gelişimi, en zayıf kategori
 - 🔜 Karanlık mod
 
