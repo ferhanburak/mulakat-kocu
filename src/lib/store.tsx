@@ -171,7 +171,8 @@ type Ctx = Progress & {
   startGuest: () => void;
   /** Call after sign-in or sign-up; loads the cloud copy (or uploads guest progress). Resolves to whether a profile exists. */
   signedIn: (account: Account) => Promise<boolean>;
-  signOut: () => Promise<void>;
+  /** `forget`: the account is gone (deleted), so don't upload progress first. */
+  signOut: (opts?: { forget?: boolean }) => Promise<void>;
   saveProfile: (p: UserProfile) => void;
   renameAccount: (name: string) => void;
   setInterviewer: (id: InterviewerId) => void;
@@ -377,9 +378,9 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     setState(next);
     return !!next.profile;
   }, []);
-  const signOut = useCallback(async () => {
+  const signOut = useCallback(async (opts?: { forget?: boolean }) => {
     const s = stateRef.current;
-    if (s.session?.mode === 'user') {
+    if (s.session?.mode === 'user' && !opts?.forget) {
       // Make sure the latest progress is in the cloud before it is cleared from this device.
       const json = JSON.stringify(cloudPart(s));
       if (json !== synced.current) await pushProgress(s.session.account.id, s.session.account.name, cloudPart(s)).catch(() => false);

@@ -10,6 +10,7 @@ import { GUEST_INTERVIEWS } from '@/lib/access';
 import { ACHIEVEMENTS } from '@/lib/achievements';
 import { locale, pick, setLang, useLang, useT, type Lang } from '@/lib/i18n';
 import { setThemePref, useTheme, type ThemePref } from '@/lib/theme';
+import { AuthError, deleteAccount } from '@/lib/auth';
 import { goalLabel, stageLabel } from '@/lib/profileOptions';
 import { enableReminders, remindersSupported } from '@/lib/reminders';
 import { levelOf, useStore } from '@/lib/store';
@@ -36,6 +37,22 @@ export default function ProfileScreen() {
   const account = session?.mode === 'user' ? session.account : null;
   const target = profile ? findTrack(profile.trackId) : undefined;
   const [permError, setPermError] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
+
+  const removeAccount = async () => {
+    if (deleting) return;
+    setDeleting(true);
+    setDeleteError(null);
+    try {
+      await deleteAccount();
+      await signOut({ forget: true });
+    } catch (e) {
+      setDeleteError(e instanceof AuthError ? e.message : t('Hesap silinemedi, tekrar dene.', "Couldn't delete the account, please try again."));
+      setDeleting(false);
+    }
+  };
   const level = levelOf(xp);
   const snap = { stats, xp, bestByUnit };
   const unlockedCount = ACHIEVEMENTS.filter((a) => unlocked[a.id]).length;
@@ -371,7 +388,43 @@ export default function ProfileScreen() {
           {t('Hesap', 'Account')}
         </T>
         {account ? (
-          <Button title={t('ÇIKIŞ YAP', 'SIGN OUT')} icon="log-out" variant="outline" color={colors.danger} onPress={signOut} />
+          <>
+            <Button title={t('ÇIKIŞ YAP', 'SIGN OUT')} icon="log-out" variant="outline" color={colors.danger} onPress={() => signOut()} />
+            {confirmDelete ? (
+              <Card style={{ marginTop: 14, borderWidth: 2, borderColor: colors.tintRedBorder }}>
+                <T w="black" size={15} color={colors.danger}>
+                  {t('Hesabın kalıcı olarak silinsin mi?', 'Delete your account for good?')}
+                </T>
+                <T w="semibold" size={12} color={colors.muted} style={{ marginTop: 4, marginBottom: 14, lineHeight: 17 }}>
+                  {t(
+                    'Hesabın, raporların, XP’n, serin ve başarımların silinir. Bu işlem geri alınamaz.',
+                    'Your account, reports, XP, streak and badges will be deleted. This cannot be undone.',
+                  )}
+                </T>
+                {deleteError && (
+                  <T w="bold" size={12} color={colors.danger} style={{ marginBottom: 10 }}>
+                    {deleteError}
+                  </T>
+                )}
+                <View style={{ flexDirection: 'row', gap: 10 }}>
+                  <Button title={t('VAZGEÇ', 'CANCEL')} variant="outline" color={colors.muted} onPress={() => setConfirmDelete(false)} style={{ flex: 1 }} />
+                  <Button
+                    title={deleting ? t('SİLİNİYOR…', 'DELETING…') : t('EVET, SİL', 'YES, DELETE')}
+                    color={colors.danger}
+                    disabled={deleting}
+                    onPress={removeAccount}
+                    style={{ flex: 1 }}
+                  />
+                </View>
+              </Card>
+            ) : (
+              <Pressable onPress={() => setConfirmDelete(true)} hitSlop={8} style={{ alignSelf: 'center', marginTop: 16 }}>
+                <T w="bold" size={13} color={colors.muted}>
+                  {t('Hesabımı sil', 'Delete my account')}
+                </T>
+              </Pressable>
+            )}
+          </>
         ) : (
           <Card>
             <T w="black" size={15}>
