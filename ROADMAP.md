@@ -31,7 +31,7 @@ Durum işaretleri: ✅ tamamlandı · 🚧 yapılıyor · 🔜 sıradaki · 💡
 
 ## Faz 2 — Pratik çeşitliliği (🔜 sıradaki)
 
-- ✅ Mülakatçı karakterleri: Elif/Emily (sıcak İK uzmanı), Kerem/Daniel (detaycı alan uzmanı), Murat/Richard (sert departman müdürü); her birinin açılış, geçiş ve kapanış cümleleri ve her dil için ana dili olan sesi var
+- ✅ Mülakatçı karakterleri: Elif/Emily (sıcak İK uzmanı), Kerem/Daniel (detaycı alan uzmanı), Murat/Richard (sert departman müdürü); her birinin kendi soru seti, cevaba göre takip sorusu (örnek iste / "neden?" / "tek cümleyle özetle"), rapordaki değerlendirme cümlesi ve her dil için ana dili olan sesi var
 - 🔜 Süreli mod: cevap başına 2 dakika
 - 🔜 Yeni pratik tipleri: "zayıf cevaptaki hatayı bul", kavram–tanım eşleştirme, "iki cevaptan hangisi daha iyi?"
 - 🔜 Eksik Senior üniteler (yeni mesleklerin çoğunda)
