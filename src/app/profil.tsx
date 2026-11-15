@@ -1,9 +1,13 @@
 import { LinearGradient } from 'expo-linear-gradient';
+import { router } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Bar, Card, FadeIn, Ionicons, T, colors, goBack, shadow, tap, type IconName } from '@/components/ui';
+import { Bar, Button, Card, FadeIn, Ionicons, T, colors, goBack, shadow, tap, type IconName } from '@/components/ui';
+import { findTrack } from '@/data/professions';
+import { GUEST_INTERVIEWS } from '@/lib/access';
 import { ACHIEVEMENTS } from '@/lib/achievements';
+import { goalLabel, stageLabel } from '@/lib/profileOptions';
 import { enableReminders, remindersSupported } from '@/lib/reminders';
 import { levelOf, useStore } from '@/lib/store';
 
@@ -12,7 +16,9 @@ const HOURS = [9, 12, 18, 20, 22];
 export default function ProfileScreen() {
   const insets = useSafeAreaInsets();
   const store = useStore();
-  const { xp, streak, stats, unlocked, reminder, bestByUnit, setReminder, voice, setVoice } = store;
+  const { xp, streak, stats, unlocked, reminder, bestByUnit, setReminder, voice, setVoice, session, profile, signOut } = store;
+  const account = session?.mode === 'user' ? session.account : null;
+  const target = profile ? findTrack(profile.trackId) : undefined;
   const [permError, setPermError] = useState(false);
   const level = levelOf(xp);
   const snap = { stats, xp, bestByUnit };
@@ -51,10 +57,10 @@ export default function ProfileScreen() {
           </View>
         </View>
         <T w="black" size={22} color="#fff" style={{ marginTop: 10 }}>
-          Profilim
+          {account?.name ?? 'Misafir'}
         </T>
         <T w="semibold" size={13} color="rgba(255,255,255,0.85)">
-          Seviye {level} · {xp} XP
+          {account ? account.email : 'Üye olmadan deniyorsun'} · Seviye {level} · {xp} XP
         </T>
         <View style={{ alignSelf: 'stretch', marginTop: 12 }}>
           <Bar value={xp % 100} color="#fff" height={8} />
@@ -70,6 +76,30 @@ export default function ProfileScreen() {
           <StatBox icon="ribbon" color={colors.success} value={stats.bestInterview} label="En yüksek puan" />
           <StatBox icon="compass" color="#2F7FE0" value={stats.professions.length} label="Meslek" />
         </View>
+
+        <View style={styles.achHead}>
+          <T w="black" size={18}>
+            Hedefin
+          </T>
+          <Pressable
+            onPress={() => {
+              tap();
+              router.push('/profil-kurulum?edit=1');
+            }}
+            hitSlop={8}
+            style={styles.editBtn}
+          >
+            <Ionicons name="create" size={15} color={colors.primary} />
+            <T w="black" size={13} color={colors.primary}>
+              Düzenle
+            </T>
+          </Pressable>
+        </View>
+        <Card style={{ paddingVertical: 6 }}>
+          <InfoRow icon="briefcase" color={target?.profession.color ?? colors.primary} label="Alan" value={target ? `${target.profession.name} · ${target.track.name}` : '—'} />
+          <InfoRow icon="podium" color="#2F7FE0" label="Kariyer" value={profile ? stageLabel(profile.stage) : '—'} divider />
+          <InfoRow icon="flame" color={colors.streak} label="Günlük hedef" value={profile ? goalLabel(profile.dailyGoal) : '—'} divider />
+        </Card>
 
         <T w="black" size={18} style={styles.section}>
           Bildirimler & Ses
@@ -196,8 +226,47 @@ export default function ProfileScreen() {
             );
           })}
         </View>
+
+        <T w="black" size={18} style={styles.section}>
+          Hesap
+        </T>
+        {account ? (
+          <Button title="ÇIKIŞ YAP" icon="log-out" variant="outline" color={colors.danger} onPress={signOut} />
+        ) : (
+          <Card>
+            <T w="black" size={15}>
+              Ücretsiz üye ol, ilerlemen korunur
+            </T>
+            <T w="semibold" size={12} color={colors.muted} style={{ marginTop: 2, marginBottom: 14 }}>
+              Misafir modunda {Math.max(0, GUEST_INTERVIEWS - stats.interviews)}/{GUEST_INTERVIEWS} mülakat hakkın kaldı. Üye olunca tüm üniteler,
+              Günün Sorusu ve Hata Defteri açılır.
+            </T>
+            <Button title="KAYIT OL" icon="person-add" onPress={() => router.push('/kayit')} />
+            <Pressable onPress={() => router.push('/giris')} hitSlop={8} style={{ alignSelf: 'center', marginTop: 14 }}>
+              <T w="extrabold" size={14} color={colors.primary}>
+                Zaten hesabım var
+              </T>
+            </Pressable>
+          </Card>
+        )}
       </View>
     </ScrollView>
+  );
+}
+
+function InfoRow({ icon, color, label, value, divider }: { icon: IconName; color: string; label: string; value: string; divider?: boolean }) {
+  return (
+    <View style={[styles.info, divider && { borderTopWidth: 1, borderTopColor: colors.border }]}>
+      <View style={[styles.rowIcon, { backgroundColor: color + '1A' }]}>
+        <Ionicons name={icon} size={19} color={color} />
+      </View>
+      <T w="bold" size={13} color={colors.muted} style={{ width: 92 }}>
+        {label}
+      </T>
+      <T w="extrabold" size={14} style={{ flex: 1, textAlign: 'right' }} numberOfLines={2}>
+        {value}
+      </T>
+    </View>
   );
 }
 
@@ -245,6 +314,8 @@ const styles = StyleSheet.create({
   hours: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 14 },
   hour: { borderWidth: 2, borderColor: colors.border, borderRadius: 12, paddingHorizontal: 12, paddingVertical: 6 },
   note: { marginTop: 10 },
+  info: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12 },
+  editBtn: { flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: colors.primary + '14', borderRadius: 999, paddingHorizontal: 12, paddingVertical: 6 },
   achHead: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 24, marginBottom: 10 },
   achGrid: { flexDirection: 'row', flexWrap: 'wrap', marginHorizontal: -5 },
   achWrap: { width: '33.33%', padding: 5 },

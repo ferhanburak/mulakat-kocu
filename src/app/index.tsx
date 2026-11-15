@@ -18,7 +18,7 @@ import {
   type IconName,
 } from '@/components/ui';
 import { SignupPrompt } from '@/components/SignupPrompt';
-import { allUnits, dailyQuestion, findUnit, professions } from '@/data/professions';
+import { allUnits, dailyQuestion, findTrack, findUnit, professions } from '@/data/professions';
 import { GUEST_INTERVIEWS, useAccess, type Locked } from '@/lib/access';
 import { PASS_SCORE } from '@/lib/evaluator';
 import { remindersSupported } from '@/lib/reminders';
@@ -32,7 +32,10 @@ const sameDay = (a: Date, b: Date) => a.toDateString() === b.toDateString();
 
 export default function Home() {
   const insets = useSafeAreaInsets();
-  const { xp, streak, bestByUnit, reports, isUnlocked, days, unlocked, reminder, daily, mistakes } = useStore();
+  const { xp, streak, bestByUnit, reports, isUnlocked, days, unlocked, reminder, daily, mistakes, session, profile } = useStore();
+  const firstName = session?.mode === 'user' ? session.account.name.split(/\s+/)[0] : null;
+  const goal = profile?.dailyGoal ?? 1;
+  const mine = profile ? findTrack(profile.trackId) : undefined;
   const dailyRef = dailyQuestion(dayKey(new Date()));
   const dailyDone = daily?.day === dayKey(new Date());
   const mistakeCount = Object.keys(mistakes).length;
@@ -50,11 +53,13 @@ export default function Home() {
     return { label, done: (days[dayKey(d)] ?? 0) > 0, today: sameDay(d, now) };
   });
   const todayCount = days[dayKey(now)] ?? 0;
+  const goalDone = todayCount >= goal;
 
-  // "Continue" target: next open unit in the most recently practised track.
-  const last = reports[0] ? findUnit(reports[0].unitId) : undefined;
+  // "Continue" target: next open unit in the most recently practised track, else the user's own track.
+  const last = reports[0] ? findUnit(reports[0].unitId) : mine;
   const lastProf = last?.profession ?? careers[0];
   const lastTrack = last?.track ?? lastProf.tracks[0];
+  const minePassed = mine ? mine.track.units.filter((u) => (bestByUnit[u.id] ?? 0) >= PASS_SCORE).length : 0;
   const ids = lastTrack.units.map((u) => u.id);
   const nextIdx = lastTrack.units.findIndex((u, i) => isUnlocked(ids, i) && (bestByUnit[u.id] ?? 0) < PASS_SCORE);
   const nextUnit = lastTrack.units[nextIdx === -1 ? lastTrack.units.length - 1 : nextIdx];
@@ -70,7 +75,7 @@ export default function Home() {
         <View style={styles.heroTop}>
           <View>
             <T w="bold" size={14} color="rgba(255,255,255,0.8)">
-              Merhaba 👋
+              {firstName ? `Merhaba ${firstName} 👋` : 'Merhaba 👋'}
             </T>
             <T w="black" size={26} color="#fff">
               Mülakat Koçu
@@ -104,12 +109,18 @@ export default function Home() {
       <View style={styles.body}>
         <FadeIn>
           <Card style={styles.goalCard}>
-            <Ring value={Math.min(100, todayCount * 100)} size={74} stroke={9} color={colors.streak} track="#FFE8D6">
-              <Ionicons name={todayCount > 0 ? 'checkmark' : 'flame'} size={28} color={colors.streak} />
+            <Ring value={Math.min(100, (todayCount / goal) * 100)} size={74} stroke={9} color={colors.streak} track="#FFE8D6">
+              {goalDone || goal === 1 ? (
+                <Ionicons name={goalDone ? 'checkmark' : 'flame'} size={28} color={colors.streak} />
+              ) : (
+                <T w="black" size={17} color={colors.streak}>
+                  {todayCount}/{goal}
+                </T>
+              )}
             </Ring>
             <View style={{ flex: 1 }}>
               <T w="black" size={17}>
-                {todayCount > 0 ? 'Günlük hedef tamam!' : 'Günlük hedef: 1 pratik'}
+                {goalDone ? 'Günlük hedef tamam!' : `Günlük hedef: ${goal} pratik`}
               </T>
               <View style={styles.weekRow}>
                 {week.map((d) => (
@@ -208,6 +219,40 @@ export default function Home() {
             )}
           </Pressable>
         </FadeIn>
+
+        {mine && (
+          <FadeIn delay={95}>
+            <Pressable
+              onPress={() => {
+                tap();
+                router.push(`/track/${mine.track.id}`);
+              }}
+              style={({ pressed }) => [styles.mineCard, { borderColor: mine.profession.color + '40', transform: [{ scale: pressed ? 0.98 : 1 }] }]}
+            >
+              <GradientIcon icon={mine.track.icon as IconName} color={mine.profession.color} size={50} radius={16} />
+              <View style={{ flex: 1 }}>
+                <T w="extrabold" size={11} color={mine.profession.color} style={{ letterSpacing: 1 }}>
+                  SENİN ALANIN
+                </T>
+                <T w="black" size={16} numberOfLines={1}>
+                  {mine.track.name}
+                </T>
+                <T w="semibold" size={12} color={colors.muted} numberOfLines={1}>
+                  {mine.profession.name}
+                </T>
+                <View style={styles.mineFoot}>
+                  <View style={{ flex: 1 }}>
+                    <Bar value={(minePassed / mine.track.units.length) * 100} color={mine.profession.color} height={7} />
+                  </View>
+                  <T w="extrabold" size={11} color={colors.muted}>
+                    {minePassed}/{mine.track.units.length} ünite
+                  </T>
+                </View>
+              </View>
+              <Ionicons name="chevron-forward" size={20} color={colors.faint} />
+            </Pressable>
+          </FadeIn>
+        )}
 
         <FadeIn delay={110} style={styles.miniRow}>
           <Pressable
@@ -416,6 +461,18 @@ function Stat({ icon, color, value, label }: { icon: IconName; color: string; va
 const styles = StyleSheet.create({
   hero: { paddingHorizontal: 20, paddingBottom: 56, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
   heroTop: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  mineCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 14,
+    marginTop: 14,
+    backgroundColor: colors.card,
+    borderRadius: 22,
+    padding: 14,
+    borderWidth: 2,
+    ...shadow(1),
+  },
+  mineFoot: { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 8 },
   guestBanner: {
     flexDirection: 'row',
     alignItems: 'center',
