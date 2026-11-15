@@ -1,6 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Animated, Easing, Modal, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Svg, { Path } from 'react-native-svg';
@@ -205,7 +205,7 @@ export default function TrackScreen() {
 }
 
 function Pulse({ size, color }: { size: number; color: string }) {
-  const a = useRef(new Animated.Value(0)).current;
+  const a = useState(() => new Animated.Value(0))[0];
   useEffect(() => {
     const loop = Animated.loop(
       Animated.timing(a, { toValue: 1, duration: 1600, easing: Easing.out(Easing.quad), useNativeDriver: Platform.OS !== 'web' }),
@@ -231,7 +231,7 @@ function Pulse({ size, color }: { size: number; color: string }) {
 }
 
 function StartBubble({ color }: { color: string }) {
-  const a = useRef(new Animated.Value(0)).current;
+  const a = useState(() => new Animated.Value(0))[0];
   useEffect(() => {
     const loop = Animated.loop(
       Animated.sequence([

@@ -23,6 +23,8 @@ export async function enableReminders(): Promise<boolean> {
   if (!remindersSupported) return false;
   await Notifications.setNotificationChannelAsync(CHANNEL, {
     name: 'Seri hatırlatıcısı',
+    // A TypeScript enum re-export the import plugin can't see; tsc checks it.
+    // eslint-disable-next-line import/namespace
     importance: Notifications.AndroidImportance.DEFAULT,
   });
   const current = await Notifications.getPermissionsAsync();

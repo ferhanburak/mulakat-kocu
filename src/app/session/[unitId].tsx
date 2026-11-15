@@ -56,6 +56,8 @@ export default function SessionScreen() {
   useEffect(() => {
     if (!voice || shownCount === 0) return;
     const q = findUnit(unitId)?.unit.questions[shownCount - 1];
+    // Starts speech (an external system); its state update only marks which bubble is playing.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (q) say(q.id, q.text);
   }, [shownCount]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => () => stopSpeaking(), []);
@@ -65,6 +67,8 @@ export default function SessionScreen() {
     if (!found || busy) return;
     if (shownCount > answers.length) return;
     if (shownCount >= found.unit.questions.length) return;
+    // The typing indicator is a timed animation step, so it is driven from this timer effect.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTyping(true);
     const t = setTimeout(() => {
       setTyping(false);
@@ -301,7 +305,7 @@ function Bubble({
 
 /** Three bouncing bars shown while the interviewer is speaking. */
 function SoundWave() {
-  const a = useRef(new Animated.Value(0)).current;
+  const a = useState(() => new Animated.Value(0))[0];
   useEffect(() => {
     const loop = Animated.loop(
       Animated.timing(a, { toValue: 1, duration: 700, easing: Easing.linear, useNativeDriver: Platform.OS !== 'web' }),
@@ -334,7 +338,7 @@ function SoundWave() {
 }
 
 function Typing() {
-  const a = useRef(new Animated.Value(0)).current;
+  const a = useState(() => new Animated.Value(0))[0];
   useEffect(() => {
     const loop = Animated.loop(
       Animated.timing(a, { toValue: 3, duration: 900, easing: Easing.linear, useNativeDriver: Platform.OS !== 'web' }),

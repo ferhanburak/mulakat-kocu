@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router, type Href } from 'expo-router';
-import { useEffect, useRef, useState, type ComponentProps, type ReactNode } from 'react';
+import { useEffect, useState, type ComponentProps, type ReactNode } from 'react';
 import {
   Animated,
   Easing,
@@ -162,7 +162,7 @@ export function GradientIcon({
 }
 
 export function Bar({ value, color, height = 10, delay = 0 }: { value: number; color?: string; height?: number; delay?: number }) {
-  const anim = useRef(new Animated.Value(0)).current;
+  const anim = useState(() => new Animated.Value(0))[0];
   useEffect(() => {
     Animated.timing(anim, {
       toValue: Math.max(0, Math.min(100, value)),
@@ -201,7 +201,7 @@ export function Ring({
 }) {
   const r = (size - stroke) / 2;
   const circ = 2 * Math.PI * r;
-  const anim = useRef(new Animated.Value(0)).current;
+  const anim = useState(() => new Animated.Value(0))[0];
   useEffect(() => {
     Animated.timing(anim, { toValue: value, duration: 1100, easing: Easing.out(Easing.cubic), useNativeDriver: false }).start();
   }, [value, anim]);
@@ -242,7 +242,7 @@ export function CountUp({ value, style }: { value: number; style?: StyleProp<Tex
 
 /** Fades and slides its children in on mount. */
 export function FadeIn({ children, delay = 0, style }: { children: ReactNode; delay?: number; style?: StyleProp<ViewStyle> }) {
-  const a = useRef(new Animated.Value(0)).current;
+  const a = useState(() => new Animated.Value(0))[0];
   useEffect(() => {
     Animated.timing(a, { toValue: 1, duration: 380, delay, easing: Easing.out(Easing.cubic), useNativeDriver: Platform.OS !== 'web' }).start();
   }, [a, delay]);

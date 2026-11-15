@@ -188,6 +188,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     if (fresh.length === 0 && !leveledUp) return;
     const now = new Date().toISOString();
     if (fresh.length) {
+      // Unlocks are derived from progress but stored with their date, so they are written back once.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setState((s) => ({ ...s, unlocked: { ...s.unlocked, ...Object.fromEntries(fresh.map((a) => [a.id, now])) } }));
     }
     setToasts((t) => [

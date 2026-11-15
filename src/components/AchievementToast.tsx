@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { Animated, Easing, Platform, Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useStore } from '@/lib/store';
@@ -8,7 +8,7 @@ import { Ionicons, T, colors, notify, shade, shadow, type IconName } from './ui'
 export function AchievementToast() {
   const insets = useSafeAreaInsets();
   const { toast, dismissToast } = useStore();
-  const y = useRef(new Animated.Value(-160)).current;
+  const y = useState(() => new Animated.Value(-160))[0];
   const native = Platform.OS !== 'web';
 
   useEffect(() => {
