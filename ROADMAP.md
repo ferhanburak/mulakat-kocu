@@ -21,7 +21,7 @@ Durum işaretleri: ✅ tamamlandı · 🚧 yapılıyor · 🔜 sıradaki · 💡
 
 ## Faz 1 — Hesap ve kişiselleştirme (🚧 yapılıyor)
 
-- ✅ Hoş geldin ekranı, kayıt ve giriş (şimdilik cihazda, şifreler tuzlu SHA-256 ile)
+- ✅ Hoş geldin ekranı, kayıt ve giriş (Supabase Auth)
 - ✅ Profil: ad, hedef meslek ve alan, seviye, günlük hedef; sonradan düzenlenebilir
 - ✅ Misafir deneme modu: her alanın ilk ünitesi, 3 mülakat hakkı, kayıtla ilerlemenin korunması
 - ✅ Kişiselleşmiş ana sayfa: "Senin alanın" kartı, hedef alandan devam, isimle selamlama, günlük hedef halkası
@@ -38,11 +38,11 @@ Durum işaretleri: ✅ tamamlandı · 🚧 yapılıyor · 🔜 sıradaki · 💡
 - 🔜 Yeni alanlar: Yapay Zekâ/ML, Oyun Geliştirme, Bulut Mimarlığı
 - 💡 Sektör uzmanlarıyla içerik doğrulaması (özellikle hukuk ve sağlık)
 
-## Faz 3 — Sunucu ve gerçek hesaplar
+## Faz 3 — Sunucu ve gerçek hesaplar (🚧 yapılıyor)
 
-- 🔜 Supabase (veya Firebase) ile gerçek kimlik doğrulama; şu anki yerel giriş katmanının yerine geçer (`src/lib/auth.ts`)
-- 🔜 İlerlemenin bulutta saklanması ve cihazlar arası eşitleme
-- 🔜 E-posta doğrulama, şifre sıfırlama, Google / Apple ile giriş
+- ✅ Supabase ile gerçek kimlik doğrulama (`src/lib/auth.ts`), satır bazlı güvenlikli `profiles` tablosu (`supabase/migrations/`)
+- ✅ İlerlemenin bulutta saklanması ve cihazlar arası eşitleme; misafir ilerlemesi kayıtta buluta taşınır, çevrimdışı değişiklikler sonra gönderilir
+- 🔜 E-posta doğrulama (yayından önce açılacak), şifre sıfırlama, Google / Apple ile giriş
 - 💡 Haftalık lig ve arkadaş sıralaması
 - 💡 İçerik yönetimi: soruları uygulama güncellemesi olmadan yayınlama
 
