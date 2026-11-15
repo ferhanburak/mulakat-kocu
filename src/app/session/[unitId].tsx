@@ -1,6 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useRef, useState, type ComponentRef } from 'react';
+import { useEffect, useMemo, useRef, useState, type ComponentRef } from 'react';
 import {
   ActivityIndicator,
   Animated,
@@ -16,11 +16,12 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Bar, FadeIn, GradientIcon, Ionicons, T, colors, fonts, goBack, shade, shadow, tap, type IconName, themedStyles } from '@/components/ui';
 import { SignupPrompt } from '@/components/SignupPrompt';
-import { findInterviewer, lineFor } from '@/data/interviewers';
+import { findInterviewer, lineFor, needsProbe } from '@/data/interviewers';
 import { findUnit, type QuestionKind } from '@/data/professions';
 import { useAccess } from '@/lib/access';
 import { evaluateSession } from '@/lib/evaluator';
-import { pick, upper, useT, type Bi } from '@/lib/i18n';
+import { sessionQuestions } from '@/lib/interview';
+import { pick, upper, useLang, useT, type Bi } from '@/lib/i18n';
 import { speak, stopSpeaking } from '@/lib/voice';
 import { useStore } from '@/lib/store';
 
@@ -50,6 +51,11 @@ export default function SessionScreen() {
   const [busy, setBusy] = useState(false);
   const [speakingId, setSpeakingId] = useState<string | null>(null);
   const [ending, setEnding] = useState(false);
+  const appLang = useLang();
+  // The character's question set for this unit (in the app language).
+  const questions = useMemo(() => sessionQuestions(unitId, interviewer.id), [unitId, interviewer.id, appLang]); // eslint-disable-line react-hooks/exhaustive-deps
+  /** Follow-ups by question index: first answer, the interviewer's question, and the reply. */
+  const [followUps, setFollowUps] = useState<Record<number, { first: string; reply?: string }>>({});
   const scroll = useRef<ComponentRef<typeof ScrollView>>(null);
 
   const say = (bubbleId: string, text: string | string[]) => {
@@ -62,7 +68,7 @@ export default function SessionScreen() {
   // Read each newly revealed question aloud; stop talking when leaving the screen.
   useEffect(() => {
     if (!voice || shownCount === 0) return;
-    const q = findUnit(unitId)?.unit.questions[shownCount - 1];
+    const q = questions[shownCount - 1];
     // The interviewer opens (or reacts to the last answer) and then asks the question.
     const lead = shownCount === 1 ? intro : ackFor(shownCount - 1);
     // Starts speech (an external system); its state update only marks which bubble is playing.
@@ -75,7 +81,7 @@ export default function SessionScreen() {
   useEffect(() => {
     if (!found || busy) return;
     if (shownCount > answers.length) return;
-    if (shownCount >= found.unit.questions.length) return;
+    if (shownCount >= questions.length) return;
     // The typing indicator is a timed animation step, so it is driven from this timer effect.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setTyping(true);
@@ -84,12 +90,12 @@ export default function SessionScreen() {
       setShownCount((n) => n + 1);
     }, shownCount === 0 ? 1100 : 900);
     return () => clearTimeout(t);
-  }, [answers.length, shownCount, found, busy]);
+  }, [answers.length, shownCount, found, busy, questions.length]);
 
   useEffect(() => {
     const t = setTimeout(() => scroll.current?.scrollToEnd({ animated: true }), 60);
     return () => clearTimeout(t);
-  }, [shownCount, answers.length, typing]);
+  }, [shownCount, answers.length, typing, followUps]);
 
   if (!found) return <T style={{ padding: 20 }}>{t('Ünite bulunamadı.', 'Unit not found.')}</T>;
   if (block)
@@ -99,10 +105,12 @@ export default function SessionScreen() {
       </View>
     );
   const { profession, track, unit } = found;
-  const total = unit.questions.length;
+  const total = questions.length;
   const words = draft.trim().split(/\s+/).filter(Boolean).length;
   const waitingForAnswer = shownCount > answers.length;
-  const currentQ = unit.questions[shownCount - 1];
+  const currentQ = questions[shownCount - 1];
+  const current = answers.length;
+  const probing = followUps[current] !== undefined && followUps[current].reply === undefined;
   const canSend = waitingForAnswer && words >= 3;
 
   const submit = async () => {
@@ -110,9 +118,18 @@ export default function SessionScreen() {
     tap();
     stopSpeaking();
     setSpeakingId(null);
-    const next = [...answers, draft.trim()];
-    setAnswers(next);
+    const text = draft.trim();
     setDraft('');
+    // First answer to a question: the character may follow up once before moving on.
+    if (!probing && !followUps[current] && needsProbe(interviewer.id, text, lang)) {
+      setFollowUps((f) => ({ ...f, [current]: { first: text } }));
+      if (voice) say(`probe-${current}`, interviewer.probe[lang]);
+      return;
+    }
+    const full = probing ? `${followUps[current].first} ${text}` : text;
+    if (probing) setFollowUps((f) => ({ ...f, [current]: { ...f[current], reply: text } }));
+    const next = [...answers, full];
+    setAnswers(next);
     if (next.length < total) return;
     // The interviewer closes the interview before the evaluation screen.
     setEnding(true);
@@ -123,7 +140,8 @@ export default function SessionScreen() {
       evaluateSession(
         profession.id,
         unit.id,
-        unit.questions.map((q, i) => ({ question: q, answer: next[i] })),
+        questions.map((q, i) => ({ question: q, answer: next[i] })),
+        interviewer.id,
       ),
       new Promise((r) => setTimeout(r, 1200)),
     ]);
@@ -193,7 +211,7 @@ export default function SessionScreen() {
 
         <Bubble who="ai">{intro}</Bubble>
 
-        {unit.questions.slice(0, shownCount).map((q, i) => (
+        {questions.slice(0, shownCount).map((q, i) => (
           <View key={q.id}>
             {i > 0 && <Bubble who="ai">{ackFor(i)}</Bubble>}
             <Bubble
@@ -210,7 +228,15 @@ export default function SessionScreen() {
             >
               {q.text}
             </Bubble>
-            {answers[i] !== undefined && <Bubble who="me">{answers[i]}</Bubble>}
+            {followUps[i] ? (
+              <>
+                <Bubble who="me">{followUps[i].first}</Bubble>
+                <Bubble who="ai">{interviewer.probe[lang]}</Bubble>
+                {followUps[i].reply !== undefined && <Bubble who="me">{followUps[i].reply}</Bubble>}
+              </>
+            ) : (
+              answers[i] !== undefined && <Bubble who="me">{answers[i]}</Bubble>
+            )}
           </View>
         ))}
         {ending && <Bubble who="ai">{interviewer.outro[lang]}</Bubble>}

@@ -1,3 +1,4 @@
+import { findInterviewer, verdictFor } from '@/data/interviewers';
 import { findUnit, type Question } from '@/data/professions';
 import { pick, tt, type Bi } from './i18n';
 
@@ -40,6 +41,9 @@ export type Report = {
   nextFocus: string;
   answers: AnswerFeedback[];
   xp: number;
+  /** Who ran the interview, and their one-line verdict. */
+  interviewerId?: string;
+  verdict?: string;
 };
 
 type AnswerLang = 'tr' | 'en';
@@ -148,6 +152,7 @@ export async function evaluateSession(
   professionId: string,
   unitId: string,
   items: { question: Question; answer: string }[],
+  interviewerId?: string,
 ): Promise<Report> {
   const lang: AnswerLang = findUnit(unitId)?.track.lang === 'en' ? 'en' : 'tr';
   const scored = items.map((it) => ({ it, r: scoreAnswer(it.question, it.answer, lang) }));
@@ -205,6 +210,8 @@ export async function evaluateSession(
     weaknesses,
     nextFocus,
     xp: 10 + Math.round(overall / 5),
+    interviewerId,
+    verdict: interviewerId ? verdictFor(findInterviewer(interviewerId), overall)[lang] : undefined,
     answers: scored.map(({ it, r }) => ({
       questionId: it.question.id,
       question: it.question.text,

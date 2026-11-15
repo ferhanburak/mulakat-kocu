@@ -50,6 +50,24 @@
     "outro": {
       "tr": "Hepsi bu kadar, vakit ayırdığın için çok teşekkürler! Şimdi cevaplarına birlikte bakalım.",
       "en": "That's all, thank you so much for your time! Now let's look at your answers together."
+    },
+    "probe": {
+      "tr": "Biraz daha açar mısın? Somut bir örnek verebilir misin?",
+      "en": "Could you expand a little? Can you give me a concrete example?"
+    },
+    "verdict": {
+      "high": {
+        "tr": "Çok keyifli bir görüşmeydi, kendini net anlattın. Böyle devam!",
+        "en": "That was a really nice conversation; you explained yourself clearly. Keep it up!"
+      },
+      "mid": {
+        "tr": "İyi bir görüşmeydi. Örneklerini biraz daha somutlaştırırsan çok daha güçlü olur.",
+        "en": "A good interview. Make your examples a bit more concrete and you'll be much stronger."
+      },
+      "low": {
+        "tr": "Heyecanlanmış olabilirsin, sorun değil. Cevaplarına örnek ekleyerek tekrar deneyelim.",
+        "en": "You may have been nervous, and that's fine. Let's try again with examples in your answers."
+      }
     }
   },
   {
@@ -71,8 +89,8 @@
     "voice": {
       "tr": {
         "name": "tr-TR-AhmetNeural",
-        "rate": "-2%",
-        "pitch": "+0Hz"
+        "rate": "-8%",
+        "pitch": "+6Hz"
       },
       "en": {
         "name": "en-US-BrianNeural",
@@ -103,6 +121,24 @@
     "outro": {
       "tr": "Teşekkürler, sorularım bu kadar. Değerlendirmeyi birazdan göreceksin.",
       "en": "Thanks, that's all my questions. You'll see the evaluation shortly."
+    },
+    "probe": {
+      "tr": "Peki neden bu yolu seçtin? Gerekçeni biraz açar mısın?",
+      "en": "And why did you choose that approach? Can you explain your reasoning?"
+    },
+    "verdict": {
+      "high": {
+        "tr": "Konuya hâkimsin, gerekçelerin de sağlam. Bir üst seviyeye hazırsın.",
+        "en": "You know the field and your reasoning holds up. You're ready for the next level."
+      },
+      "mid": {
+        "tr": "Temel bilgin var ama bazı kavramları atladın. Nedenini de anlatmaya özen göster.",
+        "en": "Your fundamentals are there, but you skipped some concepts. Make sure to explain the why."
+      },
+      "low": {
+        "tr": "Bu konuda eksiklerin var. Örnek cevaplardaki kavramlara çalışıp tekrar gel.",
+        "en": "There are gaps here. Study the concepts in the example answers and come back."
+      }
     }
   },
   {
@@ -124,8 +160,8 @@
     "voice": {
       "tr": {
         "name": "tr-TR-AhmetNeural",
-        "rate": "+8%",
-        "pitch": "-8Hz"
+        "rate": "+14%",
+        "pitch": "-16Hz"
       },
       "en": {
         "name": "en-US-ChristopherNeural",
@@ -156,6 +192,24 @@
     "outro": {
       "tr": "Bu kadar. Sonuçlara bakalım.",
       "en": "That's it. Let's see the results."
+    },
+    "probe": {
+      "tr": "Uzun oldu. Bunu tek cümleyle özetle.",
+      "en": "That was long. Sum it up in one sentence."
+    },
+    "verdict": {
+      "high": {
+        "tr": "İyi. Net ve yeterliydi. Devam.",
+        "en": "Good. Clear and sufficient. Carry on."
+      },
+      "mid": {
+        "tr": "Fena değil ama daha kısa ve net olmalısın.",
+        "en": "Not bad, but you need to be shorter and clearer."
+      },
+      "low": {
+        "tr": "Hazır değilsin. Çalış, tekrar gel.",
+        "en": "You're not ready. Prepare and come back."
+      }
     }
   }
 ]

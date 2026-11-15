@@ -21,9 +21,10 @@ import {
   type IconName,
   themedStyles,
 } from '@/components/ui';
+import { findInterviewer } from '@/data/interviewers';
 import { findUnit } from '@/data/professions';
 import { PASS_SCORE, categoryLabel, type CategoryKey } from '@/lib/evaluator';
-import { useT } from '@/lib/i18n';
+import { pick, useT } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 
 const CAT_ICON: Record<CategoryKey, IconName> = {
@@ -86,6 +87,28 @@ export default function ReportScreen() {
         </LinearGradient>
 
         <View style={styles.body}>
+          {r.verdict && r.interviewerId && (
+            <FadeIn delay={100}>
+              {(() => {
+                const who = findInterviewer(r.interviewerId);
+                return (
+                  <View style={[styles.verdict, { borderColor: who.color + '55' }]}>
+                    <View style={[styles.verdictIcon, { backgroundColor: who.color }]}>
+                      <Ionicons name={who.icon as IconName} size={20} color="#fff" />
+                    </View>
+                    <View style={{ flex: 1 }}>
+                      <T w="black" size={12} color={who.color} style={{ letterSpacing: 0.6 }}>
+                        {pick(who.name)} · {pick(who.role)}
+                      </T>
+                      <T w="bold" size={15} style={{ marginTop: 2, lineHeight: 21 }}>
+                        “{r.verdict}”
+                      </T>
+                    </View>
+                  </View>
+                );
+              })()}
+            </FadeIn>
+          )}
           <FadeIn delay={150}>
             <Card>
               <T w="black" size={17} style={{ marginBottom: 14 }}>
@@ -238,6 +261,17 @@ function ListCard({ title, icon, color, items }: { title: string; icon: IconName
 
 const styles = themedStyles(() =>
   StyleSheet.create({
+  verdict: {
+    flexDirection: 'row',
+    gap: 12,
+    alignItems: 'center',
+    backgroundColor: colors.card,
+    borderRadius: 20,
+    borderWidth: 2,
+    padding: 14,
+    marginBottom: 14,
+  },
+  verdictIcon: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
   hero: { alignItems: 'center', paddingBottom: 30, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
   close: { position: 'absolute', left: 16, zIndex: 2 },
   ringBg: { padding: 8, borderRadius: 100, backgroundColor: 'rgba(255,255,255,0.12)' },
