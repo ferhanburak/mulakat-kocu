@@ -1,10 +1,10 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { router, useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import { useState, type ReactNode } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Field } from '@/components/AuthForm';
-import { Bar, Button, FadeIn, GradientIcon, Ionicons, T, colors, goBack, shadow, tap, type IconName } from '@/components/ui';
+import { Bar, Button, FadeIn, GradientIcon, Ionicons, T, colors, goBack, resetTo, shadow, tap, type IconName } from '@/components/ui';
 import { findProfession, findTrack, professions } from '@/data/professions';
 import { updateName } from '@/lib/auth';
 import { GOALS, STAGES } from '@/lib/profileOptions';
@@ -61,7 +61,7 @@ export default function ProfileSetup() {
       updateName(account.email, trimmed).catch(() => {});
     }
     if (editing) goBack('/profil');
-    else router.replace('/');
+    else resetTo('/');
   };
 
   const next = () => {

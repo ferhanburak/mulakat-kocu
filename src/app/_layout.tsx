@@ -11,7 +11,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { AchievementToast } from '@/components/AchievementToast';
-import { colors, fonts } from '@/components/ui';
+import { colors, fonts, resetTo } from '@/components/ui';
 import { StoreProvider, useStore } from '@/lib/store';
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
@@ -35,8 +35,7 @@ function AuthGate() {
     if (!session) {
       if (onPublic) return;
       // Signing out drops the whole history, so "back" can't return into the app.
-      if (router.canDismiss()) router.dismissAll();
-      router.replace('/hosgeldin');
+      resetTo('/hosgeldin');
     } else if (!profile && !onPublic && first !== 'profil-kurulum') {
       // Sign-up/sign-in screens route on their own after success.
       router.replace('/profil-kurulum');

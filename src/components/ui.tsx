@@ -71,6 +71,12 @@ export const goBack = (fallback: Href = '/') => {
   else router.replace(fallback);
 };
 
+/** Start a fresh history at `href` (after sign-in or setup, "back" shouldn't return to the forms). */
+export const resetTo = (href: Href) => {
+  if (router.canDismiss()) router.dismissAll();
+  router.replace(href);
+};
+
 export const tap = (style: Haptics.ImpactFeedbackStyle = Haptics.ImpactFeedbackStyle.Light) => {
   if (Platform.OS !== 'web') Haptics.impactAsync(style).catch(() => {});
 };

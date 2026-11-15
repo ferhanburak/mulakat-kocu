@@ -2,7 +2,7 @@ import { router } from 'expo-router';
 import { useRef, useState } from 'react';
 import { Pressable, View } from 'react-native';
 import { AuthScaffold, Field, FormError, type InputRef } from '@/components/AuthForm';
-import { Button, Ionicons, T, colors, notify } from '@/components/ui';
+import { Button, resetTo, Ionicons, T, colors, notify } from '@/components/ui';
 import { AuthError, MIN_PASSWORD, signUp } from '@/lib/auth';
 import { useStore } from '@/lib/store';
 
@@ -25,7 +25,7 @@ export default function SignUp() {
       const account = await signUp({ name, email, password });
       notify(true);
       signedIn(account);
-      router.replace(profile ? '/' : '/profil-kurulum');
+      resetTo(profile ? '/' : '/profil-kurulum');
     } catch (e) {
       notify(false);
       setError(e instanceof AuthError ? e.message : 'Bir şeyler ters gitti, tekrar dene.');
