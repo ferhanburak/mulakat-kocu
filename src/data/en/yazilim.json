@@ -1,0 +1,185 @@
+{
+  "backend-1": { "title": "Fundamentals", "q": [
+    ["What is a REST API? Can you explain the difference between GET and POST?",
+      ["HTTP / resources: http, resource, endpoint, url", "Statelessness: stateless", "GET reads: get, read, fetch, retriev", "POST creates: post, create, submit, send", "Idempotency: idempotent, repeat"],
+      "REST is a stateless architectural style that identifies resources by URL and acts on them with HTTP methods. GET reads data, has no side effects and is idempotent; POST creates a new resource, and calling it again can create another record."],
+    ["A database query is running slowly. How do you diagnose and speed it up?",
+      ["Measure first: measure, explain, profil, log", "Indexes: index", "N+1 / extra queries: n+1, unnecessary, join", "Caching: cache"],
+      "First I check the query plan with EXPLAIN and measure whether there is a full table scan. I add indexes on filtered columns and merge N+1 queries into joins. I cache frequently read data and measure the timing again."]
+  ]},
+  "backend-2": { "title": "Architecture", "q": [
+    ["How do you choose between a monolith and a microservices architecture?",
+      ["Team / scale: team, scale, size", "Independent deploys: independent, deploy", "Operational cost: complex, operation, network, monitor", "Gradual migration: start with a monolith, modular, gradual, increment"],
+      "With a small team at an early stage I start with a modular monolith. As the team grows and domains become clear, I split out the parts that need independent deploys and scaling into services, accounting for the cost of network, monitoring and operational complexity."],
+    ["How would you add rate limiting to an API?",
+      ["Algorithm: token bucket, sliding, window", "Shared counter: redis, central, memory", "Limit per identity: user, ip, api key", "Correct response: 429, retry-after"],
+      "I use a token bucket or sliding window algorithm and keep the counters in a central store such as Redis. I apply limits per user or API key, and when the limit is exceeded I return 429 with a Retry-After header."]
+  ]},
+  "backend-3": { "title": "System Design", "q": [
+    ["How would you design a URL shortener that handles 10 million requests a day?",
+      ["Requirements: requirement, read, write, ratio", "ID generation: hash, base62, id", "Data store: database, key-value, nosql, table", "Caching: cache, redis", "Scaling: scale, load balanc, replica, shard"],
+      "First I clarify the read/write ratio. I generate the short code with a counter plus base62. I store the mappings in a key-value store and cache popular links in Redis. I scale with stateless services behind a load balancer and read replicas."],
+    ["What is the difference between replication and sharding?",
+      ["Replication: copy, replica, read", "Sharding: split, partition, shard, write", "Consistency: consisten, delay, lag", "Shard key: key"],
+      "Replication keeps copies of the same data; it improves read scale and durability, but replication lag affects consistency. Sharding splits data into pieces by a key; it improves write scale, and choosing a good shard key is critical."]
+  ]},
+  "frontend-1": { "title": "Fundamentals", "q": [
+    ["What happens from typing a URL into the browser until the page loads?",
+      ["DNS: dns", "Connection / request: http, request, tcp, tls", "DOM / CSSOM: dom, cssom, pars", "Rendering: render, paint, layout"],
+      "First DNS resolves the domain to an IP, a TCP/TLS connection is opened and the HTTP request is sent. The returned HTML is parsed into the DOM and the CSS into the CSSOM; together they form the render tree, and layout and paint draw the page."],
+    ["What are the differences between let, const and var in JavaScript?",
+      ["Scope: block, scope, function", "Hoisting: hoist", "Reassignment: reassign, change", "const and objects: object, reference"],
+      "var is function-scoped and hoisted as undefined. let and const are block-scoped. const cannot be reassigned, but the contents of an object it holds can change, because only the reference is constant."]
+  ]},
+  "frontend-2": { "title": "React & Performance", "q": [
+    ["A React app has become slow. How do you improve its performance?",
+      ["Measure: profiler, measure, devtools", "Unnecessary renders: render, memo, usememo, usecallback", "Code splitting: lazy, code splitting, split", "Long lists: virtual, list"],
+      "First I use the React Profiler to find which components re-render unnecessarily. I cut those renders with memo, useMemo and useCallback. I split routes with lazy loading and virtualize long lists."],
+    ["What do you pay attention to for web accessibility (a11y)?",
+      ["Semantic HTML: semantic, button, label", "Alt text: alt", "Keyboard use: keyboard, focus, tab", "Color contrast: contrast, color", "ARIA: aria"],
+      "I use semantic HTML (a button instead of a div) and add alt text to images. I check that everything works with the keyboard and a visible focus. I watch color contrast and add ARIA labels where needed."]
+  ]},
+  "frontend-3": { "title": "Architecture", "q": [
+    ["What are the Core Web Vitals and how do you improve them?",
+      ["LCP: lcp, largest", "INP: inp, interaction", "CLS: cls, shift", "Optimization: image, lazy, cdn, cache"],
+      "LCP is how long the largest content takes to load, INP is how quickly the page responds to interaction, and CLS is unexpected layout shift. I improve LCP by optimizing images and serving them from a CDN, INP by freeing up the main thread, and CLS by giving images explicit sizes."],
+    ["How would you structure state management in a large frontend project?",
+      ["Server state: server state, react query, swr, server", "Local state: local, component", "Global store: redux, zustand, context, global", "Avoid needless globals: only when, minimum, only"],
+      "I manage server data separately with a tool like React Query. I keep component-specific state local. For the few pieces of state that are truly shared I use Zustand or Context, and I avoid putting everything in a global store."]
+  ]},
+  "mobil-1": { "title": "Fundamentals", "q": [
+    ["Can you compare native and cross-platform (React Native, Flutter) development?",
+      ["Performance: performance, speed", "Single codebase: single code, shared code, both platforms", "Native API access: native, module, api", "Team / cost: cost, team, time"],
+      "Native gives the best performance and full access to platform APIs, but needs two separate codebases. Cross-platform ships to both platforms from one codebase, saving time and team cost; very specific native needs may require writing a module."],
+    ["Can you explain the mobile app lifecycle?",
+      ["Foreground / background: background, foreground", "Saving state: save, state, persist", "Killed by the system: terminat, kill, memory"],
+      "An app moves between foreground, background and suspended states. When it goes to the background I save important state, because the OS may terminate it to free memory; when the user returns I restore that state."]
+  ]},
+  "mobil-2": { "title": "App Architecture", "q": [
+    ["The app must also work offline. How would you design it?",
+      ["Local storage: sqlite, local, cache", "Sync queue: queue, sync", "Conflict resolution: conflict, last write", "Status for the user: offline, notify, status"],
+      "I keep data locally in a store such as SQLite. Changes made offline go into a queue and are synced with the server when the connection returns. I define a clear rule for conflicts and show the user that they are offline."],
+    ["The app's startup time is slow. What do you look at?",
+      ["Measure: measure, profil, trace", "Work at startup: startup, defer, lazy", "Bundle size: size, bundle", "Images: image"],
+      "First I measure startup with a profiling tool. I defer work that isn't needed at launch (analytics, loading large data) and lazy-load screens. I reduce the bundle size and optimize large images."]
+  ]},
+  "mobil-3": { "title": "Release & Security", "q": [
+    ["What is your release and versioning strategy for publishing to the app stores?",
+      ["Staged rollout: staged, gradual, percent", "Crash monitoring: crash, sentry, crashlytics", "Forced update: forced, minimum version, force", "Over-the-air updates: ota, over-the-air, remote update"],
+      "I roll out a new version gradually to a small percentage of users first and watch the crash rate with Crashlytics or Sentry. I use a minimum version with forced updates for critical bugs, and OTA updates for small fixes."],
+    ["How do you secure a mobile app?",
+      ["Secure token storage: keychain, keystore, secure stor", "HTTPS / pinning: https, pinning, certificate", "Sensitive data: sensitive, encrypt, log", "Secret keys: key, server"],
+      "I store tokens in the Keychain/Keystore and protect all traffic with HTTPS, plus certificate pinning where needed. I never log sensitive data and I encrypt it. Secret API keys are not embedded in the app; they stay on the server."]
+  ]},
+  "fullstack-1": { "title": "Fundamentals", "q": [
+    ["How would you build a user login system end to end?",
+      ["Password hashing: hash, bcrypt, argon", "Session / token: session, jwt, token, cookie", "HTTPS: https", "Form validation: form, validat"],
+      "I store passwords hashed with bcrypt or argon2. After login I manage the session with an httpOnly cookie or a short-lived JWT. All traffic goes over HTTPS, and I validate the form on both the client and the server."],
+    ["What is CORS and why do we get a \"CORS error\"?",
+      ["Origin: origin, domain", "Browser security: browser, security", "Preflight / headers: preflight, options, header", "Allowed on the server: server, allow, permi"],
+      "The browser restricts requests to a different origin for security. If the server doesn't return the right Access-Control-Allow-Origin headers, the browser blocks the response. Sometimes an OPTIONS preflight request goes first; the fix is to allow the correct origins on the server."]
+  ]},
+  "fullstack-2": { "title": "Feature Development", "q": [
+    ["How do you plan a new feature from the database to the UI?",
+      ["Data model: table, schema, model, migration", "API contract: api, endpoint, contract", "UI: interface, ui, screen, component", "Testing: test"],
+      "First I design the data model and the migration, then agree the API contract with the frontend. I build the endpoints and UI components in parallel and write tests for each layer."],
+    ["How do you implement pagination?",
+      ["Offset: offset, limit", "Cursor: cursor", "Performance: performance, large, index", "UI: infinite, page number"],
+      "For small data offset/limit is enough. For large, constantly changing data I use cursor-based pagination, because offset gets slower as it grows. I make sure the sort column is indexed and choose infinite scroll or page numbers in the UI."]
+  ]},
+  "fullstack-3": { "title": "Technical Leadership", "q": [
+    ["You are starting a project from scratch. How do you choose the technologies?",
+      ["Requirements: requirement, need", "Team skills: team, knowledge, experience", "Ecosystem: community, ecosystem, librar", "Scale / cost: scale, cost"],
+      "First I clarify the requirements and the expected scale. I prefer technologies the team knows, with a strong ecosystem and community. I weigh cost and long-term maintenance, and justify the decision in a short document."]
+  ]},
+  "devops-1": { "title": "Fundamentals", "q": [
+    ["What is CI/CD and what steps does a pipeline have?",
+      ["Continuous integration: integration, ci", "Build / test: build, test, compile", "Deploy: deploy, release, ship", "Automation: automat"],
+      "CI means every change is automatically built, tested and integrated into the main branch; CD means passing builds are automatically deployed to environments. A typical pipeline: build, unit tests, static analysis, image build and deploy."],
+    ["What is the difference between a container and a virtual machine?",
+      ["Shared kernel: kernel, operating system", "Lightweight: light, fast, size", "Isolation: isolat", "Docker / images: docker, image"],
+      "A virtual machine runs its own operating system, while a container shares the host's kernel. That makes containers much lighter and faster to start, but their isolation is not as strong as a VM's. Docker images package an app together with its dependencies."]
+  ]},
+  "devops-2": { "title": "Deploy & Orchestration", "q": [
+    ["How do you deploy with zero downtime?",
+      ["Blue-green: blue, green", "Canary / rolling: canary, rolling, gradual", "Health checks: health", "Rollback: roll back, rollback", "Compatible migrations: migration, backward compatible"],
+      "With a rolling or blue-green deploy I bring up the new version while the old one is still running, and shift traffic once health checks pass. With a canary I first expose it to a small share of traffic. I keep database changes backward compatible and have a fast rollback plan."],
+    ["A pod in Kubernetes keeps restarting. What do you do?",
+      ["Logs: log", "Events: describe, event", "Resource limits: oom, memory, limit, resource", "Probe settings: probe, liveness, readiness"],
+      "First I look at the previous container's logs and at the events with kubectl describe. If it was OOMKilled I check the memory limit and look for a leak. I check whether the liveness probe is too aggressive and whether a config or secret is missing."]
+  ]},
+  "devops-3": { "title": "Reliability", "q": [
+    ["How do you build a good monitoring and alerting system?",
+      ["Metrics / logs / traces: metric, log, trace", "SLOs: slo, sli, target", "Alert fatigue: noise, fatigue, threshold", "Runbooks / on-call: runbook, on-call, rota"],
+      "I collect metrics, logs and traces together. I set SLOs for the SLIs that affect users and tie alerts to SLO breaches. I clean up noisy alerts to avoid alert fatigue, and every alert has a runbook and a clear on-call process."],
+    ["What are the benefits of managing infrastructure as code (IaC)?",
+      ["Tools: terraform, pulumi, cloudformation, ansible", "Repeatability: repeat, same, identical", "Versioning / review: git, version, review", "Drift: drift"],
+      "With tools like Terraform the infrastructure is defined in code, so environments are repeatable and identical. Changes are versioned in Git and go through review. Drift caused by manual changes can be detected and fixed."]
+  ]},
+  "test-1": { "title": "Fundamentals", "q": [
+    ["Can you explain the test pyramid?",
+      ["Unit tests: unit", "Integration tests: integration", "End-to-end tests: end to end, e2e, ui", "Ratio / cost: few, many, cost, speed"],
+      "At the base are many fast, cheap unit tests; in the middle, integration tests that check services work together; at the top, a few slow and expensive end-to-end tests. Going up, the number of tests drops and the cost rises."],
+    ["What should a good bug report contain?",
+      ["Steps to reproduce: step, reproduc", "Expected / actual: expected, actual", "Environment: environment, version, device, browser", "Evidence: screenshot, video, log", "Priority: priority, severity"],
+      "A short, clear title, steps to reproduce, the expected and actual result, environment details (version, device, browser), evidence such as a screenshot or log, and the severity."]
+  ]},
+  "test-2": { "title": "Test Design", "q": [
+    ["How do you come up with test scenarios for a login form?",
+      ["Positive cases: valid, correct", "Negative cases: invalid, wrong, empty", "Boundary values: boundary, long, character", "Security: sql, injection, brute, lock"],
+      "Successful login with valid details; negative cases such as a wrong password or empty fields; boundary values such as the maximum length; and security cases such as SQL injection attempts and locking the account after many failed attempts."],
+    ["Which tests do you automate and which do you leave manual?",
+      ["Regression: regression, repeat", "Stable flows: stable, unchanging", "Exploratory testing: explorat, manual", "Maintenance cost: cost, maintenance"],
+      "I automate frequently repeated regression tests and stable, critical flows. I leave frequently changing UIs and exploratory testing manual. I compare the maintenance cost of automation with the time it saves."]
+  ]},
+  "test-3": { "title": "Quality Strategy", "q": [
+    ["How do you deal with flaky tests (ones that sometimes pass and sometimes fail)?",
+      ["Root cause: root cause, cause", "Timing issues: wait, timing, sleep", "Test data isolation: isolat, data, independent", "Quarantine: quarantine, flag"],
+      "I quarantine the flaky test so it doesn't block the pipeline, but I always find the root cause. Usually the fix is waiting on a condition instead of a fixed sleep, and isolated test data instead of data shared between tests."],
+    ["How do you set up your quality strategy before a release?",
+      ["Risk-based approach: risk, priorit", "Acceptance criteria: acceptance, criteria", "Smoke / regression: smoke, regression", "Metrics: defect rate, coverage, metric"],
+      "I set test priorities based on the risk of the changes. I verify each feature's acceptance criteria and run automated regression and post-release smoke tests. I base the release decision on metrics such as defect rate and coverage."]
+  ]},
+  "veri-muh-1": { "title": "Fundamentals", "q": [
+    ["What is the difference between ETL and ELT?",
+      ["When transformation happens: before, after, transform", "Data warehouse: warehouse", "Scalability: scale, compute", "Tools: dbt, airflow, spark"],
+      "In ETL, data is transformed in a separate layer before it is loaded. In ELT, raw data is loaded into the warehouse first and transformed there using the warehouse's compute (for example with dbt). With modern cloud warehouses ELT is more flexible and scalable."],
+    ["What is a window function in SQL? Can you give an example?",
+      ["OVER / PARTITION: over, partition", "Calculating without grouping: row, without group", "Example functions: row_number, rank, lag, sum", "Concrete example: for example"],
+      "A window function calculates over a window of rows without collapsing them into groups. For example, ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date) numbers each customer's orders, and LAG lets me look at the previous order."]
+  ]},
+  "veri-muh-2": { "title": "Data Pipelines", "q": [
+    ["When do you choose batch processing and when streaming?",
+      ["Latency needs: latency, real time, instant", "Cost / complexity: cost, complex", "Tools: kafka, spark, flink", "Example scenario: for example, report, fraud"],
+      "For latency-tolerant work such as daily reports, batch is simpler and cheaper. Work that needs an instant response, such as fraud detection, requires streaming with Kafka and Flink, which is more complex and costly."],
+    ["How do you ensure data quality?",
+      ["Validation tests: test, validat, check", "Schema checks: schema", "Null / duplicate checks: null, duplicate", "Monitoring / alerts: monitor, alert"],
+      "I add automated tests at every stage of the pipeline: schema compatibility, null and duplicate checks, row counts and value ranges. When tests fail they raise an alert, and I don't pass broken data downstream."]
+  ]},
+  "veri-muh-3": { "title": "System Design", "q": [
+    ["Design a data pipeline for millions of events a day.",
+      ["Ingestion: kafka, queue, collect, ingest", "Storage: data lake, s3, warehouse", "Processing: spark, batch, stream", "Orchestration: airflow, orchestrat", "Partitioning: partition"],
+      "I collect events with Kafka and write the raw data to a data lake such as S3, partitioned by date. I process it with Spark and load it into the warehouse, orchestrating the flow with Airflow. For real-time needs I add a separate streaming branch."]
+  ]},
+  "siber-1": { "title": "Fundamentals", "q": [
+    ["What is the CIA triad (confidentiality, integrity, availability)? Can you give an example of each?",
+      ["Confidentiality: confidential, unauthori, encrypt", "Integrity: integrity, modif, hash", "Availability: availab, ddos, outage", "Examples: for example"],
+      "Confidentiality means only authorized people can see the data (for example encryption). Integrity means the data isn't changed without authorization (for example verifying with a hash). Availability means the system can be used when needed (for example DDoS protection)."],
+    ["What is SQL injection and how do you prevent it?",
+      ["Definition: user input, query, inject", "Parameterized queries: parameter, prepared", "Input validation: validat, filter", "Least privilege: privilege, least"],
+      "It's when user input is inserted directly into an SQL query so an attacker can change the query. It's prevented with parameterized (prepared) queries or an ORM; input is also validated and the database user gets the least privilege it needs."]
+  ]},
+  "siber-2": { "title": "Application Security", "q": [
+    ["Which OWASP Top 10 vulnerabilities do you know, and how do you prevent them?",
+      ["Injection: injection", "Authentication failures: authentication, session, login", "Access control: access control, authoriz, idor", "XSS: xss, script", "Mitigations: validat, encod, updat"],
+      "For example injection (prevented with parameterized queries), broken access control (checking permissions on the server for every request), XSS (encoding output, CSP) and weak authentication (MFA, secure session handling). Keeping dependencies up to date is also an important item on the list."],
+    ["An employee clicked a suspicious phishing email. What do you do?",
+      ["Isolation: isolat, disconnect, quarantine", "Credential reset: password, reset, session", "Investigation: log, investigat, trace", "Reporting / awareness: report, training, awareness"],
+      "I isolate the device from the network, reset the user's password and end their open sessions. I review the logs to see what the attacker accessed and find others who received the same email. Then I report the incident and prevent a repeat with awareness training."]
+  ]},
+  "siber-3": { "title": "Incident Response", "q": [
+    ["Ransomware has been detected on a server. What is your response plan?",
+      ["Containment: isolat, contain, spread", "Scoping: scope, affected, identif", "Recovery: backup, restore, recover", "Communication / legal: notify, legal, management, regulat", "Root cause: root cause, lesson, vulnerab"],
+      "First I isolate the affected systems to stop the spread. I determine the scope and the entry point and plan a restore from clean backups. I inform management and, where required, the relevant authorities under data protection law. Finally I close the root cause and add the lessons to our process in a post-incident report."]
+  ]}
+}

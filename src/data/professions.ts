@@ -5,11 +5,13 @@ import { egitim, saglik } from './catalog/kamu';
 import { elektrik, endustri, insaat, makine } from './catalog/muhendislik';
 import { hukuk, psikoloji } from './catalog/sosyal';
 import { yazilim } from './catalog/yazilim';
+import { onLangChange, type Lang } from '@/lib/i18n';
 import { sharedBehaviouralTexts, type Profession, type Question, type Track, type Unit } from './build';
+import { localizeCatalog } from './en';
 
 export type { Level, Profession, Question, QuestionKind, Track, Unit } from './build';
 
-export const professions: Profession[] = [
+const TR_CATALOG: Profession[] = [
   genel,
   yazilim,
   veri,
@@ -29,6 +31,15 @@ export const professions: Profession[] = [
   psikoloji,
   hukuk,
 ];
+
+const catalogs: Partial<Record<Lang, Profession[]>> = { tr: TR_CATALOG };
+const catalogFor = (lang: Lang) => (catalogs[lang] ??= localizeCatalog(TR_CATALOG));
+
+/**
+ * The catalogue in the current app language. Same ids in every language, so saved
+ * progress keeps working when the language changes. Swapped in place on change.
+ */
+export const professions: Profession[] = [...TR_CATALOG];
 
 export const findProfession = (id: string) => professions.find((p) => p.id === id);
 
@@ -55,20 +66,24 @@ export const allUnits = (p: Profession) => p.tracks.flatMap((t) => t.units);
 export type QuestionRef = { profession: Profession; track: Track; unit: Unit; question: Question };
 
 const questionIndex = new Map<string, QuestionRef>();
-for (const profession of professions)
-  for (const track of profession.tracks)
-    for (const unit of track.units)
-      for (const question of unit.questions) questionIndex.set(question.id, { profession, track, unit, question });
+/** Pool for the daily question: every profession-specific question, skipping the behavioural ones that repeat across units. */
+let dailyPool: QuestionRef[] = [];
+
+function rebuildIndex() {
+  questionIndex.clear();
+  for (const profession of professions)
+    for (const track of profession.tracks)
+      for (const unit of track.units)
+        for (const question of unit.questions) questionIndex.set(question.id, { profession, track, unit, question });
+  dailyPool = [...questionIndex.values()].filter((r) => !sharedBehaviouralTexts.has(r.question.text));
+}
+
+onLangChange((lang) => {
+  professions.splice(0, professions.length, ...catalogFor(lang));
+  rebuildIndex();
+});
 
 export const findQuestion = (questionId: string) => questionIndex.get(questionId);
-
-/**
- * Pool for the daily question: every profession-specific question, skipping the
- * behavioural ones that repeat across units.
- */
-const dailyPool = [...questionIndex.values()].filter(
-  (r) => !sharedBehaviouralTexts.has(r.question.text),
-);
 
 /** Same question for everyone on a given day (FNV-1a hash of the date key). */
 export function dailyQuestion(day: string): QuestionRef {

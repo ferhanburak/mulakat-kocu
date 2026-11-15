@@ -1,0 +1,68 @@
+{
+  "banka-mt-1": { "title": "Fundamentals", "q": [
+    ["What happens in the economy and in banking when the central bank raises interest rates?",
+      ["Cost of credit: loan, credit, interest, expensive", "Demand / inflation: demand, inflation, consumption", "Deposits: deposit, saving", "Exchange rate effect: exchange rate, currency, capital inflow", "Bank profitability: margin, net interest, profitab"],
+      "When the policy rate rises, borrowing costs go up and loan demand falls; this aims to slow consumption and bring inflation down. Higher deposit rates make saving more attractive. Foreign capital inflows can ease pressure on the currency. For banks, the net interest margin changes depending on how quickly deposit and loan pricing adjusts."],
+    ["What are the main items on a bank's balance sheet?",
+      ["Loans: loan", "Deposits: deposit", "Equity: equity, capital", "Securities / liquidity: securit, liquidity, cash", "Capital adequacy: capital adequacy, risk"],
+      "On the asset side the largest item is loans, along with securities and liquid assets. On the liability side the largest source is deposits, plus other funding and equity. The ratio of equity to risk-weighted assets shows capital adequacy."]
+  ]},
+  "banka-mt-2": { "title": "Case & Group Exercise", "q": [
+    ["A branch lends less than its competitors in the region. How would you analyze why?",
+      ["Comparing data: data, compar, market share", "Customer segment: segment, sme, retail", "Process / approval time: approval time, process, speed", "Pricing: interest, pric", "Action plan: action, campaign, visit"],
+      "First I compare the branch's loan volume, customer count and market share with the region and competitors. I break it down by product and customer segment to see where the gap is. I separate causes such as approval times and pricing. Based on the findings I propose an action plan with targeted customer visits and process improvements."]
+  ]},
+  "banka-kredi-1": { "title": "Credit Assessment", "q": [
+    ["What do you look at when lending to a company?",
+      ["Financial statements: balance sheet, income statement, cash flow", "Repayment capacity: repay, cash, debt service", "Leverage / ratios: debt, ratio, leverage, liquidity", "Collateral: collateral, mortgage, guarantee", "Sector / management: sector, industry, management, background"],
+      "First I use the financial statements to examine the company's profitability, debt and liquidity. The key question is whether its cash flow can repay the loan. I assess sector risk, the track record of the owners and management, and credit intelligence. Collateral is a secondary safeguard and shouldn't be the basis of the lending decision."]
+  ]},
+  "banka-kredi-2": { "title": "Risk Case", "q": [
+    ["A company you lent to has started paying late. What do you do?",
+      ["Early warning: early warning, late, monitor", "Meeting the customer: meet, why, visit", "Restructuring: restructur, term, plan", "Collateral / legal action: collateral, legal, enforce"],
+      "I take the early warning signal seriously and meet the company right away to understand whether the delay is temporary or lasting. I review the latest financials and cash flow. If the problem is temporary I propose a suitable restructuring plan. If it's lasting I review the collateral and, if needed, start legal proceedings."]
+  ]},
+  "banka-musteri-1": { "title": "Branch Fundamentals", "q": [
+    ["How would you offer a new credit card to a customer who comes into the branch?",
+      ["Understanding the need: need, question, habit", "Suitable product: suit, advantage, campaign", "Transparency: fee, interest, transparen", "Consent / no pressure: without pressure, pressure"],
+      "First I ask questions to understand the customer's spending habits and needs. I highlight the benefits that suit them, such as instalments or points campaigns. I explain costs such as the annual fee and interest transparently. I leave the decision to the customer and don't pressure them."]
+  ]},
+  "banka-musteri-2": { "title": "Difficult Situations", "q": [
+    ["An angry customer says there were unauthorized transactions on their card. What do you do?",
+      ["Calm reception: calm, empath, listen", "Blocking the card: block, cancel, freeze", "Dispute process: dispute, chargeback, record", "Keeping them informed: time, inform, follow up"],
+      "I listen calmly and show that I understand their concern. First I block the card immediately to stop any new transactions. I open a dispute for the suspicious transactions and clearly explain how long the process will take and what happens next. I keep the customer informed throughout."]
+  ]},
+  "kabin-1": { "title": "Fundamentals", "q": [
+    ["Why do you want to become a flight attendant?",
+      ["Guest focus: guest, passenger, service", "Safety awareness: safety, security", "Personal fit: people, communicat, team, flexib", "Concrete example: for example, experience"],
+      "I enjoy communicating with people and giving them a good experience; for example, I won a customer satisfaction award in my previous job. I know the role isn't only about service but first of all about being responsible for passengers' safety. I adapt well to irregular hours and teamwork."],
+    ["During a flight a passenger refuses to fasten their seat belt. What do you do?",
+      ["Polite reminder: polite, kind, explain", "Reason: safety, rule, turbulence", "Step-by-step escalation: again, senior, captain", "Other passengers: other passenger, calm"],
+      "First I politely explain to the passenger why the seat belt is mandatory and that it's for their safety. If they insist, I keep a calm tone and remind them of the rule again. If they still refuse, I report it to the senior cabin crew member, and the captain is informed if needed. Meanwhile I make sure not to disturb the other passengers."]
+  ]},
+  "kabin-2": { "title": "Crisis Situations", "q": [
+    ["A passenger becomes ill during the flight. What do you do?",
+      ["Assessing the situation: assess, conscious, breath", "Informing the crew and captain: crew, captain, inform", "Calling for medical staff: doctor, medical, announce", "First aid: first aid, oxygen, kit", "Documentation: record, report"],
+      "First I assess the passenger's consciousness and breathing and start first aid in line with my training. I inform my crew and the captain immediately. If needed, an announcement asks whether there is a doctor or medical professional on board, and oxygen and first aid kits are used. I report the incident according to procedure."]
+  ]},
+  "pilot-1": { "title": "Fundamentals", "q": [
+    ["What is CRM (Crew Resource Management) and why is it important?",
+      ["Definition: crew resource management, crm", "Communication: communicat, open, speak up", "Decision making: decision, situational awareness", "Human error: human error, accident"],
+      "CRM is an approach that helps the crew use all available resources effectively in the cockpit and cabin. It covers open communication, sharing the workload, situational awareness and joint decision making. Because human error plays a part in most accidents, CRM is one of the cornerstones of flight safety."]
+  ]},
+  "pilot-2": { "title": "Decision Making", "q": [
+    ["You think the captain is making a wrong decision. What do you do?",
+      ["Speaking up: say, speak up, voice", "Respectful but clear: respect, clear", "Relying on information: data, indicator, instrument, procedure", "Escalating: again, insist, safety"],
+      "I raise my concern respectfully but clearly, based on the indicators I see and the procedure. If the captain doesn't respond, I repeat it more directly. If safety is directly at risk I insist, following CRM principles; hierarchy must never come before safety."]
+  ]},
+  "otel-1": { "title": "Guest Relations", "q": [
+    ["How do you handle a guest who has a reservation but there's no room available?",
+      ["Apology and ownership: apolog, responsib, ownership", "Quick solution: alternative, upgrade, another hotel", "Compensation: compensat, complimentary, discount", "Follow-up: follow up, manager"],
+      "First I sincerely apologize and take ownership of the problem. I offer an alternative right away: a higher category room or, if that's not possible, a nearby partner hotel with transport. I offer compensation for the inconvenience, such as a complimentary service or a discount. I follow up with the guest together with the manager so they leave satisfied."]
+  ]},
+  "otel-2": { "title": "Operations", "q": [
+    ["The cleanliness score in guest reviews is falling. What do you do?",
+      ["Data analysis: review, score, analy", "Root cause: root cause, staff, time, inspect", "Working with the department: housekeeping, team", "Monitoring: checklist, track, measure"],
+      "First I analyze the reviews to see which rooms and issues the complaints concentrate on. With the housekeeping team I discuss root causes, such as staffing levels or time per room. I introduce a checklist and random inspections and track the scores weekly."]
+  ]}
+}

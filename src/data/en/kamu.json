@@ -1,0 +1,68 @@
+{
+  "sinif-ogretmeni-1": { "title": "Classroom Management", "q": [
+    ["How do you deal with a student who keeps talking and disrupting the lesson?",
+      ["Preventive rules: rule, classroom rules, from the start", "Positive approach: positive, reinforc, praise", "One-to-one talk: one to one, one-on-one, why, talk", "Giving a role / responsibility: task, role, responsib", "Working with parents: parent, family"],
+      "I make sure the class rules were set together with the students from the start. I use silent cues such as eye contact or moving closer, without stopping the lesson. After class I talk to the student one to one to understand why. I give them a task in class to channel their energy positively and reinforce good behaviour. If it continues, I work with the parents."],
+    ["How do you support students who learn at different speeds in the same lesson?",
+      ["Differentiated instruction: differentiat, level", "Group work: group, peer", "Extra support: support, review, extra activit", "Assessment: assess, observ, measure"],
+      "I use differentiated instruction: students reach the same objective through activities at different levels of difficulty. I set up mixed-level groups for peer learning. Fast learners get enrichment activities, and those who struggle get extra review and support. I track progress with regular observation and short assessments."]
+  ]},
+  "sinif-ogretmeni-2": { "title": "Communicating with Parents", "q": [
+    ["A parent unhappy with their child's grade complains harshly. What do you do?",
+      ["Calm listening: listen, calm, empath", "Concrete data: homework, exam, test, observ, data", "Joint plan: together, plan, home", "Follow-up: follow up, meeting"],
+      "I listen calmly to the parent until they finish and show that I understand their concern. I share concrete information based on the student's homework, tests and classroom observations. Together we create a support plan for school and home. I meet again a few weeks later to follow up on progress."]
+  ]},
+  "brans-ogretmeni-1": { "title": "Lesson Planning", "q": [
+    ["What goes into an effective lesson plan?",
+      ["Learning objectives: objective, outcome, goal", "Opening / hook: opening, hook, attention, prior knowledge", "Activities: activit, practice, active", "Assessment: assess, evaluat, question", "Closing: summar, closing, homework"],
+      "First I set clear learning objectives. I open with a hook that activates students' prior knowledge. In the main part I plan activities where students are active. During the lesson I check learning with short questions. I close with a summary and suitable homework."]
+  ]},
+  "brans-ogretmeni-2": { "title": "Motivation", "q": [
+    ["How do you motivate a class with very low interest in your subject?",
+      ["Understanding interests: interest, why, survey", "Link to everyday life: everyday life, real, example", "Active methods: game, project, group, active", "Experience of success: success, small goal, feedback"],
+      "First I use a short survey or conversation to learn what interests the students and why they're disengaged. I connect topics to real-life examples. I use active methods such as gamification, projects and group work. With small, achievable goals I give them an experience of success and positive feedback."]
+  ]},
+  "dil-ogretmeni-1": { "title": "Language Teaching", "q": [
+    ["How do you develop students' speaking skills?",
+      ["Communicative approach: communicative", "Pair / group work: pair, group", "Safe environment: mistake, without fear, safe", "Real tasks: role, task, drama"],
+      "With a communicative approach I give a large part of the lesson to student talk. Pair and group work increases everyone's speaking time. I create a safe environment where they're not afraid of making mistakes. Role-plays and real-life tasks let them use the language in meaningful contexts."]
+  ]},
+  "hemsirelik-1": { "title": "Patient Care", "q": [
+    ["How do you prioritize when several patients need you at the same time?",
+      ["Life-threatening first: life-threatening, urgent, abc, airway, breathing", "Triage logic: triage, priorit", "Team support: team, help, delegat", "Documentation: record, document, note"],
+      "First I attend to life-threatening situations; airway, breathing and circulation problems always come first. I rank the other patients by urgency. If needed I ask the team for help or delegate suitable tasks. I document everything I do accurately."],
+    ["What do you pay attention to in order to prevent medication errors?",
+      ["The rights of administration: right patient, right drug, right dose, right route, right time", "Identity check: identity, wristband", "Allergy check: allerg", "Documentation: record, document"],
+      "I follow the rights of medication administration: right patient, right drug, right dose, right route, right time and right documentation. I verify the patient's identity with their wristband and check their allergy history. If I'm unsure about an order, I always ask before giving it. I document immediately after administering."]
+  ]},
+  "hemsirelik-2": { "title": "Difficult Situations", "q": [
+    ["A patient's relative is very angry about the treatment and is shouting at the staff. What do you do?",
+      ["Staying calm: calm, empath, listen", "Suitable setting: separate, quiet place", "Informing: inform, explain, doctor", "Safety: security, violence, boundar"],
+      "I stay calm and listen to the relative, showing that I understand their worry. I take them to a quiet area where other patients aren't affected. I explain what is within my remit and arrange for them to speak with the doctor if needed. If it turns into verbal or physical violence, I set a boundary and call security."]
+  ]},
+  "eczacilik-1": { "title": "Patient Counselling", "q": [
+    ["How do you counsel a customer asking for an over-the-counter painkiller?",
+      ["Gathering information: complaint, how long, question", "Current medicines / conditions: medication, chronic, pregnan", "Suitable recommendation: dose, suitable, recommend", "Referral: refer to a doctor, warning signs"],
+      "First I ask about the complaint, how long it has lasted and how severe it is. I find out about other medicines they take, chronic conditions, pregnancy and allergies. I recommend a suitable product and explain the correct dose. If it doesn't improve in a few days or there are warning signs, I advise them to see a doctor."]
+  ]},
+  "eczacilik-2": { "title": "Interactions", "q": [
+    ["You notice a serious drug interaction on a prescription. What do you do?",
+      ["Verification: check, source, verif", "Contacting the prescriber: prescriber, physician, doctor, call", "Informing the patient: patient, inform, explain", "Documentation: record, note"],
+      "First I confirm the interaction with reliable sources. Then I contact the prescribing doctor, explain the issue and suggest an alternative drug or dose change. I inform the patient about the process without alarming them. I document the change and the conversation."]
+  ]},
+  "fizyoterapi-1": { "title": "Assessment", "q": [
+    ["How do you assess a new patient who comes in with lower back pain?",
+      ["History taking: history, onset, when", "Red flags: red flag, numbness, bladder", "Physical examination: range of motion, muscle strength, test", "Setting goals: goal, plan"],
+      "First I take a detailed history: when the pain started, what it's like and how it affects daily life. I screen for red flags such as numbness or bladder control problems and refer to a doctor if any are present. I do a physical examination with range of motion, muscle strength and special tests. Based on the findings I set measurable goals and a treatment plan together with the patient."]
+  ]},
+  "fizyoterapi-2": { "title": "Motivation", "q": [
+    ["The patient isn't doing their home exercises and progress has stalled. What do you do?",
+      ["Understanding why: why, barrier, time", "Simplifying the program: short, simple, simplif", "Tracking tools: calendar, video, reminder", "Link to goals: goal, show progress"],
+      "First I try to understand why they can't do the exercises, for example barriers like time, pain or not understanding them. I shorten and simplify the program so it fits their daily routine. I give support such as videos and reminders. I boost their motivation by showing their personal goal and the progress they've made."]
+  ]},
+  "diyetisyen-1": { "title": "Client Consultation", "q": [
+    ["How do you run the first session with a new client who wants to lose weight?",
+      ["History: health history, illness, medication", "Eating habits: habit, food intake, meal", "Measurements: measure, height, weight, waist", "Realistic goal: realistic, goal, sustainab"],
+      "First I learn their health history, medications and any conditions. I ask in detail about their meal pattern and eating habits. I take measurements such as height, weight and waist circumference. Together with the client I set sustainable, realistic goals and create a personalized plan."]
+  ]}
+}

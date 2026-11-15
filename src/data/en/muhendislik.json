@@ -1,0 +1,137 @@
+{
+  "ie-uretim-1": { "title": "Fundamentals", "q": [
+    ["Can you list the seven types of waste in lean manufacturing that you know?",
+      ["Overproduction: overproduction", "Waiting: waiting", "Transport / motion: transport, motion, movement", "Inventory: inventory, stock", "Defects: defect, scrap"],
+      "Overproduction, waiting, unnecessary transport, overprocessing, excess inventory, unnecessary motion and defects. The lean approach aims to make these steps that add no value for the customer visible and reduce them."],
+    ["What is a bottleneck and how do you identify it?",
+      ["Definition: slowest, capacity, bottleneck", "Detection: waiting, queue, work piles up, measure", "Theory of constraints: constraint, toc", "Improvement: increase capacity, balance"],
+      "A bottleneck is the step with the lowest capacity, which limits the total output of the system. I find it by measuring which station has work piling up in front of it and the highest utilization. Following the Theory of Constraints, I first make full use of that step, then increase its capacity."]
+  ]},
+  "ie-uretim-2": { "title": "Improvement Case", "q": [
+    ["Cycle time on an assembly line is 20% above target. What do you do?",
+      ["Measuring the current state: time study, measure, observ", "Line balancing: balanc, workload, station", "Root cause: root cause, 5 why, fishbone", "Standard work: standard, instruction, smed"],
+      "First I measure each station's times with a time study. If the workload is unbalanced I rebalance the line; if downtime and setup times are high I apply SMED. I find the root causes with the 5 Whys and make the improvement stick with standard work instructions."]
+  ]},
+  "ie-tedarik-1": { "title": "Inventory Management", "q": [
+    ["What are economic order quantity (EOQ) and safety stock?",
+      ["EOQ: eoq, economic order, ordering cost, holding", "Safety stock: safety stock, uncertain, buffer", "Demand / lead time: demand, lead time", "Service level: service level"],
+      "EOQ is the order quantity that minimizes the total of ordering and holding costs. Safety stock is extra stock held against uncertainty in demand and lead time; it is set according to the target service level."]
+  ]},
+  "ie-tedarik-2": { "title": "Demand & Distribution", "q": [
+    ["The demand forecast keeps missing, and you have both stockouts and excess stock. What do you do?",
+      ["Measuring error: mape, error, deviation, measure", "Segmentation: abc, segment, product group", "Method: time series, seasonal, model", "Collaboration: sales, marketing, s&op"],
+      "First I measure forecast error by product with a metric like MAPE. I segment products with ABC/XYZ analysis and choose a suitable method for each group (such as a time series model with seasonality). I bring sales and marketing's campaign information into the forecast through an S&OP process."]
+  ]},
+  "ie-kalite-1": { "title": "Quality Tools", "q": [
+    ["What are control charts (SPC) used for?",
+      ["Process monitoring: monitor, process, over time", "Control limits: control limit, ucl, lcl, sigma", "Special / common cause: special cause, common cause, variation", "Early intervention: early, interven"],
+      "Control charts track a process's variability over time. Points outside the mean ±3 sigma control limits, or abnormal patterns, point to a special cause, so you can intervene before it turns into defective products."]
+  ]},
+  "ie-kalite-2": { "title": "Six Sigma Case", "q": [
+    ["Customer complaints have doubled in two months. How would you proceed with DMAIC?",
+      ["Define: define, problem", "Measure: measure, data", "Analyze: analy, root cause, pareto", "Improve: improve, solution", "Control: control, sustain"],
+      "Define: I clarify the problem and the target. Measure: I classify complaints by type and collect data. Analyze: I find the largest categories with a Pareto chart and the root causes with a fishbone diagram. Improve: I pilot the solutions. Control: I sustain the gains with a control plan and indicators."]
+  ]},
+  "eee-guc-1": { "title": "Fundamentals", "q": [
+    ["What is the difference between active, reactive and apparent power? Why does power factor matter?",
+      ["Active power: active, watt, real power, useful work", "Reactive power: reactive, var, magnetic", "Apparent power: apparent, va", "Power factor: power factor, cos, compensat"],
+      "Active power (W) does real work; reactive power (VAr) oscillates in inductors and capacitors without doing work; apparent power (VA) is their vector sum. A low power factor causes unnecessary current and losses in the lines, which is why power factor correction is used."],
+    ["What protective devices are used in an electrical installation?",
+      ["Fuses / breakers: fuse, breaker, mcb", "Residual current device: residual current, rcd", "Earthing: earth, ground", "Overvoltage: overvoltage, surge"],
+      "Fuses and circuit breakers protect against overcurrent and short circuits, residual current devices protect human life, earthing protects against touch voltage, and surge protectors protect against lightning and overvoltage."]
+  ]},
+  "eee-guc-2": { "title": "Field Case", "q": [
+    ["A breaker keeps tripping in a factory. How do you find the fault?",
+      ["Safety: safety, isolate, lock out", "Measurement: measure, clamp meter, current, insulation", "Load analysis: load, overload, motor", "Logging / repetition: log, record, time, repeat"],
+      "First I follow safety procedures (isolating the power, lockout). I record when it trips and under which load. I measure currents with a clamp meter and insulation with a megger. I distinguish between causes such as overload, a motor with high inrush current or an insulation fault."]
+  ]},
+  "eee-gomulu-1": { "title": "Fundamentals", "q": [
+    ["What is the difference between polling and interrupts?",
+      ["Polling: polling, constantly check, loop", "Interrupts: interrupt, event", "Efficiency: processor, cpu, energy, efficien", "ISR rules: short, isr"],
+      "With polling the processor checks a condition in a loop and wastes time. With an interrupt the hardware signals the processor when the event happens and the ISR runs, which is more efficient and energy friendly. ISRs should be kept short."],
+    ["Can you compare the UART, SPI and I2C protocols?",
+      ["UART: uart, asynchronous", "SPI: spi, fast, chip select", "I2C: i2c, address, two wire", "Where they're used: sensor, display, for example"],
+      "UART is two-wire asynchronous serial communication. SPI is a fast protocol with a clock line that supports multiple devices via chip select. I2C connects many devices over two wires with addressing but is slower. For example, I2C is preferred for sensors and SPI for fast displays."]
+  ]},
+  "eee-gomulu-2": { "title": "Firmware Case", "q": [
+    ["A battery-powered device's battery life is half what was expected. How do you improve it?",
+      ["Current measurement: measure, current, profil", "Sleep modes: sleep, low power", "Peripherals: peripheral, sensor, turn off", "Transmission frequency: transmi, radio, frequen"],
+      "First I measure current consumption in different modes. I put the processor into deep sleep when idle and turn off unused peripherals. I reduce how often the biggest consumers, such as the radio, transmit, and send data in batches."]
+  ]},
+  "eee-haberlesme-1": { "title": "Fundamentals", "q": [
+    ["What is modulation, and what is the difference between AM and FM?",
+      ["Definition: carrier, information, modulat", "AM: amplitude, am", "FM: frequency, fm", "Noise immunity: noise, quality, bandwidth"],
+      "Modulation means loading information onto a high-frequency carrier signal. In AM the carrier's amplitude is varied, in FM its frequency. FM is more resistant to noise but uses more bandwidth."]
+  ]},
+  "eee-haberlesme-2": { "title": "System Case", "q": [
+    ["Packet loss is high on a wireless link. What do you check?",
+      ["Signal strength: signal, rssi, snr", "Interference: interference, channel, noise", "Antenna / distance: antenna, distance, obstacle", "Protocol settings: power, rate, retr"],
+      "First I look at the RSSI and SNR values. I use a spectrum analyzer to check for interference on the same channel and change channel if needed. I review antenna orientation, distance and obstacles, and optimize the transmit power, data rate and retransmission settings."]
+  ]},
+  "me-tasarim-1": { "title": "Fundamentals", "q": [
+    ["Can you explain the stress-strain curve?",
+      ["Elastic region: elastic, hooke, linear", "Yielding: yield", "Tensile strength: tensile strength, ultimate, maximum", "Fracture: fracture, ductil"],
+      "At first stress and strain are linearly proportional (Hooke's law, the elastic region). After the yield point, permanent deformation begins. The peak of the curve is the tensile strength, followed by necking and fracture. The elongation up to fracture shows ductility."],
+    ["What are tolerances and the types of fits?",
+      ["Tolerance: tolerance, deviation, dimension", "Clearance fit: clearance", "Interference fit: interference, press", "Transition fit: transition"],
+      "A tolerance is the acceptable range of deviation for a dimension. Between a shaft and a hole there is a clearance fit, which always leaves a gap, an interference (press) fit, which is always tight, and a transition fit in between. The choice depends on whether the part needs to rotate or stay fixed."]
+  ]},
+  "me-tasarim-2": { "title": "Design Case", "q": [
+    ["A shaft keeps breaking in the field. How do you investigate?",
+      ["Fracture surface analysis: fracture surface, fatigue, beach mark", "Load analysis: load, stress, calculat", "Material checks: material, hardness, heat treatment", "Design improvement: notch, corner, radius, design"],
+      "First I examine the fracture surface; beach marks point to fatigue failure. I calculate the real loads and stresses and look at stress concentrations such as keyways. I check the material and heat treatment, and if needed increase the fillet radii and change the material."]
+  ]},
+  "me-enerji-1": { "title": "Fundamentals", "q": [
+    ["Can you explain the first and second laws of thermodynamics?",
+      ["First law: conservation of energy, first", "Second law: entropy, second", "Efficiency limit: efficien, carnot, 100%", "Direction of heat flow: hot to cold"],
+      "The first law is conservation of energy: energy cannot be created from nothing, only change form. The second law says entropy increases; heat flows spontaneously from hot to cold, and no heat engine can be 100% efficient, the upper limit being the Carnot efficiency."]
+  ]},
+  "me-enerji-2": { "title": "Energy Case", "q": [
+    ["A building's heating costs are very high. What would you recommend for energy efficiency?",
+      ["Loss analysis: loss, thermal camera, analy", "Insulation: insulation, window", "System efficiency: boiler, heat pump, efficien", "Controls: thermostat, automation, schedul", "Payback: payback, cost"],
+      "First I use a thermal camera and consumption data to find where heat is lost. I prioritize recommendations such as insulation and window upgrades, an efficient boiler or heat pump, and a smart thermostat or scheduling by their payback period."]
+  ]},
+  "me-bakim-1": { "title": "Maintenance Strategies", "q": [
+    ["What is the difference between reactive, preventive and predictive maintenance?",
+      ["Reactive: after failure, reactive", "Preventive: periodic, preventive, plan", "Predictive: predictive, vibration, condition monitoring, sensor", "Cost balance: cost, downtime"],
+      "Reactive maintenance happens after a failure. Preventive maintenance is planned at fixed intervals. In predictive maintenance, condition data such as vibration and temperature is monitored so you can intervene before a failure. The right mix balances downtime cost against maintenance cost."]
+  ]},
+  "me-bakim-2": { "title": "Reliability Case", "q": [
+    ["A critical pump fails twice a month. What do you do?",
+      ["Collecting data: failure record, mtbf, data", "Root cause analysis: root cause, rca, 5 why", "Condition monitoring: vibration, temperature, monitor", "Permanent fix: alignment, lubricat, replac"],
+      "From the failure records I work out the MTBF and the failure types. With root cause analysis I investigate causes such as misalignment, cavitation or lubrication. I add vibration monitoring and fix the problem permanently, and if the pump is critical I set up a backup plan."]
+  ]},
+  "ce-yapi-1": { "title": "Fundamentals", "q": [
+    ["What roles do concrete and steel play in reinforced concrete?",
+      ["Concrete in compression: concrete, compression", "Steel in tension: steel, rebar, reinforcement, tension", "Bond: bond, work together", "Concrete cover: cover, corrosion"],
+      "Concrete is strong in compression but weak in tension; the steel reinforcement carries the tensile forces. The two work together thanks to the bond between them. The concrete cover protects the reinforcement against corrosion and fire."],
+    ["What are the basic principles of earthquake-resistant structural design?",
+      ["Ductility: ductil", "Strong column, weak beam: strong column", "Regularity: regular, symmetr, torsion", "Soil effects: soil, ground", "Building codes: code, regulation, standard"],
+      "The basic principles are ductile behaviour, the strong column–weak beam principle, regularity in plan and elevation (avoiding torsion and soft stories), and taking the soil conditions into account. The local seismic building code must be followed; in Turkey this is the Turkish Building Earthquake Code (TBDY)."]
+  ]},
+  "ce-yapi-2": { "title": "Structural Case", "q": [
+    ["Cracks have been found in the columns of an existing building. How do you proceed?",
+      ["On-site inspection: on site, crack, measure", "Material testing: core, concrete strength, test", "Analysis: analy, model, performance", "Strengthening: strengthen, jacket, frp"],
+      "First I examine and record the type, width and location of the cracks. I take core samples to determine the concrete strength and the condition of the reinforcement. I run a performance analysis of the structure and, based on the result, recommend strengthening such as column jacketing or FRP wrapping, or demolition."]
+  ]},
+  "ce-santiye-1": { "title": "Planning", "q": [
+    ["What is the critical path method (CPM)?",
+      ["Activity network: activit, dependenc, network", "Critical path: critical path, longest", "Float: float, slack", "Use: duration, delay, track"],
+      "CPM shows project activities and their dependencies in a network. The longest path from start to finish is the critical path; any delay on it delays the project. Non-critical activities have float."]
+  ]},
+  "ce-santiye-2": { "title": "Site Case", "q": [
+    ["The project is three weeks behind schedule and over budget. What do you do?",
+      ["Situation analysis: analy, cause, critical path", "Acceleration: accelerat, extra crew, shift, crashing", "Cost control: cost, budget, earned value", "Communication: client, employer, report, inform"],
+      "First I analyze the cause of the delay and the critical path. I evaluate options such as speeding up critical tasks with extra crews or shifts, and running work in parallel, along with their cost. I track the budget with earned value analysis and give the client a realistic revised plan."]
+  ]},
+  "ce-geoteknik-1": { "title": "Soil", "q": [
+    ["Why is a site investigation done, and which tests are used?",
+      ["Purpose: bearing capacity, settlement, soil", "Boreholes: borehole, boring, drill", "SPT: spt, standard penetration", "Laboratory: laborator, sample"],
+      "A site investigation determines the soil's bearing capacity, settlement behaviour and groundwater so you can choose the right foundation type. It uses boreholes, field tests such as the SPT, and laboratory tests on the samples taken."]
+  ]},
+  "ce-geoteknik-2": { "title": "Foundation Case", "q": [
+    ["How do you choose a foundation type on weak soil with a high groundwater level?",
+      ["Pile foundation: pile", "Raft foundation: raft, mat", "Ground improvement: improvement, jet grout, inject", "Water control: drainage, water, waterproof"],
+      "If the bearing capacity near the surface is insufficient, you consider a pile foundation that transfers the load to a firm layer, or a raft foundation that spreads the load over a wide area. Alternatively, ground improvement such as jet grouting can be used. Drainage and waterproofing are planned for the groundwater."]
+  ]}
+}

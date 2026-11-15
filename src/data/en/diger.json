@@ -1,0 +1,212 @@
+{
+  "analist-1": { "title": "SQL and Fundamentals", "q": [
+    ["What is the difference between INNER JOIN and LEFT JOIN? When do you use each?",
+      ["INNER matches: match, intersect, both tables", "LEFT keeps all: left, all, null", "Example use: for example, customer, order"],
+      "INNER JOIN returns only the rows that match in both tables. LEFT JOIN returns every row from the left table, with NULLs on the right side when there is no match. For example, I use LEFT JOIN to find customers who have never placed an order."],
+    ["Explain the difference between the mean and the median, and when each can be misleading.",
+      ["Definitions: middle, sum, divid", "Outliers: outlier, extreme", "Skewed distributions: skew, distribution, salary, income"],
+      "The mean is the sum of all values divided by their count; the median is the middle of the sorted data. Outliers pull the mean, so for skewed distributions such as income the median is more representative."]
+  ]},
+  "analist-2": { "title": "Analysis Cases", "q": [
+    ["The app's daily active users dropped 15% last week. How do you analyze it?",
+      ["Validate the data: tracking, data error, validat, verif", "Segmentation: segment, platform, country, breakdown", "External factors: holiday, season, competitor, external", "Internal changes: release, version, campaign, change", "Hypotheses: hypothes, assum"],
+      "First I check that the data is correct, with no tracking error. Then I break the drop down by platform, country and new versus returning users to see where it is concentrated. I form hypotheses about releases, campaigns and holidays and test them with data."],
+    ["How do you make sure an A/B test result is reliable?",
+      ["Sample size: sample, power", "Statistical significance: p-value, p value, significan, confidence interval", "Duration / peeking: duration, early, week, peek", "Random assignment: random"],
+      "Before the test I calculate the required sample size and duration, and I don't stop early after peeking at results. I check that assignment is random and the groups are balanced. I interpret the result with the p-value and confidence interval, together with the business impact."]
+  ]},
+  "analist-3": { "title": "Stakeholder Management", "q": [
+    ["A manager wants a conclusion in the report that the data doesn't support. What do you do?",
+      ["Understand the goal: why, understand, goal", "Show it with data: data, chart, show", "Offer an alternative: alternative, suggest, different", "Honesty: honest, ethic, transparen"],
+      "First I try to understand the manager's real goal. I show clearly, with a chart, what the data says and stay transparent. Then I suggest an alternative story or extra analysis that serves the goal and is supported by the data."]
+  ]},
+  "bi-1": { "title": "Dashboards", "q": [
+    ["How do you design a good dashboard?",
+      ["Audience: user, audience, who", "Few, focused metrics: few, focus, important", "Right chart type: chart, line, bar", "Context / comparison: target, previous, compar"],
+      "First I clarify who will use the dashboard and for which decision. I focus on a few critical metrics, using line charts for trends and bar charts for comparisons. I give each metric context by comparing it with a target or the previous period."],
+    ["What is a star schema?",
+      ["Fact table: fact", "Dimension tables: dimension", "Reporting speed: fast, performance, query", "Example: sales, customer, product"],
+      "A fact table in the middle holds measurable events (for example sales), surrounded by dimension tables that describe them (customer, product, date). It enables fast reporting with simple joins."]
+  ]},
+  "bi-2": { "title": "Data Consistency", "q": [
+    ["The revenue figures in two different reports don't match. How do you investigate?",
+      ["Definition differences: definition, return, tax", "Filters / dates: filter, date, time zone", "Data source: source, table", "Single source of truth: single source, standard, dictionary"],
+      "First I compare how each report defines revenue (are returns and tax included?). I check the date filters and time zone, and which tables feed each report. Finally I tie the metric to a single definition in a shared data dictionary."]
+  ]},
+  "bilimci-1": { "title": "ML Fundamentals", "q": [
+    ["What is overfitting and how do you prevent it?",
+      ["Definition: training, memoriz, generaliz", "Validation: validation, cross", "Regularization: regulariz, l1, l2, dropout", "Data / simpler model: data, simpl"],
+      "Overfitting happens when a model memorizes the training data and can't generalize to new data. I measure it with cross-validation and prevent it with regularization (L1/L2), dropout, a simpler model or more data."],
+    ["Can you explain the difference between precision and recall with an example?",
+      ["Precision: precision", "Recall: recall, sensitiv, catch", "Trade-off: trade, balance, threshold", "Example: for example, spam, cancer, fraud"],
+      "Precision is how many of the cases we call positive are actually positive; recall is how many of the real positives we catch. For example, recall is more critical in cancer screening and precision in a spam filter. The threshold sets this balance."]
+  ]},
+  "bilimci-2": { "title": "Modeling Case", "q": [
+    ["You're going to build a customer churn model. What are your steps?",
+      ["Problem definition: defin, churn, target", "Feature engineering: feature", "Model and evaluation: model, metric, auc", "Business action: action, campaign, business"],
+      "First I define churn precisely (for example, 30 days without activity). I build features such as usage frequency and complaints, and evaluate the model with AUC and precision/recall. The real value comes from tying it to a business action, such as a targeted campaign for at-risk customers."]
+  ]},
+  "pm-1": { "title": "Product Thinking", "q": [
+    ["Pick your favorite app. How would you improve it?",
+      ["User segment: user, segment, persona", "Problem: problem, issue, need", "Proposed solution: feature, solution, propos", "Success metric: metric, measure, rate, kpi"],
+      "I pick a target user segment and define their biggest problem. I prioritize two or three solution ideas by impact and effort. I measure success with something like the weekly repeat-use rate."],
+    ["How do you prioritize a list of features?",
+      ["Framework: rice, moscow, impact, effort", "Link to goals: goal, strategy, okr", "Data / feedback: data, feedback, user"],
+      "First I look at how each item connects to company goals. I score reach, impact, confidence and effort with a framework such as RICE. I validate the scores with user feedback and data, and share the result transparently with stakeholders."]
+  ]},
+  "pm-2": { "title": "Metrics", "q": [
+    ["Which metrics would you use to measure the success of a food delivery app?",
+      ["North star metric: north star, main metric", "Acquisition: acquisition, new user, download", "Retention: retention, repeat", "Revenue / basket: revenue, basket, per order", "Counter-metrics: delivery time, cancel, complaint, satisfaction"],
+      "As the north star I choose completed orders per week. I support it with acquisition, 30-day repeat orders and basket size. To protect quality I track delivery time and cancellation rate as counter-metrics."]
+  ]},
+  "pm-3": { "title": "Strategy", "q": [
+    ["The company wants to enter a new market (for example Germany). How do you decide?",
+      ["Market size: market, size", "Competition: competitor, competition", "Localization: local, language, regulat, legal", "Pilot: pilot, test, experiment, mvp"],
+      "I size the market and map the competition. I assess localization costs such as language, payment habits and regulation. Instead of a full launch, I start a pilot in one city and decide based on clear success criteria."]
+  ]},
+  "po-1": { "title": "Agile Fundamentals", "q": [
+    ["How do you write a good user story?",
+      ["Format: as a, i want, so that", "Acceptance criteria: acceptance, criteria", "Small and independent: small, independent, invest", "Value: value, benefit"],
+      "I use the format \"As a [user], I want [need], so that [benefit]\" and add clear acceptance criteria. I make sure the story is small enough to finish in a sprint, independent and testable (INVEST)."],
+    ["Can you describe the Scrum ceremonies and their purpose?",
+      ["Sprint planning: planning", "Daily stand-up: daily, stand-up, standup", "Sprint review: review, demo", "Retrospective: retro"],
+      "In sprint planning the team picks the goal and the work. In the daily stand-up it shares progress and blockers. In the review the finished work is shown to stakeholders for feedback. In the retrospective the team discusses what to change to improve how it works."]
+  ]},
+  "po-2": { "title": "Backlog Management", "q": [
+    ["An urgent request arrives in the middle of a sprint. What do you do?",
+      ["Assess the impact: impact, urgen, priorit", "Trade-off: remove, instead, swap, trade", "Talk to the team: team, discuss, talk", "Stakeholder communication: stakeholder, inform"],
+      "First I assess whether the request is truly urgent and what its impact is. If it is, I talk to the team and take out work of similar size from the sprint. I tell stakeholders about the change and the reason transparently."]
+  ]},
+  "ux-1": { "title": "Research", "q": [
+    ["Which user research methods do you know?",
+      ["Interviews: interview", "Usability testing: usability, test", "Surveys: survey", "Analytics: analytics, data, heatmap"],
+      "On the qualitative side I use user interviews and usability tests to understand the \"why\". On the quantitative side I measure the \"how much\" with surveys, product analytics and heatmaps. I pick the method based on the question."],
+    ["How do you defend a design decision to an unconvinced stakeholder?",
+      ["User data: user, data, research", "Business goal: goal, business, metric", "Alternatives: alternative, option", "Propose a test: test, a/b"],
+      "I tie the decision to findings from user research and to the business goal. I show the alternatives I considered and why they were dropped. If we still disagree, I propose trying both options in an A/B test."]
+  ]},
+  "ux-2": { "title": "Flow Improvement", "q": [
+    ["An app's sign-up flow has a high drop-off rate. How do you improve it?",
+      ["Funnel analysis: funnel, step, where", "Fewer steps: reduc, shorten, social login", "User testing: test, observ", "Measurement: measure, rate"],
+      "First I use funnel analysis to find the step where users leave. I observe a few users to understand why. I remove unnecessary fields, add social login and shorten the steps, then measure the effect with the completion rate."]
+  ]},
+  "performans-1": { "title": "Fundamentals", "q": [
+    ["Which metrics do you use to measure the success of a digital campaign?",
+      ["Conversion: conversion", "Cost: cac, cpa, cost, cpc", "Return: roas, roi, return", "Chosen by goal: goal, objective, awareness"],
+      "First I clarify the campaign goal: awareness or sales. For sales I look at conversion rate, acquisition cost (CAC/CPA) and ROAS; for awareness, at reach and recall."]
+  ]},
+  "performans-2": { "title": "Campaign Cases", "q": [
+    ["How would you launch a new coffee brand with a budget of 50,000 TL?",
+      ["Target audience: target audience, persona, audience", "Channel choice: instagram, tiktok, channel, influencer", "Budget split: budget, split, alloca, %", "Measurement: measure, metric, test"],
+      "I define the audience as urban coffee lovers aged 20 to 35. I put 50% of the budget into micro-influencers, 30% into Instagram and TikTok ads and 20% into tasting events. In the first two weeks I test creatives and shift budget based on acquisition cost."],
+    ["The campaign's ROAS halved in two weeks. What do you do?",
+      ["Breakdown analysis: campaign, channel, creative, breakdown", "Creative fatigue: creative, fatigue, frequency", "Targeting: audience, targeting", "Measurement issues: tracking, pixel, attribution, measure"],
+      "First I check that measurement (pixel, attribution) is working correctly. Then I break the drop down by channel, campaign and creative. If frequency is high there is creative fatigue, so I launch new creatives and targeting tests."]
+  ]},
+  "icerik-1": { "title": "Content Planning", "q": [
+    ["How do you plan a brand's social media content calendar?",
+      ["Goal / audience: goal, audience", "Content pillars: pillar, theme, categor", "Frequency / platform: frequen, platform, per week", "Measurement: engagement, reach, measure"],
+      "First I set the goal and the audience. I create three or four content pillars, such as educational, entertaining and product-focused. I set a weekly posting frequency for each platform and update the calendar every month based on engagement and reach."]
+  ]},
+  "icerik-2": { "title": "Community & Crisis", "q": [
+    ["A post was misunderstood and is drawing backlash. What do you do?",
+      ["Respond quickly: quick, fast, immediately", "Listen / analyze: understand, listen, analy", "Apology / transparency: apolog, transparen, statement", "Process improvement: process, approval, lesson"],
+      "I quickly analyze the situation and why people are reacting. If needed I remove the post and publish a sincere, transparent statement or apology. Afterwards I review the content approval process to prevent a similar mistake."]
+  ]},
+  "seo-1": { "title": "SEO Fundamentals", "q": [
+    ["Can you explain the technical, content and authority (backlink) sides of SEO?",
+      ["Technical SEO: speed, sitemap, index, technical", "Content: keyword, content, intent", "Authority: backlink, link, authority", "Measurement: search console, ranking, traffic"],
+      "On the technical side, site speed, the sitemap and indexability matter; for content, pages that match search intent and use keywords naturally; for authority, backlinks from trusted sites. I measure results with Search Console and organic traffic."]
+  ]},
+  "seo-2": { "title": "SEO Cases", "q": [
+    ["Organic traffic suddenly dropped by 30%. How do you investigate?",
+      ["Algorithm update: algorithm, update", "Technical error: robots, noindex, index, technical", "Page-level analysis: page, breakdown, query", "Competitors: competitor"],
+      "First I check whether it coincides with a Google algorithm update. I look for technical errors such as robots.txt, noindex or redirects. In Search Console I find which pages and queries dropped, and look at how competitors are doing on those queries."]
+  ]},
+  "b2b-1": { "title": "Sales Fundamentals", "q": [
+    ["Sell me this pen.",
+      ["Asking about needs: question, need, what for, how do you use", "Benefit focus: benefit, helps, easy", "Handling objections: objection, expensive, price", "Closing: close, buy, try, offer"],
+      "First I ask questions: what do you use a pen for most? Based on the answer I explain the benefit. I handle the price objection by pointing to how long it lasts, and close with a clear offer that makes buying today easy."]
+  ]},
+  "b2b-2": { "title": "Negotiation & Pipeline", "q": [
+    ["The customer says \"Your competitor is 20% cheaper.\" How do you respond?",
+      ["Understanding: question, understand, compared to what", "Value focus: value, quality, support, total cost", "Reciprocal trade: in return, long term, package"],
+      "First I ask what the comparison covers. I show the total cost of ownership, support and quality with concrete numbers. If a discount is needed, I ask for something in return, such as a longer contract."],
+    ["How do you manage your sales pipeline?",
+      ["Stages: stage, funnel", "Qualification: qualif, budget, decision maker", "CRM: crm, record", "Conversion rates: rate, conversion, forecast"],
+      "I track opportunities through clear stages. I qualify each one by budget, decision maker, need and timing. I record everything in the CRM and forecast sales from the conversion rates between stages."]
+  ]},
+  "perakende-1": { "title": "Greeting Customers", "q": [
+    ["How do you approach a customer who walks into the store?",
+      ["Greeting: greet, hello, smile", "Asking about needs: question, need", "Product suggestion: suggest, recommend, product", "Add-on sale: add-on, complementary, cross"],
+      "I greet them with a smile and give them space without pressure. I use open questions to understand what they're looking for and recommend a product that fits their need. Where it makes sense, I make an add-on sale with a complementary product."]
+  ]},
+  "perakende-2": { "title": "Difficult Customers", "q": [
+    ["An angry customer wants to return a product, but the return period has passed. What do you do?",
+      ["Calm listening: listen, calm, empath", "Explaining the policy: policy, rule, period", "Alternative solution: alternative, exchange, store credit, manager", "Winning the customer: satisf, come back"],
+      "First I listen calmly and show empathy. I explain the return policy politely. I try not to lose the customer by offering alternatives such as an exchange, store credit or an exception approved by a manager."]
+  ]},
+  "musteri-1": { "title": "Customer Satisfaction", "q": [
+    ["How do you measure customer satisfaction?",
+      ["NPS: nps", "CSAT: csat, satisfaction survey, survey", "Feedback: feedback, review, comment", "Repeat purchase / churn: repeat, churn, renewal"],
+      "I measure the likelihood to recommend with NPS and satisfaction with a specific interaction with CSAT. I read open-ended feedback regularly. As the real outcome indicator I track renewal and churn rates."]
+  ]},
+  "musteri-2": { "title": "Account Recovery", "q": [
+    ["A major customer says they won't renew their contract. What do you do?",
+      ["Understanding why: why, understand, listen", "Showing value: value, gain, report", "Solution plan: plan, solution, action", "Senior management support: manager, senior, executive"],
+      "First I listen to understand the real reason. I prepare a report showing the value we have delivered so far in numbers. I present a concrete action plan for the issues and, if needed, bring senior management into the conversation."]
+  ]},
+  "muhasebe-1": { "title": "Financial Statements", "q": [
+    ["Can you explain the three main financial statements and how they relate to each other?",
+      ["Income statement: income statement, profit, loss", "Balance sheet: balance sheet, asset, liabilit, equity", "Cash flow statement: cash flow", "Links between them: net income, net profit, link, flow"],
+      "The income statement shows revenue, expenses and net profit for a period. The balance sheet shows assets, liabilities and equity at a point in time. The cash flow statement shows how cash changed. Net profit flows into equity and is the starting point of the cash flow statement."]
+  ]},
+  "muhasebe-2": { "title": "Month-End Close", "q": [
+    ["What do you do in the month-end close process?",
+      ["Reconciliation: reconcil, bank", "Accruals / provisions: accrual, provision", "Checks: check, verif", "Reporting: report"],
+      "I reconcile bank and current accounts. I record the period's accruals and provisions. I check the trial balance and any unusual movements, then prepare the management reports."]
+  ]},
+  "fin-analiz-1": { "title": "Analysis Fundamentals", "q": [
+    ["Why might a company that looks profitable run short of cash?",
+      ["Receivables: receivable, payment terms, collect", "Inventory: inventory, stock", "Capital expenditure: investment, capex", "Accrual vs cash: accrual, cash, difference"],
+      "Profit is calculated on an accrual basis, while cash comes in only when it's collected. Long payment terms on receivables, growing inventory or large capital expenditure can drain cash even while there is profit. That's why I monitor working capital."]
+  ]},
+  "fin-analiz-2": { "title": "Valuation", "q": [
+    ["Which methods would you use to value a company?",
+      ["Discounted cash flow: dcf, discounted cash", "Multiples: multiple, p/e, ev/ebitda", "Assumptions: assum, growth, discount rate", "Sensitivity analysis: sensitiv, scenario"],
+      "I combine the DCF method, which discounts future cash flows to today at a discount rate, with multiples of similar companies such as P/E and EV/EBITDA. I run a sensitivity analysis on the growth and discount assumptions and present a value range."]
+  ]},
+  "denetim-1": { "title": "Internal Control", "q": [
+    ["What is internal control and why does it matter?",
+      ["Segregation of duties: segregation of duties, separate person, different person", "Authorization / approval: approv, authoriz", "Risk: risk, error, fraud", "Example: for example"],
+      "Internal control means the processes set up to prevent errors and fraud. For example, the person who prepares a payment is different from the one who approves it (segregation of duties), and amounts above a limit need approval. It makes financial reporting reliable."]
+  ]},
+  "denetim-2": { "title": "Audit Case", "q": [
+    ["You notice an unusual increase in an expense item. How do you investigate?",
+      ["Analytical review: trend, compar, analytic", "Document checks: document, invoice, sample", "Interviews: interview, ask, talk", "Reporting: report, finding"],
+      "First I compare the increase with previous periods and the budget. I select a sample and check the invoices and approval documents. I talk to the unit involved to get an explanation, then report the findings and recommendations."]
+  ]},
+  "ise-alim-1": { "title": "Recruiting Fundamentals", "q": [
+    ["How do you find candidates for a hard-to-fill position?",
+      ["Clarifying the role: need, hiring manager, profile, requirement", "Channels: linkedin, career, channel, job post", "Direct outreach: direct, sourcing, message", "Referrals: referral, recommend"],
+      "First I clarify the profile and the must-haves with the hiring manager. Alongside the job post I search LinkedIn directly and reach out to candidates with personalized messages. I also use the employee referral program and industry communities."],
+    ["What is a competency-based interview?",
+      ["Defining competencies: competenc, skill", "Past behaviour: past, example, experience", "Structured questions: structured, same question, standard", "Scoring: score, assess, scale"],
+      "It's a structured interview where you define the competencies critical for the role and, for each one, ask the candidate for concrete examples from their past. Every candidate gets the same questions and the answers are scored on a common scale, which reduces bias."]
+  ]},
+  "ise-alim-2": { "title": "Offers & Candidate Experience", "q": [
+    ["A candidate you really wanted turned down the offer. What do you do?",
+      ["Understanding why: why, understand, ask", "Room to negotiate: salary, benefit, flexib, remote", "Talking to the manager: manager, budget", "Keeping the relationship: relationship, contact, future"],
+      "First I talk to the candidate to understand the real reason. If there's room to negotiate beyond salary, such as flexible working or benefits, I review it with the manager. Even if the answer doesn't change, I keep the relationship good; they may be a candidate again in the future."]
+  ]},
+  "ik-is-ortagi-1": { "title": "Employee Relations", "q": [
+    ["An employee comes to you with a complaint about their manager. How do you proceed?",
+      ["Listening / confidentiality: listen, confidential, trust", "Gathering information: information, document, example", "Impartiality: impartial, neutral, both sides, manager", "Follow-up: follow up, action, solution"],
+      "I listen carefully to the employee in confidence and note concrete examples. Staying neutral, I also get the manager's view. I create a plan to resolve it and then follow up on the situation."]
+  ]},
+  "ik-is-ortagi-2": { "title": "Engagement & Performance", "q": [
+    ["Employee turnover in a team has risen sharply. How do you analyze it?",
+      ["Data analysis: data, rate, breakdown", "Exit interviews: exit interview, reason", "Manager effect: manager, leadership", "Action plan: action, plan, salary, career"],
+      "First I look at the turnover rate broken down by tenure and role. I pull common reasons from exit interviews; often the manager relationship, pay or career growth stands out. Based on the findings I prepare a concrete action plan together with the manager."]
+  ]}
+}

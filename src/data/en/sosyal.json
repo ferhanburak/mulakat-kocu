@@ -1,0 +1,68 @@
+{
+  "psi-klinik-1": { "title": "Fundamentals", "q": [
+    ["What is the core assumption of cognitive behavioural therapy (CBT)?",
+      ["Thoughts-feelings-behaviour: thought, feeling, emotion, behavio", "Automatic thoughts: automatic thought, distortion", "Structured / short-term: structured, short-term, homework", "Evidence base: evidence, research, effective"],
+      "CBT assumes that it's not events themselves but how we interpret them that shapes our feelings and behaviour. Automatic thoughts and cognitive distortions are noticed and tested. It is a structured, usually short-term, evidence-based approach that includes homework."],
+    ["What are the principle of confidentiality and its limits in psychological assessment?",
+      ["Confidentiality: confidential, privacy", "Informed consent: consent, inform", "Limits: harm, danger, suicid, exception", "Legal obligations: legal, court, report"],
+      "What the client shares is confidential, and this is explained through informed consent in the first session. However, a serious risk of harm to themselves or others, suspected abuse or a court order are legal exceptions to confidentiality."]
+  ]},
+  "psi-klinik-2": { "title": "Case Approach", "q": [
+    ["In the first session a client mentions suicidal thoughts. What do you do?",
+      ["Risk assessment: risk, plan, assess", "Asking directly: ask directly, openly", "Safety plan: safety plan, support", "Referral / collaboration: psychiatr, refer, emergency", "Documentation / supervision: record, document, supervision"],
+      "I stay calm and ask about it directly and without judgment; asking openly does not increase the risk. I assess risk factors such as a plan, means and previous attempts. I create a safety plan with the client and refer to psychiatry or emergency services if needed. I document the process and seek supervision."]
+  ]},
+  "psi-orgut-1": { "title": "Fundamentals", "q": [
+    ["What does it mean for a hiring test to be valid and reliable?",
+      ["Reliability: reliab, consistent, repeat", "Validity: valid, what it should measure", "Prediction: job performance, predict", "Fairness: bias, fair"],
+      "Reliability means the test gives consistent results (similar scores when repeated). Validity means it measures what it's supposed to measure and predicts job performance. The test should also be unbiased and fair across different groups."]
+  ]},
+  "psi-orgut-2": { "title": "Organizational Case", "q": [
+    ["Scores on a company's employee engagement survey have dropped sharply. How do you proceed?",
+      ["Breaking down the data: breakdown, department, analy", "Qualitative deep-dive: focus group, interview", "Action plan: action, plan, manager", "Feedback loop: share, follow up, measure again"],
+      "I analyze the results by department and tenure to find where the problem is concentrated. I dig into the reasons with focus groups. I build concrete action plans with managers, share the results with employees and measure again a few months later."]
+  ]},
+  "psi-egitim-1": { "title": "Fundamentals", "q": [
+    ["Can you list Piaget's stages of cognitive development?",
+      ["Sensorimotor: sensor, motor", "Preoperational: preoperational", "Concrete operational: concrete", "Formal operational: formal, abstract"],
+      "The sensorimotor stage (ages 0–2), the preoperational stage (2–7), the concrete operational stage (7–11) and the formal operational stage (11 and older). In each stage the child's way of thinking changes qualitatively."]
+  ]},
+  "psi-egitim-2": { "title": "Counselling Case", "q": [
+    ["What do you do for a student whose academic performance suddenly drops?",
+      ["Talking to the student: talk, listen, trust", "Gathering information: teacher, family, parent, observ", "Distinguishing causes: family, friend, emotional, learning", "Plan and follow-up: plan, follow up, refer"],
+      "First I meet the student in a trusting setting and listen. I gather information from teachers and the family. I try to distinguish whether the drop comes from family problems, friendships, emotional difficulties or a learning difficulty. I create a support plan, refer to a specialist if needed, and follow up."]
+  ]},
+  "huk-ticaret-1": { "title": "Fundamentals", "q": [
+    ["What are the main differences between a joint stock company and a limited liability company?",
+      ["Minimum capital: capital", "Shareholder liability: liabilit, public debt, tax debt", "Share transfer: share transfer, transfer", "Management body: board of directors, manager"],
+      "In a joint stock company shares are easier to transfer, it is run by a board of directors and it is suitable for going public. In a limited company, transferring shares requires notarization and approval of the general assembly, and the company is run by managers; partners may also be liable for the company's unpaid public debts in proportion to their shares. The minimum capital amounts also differ."],
+    ["What do you look at first when reviewing a contract?",
+      ["Parties and subject: part, subject, scope", "Obligations and deadlines: obligation, deadline, deliver, payment", "Termination and penalty clauses: terminat, penalty", "Dispute resolution: jurisdiction, arbitration, dispute"],
+      "I check that the parties are correctly identified and what the contract covers. I review the mutual obligations and the payment and delivery deadlines. I look at termination conditions, penalty clauses and limitations of liability, and assess the jurisdiction or arbitration clause for disputes."]
+  ]},
+  "huk-ticaret-2": { "title": "Advisory Case", "q": [
+    ["A client company says a supplier has breached the contract. How do you proceed?",
+      ["Reviewing documents: contract, correspondence, document, evidence", "Establishing the breach: breach, default", "Formal notice: notice, notary, demand letter", "Options: lawsuit, mediation, settlement, damages"],
+      "First I review the contract and all correspondence and collect evidence of the breach and the damage. I assess the conditions for default and, if needed, send a formal notice through a notary. I present the client with the options of mandatory mediation, settlement and litigation, comparing their cost and duration."]
+  ]},
+  "huk-is-1": { "title": "Fundamentals", "q": [
+    ["What is the difference between termination for just cause and termination for valid reason?",
+      ["Just cause: just cause, immediate, misconduct", "Valid reason: valid reason, performance, operational", "Notice period: notice", "Compensation consequences: severance, notice pay"],
+      "Termination for just cause ends the employment contract immediately, without waiting for the notice period, for serious reasons such as misconduct or breach of good faith. Termination for a valid reason happens for reasons such as performance or operational needs, and the notice period must be observed. The consequences differ in terms of severance and notice pay."]
+  ]},
+  "huk-is-2": { "title": "Employment Law Case", "q": [
+    ["An employee says they were dismissed and their severance hasn't been paid. How do you proceed?",
+      ["Gathering information: contract, payroll, severance, document", "Type of termination: terminat, just cause, valid reason", "Mediation: mediat, mandatory", "Time limits: limitation, deadline, time limit"],
+      "First I review the employment contract, payslips and the termination notice to establish their length of service and the type of termination. I calculate the amounts owed. Before a reinstatement or receivables lawsuit I apply for mandatory mediation, and I watch the strict deadlines and limitation periods."]
+  ]},
+  "huk-bilisim-1": { "title": "Data Protection Fundamentals", "q": [
+    ["Under data protection law (KVKK, similar to GDPR), what are the main obligations of a data controller?",
+      ["Informing people: inform, privacy notice, transparen", "Legal basis / explicit consent: explicit consent, legal basis, lawful", "Data security: security, measure", "Registration / records: verbis, regist, record", "Data subject rights: request, data subject"],
+      "The data controller must inform people about the processing; process data based on explicit consent or another lawful basis in the law; take the necessary technical and organizational security measures; register with the data controllers' registry (VERBIS) if required; and respond to requests from data subjects."]
+  ]},
+  "huk-bilisim-2": { "title": "Data Breach Case", "q": [
+    ["Customer data has been leaked at a company. What should be done legally?",
+      ["Stopping the breach: stop, contain, identif, scope", "Notifying the authority: authority, board, 72 hours, notif", "Notifying affected people: data subject, customer, affected, notify", "Records and measures: record, measure, prevent"],
+      "First, together with the technical team, we stop the breach and determine its scope. The data protection authority is notified as soon as possible and within 72 hours at the latest, and the affected people are informed. The incident is documented, and measures to prevent a repeat are recorded."]
+  ]}
+}
