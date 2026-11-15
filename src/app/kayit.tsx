@@ -82,9 +82,9 @@ export default function SignUp() {
       <FormError message={error} />
       <Button title={busy ? 'OLUŞTURULUYOR…' : 'HESAP OLUŞTUR'} icon="checkmark" onPress={submit} disabled={busy} />
       <View style={{ flexDirection: 'row', gap: 8, alignItems: 'flex-start', marginTop: 16 }}>
-        <Ionicons name="phone-portrait" size={15} color={colors.muted} style={{ marginTop: 1 }} />
+        <Ionicons name="cloud-done" size={15} color={colors.muted} style={{ marginTop: 1 }} />
         <T w="semibold" size={12} color={colors.muted} style={{ flex: 1 }}>
-          Hesabın şimdilik bu cihazda saklanır. Şifren açık hâliyle hiçbir yerde tutulmaz.
+          İlerlemen hesabında saklanır; telefon değiştirsen de kaldığın yerden devam edersin.
         </T>
       </View>
       <Pressable onPress={() => router.replace('/giris')} hitSlop={8} style={{ alignSelf: 'center', marginTop: 22 }}>
