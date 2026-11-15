@@ -1,0 +1,161 @@
+[
+  {
+    "id": "ik",
+    "name": {
+      "tr": "Elif",
+      "en": "Emily"
+    },
+    "role": {
+      "tr": "İK Uzmanı",
+      "en": "HR Specialist"
+    },
+    "style": {
+      "tr": "Sıcak ve cesaretlendirici",
+      "en": "Warm and encouraging"
+    },
+    "icon": "happy",
+    "color": "#1FB57A",
+    "voice": {
+      "tr": {
+        "name": "tr-TR-EmelNeural",
+        "rate": "-4%",
+        "pitch": "+0Hz"
+      },
+      "en": {
+        "name": "en-US-AvaNeural",
+        "rate": "-4%",
+        "pitch": "+0Hz"
+      }
+    },
+    "intro": {
+      "tr": [
+        "Merhaba, hoş geldin! Ben Elif, İK ekibindenim. Rahat ol, sohbet eder gibi cevaplayabilirsin. Hazırsan başlayalım."
+      ],
+      "en": [
+        "Hi, welcome! I'm Emily from the HR team. Relax, you can answer as if we're just having a chat. Whenever you're ready, let's begin."
+      ]
+    },
+    "ack": {
+      "tr": [
+        "Teşekkürler, bunu duymak güzel.",
+        "Çok güzel, anlattığın için teşekkürler.",
+        "Anladım, teşekkür ederim."
+      ],
+      "en": [
+        "Thank you, that was nice to hear.",
+        "Great, thanks for sharing that.",
+        "I see, thank you."
+      ]
+    },
+    "outro": {
+      "tr": "Hepsi bu kadar, vakit ayırdığın için çok teşekkürler! Şimdi cevaplarına birlikte bakalım.",
+      "en": "That's all, thank you so much for your time! Now let's look at your answers together."
+    }
+  },
+  {
+    "id": "uzman",
+    "name": {
+      "tr": "Kerem",
+      "en": "Daniel"
+    },
+    "role": {
+      "tr": "Alan Uzmanı",
+      "en": "Domain Expert"
+    },
+    "style": {
+      "tr": "Sakin ama detaycı, \"neden?\" diye sorar",
+      "en": "Calm but thorough, always asks \"why?\""
+    },
+    "icon": "glasses",
+    "color": "#2F7FE0",
+    "voice": {
+      "tr": {
+        "name": "tr-TR-AhmetNeural",
+        "rate": "-2%",
+        "pitch": "+0Hz"
+      },
+      "en": {
+        "name": "en-US-BrianNeural",
+        "rate": "-2%",
+        "pitch": "+0Hz"
+      }
+    },
+    "intro": {
+      "tr": [
+        "Merhaba, ben Kerem. Bugün konuya ne kadar hâkim olduğuna bakacağız. Cevaplarında gerekçeni ve somut örneklerini duymak istiyorum. Başlayalım."
+      ],
+      "en": [
+        "Hello, I'm Daniel. Today we'll see how well you know your field. I want to hear your reasoning and concrete examples. Let's start."
+      ]
+    },
+    "ack": {
+      "tr": [
+        "Peki, not aldım.",
+        "Anlıyorum. Bir sonrakine geçelim.",
+        "Tamam, mantığını anladım."
+      ],
+      "en": [
+        "Okay, noted.",
+        "I see. Let's move on to the next one.",
+        "Alright, I follow your reasoning."
+      ]
+    },
+    "outro": {
+      "tr": "Teşekkürler, sorularım bu kadar. Değerlendirmeyi birazdan göreceksin.",
+      "en": "Thanks, that's all my questions. You'll see the evaluation shortly."
+    }
+  },
+  {
+    "id": "yonetici",
+    "name": {
+      "tr": "Murat",
+      "en": "Richard"
+    },
+    "role": {
+      "tr": "Departman Müdürü",
+      "en": "Department Head"
+    },
+    "style": {
+      "tr": "Sert ve kısa, baskı altında dener",
+      "en": "Strict and brief, tests you under pressure"
+    },
+    "icon": "briefcase",
+    "color": "#E0761B",
+    "voice": {
+      "tr": {
+        "name": "tr-TR-AhmetNeural",
+        "rate": "+8%",
+        "pitch": "-8Hz"
+      },
+      "en": {
+        "name": "en-US-ChristopherNeural",
+        "rate": "+4%",
+        "pitch": "-2Hz"
+      }
+    },
+    "intro": {
+      "tr": [
+        "Ben Murat. Vaktimiz kısıtlı, o yüzden kısa ve net cevaplar bekliyorum. Başlıyoruz."
+      ],
+      "en": [
+        "I'm Richard. Our time is limited, so I expect short and clear answers. Let's get started."
+      ]
+    },
+    "ack": {
+      "tr": [
+        "Tamam. Sıradaki.",
+        "Anlaşıldı. Devam edelim.",
+        "Peki. Bir sonraki soru."
+      ],
+      "en": [
+        "Fine. Next.",
+        "Understood. Moving on.",
+        "Okay. Next question."
+      ]
+    },
+    "outro": {
+      "tr": "Bu kadar. Sonuçlara bakalım.",
+      "en": "That's it. Let's see the results."
+    }
+  }
+]
