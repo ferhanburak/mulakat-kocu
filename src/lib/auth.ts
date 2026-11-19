@@ -130,7 +130,9 @@ export async function signOutAccount() {
 /** The account of the stored Supabase session, or null when signed out or expired. */
 export async function currentAccount(): Promise<Account | null> {
   const { data } = await supabase.auth.getSession();
-  return data.session ? toAccount(data.session.user) : null;
+  if (!data.session) return null;
+  syncLang(data.session.user);
+  return toAccount(data.session.user);
 }
 
 /** Keeps the stored name in sync when the user edits their profile. */
