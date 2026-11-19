@@ -81,7 +81,7 @@ export default function Home() {
               {firstName ? t(`Merhaba ${firstName} 👋`, `Hi ${firstName} 👋`) : t('Merhaba 👋', 'Hi 👋')}
             </T>
             <T w="black" size={26} color="#fff">
-              {t('Mülakat Koçu', 'Interview Coach')}
+              Prova
             </T>
           </View>
           <Pressable

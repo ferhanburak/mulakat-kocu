@@ -44,6 +44,9 @@ export default function Welcome() {
             <Ionicons name="chatbubbles" size={44} color={colors.primary} />
           </View>
           <T w="black" size={32} color="#fff" style={{ marginTop: 16 }}>
+            Prova
+          </T>
+          <T w="extrabold" size={16} color="#fff">
             {t('Mülakat Koçu', 'Interview Coach')}
           </T>
           <T w="semibold" size={15} color="rgba(255,255,255,0.88)" style={{ textAlign: 'center', marginTop: 4 }}>
