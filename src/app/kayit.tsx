@@ -1,7 +1,7 @@
 import { router } from 'expo-router';
 import { useRef, useState } from 'react';
 import { Pressable, View } from 'react-native';
-import { AuthScaffold, CheckInbox, Field, FormError, type InputRef } from '@/components/AuthForm';
+import { AuthScaffold, CheckInbox, Field, FormError, GoogleButton, OrDivider, type InputRef } from '@/components/AuthForm';
 import { Button, resetTo, Ionicons, T, colors, notify } from '@/components/ui';
 import { AuthError, MIN_PASSWORD, signUp } from '@/lib/auth';
 import { useT } from '@/lib/i18n';
@@ -97,6 +97,8 @@ export default function SignUp() {
           />
           <FormError message={error} />
           <Button title={busy ? t('OLUŞTURULUYOR…', 'CREATING…') : t('HESAP OLUŞTUR', 'CREATE ACCOUNT')} icon="checkmark" onPress={submit} disabled={busy} />
+          <OrDivider />
+          <GoogleButton />
           <View style={{ flexDirection: 'row', gap: 8, alignItems: 'flex-start', marginTop: 16 }}>
             <Ionicons name="cloud-done" size={15} color={colors.muted} style={{ marginTop: 1 }} />
             <T w="semibold" size={12} color={colors.muted} style={{ flex: 1 }}>

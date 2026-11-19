@@ -8,8 +8,11 @@ import { currentAccount, sessionFromEmailLink } from '@/lib/auth';
 import { useT } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 
-/** Opened from the sign-up confirmation email; signs the new account in. */
-export default function ConfirmEmail() {
+/**
+ * Where Supabase links come back to: the sign-up confirmation email, and Google
+ * sign-in on the web. Signs the account in and moves on.
+ */
+export default function SignInLanding() {
   const t = useT();
   const { signedIn } = useStore();
   const linkUrl = useLinkingURL();
@@ -37,7 +40,7 @@ export default function ConfirmEmail() {
   }, [linkUrl, signedIn]);
 
   return (
-    <AuthScaffold icon="mail-open" title={t('E-posta onayı', 'Email confirmation')} subtitle={t('Hesabını açıyoruz…', 'Activating your account…')}>
+    <AuthScaffold icon="log-in" title={t('Giriş yapılıyor', 'Signing you in')} subtitle={t('Bir saniye, hesabını açıyoruz…', 'One moment, opening your account…')}>
       {status === 'checking' ? (
         <ActivityIndicator color={colors.primary} style={{ marginVertical: 24 }} />
       ) : (
@@ -45,8 +48,8 @@ export default function ConfirmEmail() {
           <Ionicons name="alert-circle" size={44} color={colors.danger} />
           <T w="semibold" size={14} color={colors.muted} style={{ textAlign: 'center', lineHeight: 20 }}>
             {t(
-              'Bu bağlantı geçersiz ya da süresi dolmuş. Giriş yapmayı dene; adresin onaylanmadıysa yeni bir onay e-postası isteyebilirsin.',
-              "This link is invalid or has expired. Try signing in; if your address isn't confirmed yet, you can ask for a new confirmation email.",
+              'Giriş tamamlanamadı ya da bağlantının süresi dolmuş. Tekrar giriş yapmayı dene; e-postan onaylanmadıysa yeni bir onay e-postası isteyebilirsin.',
+              "We couldn't finish signing you in, or the link has expired. Try signing in again; if your email isn't confirmed yet, you can ask for a new confirmation email.",
             )}
           </T>
           <Button

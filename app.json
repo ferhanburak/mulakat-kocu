@@ -25,7 +25,8 @@
       "expo-router",
       "expo-font",
       "expo-splash-screen",
-      "expo-audio"
+      "expo-audio",
+      "expo-web-browser"
     ],
     "scheme": "mulakatkocu"
   }

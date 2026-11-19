@@ -1,4 +1,5 @@
-import { AuthError, resendConfirmation } from '@/lib/auth';
+import { AuthError, resendConfirmation, signInWithGoogle } from '@/lib/auth';
+import { useStore } from '@/lib/store';
 import { tt, useT } from '@/lib/i18n';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useEffect, useState, type ComponentRef, type ReactNode, type Ref } from 'react';
@@ -13,7 +14,7 @@ import {
   type TextInputProps,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Button, FadeIn, Ionicons, T, colors, fonts, goBack, shadow, type IconName, themedStyles } from './ui';
+import { Button, FadeIn, Ionicons, T, colors, notify, resetTo, fonts, goBack, shadow, type IconName, themedStyles } from './ui';
 
 /** Gradient header + keyboard-safe scrolling body shared by the sign-up and sign-in screens. */
 export function AuthScaffold({
@@ -109,6 +110,67 @@ export function FormError({ message }: { message: string | null }) {
       <T w="bold" size={13} color={colors.danger} style={{ flex: 1 }}>
         {message}
       </T>
+    </View>
+  );
+}
+
+/** "Continue with Google": signs in or creates the account, then routes like the email forms. */
+export function GoogleButton() {
+  const t = useT();
+  const { signedIn } = useStore();
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const go = async () => {
+    if (busy) return;
+    setBusy(true);
+    setError(null);
+    try {
+      const account = await signInWithGoogle();
+      // null: the user closed the Google window, or the web page is on its way to Google.
+      if (!account) {
+        setBusy(false);
+        return;
+      }
+      notify(true);
+      const hasProfile = await signedIn(account);
+      resetTo(hasProfile ? '/' : '/profil-kurulum');
+    } catch (e) {
+      notify(false);
+      setError(e instanceof AuthError ? e.message : t('Google ile giriş yapılamadı, tekrar dene.', "Couldn't sign in with Google, please try again."));
+      setBusy(false);
+    }
+  };
+
+  return (
+    <View>
+      <Button
+        title={busy ? t('BEKLENİYOR…', 'WAITING…') : t('GOOGLE İLE DEVAM ET', 'CONTINUE WITH GOOGLE')}
+        icon="logo-google"
+        variant="outline"
+        color={colors.text}
+        onPress={go}
+        disabled={busy}
+      />
+      {error && (
+        <View style={{ marginTop: 12 }}>
+          <FormError message={error} />
+        </View>
+      )}
+    </View>
+  );
+}
+
+/** "or" line between the email form and the Google button. */
+export function OrDivider() {
+  const t = useT();
+  return (
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginVertical: 16 }}>
+      <View style={{ flex: 1, height: 1, backgroundColor: colors.border }} />
+      <T w="bold" size={12} color={colors.faint}>
+        {t('veya', 'or')}
+      </T>
+      <View style={{ flex: 1, height: 1, backgroundColor: colors.border }} />
     </View>
   );
 }

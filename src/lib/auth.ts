@@ -1,5 +1,7 @@
 import type { AuthError as SupabaseAuthError, User } from '@supabase/supabase-js';
 import * as Linking from 'expo-linking';
+import * as WebBrowser from 'expo-web-browser';
+import { Platform } from 'react-native';
 import { getLang, onLangChange, tt } from './i18n';
 import { supabase } from './supabase';
 
@@ -68,7 +70,7 @@ export async function signUp(input: { name: string; email: string; password: str
     email,
     password: input.password,
     // `lang` picks the language of the emails (see supabase/templates).
-    options: { data: { name, lang: getLang() }, emailRedirectTo: linkTo('/eposta-onay') },
+    options: { data: { name, lang: getLang() }, emailRedirectTo: linkTo('/giris-tamam') },
   });
   if (error) fail(error);
   // With email confirmation on, there is no session until the address is confirmed.
@@ -80,7 +82,7 @@ export async function signUp(input: { name: string; email: string; password: str
 export async function resendConfirmation(rawEmail: string) {
   const email = normEmail(rawEmail);
   if (!isValidEmail(email)) throw new AuthError(emailMsg());
-  const { error } = await supabase.auth.resend({ type: 'signup', email, options: { emailRedirectTo: linkTo('/eposta-onay') } });
+  const { error } = await supabase.auth.resend({ type: 'signup', email, options: { emailRedirectTo: linkTo('/giris-tamam') } });
   if (error) fail(error);
 }
 
@@ -89,8 +91,36 @@ export async function signIn(input: { email: string; password: string }): Promis
   if (!isValidEmail(email)) throw new AuthError(emailMsg());
   const { data, error } = await supabase.auth.signInWithPassword({ email, password: input.password });
   if (error) fail(error);
-  if (data.user.user_metadata?.lang !== getLang()) supabase.auth.updateUser({ data: { lang: getLang() } }).catch(() => {});
+  syncLang(data.user);
   return toAccount(data.user);
+}
+
+/** Stores the app language on the account, for the language of auth emails. */
+function syncLang(user: User) {
+  if (user.user_metadata?.lang !== getLang()) supabase.auth.updateUser({ data: { lang: getLang() } }).catch(() => {});
+}
+
+/**
+ * Signs in (or signs up) with Google through Supabase. On the web the page goes to
+ * Google and comes back to /giris-tamam, so this never returns there. In the app it
+ * opens an in-app browser and returns the account, or null if the user closed it.
+ */
+export async function signInWithGoogle(): Promise<Account | null> {
+  const redirectTo = linkTo('/giris-tamam');
+  if (Platform.OS === 'web') {
+    const { error } = await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo } });
+    if (error) fail(error);
+    return null;
+  }
+  const { data, error } = await supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo, skipBrowserRedirect: true } });
+  if (error) fail(error);
+  const result = await WebBrowser.openAuthSessionAsync(data.url, redirectTo);
+  if (result.type !== 'success') return null;
+  if (!(await sessionFromEmailLink(result.url))) throw new AuthError(tt('Google ile giriş yapılamadı, tekrar dene.', "Couldn't sign in with Google, please try again."));
+  const { data: u } = await supabase.auth.getUser();
+  if (!u.user) throw new AuthError(tt('Google ile giriş yapılamadı, tekrar dene.', "Couldn't sign in with Google, please try again."));
+  syncLang(u.user);
+  return toAccount(u.user);
 }
 
 export async function signOutAccount() {
@@ -119,8 +149,8 @@ export async function requestPasswordReset(rawEmail: string) {
 }
 
 /**
- * Signs in with the one-time session carried by an email link (password reset or
- * sign-up confirmation): tokens in the URL fragment, or a `code` with the PKCE flow.
+ * Signs in with the one-time session carried by a link back from Supabase (password
+ * reset, sign-up confirmation or Google): tokens in the URL fragment, or a `code` with the PKCE flow.
  * Returns whether it worked.
  */
 export async function sessionFromEmailLink(url: string): Promise<boolean> {

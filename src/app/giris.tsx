@@ -1,7 +1,7 @@
 import { router } from 'expo-router';
 import { useRef, useState } from 'react';
 import { Pressable } from 'react-native';
-import { AuthScaffold, Field, FormError, type InputRef } from '@/components/AuthForm';
+import { AuthScaffold, Field, FormError, GoogleButton, OrDivider, type InputRef } from '@/components/AuthForm';
 import { Button, resetTo, T, colors, notify } from '@/components/ui';
 import { AuthError, resendConfirmation, signIn } from '@/lib/auth';
 import { useT } from '@/lib/i18n';
@@ -94,6 +94,8 @@ export default function SignIn() {
         </Pressable>
       )}
       <Button title={busy ? t('GİRİŞ YAPILIYOR…', 'SIGNING IN…') : t('GİRİŞ YAP', 'SIGN IN')} icon="arrow-forward" onPress={submit} disabled={busy} />
+      <OrDivider />
+      <GoogleButton />
       <Pressable onPress={() => router.replace('/kayit')} hitSlop={8} style={{ alignSelf: 'center', marginTop: 22 }}>
         <T w="bold" size={14} color={colors.muted}>
           {t('Hesabın yok mu?', "Don't have an account?")}{' '}
