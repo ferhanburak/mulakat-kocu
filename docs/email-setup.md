@@ -1,6 +1,6 @@
 # E-posta kurulumu (Supabase + Resend)
 
-Uygulama tarafı hazır: kayıt olunca "E-postanı onayla" ekranı çıkıyor (tekrar gönderme düğmesiyle), onay bağlantısı `/eposta-onay` ekranını açıp kullanıcıyı içeri alıyor, girişte "onaylanmadı" hatası alan kullanıcıya yeniden gönderme bağlantısı gösteriliyor. E-postaların dili kullanıcının `lang` bilgisine göre seçiliyor; uygulama bunu kayıtta, girişte ve dil değiştiğinde güncelliyor.
+Uygulama tarafı hazır: kayıt olunca "E-postanı onayla" ekranı çıkıyor (tekrar gönderme düğmesiyle), onay bağlantısı `/giris-tamam` ekranını açıp kullanıcıyı içeri alıyor, girişte "onaylanmadı" hatası alan kullanıcıya yeniden gönderme bağlantısı gösteriliyor. E-postaların dili kullanıcının `lang` bilgisine göre seçiliyor; uygulama bunu kayıtta, girişte ve dil değiştiğinde güncelliyor.
 
 Aşağıdaki adımlar panelde yapılır.
 
@@ -47,7 +47,7 @@ Supabase → **Authentication → URL Configuration → Redirect URLs** listesin
 - `http://localhost:8081/**` (web'de geliştirme)
 - `exp://**` (Expo Go ile denerken; yayında silinebilir)
 
-Bunlar `/eposta-onay` ve `/sifre-yenile` bağlantılarının ikisini de kapsar.
+Bunlar `/giris-tamam` ve `/sifre-yenile` bağlantılarının ikisini de kapsar.
 
 ## 6. Gönderim sınırı
 
