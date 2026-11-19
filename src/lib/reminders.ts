@@ -19,19 +19,37 @@ if (remindersSupported) {
 const CHANNEL = 'streak';
 const DAYS_AHEAD = 7;
 
+/**
+ * Creates the Android channel. Some Android builds (seen in Expo Go) reject this
+ * call; reminders then go to the default channel instead of failing.
+ */
+async function ensureChannel(): Promise<boolean> {
+  if (Platform.OS !== 'android') return false;
+  try {
+    await Notifications.setNotificationChannelAsync(CHANNEL, {
+      name: tt('Seri hatırlatıcısı', 'Streak reminder'),
+      // A TypeScript enum re-export the import plugin can't see; tsc checks it.
+      // eslint-disable-next-line import/namespace
+      importance: Notifications.AndroidImportance.DEFAULT,
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 /** Creates the Android channel and asks for permission. Returns whether granted. */
 export async function enableReminders(): Promise<boolean> {
   if (!remindersSupported) return false;
-  await Notifications.setNotificationChannelAsync(CHANNEL, {
-    name: tt('Seri hatırlatıcısı', 'Streak reminder'),
-    // A TypeScript enum re-export the import plugin can't see; tsc checks it.
-    // eslint-disable-next-line import/namespace
-    importance: Notifications.AndroidImportance.DEFAULT,
-  });
-  const current = await Notifications.getPermissionsAsync();
-  if (current.granted) return true;
-  const req = await Notifications.requestPermissionsAsync();
-  return req.granted;
+  try {
+    await ensureChannel();
+    const current = await Notifications.getPermissionsAsync();
+    if (current.granted) return true;
+    const req = await Notifications.requestPermissionsAsync();
+    return req.granted;
+  } catch {
+    return false;
+  }
 }
 
 const COMEBACK = {
@@ -59,6 +77,7 @@ const COMEBACK = {
 export async function scheduleReminders(hour: number, streak: number, practicedToday: boolean) {
   if (!remindersSupported) return;
   await Notifications.cancelAllScheduledNotificationsAsync();
+  const channelId = (await ensureChannel()) ? CHANNEL : undefined;
   const now = new Date();
   for (let d = 0; d < DAYS_AHEAD; d++) {
     const at = new Date(now);
@@ -76,7 +95,7 @@ export async function scheduleReminders(hour: number, streak: number, practicedT
       : COMEBACK[getLang()][(now.getDate() + d) % COMEBACK[getLang()].length];
     await Notifications.scheduleNotificationAsync({
       content,
-      trigger: { type: Notifications.SchedulableTriggerInputTypes.DATE, date: at, channelId: CHANNEL },
+      trigger: { type: Notifications.SchedulableTriggerInputTypes.DATE, date: at, channelId },
     });
   }
 }
