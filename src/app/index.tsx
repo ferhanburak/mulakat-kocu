@@ -18,8 +18,9 @@ import {
   type IconName,
   themedStyles,
 } from '@/components/ui';
+import { ProfessionTile, tileGridStyle } from '@/components/ProfessionTile';
 import { SignupPrompt } from '@/components/SignupPrompt';
-import { allUnits, dailyQuestion, findTrack, findUnit, professions } from '@/data/professions';
+import { dailyQuestion, findTrack, findUnit, professions } from '@/data/professions';
 import { GUEST_INTERVIEWS, useAccess, type Locked } from '@/lib/access';
 import { PASS_SCORE } from '@/lib/evaluator';
 import { locale, useLang, useT } from '@/lib/i18n';
@@ -39,6 +40,8 @@ export default function Home() {
   const firstName = session?.mode === 'user' ? session.account.name.split(/\s+/)[0] : null;
   const goal = profile?.dailyGoal ?? 1;
   const mine = profile ? findTrack(profile.trackId) : undefined;
+  // The user's own profession on the home page; the full list is one tap away.
+  const myProf = mine && !mine.profession.general ? mine.profession : undefined;
   const dailyRef = dailyQuestion(dayKey(new Date()));
   const dailyDone = daily?.day === dayKey(new Date());
   const mistakeCount = Object.keys(mistakes).length;
@@ -367,47 +370,32 @@ export default function Home() {
           </>
         )}
 
-        <T w="black" size={19} style={styles.section}>
-          {t('Meslekler', 'Professions')}
-        </T>
-        <View style={styles.grid}>
-          {careers.map((p, i) => {
-            const units = allUnits(p);
-            const passed = units.filter((u) => (bestByUnit[u.id] ?? 0) >= PASS_SCORE).length;
-            return (
-              <FadeIn key={p.id} delay={120 + i * 50} style={styles.tileWrap}>
-                <Pressable
-                  onPress={() => {
-                    tap();
-                    router.push(`/profession/${p.id}`);
-                  }}
-                  style={({ pressed }) => [styles.tile, { transform: [{ scale: pressed ? 0.97 : 1 }] }]}
-                >
-                  <GradientIcon icon={p.icon as IconName} color={p.color} size={46} />
-                  <T w="black" size={15} style={{ marginTop: 12, minHeight: 40 }} numberOfLines={2}>
-                    {p.name}
-                  </T>
-                  <T w="semibold" size={12} color={colors.muted} numberOfLines={2} style={{ minHeight: 32 }}>
-                    {p.tagline}
-                  </T>
-                  <View style={[styles.trackPill, { backgroundColor: p.color + '14' }]}>
-                    <Ionicons name="git-branch" size={12} color={p.color} />
-                    <T w="extrabold" size={11} color={p.color}>
-                      {p.tracks.length} {t('alan', p.tracks.length > 1 ? 'fields' : 'field')}
-                    </T>
-                  </View>
-                  <View style={styles.tileFoot}>
-                    <View style={{ flex: 1 }}>
-                      <Bar value={(passed / units.length) * 100} color={p.color} height={7} />
-                    </View>
-                    <T w="extrabold" size={11} color={colors.muted}>
-                      {passed}/{units.length}
-                    </T>
-                  </View>
-                </Pressable>
-              </FadeIn>
-            );
-          })}
+        <View style={styles.sectionRow}>
+          <T w="black" size={19}>
+            {myProf ? t('Mesleğin', 'Your profession') : t('Meslekler', 'Professions')}
+          </T>
+          {myProf && (
+            <Pressable
+              onPress={() => {
+                tap();
+                router.push('/meslekler');
+              }}
+              hitSlop={8}
+              style={styles.progressLink}
+            >
+              <T w="black" size={13} color={colors.primary}>
+                {t('Tüm meslekler', 'All professions')}
+              </T>
+              <Ionicons name="chevron-forward" size={15} color={colors.primary} />
+            </Pressable>
+          )}
+        </View>
+        <View style={tileGridStyle}>
+          {myProf ? (
+            <ProfessionTile p={myProf} delay={120} wide />
+          ) : (
+            careers.map((p, i) => <ProfessionTile key={p.id} p={p} delay={120 + i * 50} />)
+          )}
         </View>
 
         {reports.length > 0 && (
@@ -583,20 +571,6 @@ const styles = themedStyles(() =>
   typesRow: { paddingHorizontal: 16, gap: 12, paddingBottom: 6 },
   typeCard: { width: 148, backgroundColor: colors.card, borderRadius: 20, padding: 14, ...shadow(1) },
   typeIcon: { width: 42, height: 42, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
-  grid: { flexDirection: 'row', flexWrap: 'wrap', marginHorizontal: -6 },
-  tileWrap: { width: '50%', padding: 6 },
-  tile: { backgroundColor: colors.card, borderRadius: 22, padding: 16, ...shadow(1) },
-  tileFoot: { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 10 },
-  trackPill: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-    alignSelf: 'flex-start',
-    borderRadius: 999,
-    paddingHorizontal: 8,
-    paddingVertical: 3,
-    marginTop: 8,
-  },
   progressLink: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   reportRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12 },
   scorePill: { borderRadius: 12, paddingHorizontal: 10, paddingVertical: 4 },
