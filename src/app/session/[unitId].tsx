@@ -169,7 +169,7 @@ export default function SessionScreen() {
   }
 
   return (
-    <KeyboardAvoidingView style={{ flex: 1, backgroundColor: colors.bg }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+    <KeyboardAvoidingView style={{ flex: 1, backgroundColor: colors.bg }} behavior="padding">
       <View style={[styles.top, { paddingTop: insets.top + 10 }]}>
         <Pressable onPress={() => goBack(`/track/${track.id}`)} hitSlop={12}>
           <Ionicons name="close" size={28} color={colors.faint} />

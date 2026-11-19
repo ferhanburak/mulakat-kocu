@@ -1,7 +1,7 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams } from 'expo-router';
 import { useState, type ReactNode } from 'react';
-import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Field } from '@/components/AuthForm';
 import { Bar, Button, FadeIn, GradientIcon, Ionicons, T, colors, goBack, resetTo, shadow, tap, type IconName, themedStyles } from '@/components/ui';
@@ -91,7 +91,7 @@ export default function ProfileSetup() {
   };
 
   return (
-    <KeyboardAvoidingView style={{ flex: 1, backgroundColor: colors.bg }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+    <KeyboardAvoidingView style={{ flex: 1, backgroundColor: colors.bg }} behavior="padding">
       <LinearGradient
         colors={[colors.primary, colors.primary2]}
         start={{ x: 0, y: 0 }}

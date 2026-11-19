@@ -63,7 +63,7 @@ export default function DailyScreen() {
   };
 
   return (
-    <KeyboardAvoidingView style={{ flex: 1, backgroundColor: colors.bg }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+    <KeyboardAvoidingView style={{ flex: 1, backgroundColor: colors.bg }} behavior="padding">
       <ScrollView contentContainerStyle={{ paddingBottom: 40 }} keyboardShouldPersistTaps="handled">
         <LinearGradient colors={['#FFB547', '#F07A1A']} style={[styles.hero, { paddingTop: insets.top + 8 }]}>
           <Pressable onPress={() => goBack('/')} hitSlop={12} style={styles.back}>

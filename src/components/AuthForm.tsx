@@ -30,7 +30,7 @@ export function AuthScaffold({
 }) {
   const insets = useSafeAreaInsets();
   return (
-    <KeyboardAvoidingView style={{ flex: 1, backgroundColor: colors.bg }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+    <KeyboardAvoidingView style={{ flex: 1, backgroundColor: colors.bg }} behavior="padding">
       <ScrollView contentContainerStyle={{ paddingBottom: insets.bottom + 32 }} keyboardShouldPersistTaps="handled">
         <LinearGradient
           colors={[colors.primary, colors.primary2]}
