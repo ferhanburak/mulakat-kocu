@@ -28,6 +28,13 @@ const normEmail = (e: string) => e.trim().toLocaleLowerCase('en-US');
 export const isValidEmail = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e.trim());
 export const MIN_PASSWORD = 6;
 
+/**
+ * Email + password accounts. Off for now: sign-in is Google only (plus guest mode), so
+ * no email provider or domain is needed. The screens and Supabase templates are kept;
+ * to bring them back, set this to true and re-enable the Email provider in Supabase.
+ */
+export const EMAIL_AUTH = false;
+
 export const toAccount = (u: User): Account => ({
   id: u.id,
   email: u.email ?? '',

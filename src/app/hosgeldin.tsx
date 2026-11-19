@@ -4,6 +4,7 @@ import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { GoogleButton } from '@/components/AuthForm';
 import { Button, FadeIn, Ionicons, T, colors, shadow, tap, type IconName, themedStyles } from '@/components/ui';
+import { EMAIL_AUTH } from '@/lib/auth';
 import { pick, setLang, useLang, useT, type Bi } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 
@@ -70,8 +71,12 @@ export default function Welcome() {
 
       <FadeIn delay={360} style={styles.actions}>
         <GoogleButton />
-        <Button title={t('E-POSTAYLA ÜYE OL', 'SIGN UP WITH EMAIL')} icon="mail" onPress={() => router.push('/kayit')} style={{ marginTop: 12 }} />
-        <Button title={t('GİRİŞ YAP', 'SIGN IN')} variant="outline" icon="log-in" onPress={() => router.push('/giris')} style={{ marginTop: 12 }} />
+        {EMAIL_AUTH && (
+          <>
+            <Button title={t('E-POSTAYLA ÜYE OL', 'SIGN UP WITH EMAIL')} icon="mail" onPress={() => router.push('/kayit')} style={{ marginTop: 12 }} />
+            <Button title={t('GİRİŞ YAP', 'SIGN IN')} variant="outline" icon="log-in" onPress={() => router.push('/giris')} style={{ marginTop: 12 }} />
+          </>
+        )}
         <Pressable
           onPress={() => {
             tap();

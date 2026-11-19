@@ -3,7 +3,9 @@ import { router } from 'expo-router';
 import { Modal, Pressable, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { GUEST_INTERVIEWS, type Locked } from '@/lib/access';
+import { EMAIL_AUTH } from '@/lib/auth';
 import { pick, useLang, useT, type Bi } from '@/lib/i18n';
+import { GoogleButton } from './AuthForm';
 import { Button, FadeIn, Ionicons, T, colors, type IconName, themedStyles } from './ui';
 
 const REASONS: Record<Locked, { icon: IconName; title: Bi; desc: Bi }> = {
@@ -78,16 +80,24 @@ export function SignupPrompt({ reason, onClose }: { reason: Locked | null; onClo
               </View>
             ))}
           </View>
-          <Button title={t('ÜCRETSİZ ÜYE OL', 'SIGN UP FREE')} icon="person-add" onPress={() => go('/kayit')} />
+          {EMAIL_AUTH ? (
+            <Button title={t('ÜCRETSİZ ÜYE OL', 'SIGN UP FREE')} icon="person-add" onPress={() => go('/kayit')} />
+          ) : (
+            <GoogleButton />
+          )}
           <View style={styles.links}>
-            <Pressable onPress={() => go('/giris')} hitSlop={8}>
-              <T w="extrabold" size={14} color={colors.primary}>
-                {t('Giriş yap', 'Sign in')}
-              </T>
-            </Pressable>
-            <T w="bold" size={14} color={colors.faint}>
-              ·
-            </T>
+            {EMAIL_AUTH && (
+              <>
+                <Pressable onPress={() => go('/giris')} hitSlop={8}>
+                  <T w="extrabold" size={14} color={colors.primary}>
+                    {t('Giriş yap', 'Sign in')}
+                  </T>
+                </Pressable>
+                <T w="bold" size={14} color={colors.faint}>
+                  ·
+                </T>
+              </>
+            )}
             <Pressable onPress={onClose} hitSlop={8}>
               <T w="extrabold" size={14} color={colors.muted}>
                 {t('Şimdi değil', 'Not now')}

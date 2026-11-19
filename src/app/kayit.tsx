@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { Pressable, View } from 'react-native';
 import { AuthScaffold, CheckInbox, Field, FormError, GoogleButton, OrDivider, type InputRef } from '@/components/AuthForm';
 import { Button, resetTo, Ionicons, T, colors, notify } from '@/components/ui';
-import { AuthError, MIN_PASSWORD, signUp } from '@/lib/auth';
+import { AuthError, EMAIL_AUTH, MIN_PASSWORD, signUp } from '@/lib/auth';
 import { useT } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 
@@ -41,15 +41,31 @@ export default function SignUp() {
     }
   };
 
+  const subtitle = fromGuest
+    ? t('Üye ol, şimdiye kadarki ilerlemen korunur.', 'Sign up and keep the progress you have made so far.')
+    : t('Ücretsiz üye ol, ilerlemen hep seninle kalsın.', 'Sign up free and keep your progress with you.');
+
+  if (!EMAIL_AUTH)
+    return (
+      <AuthScaffold icon="person-add" title={t('Hesap oluştur', 'Create account')} subtitle={subtitle}>
+        <GoogleButton />
+        <View style={{ flexDirection: 'row', gap: 8, alignItems: 'flex-start', marginTop: 16 }}>
+          <Ionicons name="cloud-done" size={15} color={colors.muted} style={{ marginTop: 1 }} />
+          <T w="semibold" size={12} color={colors.muted} style={{ flex: 1 }}>
+            {t(
+              'İlerlemen hesabında saklanır; telefon değiştirsen de kaldığın yerden devam edersin.',
+              'Your progress is saved to your account, so you can continue even on a new phone.',
+            )}
+          </T>
+        </View>
+      </AuthScaffold>
+    );
+
   return (
     <AuthScaffold
       icon="person-add"
       title={t('Hesap oluştur', 'Create account')}
-      subtitle={
-        fromGuest
-          ? t('Üye ol, şimdiye kadarki ilerlemen korunur.', 'Sign up and keep the progress you have made so far.')
-          : t('Ücretsiz üye ol, ilerlemen hep seninle kalsın.', 'Sign up free and keep your progress with you.')
-      }
+      subtitle={subtitle}
     >
       {pending ? (
         <CheckInbox email={pending} onSignIn={() => router.replace('/giris')} />

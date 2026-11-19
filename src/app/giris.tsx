@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { Pressable } from 'react-native';
 import { AuthScaffold, Field, FormError, GoogleButton, OrDivider, type InputRef } from '@/components/AuthForm';
 import { Button, resetTo, T, colors, notify } from '@/components/ui';
-import { AuthError, resendConfirmation, signIn } from '@/lib/auth';
+import { AuthError, EMAIL_AUTH, resendConfirmation, signIn } from '@/lib/auth';
 import { useT } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 
@@ -46,6 +46,17 @@ export default function SignIn() {
       setError(e instanceof AuthError ? e.message : t('Gönderilemedi, tekrar dene.', "Couldn't send it, please try again."));
     }
   };
+
+  if (!EMAIL_AUTH)
+    return (
+      <AuthScaffold
+        icon="log-in"
+        title={t('Tekrar hoş geldin', 'Welcome back')}
+        subtitle={t('Kaldığın yerden devam etmek için giriş yap.', 'Sign in to pick up where you left off.')}
+      >
+        <GoogleButton />
+      </AuthScaffold>
+    );
 
   return (
     <AuthScaffold

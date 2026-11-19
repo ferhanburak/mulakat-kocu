@@ -6,11 +6,12 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Bar, Button, Card, FadeIn, Ionicons, T, colors, goBack, shadow, tap, type IconName, themedStyles } from '@/components/ui';
 import { INTERVIEWERS } from '@/data/interviewers';
 import { findTrack } from '@/data/professions';
+import { GoogleButton } from '@/components/AuthForm';
 import { GUEST_INTERVIEWS } from '@/lib/access';
 import { ACHIEVEMENTS } from '@/lib/achievements';
 import { locale, pick, setLang, useLang, useT, type Lang } from '@/lib/i18n';
 import { setThemePref, useTheme, type ThemePref } from '@/lib/theme';
-import { AuthError, deleteAccount } from '@/lib/auth';
+import { AuthError, EMAIL_AUTH, deleteAccount } from '@/lib/auth';
 import { goalLabel, stageLabel } from '@/lib/profileOptions';
 import { enableReminders, remindersSupported } from '@/lib/reminders';
 import { levelOf, useStore } from '@/lib/store';
@@ -436,12 +437,18 @@ export default function ProfileScreen() {
                 `You have ${Math.max(0, GUEST_INTERVIEWS - stats.interviews)}/${GUEST_INTERVIEWS} guest interviews left. Members get every unit, the Question of the Day and the Mistake Notebook.`,
               )}
             </T>
-            <Button title={t('KAYIT OL', 'SIGN UP')} icon="person-add" onPress={() => router.push('/kayit')} />
-            <Pressable onPress={() => router.push('/giris')} hitSlop={8} style={{ alignSelf: 'center', marginTop: 14 }}>
-              <T w="extrabold" size={14} color={colors.primary}>
-                {t('Zaten hesabım var', 'I already have an account')}
-              </T>
-            </Pressable>
+            {EMAIL_AUTH ? (
+              <>
+                <Button title={t('KAYIT OL', 'SIGN UP')} icon="person-add" onPress={() => router.push('/kayit')} />
+                <Pressable onPress={() => router.push('/giris')} hitSlop={8} style={{ alignSelf: 'center', marginTop: 14 }}>
+                  <T w="extrabold" size={14} color={colors.primary}>
+                    {t('Zaten hesabım var', 'I already have an account')}
+                  </T>
+                </Pressable>
+              </>
+            ) : (
+              <GoogleButton />
+            )}
           </Card>
         )}
       </View>
