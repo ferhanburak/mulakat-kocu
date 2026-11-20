@@ -1,1 +1,290 @@
-{}
+{
+  "Türkiye’de bir yılda kaç adet kahve kapsülü satıldığını nasıl tahmin edersin?": {
+    "good": [
+      "Talep tarafından, aşağıdan yukarı giderim. Pazarı evler ve ofisler diye iki segmente ayırırım. Türkiye'de yaklaşık 25 milyon hane olduğunu, bunların %4'ünde kapsül makinesi bulunduğunu ve günde iki kapsül içildiğini varsayarım; bu yılda 700 milyon civarı eder. Ofisleri de benzer şekilde hesaplayıp eklerim. Sonra bulduğum rakamı ithalat verileriyle karşılaştırıp mantıklı mı diye kontrol ederim.",
+      "Bottom-up bir market sizing yaparım. Önce hane ve ofis olarak segmentlere bölerim. Hane sayısı 25 milyon, penetrasyon %5 diye kabul edelim, makine başına günde 2 kapsül; yıllık yaklaşık 900 milyon kapsül çıkar. Ofis tarafını da ekleyip toplamı bulurum. En sonda Nespresso gibi bir üreticinin açıkladığı rakamlarla sanity check yaparım.",
+      "Bunu bir kafede oturup kendi kendime hesaplasam şöyle yapardım: kapsül makinesi olan evleri bir grup, ofisleri ayrı bir grup sayarım. Evlerin yüzde beşinde makine var diyelim, bu 1,2 milyon ev eder, her biri günde iki kapsül. Yılda 870 milyon kadar yapıyor. Ofisleri ekleyince bir milyarı biraz aşar. Sonra bunu sektör raporlarındaki rakamla karşılaştırırdım."
+    ],
+    "partial": [
+      "Türkiye'deki hane sayısından başlayıp kapsül makinesi olan evleri hesaplarım.",
+      "Evleri ve ofisleri ayrı segmentler olarak düşünür, her biri için günde kaç kapsül tüketildiğini varsayarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, bu tür tahminleri hiç yapmadım.",
+      "İnternette arar, en güvenilir görünen rakamı söylerim.",
+      "Kesin rakamı bilmeden tahmin yapılamaz, varsayımla hesap yapmak yanlıştır, bu yüzden sadece resmi istatistik beklerim."
+    ]
+  },
+  "Bir restoran zincirinin kârı son iki yılda %30 düştü. Nedenini nasıl bulursun?": {
+    "good": [
+      "Kâr gelir eksi maliyet olduğu için önce düşüş hangi taraftan geliyor onu ayırırım. Gelirde müşteri sayısı ve ortalama sepet tutarını şube bazında incelerim. Maliyette kira ve personel gibi sabit giderleri, hammadde gibi değişken giderlerden ayırırım. Yeni rakipler ya da enflasyon gibi dış etkenlere de bakarım. Bulduğum nedene göre fiyatlama ya da tedarik konusunda somut bir öneri sunarım.",
+      "Profit tree kurarım: revenue ve cost diye ikiye ayırırım. Revenue tarafında trafik ve ortalama hesap tutarına bakarım. Cost tarafında fixed ve variable maliyetleri ayrı ayrı incelerim. Pazara yeni girenler ve hammadde enflasyonu gibi dış faktörleri kontrol ederim. Sonunda yönetime somut bir öneri ile giderim.",
+      "Diyelim zincirin 40 şubesi var. Önce satışlar mı düştü, giderler mi arttı diye bakardım, yani gelir ve maliyeti ayırırdım. Masaya oturan müşteri sayısı ve kişi başı harcama düşmüş mü kontrol ederdim. Kira ve maaş gibi sabit kalemleri, et ve sebze gibi değişken kalemlerden ayırırdım. Karşı köşeye yeni bir rakip açılmış mı, ona da bakardım. En sonunda menü fiyatlarını güncellemeyi önerirdim."
+    ],
+    "partial": [
+      "Önce gelirlerin mi düştüğüne yoksa maliyetlerin mi arttığına bakarım.",
+      "Gelir ve maliyeti ayırırım; gelirde müşteri sayısı ve sepet tutarı düşmüş mü diye bakarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, restoran işinden anlamam.",
+      "Yemeklerin lezzetine bakarım, muhtemelen kalite düşmüştür.",
+      "Kâr düşüşünün nedeni her zaman satışların azalmasıdır, maliyet tarafına bakmaya gerek yoktur."
+    ]
+  },
+  "Bir Türk perakende şirketi Orta Asya pazarına girmek istiyor. Ne tavsiye edersin?": {
+    "good": [
+      "Önce hedef ülkelerin pazar büyüklüğüne, büyüme hızına ve tüketici harcamalarına bakarak pazarın ne kadar çekici olduğunu değerlendiririm. Ardından yerel ve uluslararası rakiplerle rekabet yoğunluğunu incelerim. Şirketin taşıyabileceği bir avantajı, mesela fiyat ya da marka gücü var mı sorgularım. Giriş modeli olarak yerel ortaklık, satın alma ve franchise seçeneklerini karşılaştırırım. Kur ve siyasi riskleri beklenen getiriyle tartıp net bir tavsiye veririm.",
+      "İlk olarak market attractiveness: nüfus, harcama, büyüme oranları. Sonra competitive landscape, kimler var, ne kadar güçlüler. Bizim şirketin right to win'i ne, Türk markası olmanın bir avantajı var mı ona bakarım. Entry mode olarak joint venture, acquisition ya da franchise seçeneklerini değerlendiririm. En sonda risk-getiri dengesine göre öneri veririm.",
+      "Kazakistan ve Özbekistan'ı düşünelim. Bu pazarlar ne kadar büyük ve hızlı büyüyor, önce onu anlarım. Orada hangi zincirler var, rakipler ne kadar güçlü bakarım. Bizim şirketin Türk ürünlerine olan ilgi gibi bir avantajı olabilir. Riski azaltmak için başta yerel bir ortakla girmeyi önerirdim. Kur dalgalanması ciddi bir risk, bunu getiriyle birlikte tartarım."
+    ],
+    "partial": [
+      "Önce pazarın büyüklüğüne ve büyüme hızına bakarım.",
+      "Pazar büyüklüğünü ve rekabeti inceler, sonra karar veririm."
+    ],
+    "wrong": [
+      "Bilmiyorum, Orta Asya'yı pek tanımıyorum.",
+      "Girsinler, yurtdışına açılmak her zaman iyidir.",
+      "Yeni bir pazara girmenin en güvenli yolu her zaman sıfırdan kendi mağazalarını açmaktır, yerel ortaklık çok risklidir."
+    ]
+  },
+  "Bir müşteri “Satışlarımız neden artmıyor?” diye soruyor. Problemi nasıl yapılandırırsın?": {
+    "good": [
+      "Önce problemi net ve ölçülebilir bir tanıma çeviririm: hangi ürün, hangi pazar, hangi dönem, hedef ne? Sonra satışları fiyat ve hacim, hacmi de müşteri sayısı ve alım sıklığı olarak bölen MECE bir problem ağacı kurarım. Her dal için bir hipotez yazarım. Hipotezleri müşteri verisi ve görüşmelerle test ederim. Etkisi en büyük ve en hızlı test edilecek dallara öncelik veririm.",
+      "İlk iş problem statement'ı netleştirmek; 'artmıyor' ne demek, hedef neydi? Sonra issue tree çıkarırım, dalların birbirini kesmemesine ve her şeyi kapsamasına dikkat ederim. Her dal için hypothesis kurarım, mesela 'yeni müşteri kazanımı düştü'. Bunu data ile doğrularım. Sonra impact'i en yüksek alanlara odaklanırım.",
+      "Müşteriye önce 'artmıyor derken neye göre?' diye sorarım, geçen yıla göre mi, hedefe göre mi, hangi ürünlerde? Satışı fiyat çarpı adet olarak ayırırım, adedi de kaç müşteri ve kaç kere aldığına bölerim; bu bir ağaç gibi dallanır. Her dal için tahminimi, yani hipotezimi yazarım. Satış rakamlarına bakıp hangisinin doğru olduğunu görürüm."
+    ],
+    "partial": [
+      "Satışları fiyat ve hacim olarak ayıran bir problem ağacı kurarım.",
+      "Problemi net tanımlar, sonra MECE bir ağaç kurup her dal için hipotez yazarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, sanırım reklam yapmalarını söylerdim.",
+      "Satış ekibiyle konuşur, daha çok çalışmalarını isterim.",
+      "Hipotez kurmak işi yavaşlatır, en iyisi veri toplamadan hemen bir çözüm önermektir."
+    ]
+  },
+  "Proje ortasında müşteri kapsamı genişletmek istiyor ama bütçe ve süre aynı. Ne yaparsın?": {
+    "good": [
+      "Önce yeni talebin neden çıktığını ve iş için önemini anlamaya çalışırım. Ekibimle talebin süre, bütçe ve kaliteye etkisini hızlıca analiz ederim. Müşteriye birkaç seçenek sunarım: ek bütçe ve süre, başka bir kapsamla takas ya da talebi ikinci faza bırakmak. Seçilen yolu yazılı bir değişiklik talebiyle mutabakata bağlarım. Bunu pazarlık değil ortak problem çözme gibi yöneterek ilişkiyi ve güveni korurum.",
+      "İlk önce bu isteğin arkasındaki business need'i anlamak isterim. Sonra impact analizi yaparım: takvim, ekip ve kalite nasıl etkilenir. Müşteriye trade-off seçenekleri götürürüm, mesela bir modülü çıkarıp yenisini koymak. Kararı change request ile yazılı hale getiririz. Bunu yaparken ilişkiyi zedelemeden, aynı tarafta durduğumuzu hissettiririm.",
+      "Geçen projemde müşteri son ayda yeni bir rapor seti istedi. Önce neden istediğini sordum, yönetim kurulu sunumu içinmiş. Ekiple bunun iki hafta ekleyeceğini hesapladık. Ona iki seçenek sundum: ya başka bir raporu ikinci faza atalım ya da süreyi uzatalım. Seçtiği yolu e-postayla yazılı olarak onaylattım ve ilişkimiz bozulmadı."
+    ],
+    "partial": [
+      "Müşteriye yeni talebin projeye etkisini anlatırım.",
+      "Talebin süre ve bütçeye etkisini analiz eder, müşteriye birkaç seçenek sunarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, proje yönetimi benim işim değil.",
+      "Müşteri ne isterse yaparız, müşteri her zaman haklıdır.",
+      "Ekip fazla mesai yaparak ek kapsamı sessizce teslim eder, müşteriye bunu söylemeye gerek yoktur."
+    ]
+  },
+  "Büyük bir şirketin maliyet dönüşüm programını nasıl yönetirsin?": {
+    "good": [
+      "Önce yönetimle net bir tasarruf hedefi belirler, karşılaştırma için maliyet bazını sabitlerim. Birimlerle birlikte satın alma, organizasyon ve süreç alanlarında bir fırsat havuzu oluştururum. Her girişimin sahibi ve takvimi olan, haftalık raporlayan bir PMO ve yönetişim yapısı kurarım. Çalışanların direncini azaltmak için değişim yönetimine ve açık iletişime önem veririm. Tasarrufların kalıcı olması için sonuçları finans verisiyle takip ederim.",
+      "İlk adım target setting ve baseline: neyi neye göre ölçeceğiz. Sonra departmanlarla atölyeler yapıp tasarruf fikirlerinden bir pipeline çıkarırım. Bir PMO kurarım, her initiative'in owner'ı ve KPI'ı olur. Change management'a ciddi yatırım yaparım çünkü insanlar kesintiye direnir. Kazanımları finansla birlikte aylık takip ederim ki geri dönmesin.",
+      "Bir holdingde 200 milyonluk tasarruf programında çalıştım. Önce yönetim kuruluyla hedefi ve geçen yılın maliyetlerini baz olarak netleştirdik. Satın almadan lojistiğe kadar yüzden fazla fırsat çıkardık. Haftalık bir yönlendirme komitesi kurduk. Çalışanlarla açık konuştuk, direnç azaldı. Tasarrufları her ay finans raporundan izledik."
+    ],
+    "partial": [
+      "Önce net bir tasarruf hedefi belirlerim.",
+      "Hedef belirler, birimlerle birlikte tasarruf fırsatlarını listeler ve bir PMO kurarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, maliyet programı hiç yönetmedim.",
+      "Herkesin bütçesini biraz kısarım, zamanla maliyetler düşer.",
+      "Maliyet dönüşümünde tek yol işten çıkarmadır, değişim yönetimine zaman ayırmak gereksizdir."
+    ]
+  },
+  "Bir müşterinin yeni bir ERP sistemine ihtiyacı olup olmadığını nasıl analiz edersin?": {
+    "good": [
+      "Önce müşterinin mevcut süreçlerini ve kullandığı sistemleri haritalarım. Manuel veri girişi, tekrar eden işler ve hata yapılan noktaları tespit ederim. Finans, üretim ve satış gibi birimlerdeki paydaşlarla görüşüp beklentilerini toplarım. Bunları önceliklendirilmiş bir gereksinim listesine çeviririm. Son olarak yeni sistemin maliyetini beklenen faydayla karşılaştıran bir iş gerekçesi hazırlarım.",
+      "İlk iş as-is süreç haritasını çıkarmak, kim hangi sistemde ne yapıyor. Excel'le elle yapılan işler, çift veri girişi gibi pain point'leri bulurum. Departman yöneticileriyle stakeholder görüşmeleri yaparım. Bunlardan bir requirements listesi çıkarırım. Sonunda bir business case hazırlarım: yatırım maliyeti ne, ROI ne kadar.",
+      "Bir tekstil firmasında bunu yaptım. Siparişten faturaya kadar şu an işlerin nasıl yürüdüğünü masa masa gezip çıkardım. Muhasebeci her ay günlerce Excel'den elle veri aktarıyordu, sürekli de hata çıkıyordu. Üretim müdürü ve satış ekibiyle konuştum. İhtiyaçları listeledik. En sonda yeni sistemin maliyeti ile kazandıracağı zamanı karşılaştırdım."
+    ],
+    "partial": [
+      "Müşterinin mevcut süreçlerine bakar, nerede sorun olduğunu bulurum.",
+      "Mevcut süreçleri inceler, paydaşlarla görüşür ve gereksinimleri çıkarırım."
+    ],
+    "wrong": [
+      "Bilmiyorum, ERP konusunda bilgim yok.",
+      "Şirket büyükse ERP lazımdır, başka bir şeye bakmaya gerek yok.",
+      "Her şirketin mutlaka yeni bir ERP sistemine ihtiyacı vardır, analiz yapmadan hemen en pahalı paketi satın almalı."
+    ]
+  },
+  "ERP canlıya geçişinden iki hafta önce kritik testlerde hatalar çıktı. Ne yaparsın?": {
+    "good": [
+      "Önce hataları iş etkisine göre sınıflandırıp hangilerinin gerçekten kritik olduğunu belirlerim. Kritik olanlar için sorumlusu ve tarihi belli bir düzeltme planı hazırlarım. Önceden belirlediğimiz ölçütlerle bir canlıya geçiş toplantısı yapar, risk yüksekse tarihi ertelemeyi öneririm. Müşteri yönetimine durumu şeffaf şekilde, seçenekleriyle anlatırım. Geçsek bile sorun çıkarsa eski sisteme dönmek için bir geri dönüş planı hazır tutarım.",
+      "İlk iş defect triage: hangi bug'lar gerçekten blocker, hangileri bekleyebilir. Blocker'lar için owner ve deadline'ı olan bir fix planı çıkarırım. Go-live kriterlerine göre go/no-go toplantısı yaparız, gerekirse go-live'ı erteleriz. Sponsorlara hiçbir şeyi saklamadan açık bilgi veririm. Bir de rollback planını hazır ederim.",
+      "Böyle bir durumu yaşadım; fatura kesme ekranında hatalar çıktı. Ekiple oturup hangisinin işi durduracak kadar ciddi olduğuna baktık. Her hata için bir sorumlu atayıp günlük takip ettik. İki gün kala test hâlâ geçmeyince geçişi bir hafta ertelemeyi önerdim. Genel müdüre durumu olduğu gibi anlattım. Eski sistemi de kapatmadan yedekte tuttuk."
+    ],
+    "partial": [
+      "Hataların ne kadar kritik olduğuna bakarım.",
+      "Hataları etkisine göre sınıflandırır, kritik olanlar için bir düzeltme planı yaparım."
+    ],
+    "wrong": [
+      "Bilmiyorum, bu test ekibinin işi.",
+      "Ekibe daha hızlı çalışmalarını söylerim, iki hafta yeter.",
+      "Tarih asla ertelenmemeli, hatalar canlıya geçtikten sonra düzeltilir, müşteriye de söylemeye gerek yoktur."
+    ]
+  },
+  "Geleneksel bir üretim şirketi için dijital dönüşüm yol haritasını nasıl hazırlarsın?": {
+    "good": [
+      "Önce şirketin dijital olgunluk seviyesini süreçler, sistemler ve veri açısından değerlendiririm. Teknolojiden değil iş değerinden başlayıp kestirimci bakım ya da talep tahmini gibi kullanım senaryolarını listeler, değerine göre sıralarım. Hızlı kazanım sağlayacak bir iki pilotla başlarım. Ölçeklemek için ortak bir veri platformu ve altyapı kurarım. Çalışanların dijital yetkinliğini geliştirmeden ve bir kültür değişimi olmadan dönüşümün kalıcı olmayacağını bilirim.",
+      "İlk olarak bir maturity assessment yaparım, şirket nerede duruyor. Sonra use case'leri iş değerine göre önceliklendiririm, örneğin predictive maintenance. Bir iki pilot projeyle quick win alırım. Bunları büyütmek için data platform ve IT altyapısını hazırlarım. Bir de upskilling programı ve kültür dönüşümü olmazsa her şey kâğıtta kalır.",
+      "Bir döküm fabrikasında çalışırken önce fabrikanın dijital olarak ne kadar geride olduğunu ölçtük; çoğu şey kâğıt üzerindeydi. Hangi işin şirkete en çok para kazandıracağına baktık, makine arızalarını önceden tahmin etmek öne çıktı. Bir hatta küçük bir pilot yaptık. Sonra sensör verilerini toplayan bir altyapı kurduk. Ustaları eğittik, onları sürece kattık."
+    ],
+    "partial": [
+      "Önce şirketin dijital olgunluğunu değerlendiririm.",
+      "Dijital olgunluğu ölçer, sonra küçük bir pilot projeyle başlarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, dijital dönüşüm çok geniş bir konu.",
+      "Şirkete yeni bilgisayarlar alır, herkesi bulut sistemlere geçiririm.",
+      "Dijital dönüşüm sadece teknoloji projesidir, çalışanların yetkinliği ve kültür hiç önemli değildir."
+    ]
+  },
+  "Portfolyondaki bir projeyi baştan sona nasıl anlatırsın?": {
+    "good": [
+      "Önce projenin bağlamını anlatırım: arsanın özellikleri, kullanıcılar ve işlev programı. Ardından bu bağlamdan çıkan ana tasarım kavramını tek cümleyle ifade ederim. Kütle, malzeme ve gün ışığı kararlarının bu kavrama nasıl hizmet ettiğini çizimlerle gösteririm. Denediğim alternatifleri ve neden elediğimi paylaşırım. Son olarak projeden ne öğrendiğimi anlatırım.",
+      "İlk önce site context ve brief: arazi nerede, kimler kullanacak, ihtiyaç programı ne. Sonra ana concept'i söylerim. Materyal ve ışık kararlarını diyagramlarla açıklarım. Ürettiğim farklı seçenekleri gösterip neden birini seçtiğimi anlatırım. En sonda bu projeden neler öğrendiğimi paylaşırım.",
+      "Mesela bir kütüphane projem var. Önce arsanın eğimli bir yamaçta olduğunu ve öğrencilerin kullanacağını anlatırım. Ana fikrim 'basamaklı bir okuma salonu'ydu. Ahşap ve doğal ışığı neden seçtiğimi gösteririm. Başta üç farklı kütle denemiştim, onları da paylaşırım. Son olarak bugün yapsam neyi farklı yapacağımı ve ne öğrendiğimi söylerim."
+    ],
+    "partial": [
+      "Projenin arsasını ve programını anlatırım.",
+      "Bağlamı anlatır, sonra tasarım kavramını ve malzeme seçimlerini açıklarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, render'ları gösteririm sanırım.",
+      "Güzel görsellerimi sırayla gösteririm, gerisini jüri sorar.",
+      "Portfolyoda süreç anlatılmaz, sadece final görselleri göstermek yeterlidir; denenen alternatifleri göstermek zayıflık gibi görünür."
+    ]
+  },
+  "Şantiyede uygulamanın projeden farklı yapıldığını fark ettin. Ne yaparsın?": {
+    "good": [
+      "Önce farkı yerinde tespit edip fotoğraf ve notlarla belgelerim. Bunun statik, işlev, maliyet ve takvim açısından etkisini ilgili mühendislerle değerlendiririm. Müteahhit ve işverenle bir toplantı yapıp durumu açıkça konuşurum. Etkiye göre düzeltme ya da projede revizyon gibi bir çözüm üzerinde anlaşırız. Tekrarlanmaması için kritik imalatlardan önce yerinde denetim adımları eklerim.",
+      "İlk iş durumu dokümante etmek, fotoğraf çekip ölçü alırım. Sonra statik mühendisiyle bunun yapıya etkisi ne, onu konuşurum. Yüklenici firma ve işveren temsilcisini toplantıya çağırırım. Ya söküp düzeltiriz ya da projeyi revize ederiz. Sonraki aşamalarda daha sık saha kontrolü koyarım.",
+      "Bir konut projesinde balkon korkuluğunun çizimden farklı yapıldığını gördüm. Hemen fotoğrafladım ve tutanak tuttum. Mühendisle bunun güvenliğe etkisini konuştuk. Müteahhitle ve işverenle oturduk, korkuluk yeniden yapıldı. O günden sonra her imalattan önce yerinde kontrol yapmaya başladım."
+    ],
+    "partial": [
+      "Farkı fotoğraflayıp belgelerim.",
+      "Farkı tespit edip fotoğraflar, sonra müteahhitle konuşurum."
+    ],
+    "wrong": [
+      "Bilmiyorum, şantiyede hiç çalışmadım.",
+      "Küçük bir farksa görmezden gelirim, iş uzamasın.",
+      "Uygulama projeden farklıysa müteahhit haklıdır, şantiyede yapılan her zaman projeden üstündür, bir şey yapmaya gerek yoktur."
+    ]
+  },
+  "Bütçesi kısılan bir projede tasarım kalitesini nasıl korursun?": {
+    "good": [
+      "Önce projeyi özel kılan, vazgeçilmeyecek tasarım unsurlarını öncelik olarak belirlerim. Geri kalan kalemlerde değer mühendisliği yaparak aynı işi daha ucuza sağlayan çözümler ararım. Malzeme ve sistem seçimlerinde uzun ömürlü ama ekonomik alternatiflere bakarım. Her seçeneğin etkisini işverenle şeffaf paylaşır, kararı birlikte veririz. Mühendislik ekipleriyle sıkı koordinasyon kurarak sonradan pahalı değişikliklerin önüne geçerim.",
+      "İlk adım must-have ile nice-to-have'i ayırmak, projenin kimliğini taşıyan şeyler korunur. Sonra value engineering yaparım. Cephe ve iç mekân materyallerinde daha ekonomik muadiller ararım. Mal sahibine her değişikliği maliyetiyle birlikte sunarım. Statik ve mekanik ekiplerle yakın çalışırım ki revizyonlar sorun çıkarmasın.",
+      "Bir okul projesinde bütçe yüzde yirmi kesildi. Bizim için avlu ve doğal ışık vazgeçilmezdi, onları korumaya karar verdik. Pahalı taş kaplama yerine benzer görünen ekonomik bir malzeme seçtik. İşverenle oturup her kalemi konuştuk. Mühendislerle haftalık koordinasyon toplantıları yaparak son dakika değişikliklerini engelledik."
+    ],
+    "partial": [
+      "Önce projede vazgeçilmeyecek unsurları belirlerim.",
+      "Öncelikleri belirler, daha ucuz malzeme alternatifleri ararım."
+    ],
+    "wrong": [
+      "Bilmiyorum, bütçe kısılırsa kalite de düşer.",
+      "Tasarımı olduğu gibi bırakır, bütçeyi aşarız, sonra bakarız.",
+      "Bütçe kısıldığında en iyi yol en ucuz malzemeyi seçmektir, işverene sormaya gerek yoktur, kalite zaten korunamaz."
+    ]
+  },
+  "Küçük bir stüdyo daireyi daha ferah ve işlevsel hale getirmek için ne önerirsin?": {
+    "good": [
+      "Önce kullanıcının yaşam tarzını ve ihtiyaçlarını konuşarak öğrenirim. Açılır yatak ya da katlanır masa gibi çok işlevli mobilyalar öneririm. Duvarları tavana kadar kullanan dikey depolama çözümleriyle zemini boşaltırım. Doğal ışığı engellemem, açık renk yüzeyler ve aynalarla mekânı geniş gösteririm. Mobilyaları rahat bir dolaşım alanı kalacak şekilde yerleştiririm.",
+      "İlk iş müşterinin günlük rutini: evden mi çalışıyor, misafir ağırlıyor mu? Sonra multifunctional mobilya öneririm, mesela kanepe yatak. Tavana kadar dolaplarla storage alanını yukarı taşırım. Açık tonlar ve bol light ile ferahlık sağlarım. Hareket alanını kapatmayacak bir yerleşim kurarım.",
+      "Bir arkadaşımın 30 metrekarelik dairesini düzenledim. Önce gün içinde evi nasıl kullandığını sordum. Duvara katlanan bir masa ve altı çekmeceli bir yatak aldık. Kapı üstüne kadar raflar koyduk. Duvarları beyaza boyadık, perdeleri incelttik ki ışık girsin. Ortada rahat yürünecek bir alan bıraktık."
+    ],
+    "partial": [
+      "Çok işlevli mobilyalar kullanmasını öneririm.",
+      "Çok işlevli mobilya ve açık renk duvarlar öneririm."
+    ],
+    "wrong": [
+      "Bilmiyorum, iç mimarlıktan pek anlamam.",
+      "Güzel birkaç dekoratif obje koyarım, ev daha şık görünür.",
+      "Küçük mekânlarda koyu renkler ve büyük, ağır mobilyalar kullanılmalıdır, böylece ev daha geniş görünür."
+    ]
+  },
+  "Müşterinin istediği tasarım bütçesini aşıyor. Nasıl yönetirsin?": {
+    "good": [
+      "Önce müşteriyle hangi unsurların onun için en önemli olduğunu konuşup bir öncelik listesi yaparız. Görünümü benzer ama daha ekonomik alternatif malzeme ve ürünler öneririm. Bazı işleri ileri bir tarihe bırakan aşamalı bir uygulama planı sunarım. Her kalemin maliyetini şeffaf bir dökümle paylaşırım. Son kararı bilgilendirilmiş şekilde müşterinin vermesini sağlarım.",
+      "İlk iş müşterinin must-have listesini çıkarmak. Sonra pahalı kalemler için muadil ürünler bulurum, mesela doğal taş yerine porselen. Projeyi fazlara bölerim, mutfak şimdi, banyo seneye gibi. Tüm maliyetleri açık bir tabloyla gösteririm. Seçimi her zaman müşteriye bırakırım.",
+      "Bir müşterim İtalyan mutfak istiyordu ama bütçesi yarısıydı. Önce ona mutfakta en çok neyi önemsediğini sordum. Yerli üretim ama benzer görünümlü bir seçenek buldum. Aydınlatmayı ikinci aşamaya bıraktık. Her kalemin fiyatını açıkça yazdığım bir liste verdim ve kararı ona bıraktım."
+    ],
+    "partial": [
+      "Müşteriyle önceliklerini konuşurum.",
+      "Öncelikleri belirler, daha ucuz alternatif malzemeler öneririm."
+    ],
+    "wrong": [
+      "Bilmiyorum, bu konuyu düşünmedim.",
+      "Müşteriye bütçesini artırmasını söylerim, kaliteli iş pahalıdır.",
+      "Bütçe aşımını müşteriye söylemem, iş bitince faturayı gösteririm; maliyetleri baştan açıklamak işi kaçırır."
+    ]
+  },
+  "Bir iç mimarlık ofisinde aynı anda yürüyen projelerin kalite ve takvimini nasıl yönetirsin?": {
+    "good": [
+      "Tüm projeleri tek bir panoda kilometre taşlarıyla gösteren ortak bir takvim tutarım. Tasarımdan uygulamaya her aşama için standart bir süreç ve kontrol listesi kullanırız. Haftalık toplantılarda ekip ve kaynak dağılımını yükü dengeleyecek şekilde ayarlarım. Tedarikçi teslim sürelerini takip edip gecikmeleri önceden yönetirim. Müşterilere düzenli kısa raporlarla ilerlemeyi bildiririm.",
+      "Bütün işleri tek bir project board'da, Gantt chart ile takip ederim. Her aşama için checklist'imiz var, kalite böyle standart kalır. Her pazartesi resource planning yapıp kimin neye bakacağını belirleriz. Vendor'ların lead time'larını izlerim. Müşterilere haftalık update gönderirim.",
+      "Ofisimizde aynı anda sekiz proje yürüyordu. Hepsini duvardaki büyük bir zaman çizelgesinde gösterdik. Her projede aynı kontrol listesini kullandık. Pazartesi toplantılarında kim fazla yüklenmiş bakıp işleri yeniden dağıttık. Mobilyacıların teslim tarihlerini önceden aradık. Müşterilere her cuma kısa bir ilerleme e-postası attık."
+    ],
+    "partial": [
+      "Bütün projeleri ortak bir takvimde takip ederim.",
+      "Ortak bir takvim tutar, her aşama için kontrol listesi kullanırım."
+    ],
+    "wrong": [
+      "Bilmiyorum, ofis yönetimi yapmadım.",
+      "Herkes kendi projesine baksın, ben karışmam.",
+      "Birden fazla projeyi aynı anda yürütmek mümkün değildir, standart süreç kurmak da yaratıcılığı öldürür, bu yüzden takvim tutmam."
+    ]
+  },
+  "Bir logo tasarım sürecini nasıl yürütürsün?": {
+    "good": [
+      "Önce müşteriyle detaylı bir brief toplantısı yapıp markanın değerlerini ve hedef kitlesini anlarım. Sektörü ve rakip markaları araştırırım. Bilgisayara geçmeden çok sayıda eskiz çizer, en güçlü üç alternatifi geliştiririm. Müşterinin geri bildirimiyle seçilen tasarımı rafine ederim. Son olarak logoyu tüm formatlarda ve kullanım kurallarını anlatan bir kılavuzla teslim ederim.",
+      "İlk iş brief: marka ne anlatmak istiyor, kime konuşuyor. Sonra competitor analizi ve moodboard yaparım. Kâğıt üzerinde sketch'lerle başlarım, birkaç yönü dijitale aktarırım. Müşteriden feedback alıp revize ederim. Teslimde bir brand guideline ile renk kodlarını ve kullanım kurallarını veririm.",
+      "Bir kahve dükkânının logosunu yaparken önce sahibiyle oturup kime hitap ettiğini konuştuk, genç öğrencilermiş. Mahalledeki diğer kafelerin logolarına baktım. Defterime onlarca çizim yaptım, üçünü seçtim. Sahibi birini beğendi, birkaç düzeltme istedi. Sonunda tabela, bardak ve Instagram için tüm dosyaları ve küçük bir kılavuzu teslim ettim."
+    ],
+    "partial": [
+      "Müşteriden brief alır, ne istediğini anlarım.",
+      "Brief alır, rakipleri araştırır ve eskizlerle başlarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, logo hiç tasarlamadım.",
+      "Bilgisayarda güzel bir şey çizip müşteriye gönderirim.",
+      "Logo tasarımında araştırmaya ve eskize gerek yoktur, hazır bir şablonu indirip müşterinin adını yazmak yeterlidir."
+    ]
+  },
+  "Müşteri tasarımını beğenmedi ama nedenini açıklayamıyor. Ne yaparsın?": {
+    "good": [
+      "Savunmaya geçmek yerine meraklı sorular sorarım: renk mi, yazı mı, genel his mi rahatsız ediyor? Beğendiği ve beğenmediği referans tasarımlar isteyip ortak bir dil kurarız. Kararları tekrar brief ve hedeflerle karşılaştırırım. Farklı yönleri gösteren iki üç hızlı seçenek hazırlarım. Her seçeneğin gerekçesini anlatarak bilinçli bir seçim yapmasına yardım ederim.",
+      "Önce açık uçlu sorularla ne hissettiğini anlamaya çalışırım. Ondan beğendiği birkaç örnek isterim, Pinterest'ten bile olur. Sonra ilk brief'e geri döner, hedeflerimizle tasarımı yan yana koyarız. Birkaç farklı alternatif çıkarırım. Her birinin neden böyle olduğunu açıklarım.",
+      "Bir müşterim afişime 'bir şey eksik' demişti. 'Rengi mi, fontu mu, yerleşimi mi?' diye tek tek sordum. Beğendiği üç afiş örneği göndermesini istedim. Örneklerin hepsi daha sadeydi, ilk brief'te de sade demişti. İki sade seçenek hazırladım ve neden böyle yaptığımı anlattım."
+    ],
+    "partial": [
+      "Ona neyi beğenmediğini sorular sorarak bulmaya çalışırım.",
+      "Sorular sorarım ve beğendiği referans tasarımları isterim."
+    ],
+    "wrong": [
+      "Bilmiyorum, bu çok sinir bozucu bir durum.",
+      "Tasarımı baştan yaparım, belki yenisini beğenir.",
+      "Müşteri tasarımdan anlamaz, tasarımcı her zaman haklıdır, bu yüzden tasarımı değiştirmeden aynen teslim ederim."
+    ]
+  },
+  "Bir kampanyanın görsel dilini birden fazla tasarımcı ve kanalda nasıl tutarlı tutarsın?": {
+    "good": [
+      "Önce kampanyanın tek cümlelik ana konseptini ve hissini netleştirip ekiple paylaşırım. Renk, tipografi ve yerleşim kurallarını içeren kısa bir görsel kılavuz ve şablon seti hazırlarım. Sosyal medya, dış mecra ve dijital reklam için her kanala uyarlama kurallarını belirlerim. Yayından önce tüm işlerin geçtiği kısa bir onay süreci kurarım. Haftalık eleştiri toplantılarında ekibe geri bildirim veririm.",
+      "Herkesin aynı big idea'yı anlaması için önce net bir konsept yazarım. Sonra bir style guide ve hazır template'ler çıkarırım. Instagram, billboard ve banner için her mecraya özel adaptasyon kuralları koyarım. Her iş yayına çıkmadan önce bir approval adımından geçer. Haftalık critique toplantılarında feedback veririm.",
+      "Geçen yıl bir bayram kampanyasında beş tasarımcı vardı. Önce 'sofrada buluşmak' diye tek bir fikir belirledik. Renkleri, fontları ve fotoğraf üslubunu anlatan iki sayfalık bir kılavuz yazdım. Afiş, Instagram ve otobüs giydirmesi için ayrı ölçü ve kurallar koyduk. Her iş bana gelmeden yayına çıkmadı ve cuma günleri birlikte işleri değerlendirdik."
+    ],
+    "partial": [
+      "Bir görsel kılavuz hazırlayıp tüm tasarımcılarla paylaşırım.",
+      "Net bir konsept belirler ve renk ile font kurallarını içeren bir kılavuz hazırlarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, her tasarımcı kendi tarzında çalışır.",
+      "Tasarımcılara benzer şeyler yapmalarını söylerim.",
+      "Tutarlılık için her kanalda birebir aynı görseli aynı ölçüde kullanmak yeterlidir, kanala uyarlama yapmak tutarlılığı bozar."
+    ]
+  }
+}
