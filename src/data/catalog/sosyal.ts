@@ -21,6 +21,11 @@ export const psikoloji: Profession = {
           ['Risk değerlendirmesi: risk, plan, değerlendir', 'Doğrudan sorma: doğrudan sor, açıkça', 'Güvenlik planı: güvenlik planı, destek', 'Yönlendirme / iş birliği: psikiyatri, yönlendir, acil', 'Kayıt / süpervizyon: kayıt, süpervizyon'],
           'Sakin kalır ve konuyu doğrudan, yargılamadan sorarım; açıkça sormak riski artırmaz. Plan, araç ve geçmiş girişim gibi risk faktörlerini değerlendiririm. Danışanla bir güvenlik planı oluşturur, gerekirse psikiyatriye ya da acile yönlendiririm. Süreci kaydeder ve süpervizyon alırım.'),
       ]],
+      ['Süpervizyon', 'Senior', [
+        q('vaka', 'Süpervizyon verdiğin bir terapistin danışanıyla mesleki sınırları aştığını fark ettin. Ne yaparsın?',
+          ['Danışanın güvenliği: danışanın güvenliği, zarar', 'Doğrudan görüşme: açıkça görüş', 'Etik kurallar: etik', 'Düzeltici plan: plan, yakın süpervizyon', 'Kayıt ve bildirim: kayıt, bildir'],
+          'İlk önceliğim danışanın güvenliği ve görebileceği zararı önlemektir. Terapistle konuyu suçlamadan ama açıkça görüşür, ne olduğunu kendi ağzından dinlerim. Durumu mesleki etik kurallar çerçevesinde değerlendiririm. Daha yakın süpervizyon ve gerekirse vakanın devri gibi düzeltici bir plan yaparız. Görüşmeleri kayıt altına alır, ciddi bir ihlal varsa etik kurula bildiririm.'),
+      ]],
     ]),
     track('psi-orgut', 'Endüstri & Örgüt Psikolojisi', 'people', 'Seçme-yerleştirme, motivasyon', [
       ['Temeller', 'Junior', [
@@ -33,6 +38,11 @@ export const psikoloji: Profession = {
           ['Veriyi kırılımlama: kırılım, departman, analiz', 'Nitel derinleşme: odak grup, görüşme', 'Aksiyon planı: aksiyon, plan, yönetici', 'Geri bildirim döngüsü: paylaş, takip, tekrar ölç'],
           'Sonuçları departman ve kıdem kırılımında analiz ederek sorunun yoğunlaştığı yerleri bulurum. Odak gruplarla nedenlerini derinleştiririm. Yöneticilerle somut aksiyon planları oluşturur, sonuçları çalışanlarla paylaşır ve birkaç ay sonra tekrar ölçerim.'),
       ]],
+      ['Değerlendirme Merkezi', 'Senior', [
+        q('vaka', 'Bir şirkete yönetici adayları için değerlendirme merkezi (assessment center) nasıl kurarsın?',
+          ['Yetkinlik modeli: yetkinlik', 'Egzersizler: vaka, rol oyunu, grup', 'Değerlendirici eğitimi: değerlendirici', 'Geçerlik ve güvenirlik: geçerlik, güvenirlik', 'Geri bildirim: geri bildirim, gelişim'],
+          'Önce rolün başarısı için gereken davranışları tanımlayan bir yetkinlik modeli oluştururum. Her yetkinliği birden fazla egzersizle ölçecek şekilde vaka analizi, rol oyunu ve grup tartışması tasarlarım. Değerlendiricileri gözlem, kayıt ve puanlama konusunda eğitirim. Sonuçların geçerlik ve güvenirliğini, değerlendiriciler arası uyum ve sonraki performansla kontrol ederim. Her adaya gelişim planına dönüşen ayrıntılı bir geri bildirim veririm.'),
+      ]],
     ]),
     track('psi-egitim', 'Eğitim Psikolojisi & PDR', 'school', 'Öğrenme, rehberlik, gelişim', [
       ['Temeller', 'Junior', [
@@ -44,6 +54,11 @@ export const psikoloji: Profession = {
         q('vaka', 'Akademik başarısı birden düşen bir öğrenci için ne yaparsın?',
           ['Öğrenciyle görüşme: görüş, dinle, güven', 'Bilgi toplama: öğretmen, aile, gözlem', 'Nedenleri ayırt etme: aile, arkadaş, duygusal, öğrenme', 'Plan ve takip: plan, takip, yönlendir'],
           'Önce öğrenciyle güven ortamında görüşüp dinlerim. Öğretmen ve aileden bilgi toplarım. Düşüşün nedeninin aile sorunları, arkadaş ilişkileri, duygusal zorluk ya da öğrenme güçlüğü olup olmadığını ayırt ederim. Bir destek planı oluşturur, gerekirse uzmana yönlendirip takip ederim.'),
+      ]],
+      ['Okul Programı', 'Senior', [
+        q('vaka', 'Okul genelinde akran zorbalığını önleme programını nasıl tasarlarsın?',
+          ['İhtiyaç belirleme: anket, ihtiyaç', 'Okul politikası: politika, kural', 'Öğretmen eğitimi: öğretmen eğitimi', 'Akran programı: akran', 'Veli iş birliği ve izleme: veli, izle'],
+          'Önce öğrencilere anonim bir anket yaparak zorbalığın sıklığını ve nerede yaşandığını belirleyip ihtiyacı netleştiririm. Okul yönetimiyle birlikte açık kuralları olan bir zorbalık karşıtı politika oluştururuz. Öğretmen eğitimi ile erken fark etme ve doğru müdahale becerisi kazandırırım. Seyirci kalmamayı öğreten akran destek programları başlatırım. Velilerle iş birliği yapar, programın etkisini dönem sonu anketleriyle izlerim.'),
       ]],
     ]),
   ],
@@ -59,7 +74,7 @@ export const hukuk: Profession = {
     track('huk-ticaret', 'Ticaret & Şirketler Hukuku', 'briefcase', 'Sözleşme, şirket, birleşme', [
       ['Temeller', 'Junior', [
         q('teknik', 'Anonim şirket ile limited şirket arasındaki temel farklar nelerdir?',
-          ['Asgari sermaye: sermaye', 'Ortak sorumluluğu: sorumluluk, kamu borcu', 'Pay devri: pay devri, devir', 'Yönetim organı: yönetim kurulu, müdür'],
+          ['Asgari sermaye: sermaye', 'Ortak sorumluluğu: sorumluluk, kamu borcu, sorumlu', 'Pay devri: pay devri, devir', 'Yönetim organı: yönetim kurulu, müdür'],
           'Anonim şirkette pay devri daha kolaydır, yönetim yönetim kurulu tarafından yapılır ve halka açılmaya uygundur. Limited şirkette pay devri noter onayı ve genel kurul onayı gerektirir, şirket müdürlerce yönetilir; ortaklar ayrıca şirketin ödenmeyen kamu borçlarından payları oranında sorumlu olabilir. Asgari sermaye tutarları da farklıdır.'),
         q('teknik', 'Bir sözleşmeyi incelerken öncelikle nelere bakarsın?',
           ['Taraflar ve konu: taraf, konu, kapsam', 'Edimler ve süreler: edim, süre, teslim, ödeme', 'Fesih ve cezai şart: fesih, cezai şart', 'Uyuşmazlık çözümü: yetkili mahkeme, tahkim, uyuşmazlık'],
@@ -69,6 +84,11 @@ export const hukuk: Profession = {
         q('vaka', 'Müvekkil şirket, bir tedarikçinin sözleşmeyi ihlal ettiğini söylüyor. Nasıl ilerlersin?',
           ['Belge inceleme: sözleşme, yazışma, belge, delil', 'İhlalin tespiti: ihlal, temerrüt', 'İhtar: ihtar, ihtarname, noter', 'Seçenekler: dava, arabuluculuk, uzlaşma, tazminat'],
           'Önce sözleşmeyi ve tüm yazışmaları inceleyip ihlalin ve zararın delillerini toplarım. Temerrüt koşullarını değerlendirir, gerekirse noter aracılığıyla ihtarname çekerim. Müvekkile zorunlu arabuluculuk, uzlaşma ve dava seçeneklerini maliyet ve süre açısından karşılaştırarak sunarım.'),
+      ]],
+      ['Birleşme & Satın Alma', 'Senior', [
+        q('vaka', 'Bir şirket satın alımında hukuki durum tespiti (due diligence) sürecini nasıl yönetirsin?',
+          ['Kapsam ve öncelik: kapsam, öncelik', 'Veri odası: veri oda', 'Risk alanları: sözleşme, dava, lisans', 'Raporlama: rapor, kırmızı bayrak', 'Sözleşmeye yansıtma: tazminat, beyan'],
+          'Önce işlemin yapısına ve müvekkilin önceliklerine göre incelemenin kapsamını belirlerim. Satıcıdan istenecek belgelerin listesini hazırlar, sanal veri odasındaki belgeleri ekiple paylaştırırım. Önemli sözleşmeler, süren davalar, lisans ve izinler, iş hukuku ve vergi gibi risk alanlarını incelerim. Bulguları önem sırasına göre bir rapor halinde sunar, kırmızı bayrakları ayrıca vurgularım. Tespit edilen riskleri satış sözleşmesinde beyan ve tazminat hükümlerine yansıtırım.'),
       ]],
     ]),
     track('huk-is', 'İş Hukuku', 'people', 'İşçi-işveren ilişkileri', [
@@ -82,6 +102,11 @@ export const hukuk: Profession = {
           ['Bilgi toplama: sözleşme, bordro, kıdem, belge', 'Fesih türü: fesih, haklı, geçerli', 'Arabuluculuk: arabulucu, zorunlu', 'Süreler: zamanaşımı, süre, hak düşürücü'],
           'Önce iş sözleşmesi, bordrolar ve fesih bildirimini inceleyip kıdem süresini ve fesih türünü belirlerim. Alacak kalemlerini hesaplarım. İşe iade veya alacak davasından önce zorunlu arabuluculuğa başvururum ve hak düşürücü süreler ile zamanaşımına dikkat ederim.'),
       ]],
+      ['Toplu İşten Çıkarma', 'Senior', [
+        q('vaka', 'İşveren müvekkilin toplu işten çıkarma yapmak istiyor. Nelere dikkat etmesini söylersin?',
+          ['Toplu çıkarma eşiği: toplu, eşik', 'Bildirim yükümlülüğü: 30 gün, bildirim', 'Sendika ile görüşme: sendika, temsilci', 'İşçi hakları: kıdem, ihbar', 'Objektif ölçütler: ölçüt, ayrımcılık'],
+          'Önce çıkarılacak işçi sayısının işyerindeki işçi sayısına göre kanundaki toplu çıkarma eşiğini aşıp aşmadığına bakarız. Aşıyorsa en az 30 gün önceden sendika temsilcilerine, çalışma bölge müdürlüğüne ve İŞKUR’a yazılı bildirim yapılmalıdır. Sendika temsilcileriyle çıkarmanın önlenmesi ya da etkisinin azaltılması üzerine görüşme yapılması gerekir. İşçilerin kıdem ve ihbar tazminatı gibi hakları eksiksiz ödenmelidir. Kimin çıkarılacağı performans gibi objektif ölçütlerle belirlenmeli, ayrımcılık riski önlenmelidir.'),
+      ]],
     ]),
     track('huk-bilisim', 'Bilişim Hukuku & KVKK', 'lock-closed', 'Kişisel veri, uyum, e-ticaret', [
       ['KVKK Temelleri', 'Junior', [
@@ -93,6 +118,11 @@ export const hukuk: Profession = {
         q('vaka', 'Bir şirkette müşteri verileri sızdırıldı. Hukuki olarak ne yapılmalı?',
           ['İhlali durdurma: durdur, tespit, kapsam', 'Kurula bildirim: kurul, 72 saat, bildirim', 'İlgili kişilere bildirim: ilgili kişi, müşteri, bildir', 'Kayıt ve önlem: kayıt, önlem, tekrar'],
           'Önce teknik ekiple ihlali durdurur ve kapsamını tespit ederiz. Kişisel Verileri Koruma Kurulu’na en kısa sürede ve en geç 72 saat içinde bildirim yapılır, etkilenen kişiler de bilgilendirilir. Olay kayıt altına alınır ve tekrarını önleyecek tedbirler belgelenir.'),
+      ]],
+      ['Uyum Programı', 'Senior', [
+        q('vaka', 'Bir şirket için KVKK uyum programını baştan nasıl kurarsın?',
+          ['Veri envanteri: envanter', 'Aydınlatma ve rıza: aydınlatma, rıza', 'VERBİS kaydı: verbis', 'Teknik ve idari tedbirler: tedbir, erişim', 'Eğitim ve denetim: eğitim, denetim'],
+          'Önce birimlerle görüşüp hangi kişisel verinin hangi amaçla işlendiğini gösteren bir veri envanteri çıkarırım. Her işleme için hukuki sebebi belirler, aydınlatma metinlerini ve gerekiyorsa açık rıza metinlerini hazırlarım. Şirket yükümlüyse VERBİS kaydını yaparım. Erişim yetkileri, şifreleme ve saklama-imha politikası gibi teknik ve idari tedbirleri hayata geçiririm. Çalışanlara eğitim verir, uyumu düzenli iç denetim ile kontrol ederim.'),
       ]],
     ]),
   ],

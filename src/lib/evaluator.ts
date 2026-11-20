@@ -44,9 +44,11 @@ export type Report = {
   /** Who ran the interview, and their one-line verdict. */
   interviewerId?: string;
   verdict?: string;
+  /** Answered against the clock (timed mode). */
+  timed?: boolean;
 };
 
-type AnswerLang = 'tr' | 'en';
+export type AnswerLang = 'tr' | 'en';
 
 /** Language-specific signals. Phrases are matched from the start of a word. */
 const RULES: Record<
@@ -98,10 +100,43 @@ const startsWord = (text: string, stem: string) =>
  */
 const variants = (stem: string, locale: string) =>
   locale === 'tr-TR' && stem.length >= 5 && /[pçtk]$/.test(stem) && !stem.includes(' ') ? [stem, stem.slice(0, -1)] : [stem];
-const hasAny = (text: string, stems: (string | RegExp)[], locale: string) =>
-  stems.some((s) =>
-    typeof s === 'string' ? variants(s.toLocaleLowerCase(locale), locale).some((v) => startsWord(text, v)) : s.test(text),
+/**
+ * Turkish lower-cases a capital I to dotless ı, so acronyms written in capitals (KPI, API,
+ * CI) would never match their stems. Dotted and dotless i are treated the same for matching.
+ */
+const fold = (s: string, locale: string) => (locale === 'tr-TR' ? s.replace(/ı/g, 'i') : s);
+const hasAny = (text: string, stems: (string | RegExp)[], locale: string) => {
+  const folded = fold(text, locale);
+  return stems.some((s) =>
+    typeof s === 'string'
+      ? variants(fold(s.toLocaleLowerCase(locale), locale), locale).some((v) => startsWord(folded, v))
+      : s.test(text),
   );
+};
+/** Whether `text` mentions a concept, matched the same way answers are scored. */
+export function mentions(text: string, stems: string[], lang: AnswerLang): boolean {
+  const locale = RULES[lang].locale;
+  return hasAny(text.toLocaleLowerCase(locale), stems, locale);
+}
+
+/** Replaces every word that starts with one of the stems with a blank, e.g. for "fill in the concept" items. */
+export function blankOut(text: string, stems: string[], lang: AnswerLang): string {
+  const locale = RULES[lang].locale;
+  const all = stems.flatMap((st) => variants(fold(st.toLocaleLowerCase(locale), locale), locale)).sort((x, y) => y.length - x.length);
+  if (all.length === 0) return text;
+  const re = new RegExp(`(^|[^a-z0-9çğıöşüâîû])(${all.map(escapeRe).join('|')})[a-z0-9çğıöşüâîû'’-]*`, 'g');
+  // Lower-casing keeps the length (tr-TR maps İ to i), so indices line up with the original.
+  const lower = fold(text.toLocaleLowerCase(locale), locale);
+  let out = '';
+  let last = 0;
+  for (const m of lower.matchAll(re)) {
+    const start = m.index + m[1].length;
+    out += text.slice(last, start) + '____';
+    last = m.index + m[0].length;
+  }
+  return out + text.slice(last);
+}
+
 const clamp = (n: number) => Math.max(0, Math.min(100, Math.round(n)));
 
 function scoreAnswer(q: Question, raw: string, lang: AnswerLang) {
@@ -161,6 +196,7 @@ export async function evaluateSession(
   unitId: string,
   items: { question: Question; answer: string }[],
   interviewerId?: string,
+  opts: { timed?: boolean; bonusXp?: number } = {},
 ): Promise<Report> {
   const lang: AnswerLang = findUnit(unitId)?.track.lang === 'en' ? 'en' : 'tr';
   const scored = items.map((it) => ({ it, r: scoreAnswer(it.question, it.answer, lang) }));
@@ -217,8 +253,9 @@ export async function evaluateSession(
     strengths,
     weaknesses,
     nextFocus,
-    xp: 10 + Math.round(overall / 5),
+    xp: 10 + Math.round(overall / 5) + (opts.timed ? (opts.bonusXp ?? 0) : 0),
     interviewerId,
+    timed: opts.timed || undefined,
     verdict: interviewerId ? verdictFor(findInterviewer(interviewerId), overall)[lang] : undefined,
     answers: scored.map(({ it, r }) => ({
       questionId: it.question.id,

@@ -29,7 +29,7 @@
   ]},
   "hemsirelik-1": { "title": "Patient Care", "q": [
     ["How do you prioritize when several patients need you at the same time?",
-      ["Life-threatening first: life-threatening, urgent, abc, airway, breathing", "Triage logic: triage, priorit", "Team support: team, help, delegat", "Documentation: record, document, note"],
+      ["Life-threatening first: life-threatening, urgent, abc, airway, breathing", "Triage logic: triage, priorit, rank, come first", "Team support: team, help, delegat", "Documentation: record, document, note"],
       "First I attend to life-threatening situations; airway, breathing and circulation problems always come first. I rank the other patients by urgency. If needed I ask the team for help or delegate suitable tasks. I document everything I do accurately."],
     ["What do you pay attention to in order to prevent medication errors?",
       ["The rights of administration: right patient, right drug, right dose, right route, right time", "Identity check: identity, wristband", "Allergy check: allerg", "Documentation: record, document"],
@@ -37,7 +37,7 @@
   ]},
   "hemsirelik-2": { "title": "Difficult Situations", "q": [
     ["A patient's relative is very angry about the treatment and is shouting at the staff. What do you do?",
-      ["Staying calm: calm, empath, listen", "Suitable setting: separate, quiet place", "Informing: inform, explain, doctor", "Safety: security, violence, boundar"],
+      ["Staying calm: calm, empath, listen", "Suitable setting: separate, quiet place, quiet area", "Informing: inform, explain, doctor", "Safety: security, violence, boundar"],
       "I stay calm and listen to the relative, showing that I understand their worry. I take them to a quiet area where other patients aren't affected. I explain what is within my remit and arrange for them to speak with the doctor if needed. If it turns into verbal or physical violence, I set a boundary and call security."]
   ]},
   "eczacilik-1": { "title": "Patient Counselling", "q": [
@@ -47,7 +47,7 @@
   ]},
   "eczacilik-2": { "title": "Interactions", "q": [
     ["You notice a serious drug interaction on a prescription. What do you do?",
-      ["Verification: check, source, verif", "Contacting the prescriber: prescriber, physician, doctor, call", "Informing the patient: patient, inform, explain", "Documentation: record, note"],
+      ["Verification: check, source, verif", "Contacting the prescriber: prescriber, physician, doctor, call", "Informing the patient: patient, inform, explain", "Documentation: record, note, document"],
       "First I confirm the interaction with reliable sources. Then I contact the prescribing doctor, explain the issue and suggest an alternative drug or dose change. I inform the patient about the process without alarming them. I document the change and the conversation."]
   ]},
   "fizyoterapi-1": { "title": "Assessment", "q": [
@@ -64,5 +64,95 @@
     ["How do you run the first session with a new client who wants to lose weight?",
       ["History: health history, illness, medication", "Eating habits: habit, food intake, meal", "Measurements: measure, height, weight, waist", "Realistic goal: realistic, goal, sustainab"],
       "First I learn their health history, medications and any conditions. I ask in detail about their meal pattern and eating habits. I take measurements such as height, weight and waist circumference. Together with the client I set sustainable, realistic goals and create a personalized plan."]
+  ]},
+  "sinif-ogretmeni-3": { "title": "Leading Colleagues", "q": [
+    ["As head of your subject group, how do you build a shared assessment standard among teachers?",
+      ["Shared learning outcomes: learning outcome, outcomes", "Shared rubric: rubric, criteria", "Share results: result, share", "Professional growth: observ, development", "Decide together: together, idea"],
+      "First we agree in a group meeting on the learning outcomes we will assess each term. For open-ended work we prepare a shared rubric and scoring criteria together. We share exam results across classes, compare them and discuss the reasons for any differences. We support each other’s professional development by observing one another’s lessons. Instead of imposing decisions, we make them together and hear everyone’s ideas, so the standard is accepted."]
+  ]},
+  "brans-ogretmeni-3": { "title": "Raising Achievement", "q": [
+    ["Achievement in one subject at your school has been low for years. What improvement plan do you propose?",
+      ["Data analysis: data, learning outcome", "Root cause: prior knowledge, motivation", "Teaching method: method, activit", "Extra support: support, study session", "Interim checks: interim, track"],
+      "First I study exam data by learning outcome to find the topics students struggle with most. By talking with students and teachers, I find out whether the problem is gaps in prior knowledge, motivation or the teaching method. With the subject group I plan more interactive activities and different teaching methods. I set up study sessions and peer support for students who are struggling. Short interim quizzes let me track progress and update the plan."]
+  ]},
+  "dil-ogretmeni-2": { "title": "Speaking Skills", "q": [
+    ["In an English class where students are reluctant to speak, how do you develop their speaking skills?",
+      ["Safe environment: safe, anxiety", "Pair and group work: pair, group", "Meaningful tasks: task, role", "Preparation time: prepar, phrase", "Feedback: feedback"],
+      "First I lower anxiety by creating a safe environment where mistakes are normal. Instead of speaking in front of everyone, I start with pair and small group work. I give tasks close to real life, such as giving directions or role plays. Before speaking I give a short preparation time and useful phrases. Rather than correcting errors on the spot, I give gentle feedback to the whole class after the activity."]
+  ]},
+  "dil-ogretmeni-3": { "title": "Curriculum Design", "q": [
+    ["How do you design the curriculum framework for levels A1–B2 at a language school?",
+      ["CEFR goals: cefr, level", "Four skills: four skills", "Spiral progression: spiral, revisit", "Assessment: placement, exam", "Materials and teachers: material, teacher"],
+      "I define the framework by CEFR level, with can-do statements for each level. I plan the four skills of reading, listening, speaking and writing in a balanced way. I build topics in a spiral, so structures are revisited and deepened at every level. A placement test and end-of-course exams tie assessment to the goals. I choose suitable materials and write a short guide for teachers."]
+  ]},
+  "hemsirelik-3": { "title": "Charge Nursing", "q": [
+    ["As charge nurse, you notice medication errors on the ward are rising. What do you do?",
+      ["Reporting culture: report, blame", "Root cause analysis: root cause", "Process safeguards: double check, double-check, barcode", "Training: training", "Monitoring: monitor, rate"],
+      "First I encourage errors to be reported without blame; an error that is not reported cannot be prevented. I review the reports and find the root cause, such as busy hours or drugs with similar names. For high-risk drugs I add process safeguards such as a double check and, where possible, barcode verification. I give the team a short training on medication safety. I monitor the error rate monthly and share the results with the team."]
+  ]},
+  "eczacilik-3": { "title": "Running a Pharmacy", "q": [
+    ["The pharmacy’s profitability is falling. How do you improve it?",
+      ["Stock management: stock, expir", "Product mix: dermocosmetic, supplement", "Advice services: advi, service", "Cost control: expense, cost", "Customer loyalty: loyal"],
+      "First I review stock turnover and cut products that move slowly or are close to expiry. For income beyond prescriptions, I adjust the product mix of dermocosmetics and supplements to the local customer profile. Advice services such as blood pressure checks give customers more reasons to visit. I review expense lines such as staffing and energy to lower costs. I build loyalty by staying in closer touch with regular patients."]
+  ]},
+  "fizyoterapi-3": { "title": "Clinic Quality", "q": [
+    ["How do you measure and improve treatment outcomes in a rehabilitation clinic?",
+      ["Standard scales: scale, standard", "Before-after comparison: start, compar", "Evidence-based protocols: evidence, protocol", "Team case meetings: case meeting", "Patient feedback: feedback, satisfaction"],
+      "For each diagnosis group I choose validated standard scales, such as for pain and function. I take these measurements at the start and end of treatment and compare them. For groups with weaker outcomes I update treatment with evidence-based protocols. In regular case meetings the team reviews difficult cases together. Patient feedback and satisfaction surveys let me see the process through the patient’s eyes too."]
+  ]},
+  "diyetisyen-2": { "title": "Client Follow-up", "q": [
+    ["How do you approach a client whose weight loss has plateaued and whose motivation is dropping?",
+      ["Explain the plateau: plateau, normal", "Review the logs: log, record", "Update the plan: plan, updat", "Small goals: small goal, motivation", "Non-scale wins: measurement, energy"],
+      "First I reassure the client by explaining that a plateau is a normal part of the process. We review their food and activity logs together to find habits that slipped. If needed we update the energy intake and exercise plan. To lift motivation we set small goals each week. I also make non-scale wins visible, such as waist measurement, energy and sleep."]
+  ]},
+  "diyetisyen-3": { "title": "Workplace Nutrition", "q": [
+    ["How do you set up a healthy eating program for a company canteen?",
+      ["Current state analysis: current, survey", "Menu planning: menu, balance", "Labelling: label, calorie", "Education: education, seminar", "Measure and track: satisfaction, track"],
+      "First I analyse the current menu and run a short survey on employees’ eating habits. I plan a rotating, seasonal menu that is balanced across food groups. Labels with calorie and ingredient information next to each dish make healthy choices easier. I prepare short seminars and education content for employees. I track the program regularly with satisfaction surveys and consumption data."]
+  ]},
+  "kurum-mulakati-1": { "title": "Motivation", "q": [
+    ["Why do you want to work in the public sector, and in this agency in particular?",
+      ["Public service mindset: public service, citizen", "Knowing the agency: agency’s mission, agency", "Your contribution: contribut, experience", "Long-term goal: goal, long term, long-term"],
+      "I see public service as a responsibility that directly touches citizens’ lives. I researched this agency’s mission and recent projects, and its work on digital services interested me most. I believe the data analysis experience I gained at university and in my internship lets me contribute in this area. In the long term my goal is to specialise in the agency and take responsibility for projects that improve service quality."]
+  ]},
+  "kurum-mulakati-2": { "title": "Public Administration", "q": [
+    ["What are the core principles of public service?",
+      ["Continuity: continuit, uninterrupt", "Equality: equal, discriminat", "Adaptability: adapt, needs", "Neutrality: neutral", "Example: for example"],
+      "The core principles of public service are continuity, equality, adaptability and neutrality. Under the principle of continuity the service must be uninterrupted; for example, water or health services must not stop. Equality means not discriminating between the people who use the service. Adaptability means updating the service as society’s needs change. Neutrality means officials do not let their personal or political views affect their work."]
+  ]},
+  "kurum-mulakati-3": { "title": "Situational Questions", "q": [
+    ["Your superior asks you to carry out an action you believe breaks the regulations. What do you do?",
+      ["Check the rules: regulation, rules", "Raise the concern: inform, tell", "Written order: writing, written", "Orders that are crimes: crime", "Keep records: record"],
+      "First I check the relevant regulations to be sure there really is a breach. If there is, I do not carry out the order and I inform my superior of the breach respectfully. If my superior insists and repeats the order in writing, I carry it out, and the responsibility lies with the person who gave it. However, I would never carry out an order whose subject is a crime. I keep a record of the correspondence throughout."]
+  ]},
+  "uzman-yardimciligi-1": { "title": "Subject Knowledge", "q": [
+    ["What causes inflation, and how can public policy fight it?",
+      ["Demand-pull inflation: demand", "Cost-push inflation: cost", "Expectations: expectation", "Monetary policy: monetary policy, interest", "Fiscal policy: fiscal policy, spending"],
+      "One cause of inflation is demand-pull inflation, when total demand exceeds the economy’s capacity to produce. Another is cost-push inflation, when input prices such as energy or the exchange rate rise. The expectation that prices will rise can also make inflation stick by shaping wage and price decisions. The central bank uses monetary policy to raise interest rates, slowing demand and managing expectations. The government supports this with fiscal policy by keeping public spending disciplined."]
+  ]},
+  "uzman-yardimciligi-2": { "title": "Analysis & Reports", "q": [
+    ["Complaints about one of the agency’s services have risen. How do you prepare a report on it?",
+      ["Purpose and scope: purpose, scope", "Data collection: data, interview", "Root cause: root cause", "Actionable recommendations: recommend, responsib", "Report structure: summary, finding"],
+      "First I make the report’s purpose clear, and which period and service it covers. I collect data from the complaint records and interview the units involved and some citizens. I group the complaints by type and analyse the root cause of each group. For each finding I write actionable recommendations with a responsible unit and a timeline. I present the report in a plain structure with an executive summary, findings, recommendations and a conclusion."]
+  ]},
+  "uzman-yardimciligi-3": { "title": "Thesis & Defence", "q": [
+    ["How do you choose the topic of your expert thesis and defend it before the panel?",
+      ["Agency need: agency, need", "Originality: literature, original", "Method: method", "Practical recommendations: practical, actionable", "Defence: defen, question"],
+      "When choosing the topic I first check whether it answers a real need of the agency. I review the literature to make sure the topic offers an original contribution. I define my data sources and analysis method clearly at the start. At the end of the thesis I give practical recommendations the agency can use right away. In the defence I present the main findings in a short, visual presentation and prepare for the panel’s likely questions in advance."]
+  ]},
+  "kamu-yoneticiligi-1": { "title": "Principles of Administration", "q": [
+    ["What is the difference between centralised and decentralised administration?",
+      ["Centralised administration: centralised, centralized, ministr", "Deconcentration: deconcentration", "Decentralised administration: decentralised, decentralized, municipal", "Advantages: advantage", "Administrative oversight: oversight, tutelage"],
+      "In centralised administration, public services are run by the ministries within the single legal personality of the state. Deconcentration is a form of it, where provincial offices such as the governorship can decide on behalf of the centre. In decentralised administration, local bodies with their own legal personality, such as municipalities and special provincial administrations, provide services through their own organs. Decentralisation gives the advantage of speed and participation for local needs, while centralisation gives unity and common standards. The centre supervises local governments through administrative oversight."]
+  ]},
+  "kamu-yoneticiligi-2": { "title": "Crisis Management", "q": [
+    ["A flood has hit your district. What do you do in the first 24 hours?",
+      ["Saving lives: life safety, evacuat", "Coordination centre: coordination, disaster agency", "Basic needs: shelter, food", "Informing the public: announcement, inform", "Damage assessment: damage assessment"],
+      "My first priority is life safety; I start evacuation and search and rescue in the areas at risk. I set up a coordination centre with the disaster agency, health services, police and the municipality and assign tasks. For those affected I organise basic needs such as shelter, food, clean water and health care. I inform the public with regular announcements through official channels to stop false information. From the first hours I send damage assessment teams to the field so the aid plan is based on data."]
+  ]},
+  "kamu-yoneticiligi-3": { "title": "Leadership", "q": [
+    ["Can you give an example of how you led a public sector team with low motivation?",
+      ["Listen to the causes: listen, cause", "Clear goals: goal", "Fair workload: workload, fair", "Recognition: recogni", "Result: result"],
+      "In my previous role I took over a unit where applications were delayed and the team’s motivation was low. First I met each employee one-on-one and listened to the causes of the problems. Together with the team we set a clear goal of halving waiting times. I redistributed the workload so it was fair. I recognised good work openly in meetings. As a result waiting times fell by 40% in three months and complaints dropped."]
   ]}
 }

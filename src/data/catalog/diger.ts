@@ -44,6 +44,11 @@ export const veri: Profession = {
           ['Tanım farkı: tanım, iade, vergi', 'Filtre / tarih: filtre, tarih, saat dilimi', 'Veri kaynağı: kaynak, tablo', 'Tek doğru kaynak: tek kaynak, standart, sözlük'],
           'Önce iki raporun ciro tanımını karşılaştırırım (iadeler, vergi dahil mi). Tarih filtrelerini ve saat dilimini kontrol eder, hangi tablolardan beslendiklerine bakarım. Sonunda metriği ortak bir veri sözlüğünde tek tanıma bağlarım.'),
       ]],
+      ['Veri Stratejisi', 'Senior', [
+        q('vaka', 'Şirketin farklı birimleri aynı metrik için farklı rakamlar raporluyor. Tek bir doğru kaynak nasıl kurarsın?',
+          ['Ortak metrik tanımı: tanım, sözlük, ortak', 'Sahiplik / yönetişim: sahip, yönetişim', 'Merkezi model: semantik, merkezi model, katman', 'Paydaş uzlaşısı: paydaş, uzlaş', 'Kalite kontrolü: test, izle, kontrol'],
+          'Önce farkın nereden geldiğini görmek için her birimin hesaplama yöntemini çıkarırım. Paydaşlarla bir araya gelip metriklerin ortak tanımında uzlaşır, bunu bir metrik sözlüğüne yazarım. Her metriğin bir iş sahibi olur ve değişiklikler bir yönetişim süreciyle onaylanır. Hesaplamaları raporlarda değil, tüm panoların kullandığı merkezi bir semantik katmanda tutarım. Son olarak otomatik veri testleri ve izleme ile rakamların tutarlılığını sürekli kontrol ederim.'),
+      ]],
     ]),
     track('bilimci', 'Veri Bilimci', 'flask', 'Makine öğrenmesi, modelleme', [
       ['ML Temelleri', 'Junior', [
@@ -58,6 +63,11 @@ export const veri: Profession = {
         q('vaka', 'Bir müşteri kaybı (churn) modeli geliştireceksin. Adımların neler?',
           ['Problem tanımı: tanım, churn, hedef', 'Özellik mühendisliği: özellik, feature', 'Model ve değerlendirme: model, metrik, auc', 'İş aksiyonu: aksiyon, kampanya, iş'],
           'Önce churn’ün tanımını netleştiririm (örneğin 30 gün aktif olmamak). Kullanım sıklığı, şikâyetler gibi özellikler çıkarır, modeli AUC ve precision/recall ile değerlendiririm. Asıl değer, riskli müşterilere hedefli kampanya gibi bir iş aksiyonuna bağlanmasıdır.'),
+      ]],
+      ['Değer & Önceliklendirme', 'Senior', [
+        q('vaka', 'İş birimine bir makine öğrenmesi projesinin değerini nasıl kanıtlar ve projeleri nasıl önceliklendirirsin?',
+          ['İş metriği: iş metriği, gelir, maliyet', 'Basit başlangıç: basit, baseline, kural', 'Deneyle kanıt: a/b, deney', 'Getiri hesabı: getiri, değer', 'Risk / etik: risk, etik, yanlılık'],
+          'Her projeyi gelir artışı ya da maliyet düşüşü gibi somut bir iş metriğine bağlarım. Önce kural tabanlı basit bir baseline kurar, modelin bunu ne kadar geçtiğini gösteririm. Etkiyi bir A/B deneyi ile ölçerek iddiayı kanıta dönüştürürüm. Projeleri beklenen getiri ve gereken emeğe göre sıralar, değeri en hızlı gelenleri öne alırım. Veri yanlılığı ve etik risk taşıyan projeler için ek kontroller planlarım.'),
       ]],
     ]),
   ],
@@ -104,6 +114,11 @@ export const urun: Profession = {
           ['Etkiyi değerlendirme: etki, aciliyet, öncelik', 'Takas: çıkar, yerine, takas', 'Ekiple konuşma: ekip, konuş', 'Paydaş iletişimi: paydaş, bilgilendir'],
           'Önce talebin gerçekten acil olup olmadığını ve etkisini değerlendiririm. Gerçekten acilse ekiple konuşup sprintten eşdeğer büyüklükte bir işi çıkarırım. Değişikliği ve gerekçesini paydaşlara şeffafça bildiririm.'),
       ]],
+      ['Ölçekli Agile', 'Senior', [
+        q('vaka', 'Birden fazla takımın aynı ürün üzerinde çalıştığı bir yapıda bağımlılıkları ve öncelikleri nasıl yönetirsin?',
+          ['Ortak hedef: ortak hedef, yol harita, okr', 'Bağımlılık görünürlüğü: bağımlılık, görünür', 'Ortak planlama: ortak planlama, planlama oturum', 'Tek öncelik listesi: tek bir öncelik, öncelik listesi', 'Düzenli senkron: senkron, scrum of scrums'],
+          'Tüm takımları aynı ortak hedefe ve yol haritasına bağlarım; OKR’lar bunun için iyi bir araçtır. Çeyrek başında takımlarla ortak planlama oturumu yapar, bağımlılıkları bir panoda görünür hale getiririm. Ürün için tek bir öncelik listesi tutarım ki takımlar çelişen işler yapmasın. Haftalık scrum of scrums ile takımlar arasında senkron kalır, engelleri erken çözeriz.'),
+      ]],
     ]),
     track('ux', 'UX/UI Tasarım', 'color-palette', 'Araştırma, akış tasarımı, kullanılabilirlik', [
       ['Araştırma', 'Junior', [
@@ -118,6 +133,11 @@ export const urun: Profession = {
         q('vaka', 'Bir uygulamanın kayıt akışında terk oranı yüksek. Nasıl iyileştirirsin?',
           ['Huni analizi: huni, adım, nerede', 'Adım azaltma: azalt, kısalt, sosyal giriş', 'Kullanıcı testi: test, gözlem', 'Ölçüm: ölç, oran'],
           'Önce huni analiziyle kullanıcıların hangi adımda çıktığını bulurum. Birkaç kullanıcıyı gözlemleyerek nedenini anlarım. Gereksiz alanları kaldırır, sosyal giriş ekler, adımları kısaltırım; değişikliğin etkisini tamamlama oranıyla ölçerim.'),
+      ]],
+      ['Tasarım Sistemi', 'Senior', [
+        q('vaka', 'Tasarım sistemi olmayan, hızla büyüyen bir üründe tasarım tutarlılığını nasıl sağlarsın?',
+          ['Envanter çıkarma: envanter, denetim', 'Bileşen kütüphanesi: bileşen, kütüphane', 'Tasarım tokenları: token, ilke', 'Benimsetme: benimse, geliştirici, eğitim', 'Yönetişim: katkı, sürüm, yönetişim'],
+          'Önce üründeki tüm ekranların envanterini çıkarıp bir denetim yaparım; kaç farklı buton ya da renk olduğunu görmek ikna edici olur. Renk, tipografi ve boşluk için tasarım tokenları ve temel ilkeler tanımlarım. En çok kullanılan parçalardan başlayarak tasarım ve kodda eşleşen bir bileşen kütüphanesi kurarım. Geliştiricilerle birlikte çalışıp ekiplerin sistemi benimsemesi için eğitim veririm. Katkı ve sürüm kurallarıyla bir yönetişim modeli kurarak sistemi canlı tutarım.'),
       ]],
     ]),
   ],
@@ -144,6 +164,11 @@ export const pazarlama: Profession = {
           ['Kırılım analizi: kampanya, kanal, kreatif, kırılım', 'Kreatif yorgunluğu: kreatif, yorgun, frekans', 'Hedefleme: hedef kitle, hedefleme', 'Ölçüm sorunu: takip, pixel, attribution, ölçüm'],
           'Önce ölçümün doğru çalıştığını (pixel, attribution) kontrol ederim. Sonra kanal, kampanya ve kreatif kırılımında düşüşün nerede olduğuna bakarım. Frekans yüksekse kreatif yorgunluğu vardır, yeni kreatifler ve hedefleme testleri başlatırım.'),
       ]],
+      ['Bütçe & Atribüsyon', 'Senior', [
+        q('vaka', 'Pazarlama bütçesini kanallar arasında nasıl dağıtırsın ve hangi kanalın gerçekten işe yaradığını nasıl ölçersin?',
+          ['Hedef ve KPI: hedef, kpi, cac', 'Atribüsyon modeli: atribüsyon, son tıklama', 'Artımlılık testi: artımlı, holdout', 'Marjinal dağıtım: marjinal, kaydır', 'Müşteri değeri: ltv, yaşam boyu'],
+          'Önce iş hedefini ve kanal başına CAC gibi KPI’ları netleştiririm. Son tıklama atribüsyonu bazı kanalları olduğundan iyi gösterir, bu yüzden veri odaklı bir atribüsyon modeli kullanırım. Asıl etkiyi görmek için bir bölgeyi kampanyadan hariç tutan holdout testleriyle artımlı katkıyı ölçerim. Bütçeyi her kanalın marjinal getirisine göre dağıtır, getirisi düşen kanaldan yükselene kaydırırım. Kararları kısa vadeli satış yerine müşterinin yaşam boyu değeri (LTV) ile birlikte değerlendiririm.'),
+      ]],
     ]),
     track('icerik', 'İçerik & Sosyal Medya', 'chatbubbles', 'İçerik planı, topluluk, kriz', [
       ['İçerik Planlama', 'Junior', [
@@ -156,6 +181,11 @@ export const pazarlama: Profession = {
           ['Hızlı yanıt: hızlı, hemen', 'Dinleme / analiz: anla, dinle, analiz', 'Özür / şeffaflık: özür, şeffaf, açıklama', 'Süreç iyileştirme: süreç, onay, ders'],
           'Hızlıca durumu ve tepkinin nedenini analiz ederim. Gerekirse paylaşımı kaldırıp samimi ve şeffaf bir açıklama veya özür yayımlarım. Sonrasında benzer hatayı önlemek için içerik onay sürecini gözden geçiririm.'),
       ]],
+      ['Marka Stratejisi', 'Senior', [
+        q('vaka', 'Bir markanın sosyal medya stratejisini sıfırdan nasıl kurarsın?',
+          ['Hedef kitle: hedef kitle, persona', 'Ölçülebilir hedefler: kpi, ölçülebilir', 'Platform seçimi: platform', 'İçerik sütunları ve ton: sütun, ton', 'Ölçüm ve iyileştirme: analiz, iyileştir'],
+          'İşe hedef kitleyi tanımlayıp birkaç persona çıkararak başlarım. Marka bilinirliği ya da trafik gibi ölçülebilir hedefler ve her biri için bir KPI belirlerim. Kitlenin gerçekten vakit geçirdiği platformları seçer, her birine uygun format planlarım. Markanın sesini ve tonunu tanımlar, içerikleri üç dört içerik sütunu etrafında toplarım. Aylık analizle neyin çalıştığına bakar, planı sürekli iyileştiririm.'),
+      ]],
     ]),
     track('seo', 'SEO', 'search', 'Arama motoru optimizasyonu', [
       ['SEO Temelleri', 'Junior', [
@@ -167,6 +197,11 @@ export const pazarlama: Profession = {
         q('vaka', 'Organik trafik aniden %30 düştü. Nasıl incelersin?',
           ['Algoritma güncellemesi: algoritma, güncelleme', 'Teknik hata: robots, noindex, indeks, teknik', 'Sayfa bazlı analiz: sayfa, kırılım, sorgu', 'Rakip: rakip'],
           'Önce bir Google algoritma güncellemesiyle çakışıp çakışmadığına bakarım. Robots.txt, noindex veya yönlendirme gibi teknik hataları kontrol ederim. Search Console’da hangi sayfa ve sorguların düştüğünü bulur, rakiplerin o sorgulardaki durumunu incelerim.'),
+      ]],
+      ['SEO Stratejisi', 'Senior', [
+        q('vaka', 'Organik trafiği bir yılda iki katına çıkarmak için nasıl bir SEO stratejisi kurarsın?',
+          ['Teknik denetim: teknik, denetim, tarama', 'Arama niyeti: anahtar kelime, niyet', 'İçerik planı: konu kümesi, içerik plan', 'Otorite ve bağlantı: backlink, otorite', 'Ölçüm: search console, takip'],
+          'Önce sitenin teknik denetimini yapıp tarama, hız ve indeksleme sorunlarını çözerim. Anahtar kelime araştırmasını arama niyetine göre gruplar, en yüksek potansiyelli konuları seçerim. Bu konular etrafında birbirine bağlı konu kümeleri oluşturan bir içerik planı hazırlarım. Değerli içerik ve iş birlikleriyle kaliteli backlink kazanıp sitenin otoritesini artırırım. İlerlemeyi Search Console ve sıralama araçlarıyla aylık takip ederim.'),
       ]],
     ]),
   ],
@@ -187,11 +222,16 @@ export const satis: Profession = {
       ]],
       ['Pazarlık & Pipeline', 'Mid', [
         q('vaka', 'Müşteri “Rakibiniz %20 daha ucuz” diyor. Ne cevap verirsin?',
-          ['Anlama: soru, anla, neye göre', 'Değer vurgusu: değer, kalite, destek, toplam maliyet', 'Karşılıklı takas: karşılığında, uzun vade, paket'],
+          ['Anlama: soru, anla, neye göre, sorar', 'Değer vurgusu: değer, kalite, destek, toplam maliyet', 'Karşılıklı takas: karşılığında, uzun vade, paket'],
           'Önce karşılaştırmanın neyi kapsadığını sorarım. Toplam sahip olma maliyetini, destek ve kaliteyi somut rakamlarla gösteririm. İndirim gerekiyorsa karşılığında uzun vadeli sözleşme gibi bir takas isterim.'),
         q('teknik', 'Satış hunini (pipeline) nasıl yönetirsin?',
           ['Aşamalar: aşama, huni', 'Nitelendirme: nitelendir, bütçe, karar verici', 'CRM: crm, kayıt', 'Dönüşüm oranları: oran, dönüşüm, tahmin'],
           'Fırsatları net aşamalarda takip ederim. Her fırsatı bütçe, karar verici, ihtiyaç ve zamanlamaya göre nitelendiririm. Her şeyi CRM’e kaydeder, aşamalar arası dönüşüm oranlarıyla satış tahmini yaparım.'),
+      ]],
+      ['Satış Liderliği', 'Senior', [
+        q('vaka', 'Satış ekibin çeyrek hedefinin %30 gerisinde. Çeyreği kurtarmak için ne yaparsın?',
+          ['Pipeline analizi: pipeline, huni', 'Darboğaz tespiti: darboğaz, aşama', 'Fırsat önceliklendirme: büyük fırsat, öncelik', 'Ekip koçluğu: koçluk, birebir', 'Şeffaf tahmin: tahmin, forecast'],
+          'Önce pipeline’ı aşama aşama inceleyip huninin nerede tıkandığını bulurum. Darboğaz teklif aşamasındaysa farklı, ilk görüşmedeyse farklı bir aksiyon gerekir. Kapanmaya en yakın ve en büyük fırsatlara öncelik verip bunlara kaynak ayırırım. Temsilcilerle birebir koçluk yaparak zorlandıkları görüşmelere birlikte hazırlanırız. Yönetime gerçekçi bir forecast sunar, tahmini her hafta güncellerim.'),
       ]],
     ]),
     track('perakende', 'Perakende Satış', 'storefront', 'Mağaza, müşteri deneyimi', [
@@ -202,8 +242,13 @@ export const satis: Profession = {
       ]],
       ['Zor Müşteriler', 'Mid', [
         q('vaka', 'Sinirli bir müşteri ürünü iade etmek istiyor ama iade süresi geçmiş. Ne yaparsın?',
-          ['Sakin dinleme: dinle, sakin, empati', 'Politikayı açıklama: politika, kural, süre', 'Alternatif çözüm: alternatif, değişim, puan, yönetici', 'Müşteriyi kazanma: memnun, tekrar gel'],
+          ['Sakin dinleme: dinle, sakin, empati', 'Politikayı açıklama: politika, kural, süre', 'Alternatif çözüm: alternatif, değişim, puan, yönetici', 'Müşteriyi kazanma: memnun, tekrar gel, kaybetmemeye'],
           'Önce sakin şekilde dinler, empati kurarım. İade politikasını kibarca açıklarım. Değişim, mağaza puanı veya yöneticiyle istisna gibi alternatifler sunarak müşteriyi kaybetmemeye çalışırım.'),
+      ]],
+      ['Mağaza Yönetimi', 'Senior', [
+        q('vaka', 'Yönettiğin mağazanın satışları bölge ortalamasının altında. Nasıl toparlarsın?',
+          ['Veri analizi: dönüşüm oranı, sepet', 'Trafik: trafik, ziyaretçi', 'Personel ve vardiya: personel, vardiya', 'Vitrin ve stok: vitrin, stok', 'Hedef ve takip: günlük hedef, takip'],
+          'Önce mağaza trafiğini, dönüşüm oranını ve ortalama sepeti bölgeyle karşılaştırırım. Ziyaretçi az mı geliyor, yoksa gelen mi satın almıyor, bunu ayırırım. Dönüşüm düşükse personel eğitimi ve yoğun saatlere göre vardiya planı üzerinde çalışırım. Vitrin düzenini ve çok satan ürünlerin stokta olup olmadığını kontrol ederim. Ekiple günlük hedef koyar, sonuçları her gün birlikte takip ederiz.'),
       ]],
     ]),
     track('musteri', 'Müşteri / Hesap Yönetimi', 'headset', 'Memnuniyet, yenileme, büyüme', [
@@ -216,6 +261,11 @@ export const satis: Profession = {
         q('vaka', 'Büyük bir müşteri sözleşmeyi yenilemeyeceğini söylüyor. Ne yaparsın?',
           ['Nedeni anlama: neden, anla, dinle', 'Değeri gösterme: değer, kazanç, rapor', 'Çözüm planı: plan, çözüm, aksiyon', 'Üst yönetim desteği: yönetici, üst'],
           'Önce gerçek nedeni anlamak için dinlerim. Şimdiye kadar sağladığımız değeri rakamlarla gösteren bir rapor hazırlarım. Sorunlara somut bir aksiyon planı sunar, gerekirse üst yönetimi de görüşmeye dahil ederim.'),
+      ]],
+      ['Müşteri Başarısı Stratejisi', 'Senior', [
+        q('vaka', 'Müşteri kayıp oranını (churn) düşürmek için ekip olarak nasıl bir program kurarsın?',
+          ['Kayıp nedenleri: neden, segment', 'Sağlık skoru: sağlık skoru, erken uyarı', 'Onboarding: onboarding', 'Proaktif temas: proaktif, düzenli', 'Ölçüm: churn oranı, nrr'],
+          'Önce kaybedilen müşterileri segment bazında inceleyip ayrılma nedenlerini çıkarırım. Kullanım ve destek verilerinden bir sağlık skoru oluşturup erken uyarı sinyallerini tanımlarım. Müşterinin ilk haftalarındaki onboarding sürecini güçlendiririm, çünkü kayıpların çoğu orada başlar. Riskli hesaplarla proaktif ve düzenli görüşmeler planlarım. Başarıyı churn oranı ve NRR ile ölçer, programı üç ayda bir gözden geçiririm.'),
       ]],
     ]),
   ],
@@ -239,6 +289,11 @@ export const finans: Profession = {
           ['Mutabakat: mutabakat, banka', 'Tahakkuk / karşılık: tahakkuk, karşılık', 'Kontrol: kontrol, doğrula', 'Raporlama: rapor'],
           'Banka ve cari hesap mutabakatlarını yaparım. Dönem tahakkuklarını ve karşılıkları kaydederim. Mizanı ve olağandışı hareketleri kontrol eder, ardından yönetim raporlarını hazırlarım.'),
       ]],
+      ['Kapanışı Hızlandırma', 'Senior', [
+        q('vaka', 'Ay sonu kapanışı 10 günde bitiyor. 5 güne nasıl indirirsin?',
+          ['Süreç haritası: süreç, darboğaz', 'Otomasyon: otomasyon, mutabakat', 'Kapanış takvimi: takvim, sorumlu', 'Ön kapanış: ön kapanış, ay içinde', 'Kalite kontrol: kontrol listesi'],
+          'Önce kapanış sürecinin haritasını çıkarıp hangi adımın darboğaz olduğunu bulurum. Banka ve şirketler arası mutabakat gibi tekrar eden işleri otomasyon ile hızlandırırım. Her adımın sorumlusunu ve gününü gösteren bir kapanış takvimi hazırlarım. Tahakkukları ve kontrolleri ay içinde yaparak bir ön kapanış uygularım. Hataların geri dönüş yaratmaması için bir kontrol listesiyle kaliteyi korurum.'),
+      ]],
     ]),
     track('fin-analiz', 'Finansal Analiz', 'stats-chart', 'Nakit, değerleme, modelleme', [
       ['Analiz Temelleri', 'Junior', [
@@ -251,6 +306,11 @@ export const finans: Profession = {
           ['İndirgenmiş nakit akışı: dcf, indirgenmiş nakit', 'Çarpanlar: çarpan, f/k, fd/favök, multiple', 'Varsayımlar: varsayım, büyüme, iskonto', 'Duyarlılık analizi: duyarlılık, senaryo'],
           'Gelecekteki nakit akışlarını iskonto oranıyla bugüne indiren DCF yöntemini ve benzer şirketlerin F/K, FD/FAVÖK gibi çarpanlarını birlikte kullanırım. Büyüme ve iskonto varsayımlarına duyarlılık analizi yaparak bir değer aralığı sunarım.'),
       ]],
+      ['Yatırım Kararı', 'Senior', [
+        q('vaka', 'Şirket yeni bir fabrikaya yatırım yapmayı düşünüyor. Bu kararı nasıl değerlendirirsin?',
+          ['Nakit akış projeksiyonu: nakit akış, projeksiyon', 'NBD / İVO: net bugünkü değer, iç verim', 'Sermaye maliyeti: sermaye maliyeti, wacc', 'Senaryo analizi: duyarlılık, senaryo', 'Strateji ve risk: strateji, risk'],
+          'Önce yatırım tutarını ve yıllara göre nakit akış projeksiyonunu hazırlarım. Bu nakit akışlarını şirketin sermaye maliyeti (WACC) ile iskonto ederek net bugünkü değeri hesaplarım. İç verim oranını da sermaye maliyetiyle karşılaştırırım. Talep ve fiyat varsayımları için duyarlılık ve kötü-baz-iyi senaryo analizleri yaparım. Son olarak yatırımın şirket stratejisine uyumunu ve operasyonel riskleri değerlendirip öneri sunarım.'),
+      ]],
     ]),
     track('denetim', 'Denetim', 'shield-checkmark', 'İç kontrol, risk, uyum', [
       ['İç Kontrol', 'Junior', [
@@ -262,6 +322,11 @@ export const finans: Profession = {
         q('vaka', 'Bir masraf kaleminde olağandışı bir artış fark ettin. Nasıl incelersin?',
           ['Analitik inceleme: trend, karşılaştır, analitik', 'Belge kontrolü: belge, fatura, örneklem', 'Görüşme: görüş, sor', 'Raporlama: rapor, bulgu'],
           'Önce artışı önceki dönemler ve bütçeyle karşılaştırırım. Örneklem seçip fatura ve onay belgelerini kontrol ederim. İlgili birimle görüşüp açıklama alırım, bulguları ve önerileri raporlarım.'),
+      ]],
+      ['Risk Bazlı Plan', 'Senior', [
+        q('vaka', 'Yıllık iç denetim planını risk bazlı olarak nasıl hazırlarsın?',
+          ['Denetim evreni: denetim evreni, süreç', 'Risk puanlama: olasılık, etki', 'Önceliklendirme: yüksek risk, öncelik', 'Kaynak planı: kaynak, kapasite', 'Komite onayı: denetim komitesi, onay'],
+          'Önce şirketin tüm süreç ve birimlerini kapsayan bir denetim evreni çıkarırım. Her alanı olasılık ve etki açısından puanlar, yönetimle görüşerek bu değerlendirmeyi doğrularım. Yüksek risk taşıyan alanlara öncelik verir, düşük riskli alanları daha seyrek denetlerim. Planı ekibin kapasitesi ve uzmanlık gereksinimine göre kaynaklarla eşleştiririm. Taslak planı denetim komitesine sunup onay alır, yıl içinde risk değişirse güncellerim.'),
       ]],
     ]),
   ],
@@ -288,6 +353,11 @@ export const ik: Profession = {
           ['Nedeni anlama: neden, anla, sor', 'Pazarlık alanı: maaş, yan hak, esnek, uzaktan', 'Yöneticiyle konuşma: yönetici, bütçe', 'İlişkiyi koruma: ilişki, iletişim, gelecek'],
           'Önce reddin gerçek nedenini anlamak için adayla konuşurum. Maaş dışında esnek çalışma, yan haklar gibi pazarlık alanı varsa yöneticiyle değerlendiririm. Sonuç değişmese de ilişkiyi iyi tutarım, gelecekte yine aday olabilir.'),
       ]],
+      ['İşe Alım Stratejisi', 'Senior', [
+        q('vaka', 'Şirket bir yılda 100 mühendis işe almak istiyor. Bunu nasıl planlarsın?',
+          ['İhtiyaç planı: ihtiyaç, rol, çeyrek', 'Kanal stratejisi: kanal, referans, üniversite', 'İşveren markası: işveren marka', 'Mülakat kapasitesi: mülakatçı, kapasite', 'Metrikler: dolum süresi, dönüşüm'],
+          'Önce yöneticilerle rol, seviye ve çeyrek bazında bir ihtiyaç planı çıkarırım. Geçmiş verilerden her kanalın verimini hesaplayıp referans programı, üniversite iş birlikleri ve doğrudan arama arasında dengeli bir kanal stratejisi kurarım. Teknik içerikler ve etkinliklerle işveren markasını güçlendiririm. Mülakatçıları eğitip kapasiteyi artırır, süreci standart adımlarla hızlandırırım. Dolum süresi, aşamalar arası dönüşüm ve teklif kabul oranını haftalık takip ederim.'),
+      ]],
     ]),
     track('ik-is-ortagi', 'İK İş Ortağı', 'people-circle', 'Çalışan ilişkileri, performans, bağlılık', [
       ['Çalışan İlişkileri', 'Junior', [
@@ -299,6 +369,11 @@ export const ik: Profession = {
         q('vaka', 'Bir ekipte çalışan devir oranı (turnover) çok yükseldi. Nasıl analiz edersin?',
           ['Veri analizi: veri, oran, kırılım', 'Çıkış görüşmeleri: çıkış görüşme, neden', 'Yönetici etkisi: yönetici, liderlik', 'Aksiyon planı: aksiyon, plan, maaş, kariyer'],
           'Önce devir oranını kıdem ve rol kırılımlarıyla incelerim. Çıkış görüşmelerinden ortak nedenleri çıkarırım; çoğu zaman yönetici ilişkisi, ücret veya kariyer gelişimi öne çıkar. Bulgulara göre yöneticiyle birlikte somut bir aksiyon planı hazırlarım.'),
+      ]],
+      ['Değişim Yönetimi', 'Senior', [
+        q('vaka', 'Bir yeniden yapılanma sürecinde çalışanların bağlılığını nasıl korursun?',
+          ['Şeffaf iletişim: şeffaf, neden', 'Yöneticileri hazırlama: yönetici, hazırla', 'Dinleme: dinle, anket', 'Destek: destek, kariyer', 'Bağlılığı ölçme: bağlılık, takip'],
+          'Değişikliğin nedenini ve çalışanlara etkisini şeffaf ve erken anlatırım; belirsizlik söylentiden daha çok zarar verir. Yöneticileri önce hazırlar, ekiplerinin sorularına cevap verebilmeleri için onlara bir rehber veririm. Kısa anketler ve odak gruplarla çalışanları dinler, kaygıları toplarım. Etkilenenlere kariyer danışmanlığı ve yeni rollere geçişte destek sağlarım. Bağlılığı düzenli nabız anketleriyle takip edip gereken yerde müdahale ederim.'),
       ]],
     ]),
   ],

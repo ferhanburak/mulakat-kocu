@@ -1,4 +1,5 @@
 import { q, sharedBehaviouralTexts, type Profession, type Question } from '../build';
+import danismanlik from './danismanlik.json';
 import diger from './diger.json';
 import genel from './genel.json';
 import hizmet from './hizmet.json';
@@ -6,6 +7,7 @@ import kamu from './kamu.json';
 import meta from './meta.json';
 import muhendislik from './muhendislik.json';
 import sosyal from './sosyal.json';
+import ticaret from './ticaret.json';
 import yazilim from './yazilim.json';
 
 /**
@@ -16,7 +18,7 @@ import yazilim from './yazilim.json';
 type RawQ = [text: string, concepts: string[], ideal: string];
 type UnitTr = { title?: string; q: RawQ[] };
 
-const UNITS: Record<string, UnitTr> = { ...yazilim, ...genel, ...diger, ...hizmet, ...kamu, ...muhendislik, ...sosyal } as unknown as Record<
+const UNITS: Record<string, UnitTr> = { ...yazilim, ...genel, ...diger, ...hizmet, ...kamu, ...muhendislik, ...sosyal, ...danismanlik, ...ticaret } as unknown as Record<
   string,
   UnitTr
 >;

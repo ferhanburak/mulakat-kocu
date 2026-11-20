@@ -11,7 +11,7 @@ Durum işaretleri: ✅ tamamlandı · 🚧 yapılıyor · 🔜 sıradaki · 💡
 - ✅ Expo (React Native) mobil uygulama iskeleti, Expo Router
 - ✅ Tasarım sistemi: Nunito yazı tipi, ikonlar, animasyonlar, 3D butonlar, titreşim
 - ✅ Soru bankası modeli: meslek → alan → ünite → soru (kavram rubriği + örnek güçlü cevap)
-- ✅ 17 meslek, 60 alan, 131 ünite, 183 soru + meslekten bağımsız Mülakat Türleri
+- ✅ 17 meslek, 60 alan, 131 ünite, 183 soru + meslekten bağımsız Mülakat Türleri (Faz 2 sonunda: 21 meslek, 75 alan, 225 ünite)
 - ✅ Açık uçlu mülakat simülasyonu ve kural tabanlı değerlendirme (içerik, yapı, netlik, somutluk)
 - ✅ Detaylı rapor: güçlü / zayıf yanlar, soru bazında eksik kavramlar, örnek cevap
 - ✅ Hızlı Pratik: otomatik üretilen çoktan seçmeli ve sıralama soruları
@@ -29,14 +29,15 @@ Durum işaretleri: ✅ tamamlandı · 🚧 yapılıyor · 🔜 sıradaki · 💡
 - ✅ Dil seçeneği: Türkçe ve İngilizce (arayüz, tüm sorular, değerlendirme kavramları, örnek cevaplar, geri bildirimler)
 - ✅ Karanlık mod: Sistem / Açık / Koyu seçeneği
 
-## Faz 2 — Pratik çeşitliliği (🔜 sıradaki)
+## Faz 2 — Pratik çeşitliliği (✅ tamamlandı)
 
 - ✅ Mülakatçı karakterleri: Elif/Emily (sıcak İK uzmanı), Kerem/Daniel (detaycı alan uzmanı), Murat/Richard (sert departman müdürü); her birinin kendi soru seti, cevaba göre takip sorusu (örnek iste / "neden?" / "tek cümleyle özetle"), rapordaki değerlendirme cümlesi ve her dil için ana dili olan sesi var
-- 🔜 Süreli mod: cevap başına 2 dakika
-- 🔜 Yeni pratik tipleri: "zayıf cevaptaki hatayı bul", kavram–tanım eşleştirme, "iki cevaptan hangisi daha iyi?"
-- 🔜 Eksik Senior üniteler (yeni mesleklerin çoğunda)
-- 🔜 Yeni meslekler: Danışmanlık (vaka mülakatı), Mimarlık & Tasarım, Kamu sözlü mülakatları, Dış Ticaret & Lojistik
-- 🔜 Yeni alanlar: Yapay Zekâ/ML, Oyun Geliştirme, Bulut Mimarlığı
+- ✅ Süreli mod: cevap başına 2 dakika geri sayım, süre bitince cevap otomatik gönderilir, +5 XP, raporda “Süreli” etiketi
+- ✅ Yeni pratik tipleri (Hızlı Pratik ve Hata Defteri): "bu cevapta ne eksik?", kavram–açıklama eşleştirme, "hangi cevap daha güçlü?"; hepsi soru bankasından otomatik üretilir
+- ✅ Her alanda Senior ünite (47 yeni Senior, 2 eksik Mid ünite)
+- ✅ Yeni meslekler: Danışmanlık (vaka mülakatı), Mimarlık & Tasarım, Kamu Sözlü Mülakatları, Dış Ticaret & Lojistik (her biri 3 alan × 3 seviye)
+- ✅ Yeni alanlar: Yapay Zekâ/ML, Oyun Geliştirme, Bulut Mimarlığı
+- ✅ İçerik testi: her örnek cevap kendi rubrik kavramlarını karşılıyor (eski sorulardaki 42 açık kapatıldı)
 - 💡 Sektör uzmanlarıyla içerik doğrulaması (özellikle hukuk ve sağlık)
 
 ## Faz 3 — Sunucu ve gerçek hesaplar (🚧 yapılıyor)

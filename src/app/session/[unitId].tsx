@@ -1,6 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useMemo, useRef, useState, type ComponentRef } from 'react';
+import { useEffect, useEffectEvent, useMemo, useRef, useState, type ComponentRef } from 'react';
 import {
   ActivityIndicator,
   Animated,
@@ -14,7 +14,7 @@ import {
   View,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Bar, FadeIn, GradientIcon, Ionicons, T, colors, fonts, goBack, shade, shadow, tap, type IconName, themedStyles } from '@/components/ui';
+import { Bar, FadeIn, GradientIcon, Ionicons, T, colors, fonts, goBack, notify, shade, shadow, tap, type IconName, themedStyles } from '@/components/ui';
 import { SignupPrompt } from '@/components/SignupPrompt';
 import { findInterviewer, lineFor, needsProbe } from '@/data/interviewers';
 import { findUnit, type QuestionKind } from '@/data/professions';
@@ -23,7 +23,7 @@ import { evaluateSession } from '@/lib/evaluator';
 import { sessionQuestions } from '@/lib/interview';
 import { pick, upper, useLang, useT, type Bi } from '@/lib/i18n';
 import { speak, stopSpeaking } from '@/lib/voice';
-import { useStore } from '@/lib/store';
+import { TIMED_BONUS_XP, TIMED_SECONDS, useStore } from '@/lib/store';
 
 const KIND: Record<QuestionKind, { label: Bi; icon: IconName; color: string }> = {
   teknik: { label: { tr: 'Teknik', en: 'Technical' }, icon: 'construct', color: '#2F7FE0' },
@@ -37,7 +37,9 @@ export default function SessionScreen() {
   const insets = useSafeAreaInsets();
   const { unitId } = useLocalSearchParams<{ unitId: string }>();
   const found = findUnit(unitId);
-  const { addReport, voice, setVoice, interviewer: interviewerId } = useStore();
+  const { addReport, voice, setVoice, interviewer: interviewerId, timed: timedPref } = useStore();
+  // Fixed for the whole interview, so toggling the setting elsewhere can't change it midway.
+  const [timed] = useState(timedPref);
   const t = useT();
   const interviewer = findInterviewer(interviewerId);
   const lang = found?.track.lang ?? 'tr';
@@ -57,6 +59,8 @@ export default function SessionScreen() {
   /** Follow-ups by question index: first answer, the interviewer's question, and the reply. */
   const [followUps, setFollowUps] = useState<Record<number, { first: string; reply?: string }>>({});
   const scroll = useRef<ComponentRef<typeof ScrollView>>(null);
+  /** Seconds left for the current answer in timed mode. */
+  const [left, setLeft] = useState(TIMED_SECONDS);
 
   const say = (bubbleId: string, text: string | string[]) => {
     setSpeakingId(bubbleId);
@@ -92,19 +96,6 @@ export default function SessionScreen() {
     return () => clearTimeout(t);
   }, [answers.length, shownCount, found, busy, questions.length]);
 
-  useEffect(() => {
-    const t = setTimeout(() => scroll.current?.scrollToEnd({ animated: true }), 60);
-    return () => clearTimeout(t);
-  }, [shownCount, answers.length, typing, followUps]);
-
-  if (!found) return <T style={{ padding: 20 }}>{t('Ünite bulunamadı.', 'Unit not found.')}</T>;
-  if (block)
-    return (
-      <View style={{ flex: 1, backgroundColor: colors.bg }}>
-        <SignupPrompt reason={block} onClose={() => goBack(`/track/${found.track.id}`)} />
-      </View>
-    );
-  const { profession, track, unit } = found;
   const total = questions.length;
   const words = draft.trim().split(/\s+/).filter(Boolean).length;
   const waitingForAnswer = shownCount > answers.length;
@@ -113,15 +104,17 @@ export default function SessionScreen() {
   const probing = followUps[current] !== undefined && followUps[current].reply === undefined;
   const canSend = waitingForAnswer && words >= 3;
 
-  const submit = async () => {
-    if (!canSend) return;
-    tap();
+  /** `force`: time ran out, so whatever is written (even nothing) is sent. */
+  const submit = async (force = false) => {
+    if (!found || (force ? !waitingForAnswer || ending : !canSend)) return;
+    if (force) notify(false);
+    else tap();
     stopSpeaking();
     setSpeakingId(null);
     const text = draft.trim();
     setDraft('');
     // First answer to a question: the character may follow up once before moving on.
-    if (!probing && !followUps[current] && needsProbe(interviewer.id, text, lang)) {
+    if (!force && !probing && !followUps[current] && needsProbe(interviewer.id, text, lang)) {
       setFollowUps((f) => ({ ...f, [current]: { first: text } }));
       if (voice) say(`probe-${current}`, interviewer.probe[lang]);
       return;
@@ -138,16 +131,56 @@ export default function SessionScreen() {
     setBusy(true);
     const [report] = await Promise.all([
       evaluateSession(
-        profession.id,
-        unit.id,
+        found.profession.id,
+        found.unit.id,
         questions.map((q, i) => ({ question: q, answer: next[i] })),
         interviewer.id,
+        { timed, bonusXp: TIMED_BONUS_XP },
       ),
       new Promise((r) => setTimeout(r, 1200)),
     ]);
     addReport(report);
     router.replace(`/report/${report.id}`);
   };
+  // Time ran out: send what is written. An effect event, so the timer always calls the latest version.
+  const onTimeUp = useEffectEvent(() => {
+    void submit(true);
+  });
+
+  // Timed mode: a fresh countdown for every answer prompt (each question, and a follow-up).
+  const promptKey = `${shownCount}-${answers.length}-${Object.keys(followUps).length}`;
+  const awaiting = shownCount > answers.length && !ending;
+  useEffect(() => {
+    if (!timed || !awaiting) return;
+    // Resetting the countdown for a new prompt is part of this timer.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setLeft(TIMED_SECONDS);
+    const started = Date.now();
+    const id = setInterval(() => {
+      const rest = TIMED_SECONDS - Math.floor((Date.now() - started) / 1000);
+      setLeft(Math.max(0, rest));
+      if (rest <= 0) {
+        clearInterval(id);
+        onTimeUp();
+      }
+    }, 250);
+    return () => clearInterval(id);
+  }, [promptKey, timed, awaiting]);
+
+  useEffect(() => {
+    const t = setTimeout(() => scroll.current?.scrollToEnd({ animated: true }), 60);
+    return () => clearTimeout(t);
+  }, [shownCount, answers.length, typing, followUps]);
+
+  if (!found) return <T style={{ padding: 20 }}>{t('Ünite bulunamadı.', 'Unit not found.')}</T>;
+  if (block)
+    return (
+      <View style={{ flex: 1, backgroundColor: colors.bg }}>
+        <SignupPrompt reason={block} onClose={() => goBack(`/track/${found.track.id}`)} />
+      </View>
+    );
+  const { profession, track, unit } = found;
+  const timeUp = t('⏱ Süre doldu', "⏱ Time's up");
 
   if (busy) {
     return (
@@ -180,6 +213,7 @@ export default function SessionScreen() {
         <T w="black" size={14} color={colors.muted}>
           {Math.min(answers.length + 1, total)}/{total}
         </T>
+        {timed && <Countdown left={left} running={waitingForAnswer && !ending} />}
         <Pressable
           onPress={() => {
             tap();
@@ -230,12 +264,12 @@ export default function SessionScreen() {
             </Bubble>
             {followUps[i] ? (
               <>
-                <Bubble who="me">{followUps[i].first}</Bubble>
+                <Bubble who="me">{followUps[i].first || timeUp}</Bubble>
                 <Bubble who="ai">{interviewer.probe[lang]}</Bubble>
-                {followUps[i].reply !== undefined && <Bubble who="me">{followUps[i].reply}</Bubble>}
+                {followUps[i].reply !== undefined && <Bubble who="me">{followUps[i].reply || timeUp}</Bubble>}
               </>
             ) : (
-              answers[i] !== undefined && <Bubble who="me">{answers[i]}</Bubble>
+              answers[i] !== undefined && <Bubble who="me">{answers[i] || timeUp}</Bubble>
             )}
           </View>
         ))}
@@ -269,7 +303,7 @@ export default function SessionScreen() {
             multiline
             style={styles.input}
           />
-          <Pressable onPress={submit} disabled={!canSend}>
+          <Pressable onPress={() => submit()} disabled={!canSend}>
             {({ pressed }) => (
               <View
                 style={[
@@ -297,6 +331,20 @@ export default function SessionScreen() {
         </View>
       </View>
     </KeyboardAvoidingView>
+  );
+}
+
+/** Time left for the current answer; turns red in the last 20 seconds. */
+function Countdown({ left, running }: { left: number; running: boolean }) {
+  const low = running && left <= 20;
+  const c = low ? colors.danger : running ? colors.text : colors.faint;
+  return (
+    <View style={[styles.timer, low && { borderColor: colors.danger, backgroundColor: colors.tintRed }]}>
+      <Ionicons name="timer-outline" size={15} color={c} />
+      <T w="black" size={13} color={c} style={{ fontVariant: ['tabular-nums'] }}>
+        {Math.floor(left / 60)}:{String(left % 60).padStart(2, '0')}
+      </T>
+    </View>
   );
 }
 
@@ -433,6 +481,16 @@ const styles = themedStyles(() =>
   bubbleSpeaking: { borderWidth: 2, borderColor: colors.primary + '55' },
   wave: { flexDirection: 'row', alignItems: 'center', gap: 2, height: 14 },
   waveBar: { width: 3, height: 14, borderRadius: 2, backgroundColor: colors.primary },
+  timer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    paddingHorizontal: 8,
+    height: 30,
+    borderRadius: 15,
+    borderWidth: 2,
+    borderColor: colors.border,
+  },
   voiceBtn: { width: 34, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: colors.border },
   kind: {
     flexDirection: 'row',

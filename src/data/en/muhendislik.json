@@ -4,7 +4,7 @@
       ["Overproduction: overproduction", "Waiting: waiting", "Transport / motion: transport, motion, movement", "Inventory: inventory, stock", "Defects: defect, scrap"],
       "Overproduction, waiting, unnecessary transport, overprocessing, excess inventory, unnecessary motion and defects. The lean approach aims to make these steps that add no value for the customer visible and reduce them."],
     ["What is a bottleneck and how do you identify it?",
-      ["Definition: slowest, capacity, bottleneck", "Detection: waiting, queue, work piles up, measure", "Theory of constraints: constraint, toc", "Improvement: increase capacity, balance"],
+      ["Definition: slowest, capacity, bottleneck", "Detection: waiting, queue, work piles up, measure, piling up", "Theory of constraints: constraint, toc", "Improvement: increase capacity, balance, increase its capacity"],
       "A bottleneck is the step with the lowest capacity, which limits the total output of the system. I find it by measuring which station has work piling up in front of it and the highest utilization. Following the Theory of Constraints, I first make full use of that step, then increase its capacity."]
   ]},
   "ie-uretim-2": { "title": "Improvement Case", "q": [
@@ -78,7 +78,7 @@
   ]},
   "me-tasarim-2": { "title": "Design Case", "q": [
     ["A shaft keeps breaking in the field. How do you investigate?",
-      ["Fracture surface analysis: fracture surface, fatigue, beach mark", "Load analysis: load, stress, calculat", "Material checks: material, hardness, heat treatment", "Design improvement: notch, corner, radius, design"],
+      ["Fracture surface analysis: fracture surface, fatigue, beach mark", "Load analysis: load, stress, calculat", "Material checks: material, hardness, heat treatment", "Design improvement: notch, corner, radius, design, radii"],
       "First I examine the fracture surface; beach marks point to fatigue failure. I calculate the real loads and stresses and look at stress concentrations such as keyways. I check the material and heat treatment, and if needed increase the fillet radii and change the material."]
   ]},
   "me-enerji-1": { "title": "Fundamentals", "q": [
@@ -133,5 +133,65 @@
     ["How do you choose a foundation type on weak soil with a high groundwater level?",
       ["Pile foundation: pile", "Raft foundation: raft, mat", "Ground improvement: improvement, jet grout, inject", "Water control: drainage, water, waterproof"],
       "If the bearing capacity near the surface is insufficient, you consider a pile foundation that transfers the load to a firm layer, or a raft foundation that spreads the load over a wide area. Alternatively, ground improvement such as jet grouting can be used. Drainage and waterproofing are planned for the groundwater."]
+  ]},
+  "ie-uretim-3": { "title": "Lean Transformation", "q": [
+    ["How do you launch a lean transformation in a factory and make it stick?",
+      ["Value stream: value stream", "Pilot area: pilot", "Management support: management support, senior management", "Employee involvement: kaizen, employee", "Standardize and sustain: standard, sustain"],
+      "First I agree the goals with senior management and get visible management support. I draw a value stream map for the main product family to show where the waste is. Before rolling out to the whole plant, I start on a pilot line and show a quick win. I involve employees through kaizen events and put their suggestions into practice. I turn the improvements into standard work instructions and sustain them with daily checks."]
+  ]},
+  "ie-tedarik-3": { "title": "Supply Risk", "q": [
+    ["How do you manage supply risk for a critical part that depends on a single supplier?",
+      ["Risk analysis: risk, impact", "Alternative supplier: alternative supplier, second", "Safety stock: safety stock", "Contract and relationship: contract, relationship", "Early warning: early warning, monitor"],
+      "First I measure the risk by estimating the impact on production and revenue if the part cannot be supplied. In the short term I hold safety stock based on demand variability and lead time. In the medium term I find and qualify an alternative supplier to create a second source. I sign a contract with capacity commitments with the current supplier and strengthen the relationship. I monitor the supplier’s finances and delivery performance with early warning indicators."]
+  ]},
+  "ie-kalite-3": { "title": "Quality System", "q": [
+    ["In a company that holds ISO 9001 but sees rising customer complaints, how do you make the quality system effective?",
+      ["Complaint analysis: complaint, pareto", "Process ownership: process owner", "Corrective action: corrective, root cause", "KPI tracking: kpi", "Quality culture: culture, training"],
+      "Having the certificate does not mean the system works; first I classify complaints with a Pareto chart to find the biggest problems. I assign a process owner with real authority to each process. For complaints I open corrective actions based on root cause analysis and check that they work. I track KPIs such as defect rate and customer complaints regularly in management meetings. Through training I build a culture that sees quality as part of daily work, not something done for audits."]
+  ]},
+  "eee-guc-3": { "title": "Grid Planning", "q": [
+    ["How do you keep a grid stable as the share of renewable energy grows?",
+      ["Intermittent generation: intermittent, variab", "Energy storage: storage, batter", "Flexibility: flexib, demand response, demand-side", "Generation forecasting: forecast", "Frequency and transmission: frequency, transmission"],
+      "Solar and wind output is intermittent and variable, so balancing supply and demand in real time gets harder. That makes accurate, weather-based generation forecasting the basis of planning. I add energy storage such as batteries that store surplus power and release it when needed. Fast-starting flexible plants and demand response increase flexibility. I reinforce transmission capacity and plan the ancillary services needed for frequency control."]
+  ]},
+  "eee-gomulu-3": { "title": "Product Architecture", "q": [
+    ["How do you design a secure over-the-air (OTA) update architecture for a product with thousands of devices in the field?",
+      ["Signed images: sign, verif", "Dual partitions and rollback: two partitions, dual, roll back, rollback", "Staged rollout: staged, gradual", "Interruption safety: power loss, interrupt", "Monitoring: monitor"],
+      "I digitally sign firmware images and make the device verify the signature before installing. I design the flash with two partitions, so if the new version fails to boot the device automatically rolls back to the old one. I release the update to a small group first, then in a staged rollout to the whole fleet. I make sure a power loss or dropped connection cannot interrupt an update in a way that bricks the device. I monitor version and error reports from devices and stop the rollout if I see problems."]
+  ]},
+  "eee-haberlesme-3": { "title": "Network Planning", "q": [
+    ["What do you consider when planning a new mobile base station network in a city?",
+      ["Coverage: coverage", "Capacity: capacity, user density", "Frequency and interference: frequenc, interference", "Sites and cost: site, cost", "Measurement and optimization: drive test, optimi"],
+      "First I set a coverage target and build a propagation model based on the city’s terrain and buildings. In areas with high user density I plan smaller cells for capacity. I do frequency planning to reduce interference between neighbouring cells. I pick station locations considering site rental, energy and installation cost. After installation I optimize the network with drive test measurements."]
+  ]},
+  "me-tasarim-3": { "title": "Design to Cost", "q": [
+    ["You are asked to cut a new product’s cost by 15%. How do you approach it on the design side?",
+      ["Cost breakdown: cost breakdown, pareto", "Value engineering: value engineering", "Design for manufacture: manufactur, assembly", "Standard parts and materials: standard part, material", "Validation: test, validat"],
+      "First I build the product’s cost breakdown and use Pareto to focus on the most expensive parts. In value engineering sessions I question the function of every part and drop features that are not needed. For easier manufacturing and assembly I reduce the part count and review tolerances. I consider standard parts instead of custom ones, and cheaper material alternatives. I validate every change with tests to make sure quality and safety are not compromised."]
+  ]},
+  "me-enerji-3": { "title": "Energy Management", "q": [
+    ["What program would you run to reduce a plant’s energy consumption?",
+      ["Energy audit: audit, metering", "Big consumers: big consumer, largest consumer", "Improvement projects: waste heat, insulation, variable", "Payback period: payback", "Continuous monitoring: monitor, 50001"],
+      "First I run an energy audit using meters and metering data to see how consumption is spread. I focus on the largest consumers such as compressors, boilers and chillers. I list projects such as waste heat recovery, insulation and variable frequency drives on motors. I prioritize the projects by investment and payback period. Following the ISO 50001 approach, I monitor consumption continuously and compare it with targets."]
+  ]},
+  "me-bakim-3": { "title": "Maintenance Strategy", "q": [
+    ["How do you transform a plant’s maintenance strategy to reduce breakdown downtime?",
+      ["Criticality analysis: critical", "Predictive maintenance: predictive, vibration", "OEE and MTBF: oee, mtbf", "Spare parts plan: spare part", "Autonomous maintenance: autonomous, operator"],
+      "First I classify equipment by its impact on production with a criticality analysis. For critical equipment I move to predictive maintenance with vibration and temperature sensors. I measure success with OEE and mean time between failures (MTBF). I review the spare parts stock and maintenance plan for critical equipment. I start autonomous maintenance by handing cleaning and simple checks to operators."]
+  ]},
+  "ce-yapi-3": { "title": "Existing Buildings", "q": [
+    ["How do you assess an existing building’s earthquake performance and decide on retrofitting?",
+      ["Site inspection: inspect, core", "Concrete strength: concrete, strength", "Performance analysis: analys, performance", "Retrofit options: retrofit, shear wall", "Cost-benefit: cost, demolish"],
+      "First I inspect the building on site, compare it with the drawings, scan the reinforcement and take core samples. The cores give the concrete strength and the scans show the state of the reinforcement. With this data I run a code-compliant performance analysis to see whether the building meets the target performance. If it falls short, I evaluate retrofit options such as adding reinforced concrete shear walls or column jacketing. If the retrofit cost is close to a new building, I recommend that it is better to demolish and rebuild."]
+  ]},
+  "ce-santiye-3": { "title": "Cost Control", "q": [
+    ["The project is at risk of going 20% over budget. What do you do?",
+      ["Variance analysis: variance, line item", "Alternative solutions: alternative, value engineering", "Contract and changes: contract, change", "Client communication: client", "Earned value: earned value"],
+      "First I review the budget variance line item by line item to find where the overrun comes from. I separate causes such as material prices, lost productivity or scope growth. For the remaining work I look for alternative solutions through value engineering that keep quality. If the scope has changed, I prepare a change request under the contract. I communicate early and openly with the client and track progress weekly with the earned value method."]
+  ]},
+  "ce-geoteknik-3": { "title": "Deep Excavations", "q": [
+    ["How do you manage the risk of damaging neighbouring buildings during a deep excavation?",
+      ["Site investigation: site investigation, borehole", "Retaining system design: retaining, anchor", "Groundwater: groundwater, drainage", "Monitoring: inclinometer, measur", "Neighbour condition survey: survey, neighbo"],
+      "First I run a proper site investigation with boreholes and set the soil parameters. Based on the depth and soil, I design a retaining system such as bored piles with anchors. If there is groundwater, I plan drainage and cut-off measures. Before digging I record the current condition of the neighbouring buildings in a photo and report survey. During excavation I monitor the system with inclinometers and displacement measurements and stop work if a limit is exceeded."]
   ]}
 }

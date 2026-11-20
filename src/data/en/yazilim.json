@@ -44,7 +44,7 @@
       ["LCP: lcp, largest", "INP: inp, interaction", "CLS: cls, shift", "Optimization: image, lazy, cdn, cache"],
       "LCP is how long the largest content takes to load, INP is how quickly the page responds to interaction, and CLS is unexpected layout shift. I improve LCP by optimizing images and serving them from a CDN, INP by freeing up the main thread, and CLS by giving images explicit sizes."],
     ["How would you structure state management in a large frontend project?",
-      ["Server state: server state, react query, swr, server", "Local state: local, component", "Global store: redux, zustand, context, global", "Avoid needless globals: only when, minimum, only"],
+      ["Server state: server state, react query, swr, server", "Local state: local, component", "Global store: redux, zustand, context, global", "Avoid needless globals: only when, minimum, only, avoid"],
       "I manage server data separately with a tool like React Query. I keep component-specific state local. For the few pieces of state that are truly shared I use Zustand or Context, and I avoid putting everything in a global store."]
   ]},
   "mobil-1": { "title": "Fundamentals", "q": [
@@ -118,7 +118,7 @@
   ]},
   "test-1": { "title": "Fundamentals", "q": [
     ["Can you explain the test pyramid?",
-      ["Unit tests: unit", "Integration tests: integration", "End-to-end tests: end to end, e2e, ui", "Ratio / cost: few, many, cost, speed"],
+      ["Unit tests: unit", "Integration tests: integration", "End-to-end tests: end to end, e2e, ui, end-to-end", "Ratio / cost: few, many, cost, speed"],
       "At the base are many fast, cheap unit tests; in the middle, integration tests that check services work together; at the top, a few slow and expensive end-to-end tests. Going up, the number of tests drops and the cost rises."],
     ["What should a good bug report contain?",
       ["Steps to reproduce: step, reproduc", "Expected / actual: expected, actual", "Environment: environment, version, device, browser", "Evidence: screenshot, video, log", "Priority: priority, severity"],
@@ -181,5 +181,59 @@
     ["Ransomware has been detected on a server. What is your response plan?",
       ["Containment: isolat, contain, spread", "Scoping: scope, affected, identif", "Recovery: backup, restore, recover", "Communication / legal: notify, legal, management, regulat", "Root cause: root cause, lesson, vulnerab"],
       "First I isolate the affected systems to stop the spread. I determine the scope and the entry point and plan a restore from clean backups. I inform management and, where required, the relevant authorities under data protection law. Finally I close the root cause and add the lessons to our process in a post-incident report."]
+  ]},
+  "yapay-zeka-1": { "title": "Fundamentals", "q": [
+    ["What is overfitting and how do you prevent it?",
+      ["Definition: memoriz, generaliz", "Symptom: validation error, validation loss, test error", "Regularization: regulari, dropout", "Data: more data, augment", "Early stopping: early stopping, cross-validation"],
+      "Overfitting is when a model memorizes the training data and fails to generalize to new data. The symptom is training error falling while validation error rises. To prevent it I use methods such as L2 regularization or dropout. Collecting more data or using data augmentation also helps a lot. I also evaluate the model with cross-validation and use early stopping once validation error starts to rise."],
+    ["What is the difference between precision and recall, and when does each matter more?",
+      ["Precision: precision", "Recall: recall, sensitivity", "Threshold trade-off: threshold, trade-off", "Example: for example", "F1 score: f1"],
+      "Precision is how many of the cases the model calls positive are really positive. Recall is how many of the real positives the model manages to catch; it is also called sensitivity. Moving the decision threshold creates a trade-off where one rises as the other falls. For example, in cancer screening recall matters more so no patient is missed, while in a spam filter precision matters more so important email is not deleted. To track both together I use the F1 score."]
+  ]},
+  "yapay-zeka-2": { "title": "LLM Applications", "q": [
+    ["You are building an assistant that answers questions from company documents. How do you design it?",
+      ["RAG architecture: rag, retriev", "Chunking and vector search: chunk, vector", "Citing sources: source, hallucinat", "Evaluation: test set, evaluat", "Access control: permission, access"],
+      "Instead of retraining the model I use a RAG approach: retrieve the documents relevant to the question and give them to the model as context. I split documents into meaningful chunks, create embeddings and search them in a vector database. Showing which source each answer comes from builds trust and reduces hallucination. I build a test set from real questions and evaluate answer quality regularly. I make sure users only get answers from documents they have permission to access."]
+  ]},
+  "yapay-zeka-3": { "title": "MLOps & Production", "q": [
+    ["A production model’s performance is degrading over time. How do you notice it and fix it?",
+      ["Monitoring and alerts: monitor, alert", "Data drift: drift", "Root cause: root cause, data quality", "Retraining: retrain", "Safe rollout: shadow, gradual"],
+      "I monitor the model’s prediction distribution and its accuracy as real outcomes arrive, with dashboards that raise an alert when a threshold is crossed. I track drift in the input data distribution with statistical tests. When I see a drop, I first look at whether the root cause is a data quality issue or a real change in behaviour. If it is a real change, the model is retrained on recent data. I run the new model in shadow mode first, then move it to production in a gradual rollout."]
+  ]},
+  "oyun-1": { "title": "Fundamentals", "q": [
+    ["What is a game loop and why does deltaTime matter?",
+      ["Loop steps: input, update, render", "Frame rate: frame rate, fps", "deltaTime: deltatime, elapsed time", "Hardware independence: independent", "Fixed-step physics: fixed step, fixed timestep, physics"],
+      "The game loop is a continuous loop that reads input, updates the game state and renders the scene every frame. The frame rate (FPS) varies with the device and the scene. deltaTime is the elapsed time since the previous frame, and I multiply movement by it. That way the character moves at the same speed whether the game runs at 30 or 120 FPS, so it is independent of the hardware. For physics I use a fixed timestep for stability."],
+    ["How do you find and fix performance problems in a mobile game?",
+      ["Profiler: profil", "Draw calls: draw call, batch", "Memory and garbage collection: garbage collect, object pool", "Asset optimization: texture, lod", "Low-end testing: low-end"],
+      "Instead of guessing, I first measure with a profiler whether the bottleneck is on the CPU, the GPU or memory. I use batching and merge materials to cut the number of draw calls. For objects created often I use an object pool to avoid stutters caused by garbage collection. I compress texture sizes and use LOD for distant models. I test the changes on the low-end devices the audience actually uses."]
+  ]},
+  "oyun-2": { "title": "Game Design", "q": [
+    ["Most players quit at level 3. What do you do?",
+      ["Analytics: analytic, funnel", "Difficulty curve: difficult", "Playtesting: playtest, observ", "Experiment: a/b, try", "Retention: retention"],
+      "First I build a funnel from analytics data to find exactly where in level 3 players quit. I look at possibilities such as a sudden difficulty spike, an unclear goal or a new mechanic that is not taught well. I run playtests with new players and see through observation where they get stuck. I try changes such as easing the difficulty or adding hints in an A/B test. I measure the result with level completion and retention rates."]
+  ]},
+  "oyun-3": { "title": "Technical Leadership", "q": [
+    ["How do you set up the architecture to ship one game on mobile, PC and console at the same time?",
+      ["Platform abstraction: abstract, platform layer", "Input and UI: input, ui", "Quality settings: quality setting", "Automated build pipeline: build pipeline, automat", "Certification testing: certification"],
+      "To keep game logic separate from the platform, I abstract file, network and achievement calls behind a platform layer. I design the input system for touch, mouse and keyboard and gamepad, and the UI scaling, to be flexible from the start. I set separate quality settings and a performance budget for each platform. I build an automated build pipeline that builds and tests every platform every day. I put console certification requirements on the schedule early and test against them regularly."]
+  ]},
+  "bulut-1": { "title": "Fundamentals", "q": [
+    ["What is the difference between IaaS, PaaS and SaaS?",
+      ["IaaS: iaas, virtual machine", "PaaS: paas, platform", "SaaS: saas, ready-made software", "Shared responsibility: responsibilit", "Examples: for example"],
+      "With IaaS the provider offers infrastructure such as virtual machines, networking and storage, and we manage the operating system and everything above it. With PaaS the platform to run the app is ready and we only manage the code and data. SaaS is ready-made software used directly. The key difference is shared responsibility: moving from IaaS to SaaS, more of the management work moves to the provider. For example, EC2 is IaaS, Heroku is PaaS and Gmail is SaaS."],
+    ["What architecture would you build in the cloud for a highly available web application?",
+      ["Multiple zones: availability zone, multiple zones", "Load balancer: load balancer", "Auto scaling: auto scaling, autoscaling", "Stateless services: stateless", "Redundant database: replica, backup"],
+      "I spread servers across more than one availability zone so a single data centre failure does not take the app down. In front of them I put a load balancer that sends traffic only to healthy servers. I set up an auto scaling group that adds and removes servers with the load. I design the app servers to be stateless and keep session data in a shared cache. For the database I use a replica in another zone that fails over automatically, plus regular backups."]
+  ]},
+  "bulut-2": { "title": "Cost & Scale", "q": [
+    ["The cloud bill has doubled in six months. How do you bring it down?",
+      ["Cost visibility: tag, breakdown", "Right-sizing: right-siz, rightsiz", "Reserved and spot: reserved, spot", "Idle resources: unused, idle", "FinOps culture: finops, accountab"],
+      "First I tag every resource by team and project to make the cost breakdown visible. I shrink under-used servers through right-sizing. For always-on workloads I use reserved capacity, and for interruption-tolerant jobs spot instances. I shut down unused disks, forgotten test environments and other idle resources. With a FinOps setup where every team sees its own spending, I spread cost accountability across the teams."]
+  ]},
+  "bulut-3": { "title": "Migration & Strategy", "q": [
+    ["How do you plan moving applications from an on-premises data centre to the cloud?",
+      ["Inventory and dependencies: inventory, dependenc", "Migration strategies: rehost, refactor", "Moving in waves: wave, pilot", "Security and compliance: security, compliance", "Testing and rollback: test, roll back, rollback"],
+      "First I take an inventory of all applications and map the dependencies between them. For each application I choose a strategy such as moving it as is (rehost), changing the platform, or rewriting it (refactor). I start with a low-risk pilot application and plan the migration in waves. I build security and compliance needs such as identity management, encryption and data residency into the design from the start. I test before every cutover and keep a rollback plan ready in case something goes wrong."]
   ]}
 }

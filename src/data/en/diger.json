@@ -74,7 +74,7 @@
   ]},
   "po-2": { "title": "Backlog Management", "q": [
     ["An urgent request arrives in the middle of a sprint. What do you do?",
-      ["Assess the impact: impact, urgen, priorit", "Trade-off: remove, instead, swap, trade", "Talk to the team: team, discuss, talk", "Stakeholder communication: stakeholder, inform"],
+      ["Assess the impact: impact, urgen, priorit", "Trade-off: remove, instead, swap, trade, take out", "Talk to the team: team, discuss, talk", "Stakeholder communication: stakeholder, inform"],
       "First I assess whether the request is truly urgent and what its impact is. If it is, I talk to the team and take out work of similar size from the sprint. I tell stakeholders about the change and the reason transparently."]
   ]},
   "ux-1": { "title": "Research", "q": [
@@ -130,7 +130,7 @@
   ]},
   "b2b-2": { "title": "Negotiation & Pipeline", "q": [
     ["The customer says \"Your competitor is 20% cheaper.\" How do you respond?",
-      ["Understanding: question, understand, compared to what", "Value focus: value, quality, support, total cost", "Reciprocal trade: in return, long term, package"],
+      ["Understanding: question, understand, compared to what, ask what", "Value focus: value, quality, support, total cost", "Reciprocal trade: in return, long term, package"],
       "First I ask what the comparison covers. I show the total cost of ownership, support and quality with concrete numbers. If a discount is needed, I ask for something in return, such as a longer contract."],
     ["How do you manage your sales pipeline?",
       ["Stages: stage, funnel", "Qualification: qualif, budget, decision maker", "CRM: crm, record", "Conversion rates: rate, conversion, forecast"],
@@ -143,7 +143,7 @@
   ]},
   "perakende-2": { "title": "Difficult Customers", "q": [
     ["An angry customer wants to return a product, but the return period has passed. What do you do?",
-      ["Calm listening: listen, calm, empath", "Explaining the policy: policy, rule, period", "Alternative solution: alternative, exchange, store credit, manager", "Winning the customer: satisf, come back"],
+      ["Calm listening: listen, calm, empath", "Explaining the policy: policy, rule, period", "Alternative solution: alternative, exchange, store credit, manager", "Winning the customer: satisf, come back, not to lose"],
       "First I listen calmly and show empathy. I explain the return policy politely. I try not to lose the customer by offering alternatives such as an exchange, store credit or an exception approved by a manager."]
   ]},
   "musteri-1": { "title": "Customer Satisfaction", "q": [
@@ -168,7 +168,7 @@
   ]},
   "fin-analiz-1": { "title": "Analysis Fundamentals", "q": [
     ["Why might a company that looks profitable run short of cash?",
-      ["Receivables: receivable, payment terms, collect", "Inventory: inventory, stock", "Capital expenditure: investment, capex", "Accrual vs cash: accrual, cash, difference"],
+      ["Receivables: receivable, payment terms, collect", "Inventory: inventory, stock", "Capital expenditure: investment, capex, capital expenditure", "Accrual vs cash: accrual, cash, difference"],
       "Profit is calculated on an accrual basis, while cash comes in only when it's collected. Long payment terms on receivables, growing inventory or large capital expenditure can drain cash even while there is profit. That's why I monitor working capital."]
   ]},
   "fin-analiz-2": { "title": "Valuation", "q": [
@@ -208,5 +208,80 @@
     ["Employee turnover in a team has risen sharply. How do you analyze it?",
       ["Data analysis: data, rate, breakdown", "Exit interviews: exit interview, reason", "Manager effect: manager, leadership", "Action plan: action, plan, salary, career"],
       "First I look at the turnover rate broken down by tenure and role. I pull common reasons from exit interviews; often the manager relationship, pay or career growth stands out. Based on the findings I prepare a concrete action plan together with the manager."]
+  ]},
+  "bi-3": { "title": "Data Strategy", "q": [
+    ["Different departments report different numbers for the same metric. How do you build a single source of truth?",
+      ["Shared metric definitions: definition, glossary, shared", "Ownership / governance: owner, governance", "Central model: semantic, central model, layer", "Stakeholder agreement: stakeholder, agree", "Quality checks: test, monitor, check"],
+      "First I map how each department calculates the number to see where the difference comes from. I bring the stakeholders together to agree on shared definitions and write them into a metric glossary. Every metric gets a business owner, and changes go through a governance process. Calculations live in a central semantic layer that every dashboard uses, not inside individual reports. Finally, automated data tests and monitoring keep checking that the numbers stay consistent."]
+  ]},
+  "bilimci-3": { "title": "Value & Prioritization", "q": [
+    ["How do you prove the value of a machine learning project to the business and prioritize projects?",
+      ["Business metric: business metric, revenue, cost", "Simple baseline: simple, baseline, rule", "Proof by experiment: a/b, experiment", "Return estimate: return, value", "Risk / ethics: risk, ethic, bias"],
+      "I tie every project to a concrete business metric such as more revenue or lower cost. I start with a simple rule-based baseline and show how much the model beats it. I measure the impact with an A/B experiment, turning the claim into evidence. I rank projects by expected return against the effort needed, putting the ones that deliver value fastest first. For projects with data bias or ethical risk, I plan extra checks."]
+  ]},
+  "po-3": { "title": "Agile at Scale", "q": [
+    ["In a setup where several teams work on the same product, how do you manage dependencies and priorities?",
+      ["Shared goal: shared goal, roadmap, okr", "Visible dependencies: dependenc, visible", "Joint planning: joint planning, planning session", "Single priority list: single priority, priority list", "Regular sync: sync, scrum of scrums"],
+      "I connect all teams to the same shared goal and roadmap; OKRs are a good tool for this. At the start of the quarter I run a joint planning session with the teams and make dependencies visible on a board. I keep a single priority list for the product so teams do not work on conflicting things. A weekly scrum of scrums keeps the teams in sync and lets us clear blockers early."]
+  ]},
+  "ux-3": { "title": "Design System", "q": [
+    ["How do you keep design consistent in a fast-growing product that has no design system?",
+      ["Inventory: inventory, audit", "Component library: component, library", "Design tokens: token, principle", "Adoption: adopt, developer, training", "Governance: contribut, version, governance"],
+      "First I take an inventory of every screen in the product and run an audit; showing how many different buttons or colours exist is persuasive. I define design tokens for colour, type and spacing, plus a few core principles. Starting with the most used pieces, I build a component library that matches in design and code. I work with developers and run training so teams adopt the system. A governance model with contribution and versioning rules keeps the system alive."]
+  ]},
+  "performans-3": { "title": "Budget & Attribution", "q": [
+    ["How do you split a marketing budget across channels, and how do you measure which channel really works?",
+      ["Goal and KPIs: goal, kpi, cac", "Attribution model: attribution, last click, last-click", "Incrementality test: incremental, holdout", "Marginal allocation: marginal, shift", "Customer value: ltv, lifetime"],
+      "First I make the business goal and KPIs such as CAC per channel clear. Last-click attribution flatters some channels, so I use a data-driven attribution model. To see the real effect, I measure incremental impact with holdout tests that leave one region out of the campaign. I allocate the budget by each channel’s marginal return, shifting money from falling channels to rising ones. I judge decisions with customer lifetime value (LTV), not just short-term sales."]
+  ]},
+  "icerik-3": { "title": "Brand Strategy", "q": [
+    ["How do you build a brand’s social media strategy from scratch?",
+      ["Target audience: target audience, persona", "Measurable goals: kpi, measurable", "Platform choice: platform", "Content pillars and tone: pillar, tone", "Measure and improve: analy, improve"],
+      "I start by defining the target audience and drawing up a few personas. I set measurable goals such as awareness or traffic, each with a KPI. I pick the platforms where the audience really spends time and plan the right format for each. I define the brand’s voice and tone and group content around three or four content pillars. A monthly analysis shows what works, and I keep improving the plan."]
+  ]},
+  "seo-3": { "title": "SEO Strategy", "q": [
+    ["What SEO strategy would you build to double organic traffic in a year?",
+      ["Technical audit: technical, audit, crawl", "Search intent: keyword, intent", "Content plan: topic cluster, content plan", "Authority and links: backlink, authority", "Measurement: search console, track"],
+      "First I run a technical audit of the site and fix crawl, speed and indexing issues. I group keyword research by search intent and pick the topics with the most potential. I prepare a content plan that builds linked topic clusters around those topics. Valuable content and partnerships earn quality backlinks and raise the site’s authority. I track progress monthly with Search Console and ranking tools."]
+  ]},
+  "b2b-3": { "title": "Sales Leadership", "q": [
+    ["Your sales team is 30% behind its quarterly target. What do you do to save the quarter?",
+      ["Pipeline analysis: pipeline, funnel", "Find the bottleneck: bottleneck, stage", "Prioritize deals: biggest deal, priorit", "Coaching: coaching, one-on-one", "Honest forecast: forecast"],
+      "First I review the pipeline stage by stage to find where the funnel is stuck. A bottleneck at the proposal stage needs a different action than one at the first meeting. I prioritize the biggest deals closest to closing and put resources behind them. I run one-on-one coaching with reps so we prepare together for the meetings they find hard. I give management a realistic forecast and update it every week."]
+  ]},
+  "perakende-3": { "title": "Store Management", "q": [
+    ["The store you manage sells below the regional average. How do you turn it around?",
+      ["Data analysis: conversion rate, basket", "Traffic: traffic, visitor", "Staff and shifts: staff, shift", "Display and stock: display, stock", "Targets and follow-up: daily target, follow"],
+      "First I compare store traffic, conversion rate and average basket with the region. I separate whether too few visitors come in or whether those who come in do not buy. If conversion is low, I work on staff training and shift plans that match busy hours. I check the window display and whether best-sellers are in stock. I set a daily target with the team and we follow the results together every day."]
+  ]},
+  "musteri-3": { "title": "Customer Success Strategy", "q": [
+    ["What program would you build with your team to reduce customer churn?",
+      ["Churn reasons: reason, segment", "Health score: health score, early warning", "Onboarding: onboarding", "Proactive contact: proactive, regular", "Measurement: churn rate, nrr"],
+      "First I study lost customers by segment and list the reasons they left. I build a health score from usage and support data and define early warning signals. I strengthen onboarding in the customer’s first weeks, because most churn starts there. I plan proactive, regular check-ins with at-risk accounts. I measure success with churn rate and NRR and review the program every quarter."]
+  ]},
+  "muhasebe-3": { "title": "Faster Close", "q": [
+    ["The month-end close takes 10 days. How do you bring it down to 5?",
+      ["Process map: process, bottleneck", "Automation: automat, reconciliation", "Close calendar: calendar, owner", "Soft close: soft close, during the month", "Quality control: checklist"],
+      "First I map the close process and find which step is the bottleneck. I use automation to speed up repeated work such as bank and intercompany reconciliation. I set up a close calendar showing the owner and day of every step. I run a soft close by doing accruals and checks during the month. A checklist keeps quality up so errors do not cause rework."]
+  ]},
+  "fin-analiz-3": { "title": "Investment Decision", "q": [
+    ["The company is thinking about investing in a new factory. How do you evaluate the decision?",
+      ["Cash flow projection: cash flow, projection", "NPV / IRR: npv, net present value, irr, internal rate", "Cost of capital: cost of capital, wacc", "Scenario analysis: sensitivity, scenario", "Strategy and risk: strateg, risk"],
+      "First I prepare the investment amount and a cash flow projection by year. I discount these cash flows at the company’s cost of capital (WACC) to get the net present value (NPV). I also compare the internal rate of return (IRR) with the cost of capital. I run sensitivity and bad-base-good scenario analyses on the demand and price assumptions. Finally I assess how the investment fits the company’s strategy and its operational risks, and make a recommendation."]
+  ]},
+  "denetim-3": { "title": "Risk-Based Plan", "q": [
+    ["How do you prepare the annual internal audit plan on a risk basis?",
+      ["Audit universe: audit universe, process", "Risk scoring: likelihood, impact", "Prioritization: high-risk, high risk, priorit", "Resource plan: resource, capacity", "Committee approval: audit committee, approv"],
+      "First I build an audit universe covering every process and unit in the company. I score each area for likelihood and impact, and validate the assessment in talks with management. High-risk areas get priority, and low-risk areas are audited less often. I match the plan to resources based on the team’s capacity and the expertise needed. I present the draft to the audit committee for approval and update it during the year if risks change."]
+  ]},
+  "ise-alim-3": { "title": "Hiring Strategy", "q": [
+    ["The company wants to hire 100 engineers in a year. How do you plan it?",
+      ["Hiring plan: plan, role, quarter", "Channel strategy: channel, referral, universit", "Employer brand: employer brand", "Interview capacity: interviewer, capacity", "Metrics: time to fill, conversion"],
+      "First I build a hiring plan with managers by role, level and quarter. I use past data to work out how well each channel performs and set a balanced channel strategy across a referral program, university partnerships and direct sourcing. I strengthen the employer brand with technical content and events. I train interviewers to add capacity and speed the process up with standard steps. I track time to fill, conversion between stages and offer acceptance weekly."]
+  ]},
+  "ik-is-ortagi-3": { "title": "Change Management", "q": [
+    ["How do you keep employees engaged during a restructuring?",
+      ["Transparent communication: transparent, why", "Prepare managers: manager, prepar", "Listening: listen, survey", "Support: support, career", "Measure engagement: engagement, track"],
+      "I explain why the change is happening and how it affects people, transparently and early; uncertainty does more harm than rumours. I prepare managers first and give them a guide so they can answer their teams’ questions. I listen to employees through short surveys and focus groups and collect their concerns. I offer career counselling to those affected and support for moving into new roles. I track engagement with regular pulse surveys and step in where needed."]
   ]}
 }

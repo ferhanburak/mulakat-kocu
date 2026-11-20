@@ -13,13 +13,18 @@ export const endustri: Profession = {
           ['Fazla üretim: fazla üretim, aşırı üretim', 'Bekleme: bekleme', 'Taşıma / hareket: taşıma, hareket', 'Stok: stok, envanter', 'Hatalı ürün: hata, kusur, hurda'],
           'Fazla üretim, bekleme, gereksiz taşıma, fazla işlem, fazla stok, gereksiz hareket ve hatalı ürün. Yalın yaklaşım müşteriye değer katmayan bu adımları görünür kılıp azaltmayı hedefler.'),
         q('teknik', 'Darboğaz (bottleneck) nedir, nasıl tespit edersin?',
-          ['Tanım: en yavaş, kapasite, darboğaz', 'Tespit: bekleyen, kuyruk, stok birik, ölç', 'Kısıtlar teorisi: kısıt, toc', 'İyileştirme: kapasite artır, dengele'],
+          ['Tanım: en yavaş, kapasite, darboğaz', 'Tespit: bekleyen, kuyruk, stok birik, ölç', 'Kısıtlar teorisi: kısıt, toc', 'İyileştirme: kapasite artır, dengele, artırırım'],
           'Darboğaz, sistemin toplam çıktısını sınırlayan en düşük kapasiteli adımdır. Önünde iş/stok biriken ve kullanım oranı en yüksek istasyonu ölçerek bulurum. Kısıtlar Teorisi’ne göre önce o adımı tam kullanır, sonra kapasitesini artırırım.'),
       ]],
       ['İyileştirme Vakası', 'Mid', [
         q('vaka', 'Bir montaj hattında çevrim süresi hedefin %20 üzerinde. Ne yaparsın?',
           ['Mevcut durumu ölçme: zaman etüdü, ölç, gözlem', 'Hat dengeleme: dengele, iş yükü, istasyon', 'Kök neden: kök neden, 5 neden, balık kılçığı', 'Standart iş: standart, talimat, smed'],
           'Önce zaman etüdü ile her istasyonun sürelerini ölçerim. İş yükü dengesizse hat dengeleme yaparım; duruş ve ayar süreleri yüksekse SMED uygularım. Kök nedenleri 5 Neden ile bulur, iyileşmeyi standart iş talimatıyla kalıcı hale getiririm.'),
+      ]],
+      ['Yalın Dönüşüm', 'Senior', [
+        q('vaka', 'Bir fabrikada yalın dönüşüm programını nasıl başlatır ve kalıcı hale getirirsin?',
+          ['Değer akışı: değer akış', 'Pilot alan: pilot', 'Yönetim desteği: yönetim desteği, üst yönetim', 'Çalışan katılımı: kaizen, çalışan', 'Standart ve sürdürme: standart, sürdür'],
+          'Önce üst yönetimle hedefleri netleştirip görünür bir yönetim desteği alırım. Ana ürün ailesi için değer akış haritası çıkarıp israfların nerede olduğunu gösteririm. Tüm fabrikaya yaymadan önce bir pilot hatta başlayıp hızlı bir başarı gösteririm. Çalışanları kaizen etkinlikleriyle sürece katar, önerilerini uygularım. İyileştirmeleri standart iş talimatlarına çevirip günlük denetimlerle sürdürürüm.'),
       ]],
     ]),
     track('ie-tedarik', 'Tedarik Zinciri & Lojistik', 'cube', 'Stok, talep tahmini, lojistik', [
@@ -33,17 +38,27 @@ export const endustri: Profession = {
           ['Hata ölçümü: mape, hata, sapma, ölç', 'Segmentasyon: abc, segment, ürün grubu', 'Yöntem: zaman serisi, mevsimsellik, model', 'İş birliği: satış, pazarlama, s&op'],
           'Önce tahmin hatasını MAPE gibi bir metrikle ürün bazında ölçerim. Ürünleri ABC/XYZ analiziyle segmentleyip her gruba uygun yöntem (mevsimsellik içeren zaman serisi vb.) seçerim. Satış ve pazarlamanın kampanya bilgisini S&OP süreciyle tahmine katarım.'),
       ]],
+      ['Tedarik Riski', 'Senior', [
+        q('vaka', 'Tek tedarikçiye bağımlı kritik bir parça için tedarik riskini nasıl yönetirsin?',
+          ['Risk analizi: risk, etki', 'Alternatif tedarikçi: alternatif tedarikçi, ikinci', 'Güvenlik stoğu: güvenlik stoğu', 'Sözleşme ve ilişki: sözleşme, ilişki', 'Erken uyarı: erken uyarı, izle'],
+          'Önce bu parçanın tedarik edilememesi durumunda üretime ve gelire etkisini hesaplayarak riski ölçerim. Kısa vadede talep değişkenliğine ve tedarik süresine göre bir güvenlik stoğu tutarım. Orta vadede alternatif tedarikçi bulup kalifiye eder, ikinci bir kaynak oluştururum. Mevcut tedarikçiyle kapasite taahhüdü içeren bir sözleşme yapar, ilişkiyi güçlendiririm. Tedarikçinin finansal durumu ve teslimat performansı için erken uyarı göstergeleriyle durumu izlerim.'),
+      ]],
     ]),
     track('ie-kalite', 'Kalite Yönetimi', 'ribbon', 'İstatistiksel kontrol, Six Sigma', [
       ['Kalite Araçları', 'Junior', [
         q('teknik', 'Kontrol grafikleri (SPC) ne işe yarar?',
-          ['Süreç izleme: izle, süreç, zaman içinde', 'Kontrol limitleri: kontrol limit, ucl, lcl, sigma', 'Özel / genel neden: özel neden, genel neden, varyasyon', 'Erken müdahale: erken, müdahale'],
+          ['Süreç izleme: izle, süreç, zaman içinde', 'Kontrol limitleri: kontrol limit, ucl, lcl, sigma', 'Özel / genel neden: özel neden, genel neden, varyasyon, özel bir neden, değişkenlik', 'Erken müdahale: erken, müdahale'],
           'Kontrol grafikleri bir sürecin zaman içindeki değişkenliğini izler. Ortalama ve ±3 sigma kontrol limitleri dışındaki noktalar ya da anormal desenler, özel bir nedene işaret eder; böylece hata ürüne dönüşmeden müdahale edilir.'),
       ]],
       ['Six Sigma Vakası', 'Mid', [
         q('vaka', 'Müşteri şikâyetleri iki ayda ikiye katlandı. DMAIC ile nasıl ilerlersin?',
           ['Tanımla: tanımla, define, problem', 'Ölç: ölç, measure, veri', 'Analiz et: analiz, kök neden, pareto', 'İyileştir: iyileştir, improve, çözüm', 'Kontrol et: kontrol, control, sürdür'],
           'Tanımla: problemi ve hedefi netleştiririm. Ölç: şikâyetleri türüne göre sınıflandırıp veri toplarım. Analiz: Pareto ile en büyük kategorileri, balık kılçığıyla kök nedenleri bulurum. İyileştir: çözümleri pilot olarak uygularım. Kontrol: kontrol planı ve göstergelerle kazanımı sürdürürüm.'),
+      ]],
+      ['Kalite Sistemi', 'Senior', [
+        q('vaka', 'ISO 9001 belgesi olan ama müşteri şikayetleri artan bir şirkette kalite sistemini nasıl etkin hale getirirsin?',
+          ['Şikayet analizi: şikayet, pareto', 'Süreç sahipliği: süreç sahibi', 'Düzeltici faaliyet: düzeltici, kök neden', 'KPI takibi: kpi', 'Kalite kültürü: kültür, eğitim'],
+          'Belge olması sistemin çalıştığı anlamına gelmez; önce şikayetleri pareto ile sınıflandırıp en büyük sorunları bulurum. Her süreç için gerçek yetkisi olan bir süreç sahibi belirlerim. Şikayetler için kök neden analizine dayalı düzeltici faaliyetler açıp etkinliğini kontrol ederim. Hata oranı ve müşteri şikayeti gibi KPI’ları yönetim toplantılarında düzenli takip ederim. Çalışanlara eğitim vererek kaliteyi denetim için değil günlük işin parçası olarak gören bir kültür kurarım.'),
       ]],
     ]),
   ],
@@ -70,6 +85,11 @@ export const elektrik: Profession = {
           ['Güvenlik: güvenlik, enerjiyi kes, kilitle', 'Ölçüm: ölç, pens ampermetre, akım, izolasyon', 'Yük analizi: yük, aşırı yük, motor', 'Kayıt / tekrar: kayıt, zaman, tekrar'],
           'Önce güvenlik prosedürlerini (enerjiyi kesme, kilitleme) uygularım. Hangi zamanda ve hangi yükle attığını kayıt altına alırım. Pens ampermetreyle akımları, megerle izolasyonu ölçerim. Aşırı yük, kalkış akımı yüksek motor veya izolasyon hatası gibi nedenleri ayırt ederim.'),
       ]],
+      ['Şebeke Planlama', 'Senior', [
+        q('vaka', 'Yenilenebilir enerji payı artan bir şebekede kararlılığı nasıl sağlarsın?',
+          ['Kesintili üretim: kesintili, değişken', 'Enerji depolama: depolama, batarya', 'Esneklik: esnek, talep tarafı', 'Üretim tahmini: tahmin', 'Frekans ve iletim: frekans, iletim'],
+          'Güneş ve rüzgâr üretimi kesintili ve değişken olduğu için arz ile talebi anlık dengelemek zorlaşır. Bu nedenle hava durumuna dayalı doğru üretim tahmini planlamanın temelidir. Fazla üretimi saklayıp gerektiğinde veren batarya gibi enerji depolama sistemleri eklerim. Hızlı devreye giren esnek santraller ve talep tarafı katılımıyla esnekliği artırırım. İletim kapasitesini güçlendirip frekans kontrolü için gerekli yardımcı hizmetleri planlarım.'),
+      ]],
     ]),
     track('eee-gomulu', 'Gömülü Sistemler', 'hardware-chip', 'Mikrodenetleyici, firmware, RTOS', [
       ['Temeller', 'Junior', [
@@ -85,6 +105,11 @@ export const elektrik: Profession = {
           ['Akım ölçümü: ölç, akım, profil', 'Uyku modları: uyku, sleep, düşük güç', 'Çevre birimleri: çevre birim, sensör, kapat', 'Haberleşme sıklığı: gönderim, radyo, sıklık'],
           'Önce farklı modlarda akım tüketimini ölçerim. İşlemciyi boşta derin uyku moduna alır, kullanılmayan çevre birimlerini kapatırım. Radyo gibi en çok tüketen birimlerin gönderim sıklığını azaltıp veriyi toplu gönderirim.'),
       ]],
+      ['Ürün Mimarisi', 'Senior', [
+        q('vaka', 'Sahada binlerce cihazı olan bir üründe güvenli uzaktan güncelleme (OTA) mimarisini nasıl tasarlarsın?',
+          ['İmzalı imaj: imza, doğrula', 'İki bölüm ve geri dönüş: iki bölüm, geri dön', 'Kademeli dağıtım: kademeli', 'Kesintiye dayanıklılık: kesinti', 'İzleme: izle'],
+          'Firmware imajlarını dijital olarak imzalar, cihazın yüklemeden önce imzayı doğrulamasını sağlarım. Flash belleği iki bölüm olarak tasarlarım; yeni sürüm açılmazsa cihaz otomatik olarak eski sürüme geri döner. Güncellemeyi önce küçük bir gruba, sonra kademeli olarak tüm filoya dağıtırım. Güç kesintisi ya da bağlantı kopması gibi durumlarda güncellemenin yarım kalıp cihazı bozmamasını garanti ederim. Cihazlardan gelen sürüm ve hata bilgisini izleyip sorun görürsem dağıtımı durdururum.'),
+      ]],
     ]),
     track('eee-haberlesme', 'Haberleşme & RF', 'radio', 'Sinyal, modülasyon, anten', [
       ['Temeller', 'Junior', [
@@ -96,6 +121,11 @@ export const elektrik: Profession = {
         q('vaka', 'Kablosuz bir bağlantıda paket kaybı yüksek. Neyi kontrol edersin?',
           ['Sinyal gücü: sinyal, rssi, snr', 'Girişim: girişim, kanal, parazit', 'Anten / mesafe: anten, mesafe, engel', 'Protokol ayarları: güç, hız, tekrar'],
           'Önce RSSI ve SNR değerlerine bakarım. Spektrum analizörü ile aynı kanalda girişim olup olmadığını kontrol eder, gerekirse kanal değiştiririm. Anten yönü, mesafe ve engelleri incelerim; iletim gücü, veri hızı ve tekrar gönderim ayarlarını optimize ederim.'),
+      ]],
+      ['Ağ Planlama', 'Senior', [
+        q('vaka', 'Bir şehirde yeni bir mobil baz istasyonu ağı planlarken nelere dikkat edersin?',
+          ['Kapsama: kapsama', 'Kapasite: kapasite, kullanıcı yoğunluğu', 'Frekans ve girişim: frekans, girişim', 'Saha ve maliyet: saha, maliyet', 'Ölçüm ve optimizasyon: drive test, optimiz'],
+          'Önce şehrin coğrafyası ve binalarına göre bir kapsama hedefi ve yayılım modeli oluştururum. Kullanıcı yoğunluğu yüksek bölgelerde kapasite için daha küçük hücreler planlarım. Komşu hücreler arasındaki girişimi azaltmak için frekans planlaması yaparım. Saha kiralama, enerji ve kurulum maliyetini dikkate alarak istasyon yerlerini seçerim. Kurulumdan sonra drive test ölçümleriyle ağı optimize ederim.'),
       ]],
     ]),
   ],
@@ -122,6 +152,11 @@ export const makine: Profession = {
           ['Kırık yüzey analizi: kırık yüzey, yorulma, plaj izi', 'Yük analizi: yük, gerilme, hesap', 'Malzeme kontrolü: malzeme, sertlik, ısıl işlem', 'Tasarım iyileştirme: çentik, köşe, radyus, tasarım'],
           'Önce kırık yüzeyini incelerim; plaj izleri yorulma kırılmasına işaret eder. Gerçek yükleri ve gerilmeleri hesaplar, kama yuvası gibi gerilme yığılması noktalarına bakarım. Malzeme ve ısıl işlemi kontrol eder, gerekirse radyusları büyütüp malzemeyi değiştiririm.'),
       ]],
+      ['Maliyet Odaklı Tasarım', 'Senior', [
+        q('vaka', 'Yeni bir ürünün maliyetini %15 düşürmen istendi. Tasarım tarafında nasıl yaklaşırsın?',
+          ['Maliyet kırılımı: maliyet kırılım, pareto', 'Değer mühendisliği: değer mühendis', 'İmalata uygun tasarım: imalat, montaj', 'Standart parça ve malzeme: standart parça, malzeme', 'Doğrulama: test, doğrula'],
+          'Önce ürünün maliyet kırılımını çıkarıp pareto ile en pahalı parçalara odaklanırım. Değer mühendisliği oturumlarında her parçanın işlevini sorgular, gereksiz özellikleri çıkarırım. İmalat ve montaj kolaylığı için parça sayısını azaltır, toleransları gözden geçiririm. Özel parçalar yerine standart parça ve daha uygun malzeme alternatiflerini değerlendiririm. Her değişikliği test ile doğrulayarak kalite ve güvenlikten ödün vermediğimden emin olurum.'),
+      ]],
     ]),
     track('me-enerji', 'Termodinamik & Enerji', 'thermometer', 'Isı transferi, HVAC, verimlilik', [
       ['Temeller', 'Junior', [
@@ -134,6 +169,11 @@ export const makine: Profession = {
           ['Kayıp analizi: kayıp, termal kamera, analiz', 'Yalıtım: yalıtım, pencere', 'Sistem verimi: kazan, ısı pompası, verim', 'Kontrol: termostat, otomasyon, zaman', 'Geri ödeme: geri ödeme, maliyet'],
           'Önce termal kamera ve tüketim verisiyle ısı kayıplarının nerede olduğunu bulurum. Yalıtım ve pencere iyileştirmeleri, verimli kazan veya ısı pompası ve akıllı termostat/zamanlama önerilerini geri ödeme süresine göre önceliklendiririm.'),
       ]],
+      ['Enerji Yönetimi', 'Senior', [
+        q('vaka', 'Bir tesisin enerji tüketimini azaltmak için nasıl bir program yürütürsün?',
+          ['Enerji etüdü: etüt, ölçüm', 'Büyük tüketiciler: büyük tüketici', 'İyileştirme projeleri: atık ısı, yalıtım, frekans', 'Geri ödeme süresi: geri ödeme', 'Sürekli izleme: izle, 50001'],
+          'Önce sayaç ve ölçüm verileriyle bir enerji etüdü yapıp tüketimin dağılımını çıkarırım. Kompresör, kazan ve soğutma gibi büyük tüketicilere odaklanırım. Atık ısı geri kazanımı, yalıtım ve motorlarda frekans konvertörü gibi projeleri listelerim. Projeleri yatırım tutarı ve geri ödeme süresine göre önceliklendiririm. ISO 50001 yaklaşımıyla tüketimi sürekli izleyip hedeflerle karşılaştırırım.'),
+      ]],
     ]),
     track('me-bakim', 'Bakım & Güvenilirlik', 'build', 'Önleyici bakım, arıza analizi', [
       ['Bakım Stratejileri', 'Junior', [
@@ -145,6 +185,11 @@ export const makine: Profession = {
         q('vaka', 'Kritik bir pompa ayda iki kez arızalanıyor. Ne yaparsın?',
           ['Veri toplama: arıza kaydı, mtbf, veri', 'Kök neden analizi: kök neden, rca, 5 neden', 'Durum izleme: titreşim, sıcaklık, izle', 'Kalıcı çözüm: hizalama, yağlama, değiştir'],
           'Arıza kayıtlarından MTBF ve arıza türlerini çıkarırım. Kök neden analiziyle hizalama, kavitasyon veya yağlama gibi nedenleri araştırırım. Titreşim izleme ekleyip sorunu kalıcı çözer, pompa kritikse yedek planı oluştururum.'),
+      ]],
+      ['Bakım Stratejisi', 'Senior', [
+        q('vaka', 'Arıza kaynaklı duruşları azaltmak için bir tesisin bakım stratejisini nasıl dönüştürürsün?',
+          ['Kritiklik analizi: kritik', 'Kestirimci bakım: kestirimci, titreşim', 'OEE ve MTBF: oee, mtbf', 'Yedek parça planı: yedek parça', 'Otonom bakım: otonom, operatör'],
+          'Önce ekipmanları üretime etkisine göre kritiklik analizi ile sınıflandırırım. Kritik ekipmanlarda titreşim ve sıcaklık sensörleriyle kestirimci bakıma geçerim. Başarıyı OEE ve arızalar arası ortalama süre (MTBF) ile ölçerim. Kritik ekipmanlar için yedek parça stoğunu ve bakım planını gözden geçiririm. Temizlik ve basit kontrolleri operatörlere vererek otonom bakımı başlatırım.'),
       ]],
     ]),
   ],
@@ -171,6 +216,11 @@ export const insaat: Profession = {
           ['Yerinde inceleme: yerinde, çatlak, ölç', 'Malzeme testi: karot, beton dayanımı, test', 'Analiz: analiz, model, performans', 'Güçlendirme: güçlendirme, mantolama, frp'],
           'Önce çatlakların türünü, genişliğini ve yerini inceleyip kayıt altına alırım. Karot ile beton dayanımını ve donatı durumunu tespit ederim. Yapının performans analizini yapar, sonuca göre mantolama, FRP sargı gibi güçlendirme veya yıkım kararı öneririm.'),
       ]],
+      ['Mevcut Yapılar', 'Senior', [
+        q('vaka', 'Mevcut bir binanın deprem performansını nasıl değerlendirir ve güçlendirme kararını nasıl verirsin?',
+          ['Yerinde inceleme: inceleme, karot', 'Beton dayanımı: beton, dayanım', 'Performans analizi: analiz, performans', 'Güçlendirme seçenekleri: güçlendirme, perde', 'Maliyet-fayda: maliyet, yıkıp'],
+          'Önce yerinde inceleme yapıp projeyle uygulamayı karşılaştırır, donatı tespiti ve karot örnekleri alırım. Karotlarla beton dayanımını, tespitlerle donatı durumunu belirlerim. Bu verilerle yönetmeliğe uygun bir performans analizi yapıp binanın hedef performansı sağlayıp sağlamadığına bakarım. Yetersizse betonarme perde ekleme ya da kolon mantolama gibi güçlendirme seçeneklerini değerlendiririm. Güçlendirme maliyeti yeni yapıya yakınsa yıkıp yeniden yapmanın daha doğru olduğunu öneririm.'),
+      ]],
     ]),
     track('ce-santiye', 'Şantiye & Proje Yönetimi', 'hammer', 'Planlama, maliyet, iş güvenliği', [
       ['Planlama', 'Junior', [
@@ -183,6 +233,11 @@ export const insaat: Profession = {
           ['Durum analizi: analiz, neden, kritik yol', 'Hızlandırma: hızlandır, ek ekip, vardiya, crashing', 'Maliyet kontrolü: maliyet, bütçe, kazanılmış değer', 'İletişim: işveren, rapor, bilgilendir'],
           'Önce gecikmenin nedenini ve kritik yolu analiz ederim. Kritik işleri ek ekip veya vardiyayla hızlandırma ve paralel yürütme seçeneklerini maliyetiyle değerlendiririm. Kazanılmış değer analiziyle bütçeyi izler, işverene gerçekçi bir revize planı sunarım.'),
       ]],
+      ['Maliyet Kontrolü', 'Senior', [
+        q('vaka', 'Proje bütçesini %20 aşma riski var. Ne yaparsın?',
+          ['Sapma analizi: sapma, kalem', 'Alternatif çözümler: alternatif, değer mühendis', 'Sözleşme ve değişiklikler: sözleşme, değişiklik', 'İşveren iletişimi: işveren', 'Kazanılmış değer: kazanılmış değer'],
+          'Önce bütçe sapmasını iş kalemi bazında inceleyip aşımın nereden geldiğini bulurum. Malzeme fiyatı, verimlilik kaybı ya da kapsam artışı gibi nedenleri ayırırım. Kalan işler için değer mühendisliği ile kaliteyi düşürmeyen alternatif çözümler ararım. Kapsam değişikliği varsa sözleşmeye göre değişiklik talebi hazırlarım. İşveren ile erken ve şeffaf iletişim kurar, ilerlemeyi kazanılmış değer yöntemiyle haftalık izlerim.'),
+      ]],
     ]),
     track('ce-geoteknik', 'Geoteknik', 'earth', 'Zemin, temel, şev', [
       ['Zemin', 'Junior', [
@@ -194,6 +249,11 @@ export const insaat: Profession = {
         q('vaka', 'Zayıf ve yeraltı suyu yüksek bir zeminde temel tipi nasıl seçilir?',
           ['Kazıklı temel: kazık', 'Radye temel: radye', 'Zemin iyileştirme: iyileştirme, jet grout, enjeksiyon', 'Su kontrolü: drenaj, su, yalıtım'],
           'Yüzeyde taşıma gücü yetersizse yükü sağlam tabakaya aktaran kazıklı temel ya da yükü geniş alana yayan radye temel düşünülür. Alternatif olarak jet grout gibi zemin iyileştirme yapılabilir. Yeraltı suyu için drenaj ve su yalıtımı planlanır.'),
+      ]],
+      ['Derin Kazılar', 'Senior', [
+        q('vaka', 'Derin bir kazıda komşu binalara zarar verme riskini nasıl yönetirsin?',
+          ['Zemin etüdü: zemin etüd, sondaj', 'İksa tasarımı: iksa, ankraj', 'Yeraltı suyu: yeraltı suyu, drenaj', 'İzleme: inklinometre, ölçüm', 'Komşu bina tespiti: tespit, komşu'],
+          'Önce sondajlarla yeterli bir zemin etüdü yapıp zemin parametrelerini belirlerim. Kazı derinliği ve zemine göre fore kazık ve ankraj gibi bir iksa sistemi tasarlarım. Yeraltı suyu varsa drenaj ve su kesme önlemlerini planlarım. Kazıdan önce komşu binaların mevcut durumunu fotoğraf ve raporla tespit ederim. Kazı süresince inklinometre ve deplasman ölçümleriyle iksayı izleyip sınır değer aşılırsa çalışmayı durdururum.'),
       ]],
     ]),
   ],

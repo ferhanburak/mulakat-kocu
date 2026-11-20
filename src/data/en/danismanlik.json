@@ -1,0 +1,92 @@
+{
+  "vaka-mulakati-1": { "title": "Market Sizing", "q": [
+    ["How would you estimate how many coffee capsules are sold in Turkey in a year?",
+      ["Approach: bottom-up, top-down", "Segmentation: household, office, segment", "Assumptions: assum", "Calculation: million", "Sanity check: sanity check, compar"],
+      "I would take a bottom-up approach from the demand side. I split the market into two segments: households and offices. I assume about 5% of roughly 25 million households have a capsule machine and use 2 capsules a day on average. That gives about 900 million capsules a year for households; I add a similar calculation for offices to get the total. Finally I do a sanity check by comparing the result with manufacturer statements or import data."]
+  ]},
+  "vaka-mulakati-2": { "title": "Profitability Case", "q": [
+    ["A restaurant chain’s profit fell 30% in two years. How do you find out why?",
+      ["Profit formula: revenue, cost", "Revenue breakdown: number of customers, customer count, basket", "Cost breakdown: fixed, variable", "External factors: competitor, inflation", "Recommendation: recommend"],
+      "Profit is revenue minus cost, so first I separate which side the drop comes from. On the revenue side I look at the number of customers, average basket and prices for each location. On the cost side I split fixed costs such as rent and staff from variable costs such as ingredients. I also check external factors such as a new competitor or inflation pushing up ingredient prices. Based on the main cause I find, I recommend a concrete action such as menu pricing or a change of supplier."]
+  ]},
+  "vaka-mulakati-3": { "title": "Strategy Case", "q": [
+    ["A Turkish retailer wants to enter Central Asia. What do you advise?",
+      ["Market attractiveness: market size, growth", "Competition: competit", "Company advantage: advantage, capabilit", "Entry mode: partnership, joint venture, acquisition, franchis", "Risk and return: risk, return"],
+      "First I assess how attractive the market is through the target countries’ market size, growth and consumer spending. Then I look at how intense the competition is from local and international players. I ask whether the company has a transferable advantage or capability such as price, sourcing or brand strength. For the entry mode I compare a local partnership, an acquisition and franchising. I weigh currency and political risk against the expected return and give a clear recommendation."]
+  ]},
+  "strateji-danismani-1": { "title": "Structuring Problems", "q": [
+    ["A client asks, “Why aren’t our sales growing?” How do you structure the problem?",
+      ["Clear problem statement: statement, measurable", "MECE tree: mece, tree", "Hypotheses: hypothes", "Test with data: data", "Prioritization: priorit, impact"],
+      "First I turn the question into a clear, measurable problem statement: which product, which market, which period, and what is the target? Then I build a MECE issue tree that splits sales into price and volume, and volume into number of customers and purchase frequency. I write a hypothesis for each branch. I test the hypotheses with customer data and interviews. I prioritize the branches with the biggest impact that can be tested fastest."]
+  ]},
+  "strateji-danismani-2": { "title": "Client Management", "q": [
+    ["Mid-project, the client wants to expand the scope but keep the same budget and timeline. What do you do?",
+      ["Understand the need: why, understand", "Impact analysis: impact", "Options: option, trade", "Written agreement: writing, written, agree", "Protect the relationship: relationship, trust"],
+      "First I try to understand why the client wants it and how much it matters to the business. With my team I quickly analyse the impact of the request on time, budget and quality. I give the client a few options: more budget and time, a trade for other scope, or moving the request to a second phase. I agree the chosen option in writing with a change request. I handle it as joint problem solving rather than a negotiation, which protects the relationship and trust."]
+  ]},
+  "strateji-danismani-3": { "title": "Transformation Program", "q": [
+    ["How do you run a cost transformation program at a large company?",
+      ["Target and baseline: target, baseline", "Pipeline of opportunities: opportunit", "Governance: pmo, governance", "Change management: change management, resistance", "Making it stick: last, track"],
+      "First I agree a clear savings target with management and fix the cost baseline to measure against. Working with each unit, I build a pipeline of opportunities in procurement, organisation and processes. I set up a PMO and governance structure where every initiative has an owner and a timeline and reports weekly. I focus on change management and open communication to reduce resistance from employees. To make the savings last, I track the results against finance data."]
+  ]},
+  "teknoloji-danismani-1": { "title": "Needs Analysis", "q": [
+    ["How do you analyse whether a client needs a new ERP system?",
+      ["Current processes: current process", "Pain points: manual, error", "Stakeholder interviews: stakeholder", "Requirements: requirement", "Business case: benefit, cost"],
+      "First I map the client’s current processes and the systems they use. I identify problems such as manual data entry, repeated work and points where errors happen. I interview stakeholders in finance, production and sales to collect their expectations. I turn these into a prioritized requirement list. Finally I prepare a business case comparing the cost of a new system with its expected benefit."]
+  ]},
+  "teknoloji-danismani-2": { "title": "Implementation Project", "q": [
+    ["Two weeks before the ERP go-live, critical tests uncover defects. What do you do?",
+      ["Impact assessment: critical, impact", "Fix plan: fix, plan", "Go-live decision: go-live, go/no-go, postpone", "Transparent communication: transparen", "Fallback plan: fallback, roll back"],
+      "First I classify the defects by business impact and decide which are truly critical. For the critical ones I prepare a fix plan with owners and dates. I hold a go/no-go meeting against criteria we agreed, and recommend postponing the go-live date if the risk is high. I explain the situation and the options to client management transparently. Even if we go live, I keep a fallback plan ready to return to the old system if problems arise."]
+  ]},
+  "teknoloji-danismani-3": { "title": "Digital Transformation", "q": [
+    ["How do you build a digital transformation roadmap for a traditional manufacturing company?",
+      ["Maturity assessment: maturity", "Business value: use case, value", "Pilots: pilot, quick win", "Data foundation: data, infrastructure", "People and culture: skill, culture"],
+      "First I assess the company’s digital maturity across processes, systems and data. Starting from business value rather than technology, I list use cases such as predictive maintenance or demand forecasting and rank them by value. I start with one or two pilots that bring a quick win and prove success. To scale, I build a shared data platform and infrastructure. I know the change will not last without training that builds employees’ digital skills and a culture that accepts change."]
+  ]},
+  "mimar-1": { "title": "Design Process", "q": [
+    ["How do you present a project from your portfolio from start to finish?",
+      ["Context and brief: context, site, brief", "Design concept: concept", "Design decisions: material, light", "Alternatives: alternative", "Outcome and learning: learn"],
+      "First I describe the project’s context: the site, the users and the brief. Then I state the main design concept that came out of that context in one sentence. With drawings I show how decisions on massing, material and daylight serve that concept. I also share the alternatives I tried and why I dropped them. Finally I explain what I learned from the project and what I would do differently today."]
+  ]},
+  "mimar-2": { "title": "Construction Phase", "q": [
+    ["You notice on site that something has been built differently from the drawings. What do you do?",
+      ["Record and document: record, photo", "Impact analysis: impact, structural", "Meet the parties: contractor, client", "Solution: solution, revision", "Prevention: inspection"],
+      "First I record the difference on site and document it with photos and notes. With the relevant engineers I assess its structural, functional, cost and schedule impact. I hold a meeting with the contractor and the client and discuss it openly. Depending on the impact, we agree on a solution such as correcting the work or a revision to the drawings. So it does not happen again, I add site inspection steps before critical work."]
+  ]},
+  "mimar-3": { "title": "Project Leadership", "q": [
+    ["How do you protect design quality on a project whose budget has been cut?",
+      ["Priorities: priorit", "Value engineering: value engineering", "Materials and systems: material", "Client communication: client", "Team coordination: coordinat"],
+      "First I set as priorities the design elements that make the project special and that we will not give up. For the remaining items I use value engineering to find solutions that do the same job at lower cost. For materials and systems I consider long-lasting but economical alternatives. I share the impact of each option transparently with the client and we decide together. Close coordination with the engineering teams prevents expensive changes later."]
+  ]},
+  "ic-mimar-1": { "title": "Space Planning", "q": [
+    ["What would you suggest to make a small studio flat feel more spacious and functional?",
+      ["Needs analysis: need, lifestyle", "Multi-purpose furniture: multi-purpose, multifunction", "Vertical storage: storage, vertical", "Light and colour: light, colour", "Circulation: circulation"],
+      "First I talk with the client to learn their lifestyle and needs. I suggest multi-purpose furniture such as a fold-down bed or a folding table. Vertical storage that uses the walls up to the ceiling frees the floor. I take care not to block daylight, and use light colour surfaces and mirrors to make the room feel larger. I place furniture so it leaves comfortable circulation space."]
+  ]},
+  "ic-mimar-2": { "title": "Clients & Budget", "q": [
+    ["The client’s wishes exceed the budget. How do you handle it?",
+      ["Prioritization: priorit", "Alternative materials: alternative", "Phased delivery: phase", "Transparent costs: transparen", "Client decides: decision, decide"],
+      "First I talk with the client about which elements matter most and we make a priority list. I suggest alternative materials and products that look similar but cost less. I offer a phased plan that moves some work to a later date. I share the cost of each item in a transparent breakdown. I make sure the client takes the final decision with full information."]
+  ]},
+  "ic-mimar-3": { "title": "Running a Studio", "q": [
+    ["How do you manage quality and schedules across several concurrent projects in an interior design studio?",
+      ["Project calendar: calendar, schedule", "Standard process: standard, checklist", "Resource allocation: resource, team", "Supplier management: supplier", "Client updates: client, report"],
+      "I keep a shared calendar showing every project and its milestones on one board. We use a standard process and checklist for every stage from design to installation. In weekly meetings I adjust team and resource allocation to balance the load. I track supplier lead times and manage delays before they happen. I keep clients informed with regular short progress reports."]
+  ]},
+  "grafik-1": { "title": "Design Process", "q": [
+    ["How do you run a logo design process?",
+      ["Brief: brief, target audience", "Research: research, competitor", "Sketches and options: sketch", "Feedback: feedback", "Delivery and guidelines: guideline"],
+      "First I hold a detailed brief meeting with the client to understand the brand’s values and target audience. I research the industry and competitor brands and choose a direction that will stand out. Before going to the computer I draw many sketches and develop the strongest three options. I refine the chosen design with the client’s feedback. Finally I deliver the logo in every format with guidelines explaining how to use it."]
+  ]},
+  "grafik-2": { "title": "Working with Clients", "q": [
+    ["The client doesn’t like your design but can’t explain why. What do you do?",
+      ["Good questions: question", "References: reference", "Back to the brief: brief", "Options: option", "Explain the reasoning: reason"],
+      "Instead of getting defensive I ask curious questions: is it the colour, the type or the overall feel? I ask for reference designs they like and dislike so we build a shared language. I compare the decisions with the brief and the goals again. I prepare two or three quick options showing different directions. By explaining the reasoning behind each option, I help the client make an informed choice."]
+  ]},
+  "grafik-3": { "title": "Creative Direction", "q": [
+    ["How do you keep a campaign’s visual language consistent across several designers and channels?",
+      ["Campaign concept: concept", "Visual guide: guide, template", "Channel adaptation: channel, adapt", "Approval flow: approv", "Team feedback: feedback"],
+      "First I make the campaign’s one-sentence core concept and feel clear and share it with the team. I prepare a short visual guide and a set of templates covering colour, typography, imagery style and layout. I set rules for how to adapt the work to each channel, such as social media, outdoor and digital ads. I set up a short approval flow that every piece goes through before it is published. In weekly critique sessions I give the team feedback and we develop the language together."]
+  ]}
+}

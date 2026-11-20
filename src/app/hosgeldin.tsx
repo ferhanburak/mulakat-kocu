@@ -9,7 +9,7 @@ import { pick, setLang, useLang, useT, type Bi } from '@/lib/i18n';
 import { useStore } from '@/lib/store';
 
 const FEATURES: { icon: IconName; color: string; text: Bi }[] = [
-  { icon: 'mic', color: '#FFE066', text: { tr: '17 meslekte gerçekçi mülakat simülasyonu', en: 'Realistic interview simulations in 17 professions' } },
+  { icon: 'mic', color: '#FFE066', text: { tr: '21 meslekte gerçekçi mülakat simülasyonu', en: 'Realistic interview simulations in 21 professions' } },
   { icon: 'people', color: '#9EF0C9', text: { tr: 'Farklı karakterde mülakatçılar, doğal seslerle', en: 'Interviewers with different personalities and natural voices' } },
   { icon: 'analytics', color: '#FFB547', text: { tr: 'Her cevaba detaylı rapor ve örnek güçlü cevap', en: 'A detailed report and an example strong answer for every reply' } },
 ];

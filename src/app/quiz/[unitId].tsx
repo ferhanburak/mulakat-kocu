@@ -26,10 +26,12 @@ import { SignupPrompt } from '@/components/SignupPrompt';
 import { findUnit } from '@/data/professions';
 import { useAccess, type Locked } from '@/lib/access';
 import { tt, useLang, useT } from '@/lib/i18n';
-import { generateQuiz, generateReviewQuiz, type ChoiceItem, type OrderItem } from '@/lib/quiz';
+import { canComplete, generateQuiz, generateReviewQuiz, type ChoiceItem, type OrderItem, type PairsItem } from '@/lib/quiz';
 import { quizXp, useStore } from '@/lib/store';
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E'];
+
+const MODE_ICON: Record<ChoiceItem['mode'], IconName> = { match: 'checkmark-done', concept: 'key', flaw: 'search', better: 'podium' };
 
 export default function QuizScreen() {
   const insets = useSafeAreaInsets();
@@ -58,6 +60,11 @@ export default function QuizScreen() {
   const [idx, setIdx] = useState(0);
   const [choice, setChoice] = useState<number | null>(null);
   const [order, setOrder] = useState<number[]>([]);
+  /** Pairs items: concept index -> matched explanation index, the selected concept, and wrong tries. */
+  const [paired, setPaired] = useState<Record<number, number>>({});
+  const [pairSel, setPairSel] = useState<number | null>(null);
+  const [pairMisses, setPairMisses] = useState(0);
+  const [pairWrong, setPairWrong] = useState<number | null>(null);
   const [checked, setChecked] = useState<null | boolean>(null);
   const [correct, setCorrect] = useState(0);
   const [done, setDone] = useState(false);
@@ -75,11 +82,19 @@ export default function QuizScreen() {
   const item = items[idx];
   const total = items.length;
 
+  const resetPairs = () => {
+    setPaired({});
+    setPairSel(null);
+    setPairMisses(0);
+    setPairWrong(null);
+  };
+
   const restart = () => {
     setRound((r) => r + 1);
     setIdx(0);
     setChoice(null);
     setOrder([]);
+    resetPairs();
     setChecked(null);
     setCorrect(0);
     setDone(false);
@@ -162,11 +177,20 @@ export default function QuizScreen() {
       </T>
     );
 
-  const ready = item.type === 'choice' ? choice !== null : order.length === item.parts.length;
+  const ready =
+    item.type === 'choice'
+      ? choice !== null
+      : item.type === 'order'
+        ? order.length === item.parts.length
+        : Object.keys(paired).length === item.concepts.length;
 
   const check = () => {
     const ok =
-      item.type === 'choice' ? choice === item.answer : order.every((partIdx, pos) => partIdx === pos);
+      item.type === 'choice'
+        ? choice === item.answer
+        : item.type === 'order'
+          ? order.every((partIdx, pos) => partIdx === pos)
+          : pairMisses === 0;
     setChecked(ok);
     if (ok) setCorrect((c) => c + 1);
     recordQuizAnswer(item.questionId, ok);
@@ -184,10 +208,32 @@ export default function QuizScreen() {
     setIdx((i) => i + 1);
     setChoice(null);
     setOrder([]);
+    resetPairs();
     setChecked(null);
   };
 
-  const promptIcon: IconName = item.type === 'order' ? 'swap-vertical' : item.mode === 'match' ? 'checkmark-done' : 'key';
+  const promptIcon: IconName =
+    item.type === 'order'
+      ? 'swap-vertical'
+      : item.type === 'pairs'
+        ? 'git-compare'
+        : MODE_ICON[item.mode];
+
+  /** Pairs: tap a concept, then the explanation it belongs to. */
+  const tapExplanation = (e: number) => {
+    if (item.type !== 'pairs' || pairSel === null || checked !== null) return;
+    const next = { ...paired, [pairSel]: e };
+    if (item.accepts[e].includes(pairSel) && canComplete(item.accepts, next, item.concepts.length)) {
+      tap();
+      setPaired(next);
+      setPairSel(null);
+    } else {
+      notify(false);
+      setPairMisses((m) => m + 1);
+      setPairWrong(e);
+      setTimeout(() => setPairWrong((w) => (w === e ? null : w)), 600);
+    }
+  };
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
@@ -211,17 +257,42 @@ export default function QuizScreen() {
               {item.prompt}
             </T>
           </View>
-          <View style={[styles.questionCard, { borderLeftColor: color }]}>
-            <T w="black" size={11} color={colors.muted} style={{ letterSpacing: 0.8, marginBottom: 4 }}>
-              {t('MÜLAKAT SORUSU', 'INTERVIEW QUESTION')}
-            </T>
-            <T w="bold" size={15} style={{ lineHeight: 22 }}>
-              {item.question}
-            </T>
-          </View>
+          {item.question !== '' && (
+            <View style={[styles.questionCard, { borderLeftColor: color }]}>
+              <T w="black" size={11} color={colors.muted} style={{ letterSpacing: 0.8, marginBottom: 4 }}>
+                {t('MÜLAKAT SORUSU', 'INTERVIEW QUESTION')}
+              </T>
+              <T w="bold" size={15} style={{ lineHeight: 22 }}>
+                {item.question}
+              </T>
+            </View>
+          )}
+          {item.type === 'choice' && item.mode === 'flaw' && item.answerText && (
+            <View style={styles.answerCard}>
+              <T w="black" size={11} color={colors.muted} style={{ letterSpacing: 0.8, marginBottom: 4 }}>
+                {t('ADAYIN CEVABI', "CANDIDATE'S ANSWER")}
+              </T>
+              <T w="semibold" size={14} style={{ lineHeight: 21 }}>
+                {item.answerText}
+              </T>
+            </View>
+          )}
         </FadeIn>
 
-        {item.type === 'choice' ? (
+        {item.type === 'pairs' ? (
+          <PairsBoard
+            item={item}
+            paired={paired}
+            selected={pairSel}
+            wrong={pairWrong}
+            color={color}
+            onSelect={(c) => {
+              tap();
+              setPairSel(c);
+            }}
+            onExplanation={tapExplanation}
+          />
+        ) : item.type === 'choice' ? (
           <ChoiceList item={item} selected={choice} checked={checked} color={color} onSelect={(i) => { tap(); setChoice(i); }} />
         ) : (
           <OrderBoard
@@ -246,12 +317,16 @@ export default function QuizScreen() {
               <Ionicons name={checked ? 'checkmark' : 'close'} size={22} color="#fff" />
             </View>
             <T w="black" size={19} color={checked ? colors.onGreen : colors.onRed}>
-              {checked ? t('Harika!', 'Great!') : t('Doğru cevap:', 'Correct answer:')}
+              {checked ? t('Harika!', 'Great!') : item.type === 'pairs' ? t('Neredeyse!', 'Almost!') : t('Doğru cevap:', 'Correct answer:')}
             </T>
           </View>
           {!checked && (
             <T w="semibold" size={13} color={colors.onRed} style={{ lineHeight: 19, marginBottom: 4 }} numberOfLines={6}>
-              {item.type === 'choice' ? item.options[item.answer] : item.parts.map((p, i) => `${i + 1}. ${p}`).join('\n')}
+              {item.type === 'choice'
+                ? item.options[item.answer]
+                : item.type === 'order'
+                  ? item.parts.map((p, i) => `${i + 1}. ${p}`).join('\n')
+                  : t(`Eşleştirirken ${pairMisses} yanlış deneme yaptın.`, `You made ${pairMisses} wrong ${pairMisses === 1 ? 'try' : 'tries'} while matching.`)}
             </T>
           )}
           {item.type === 'choice' && (
@@ -309,6 +384,89 @@ function ChoiceList({
           </FadeIn>
         );
       })}
+    </View>
+  );
+}
+
+function PairsBoard({
+  item,
+  paired,
+  selected,
+  wrong,
+  color,
+  onSelect,
+  onExplanation,
+}: {
+  item: PairsItem;
+  paired: Record<number, number>;
+  selected: number | null;
+  wrong: number | null;
+  color: string;
+  onSelect: (c: number) => void;
+  onExplanation: (e: number) => void;
+}) {
+  const ownerOf = (e: number) => Object.keys(paired).map(Number).find((c) => paired[c] === e);
+  return (
+    <View style={{ marginTop: 16 }}>
+      <T w="bold" size={12} color={colors.muted} style={{ marginBottom: 8 }}>
+        {tt('Önce bir kavram seç, sonra ona ait açıklamaya dokun.', 'Pick a concept, then tap the explanation it belongs to.')}
+      </T>
+      <View style={styles.chipsWrap}>
+        {item.concepts.map((label, c) => {
+          const done = paired[c] !== undefined;
+          const on = selected === c;
+          return (
+            <Pressable key={c} disabled={done} onPress={() => onSelect(c)}>
+              <View
+                style={[
+                  styles.conceptChip,
+                  done && { borderColor: colors.success, backgroundColor: colors.tintGreen, opacity: 0.6 },
+                  on && { borderColor: color, backgroundColor: color },
+                ]}
+              >
+                {done && <Ionicons name="checkmark" size={14} color={colors.onGreen} />}
+                <T w="extrabold" size={13} color={on ? '#fff' : done ? colors.onGreen : colors.text}>
+                  {label}
+                </T>
+              </View>
+            </Pressable>
+          );
+        })}
+      </View>
+      <View style={{ gap: 8, marginTop: 14 }}>
+        {item.shuffled.map((e) => {
+          const owner = ownerOf(e);
+          const done = owner !== undefined;
+          const bad = wrong === e;
+          return (
+            <Pressable key={e} disabled={done || selected === null} onPress={() => onExplanation(e)}>
+              {({ pressed }) => (
+                <View
+                  style={[
+                    styles.piece,
+                    styles.pieceIdle,
+                    { transform: [{ scale: pressed ? 0.98 : 1 }] },
+                    selected !== null && !done && { borderColor: color + '88' },
+                    done && { borderColor: colors.success, backgroundColor: colors.tintGreen, borderBottomWidth: 2 },
+                    bad && { borderColor: colors.danger, backgroundColor: colors.tintRed },
+                  ]}
+                >
+                  <View style={{ flex: 1, gap: 4 }}>
+                    {done && (
+                      <T w="black" size={11} color={colors.onGreen} style={{ letterSpacing: 0.5 }}>
+                        {item.concepts[owner]}
+                      </T>
+                    )}
+                    <T w="semibold" size={13} style={{ lineHeight: 19 }}>
+                      {item.explanations[e]}
+                    </T>
+                  </View>
+                </View>
+              )}
+            </Pressable>
+          );
+        })}
+      </View>
     </View>
   );
 }
@@ -394,6 +552,27 @@ const styles = themedStyles(() =>
   slotEmpty: { borderWidth: 2, borderStyle: 'dashed', borderColor: colors.border, borderRadius: 18, padding: 16 },
   piece: { flexDirection: 'row', alignItems: 'center', gap: 10, borderWidth: 2, borderRadius: 16, padding: 12 },
   pieceIdle: { backgroundColor: colors.card, borderColor: colors.border, borderBottomWidth: 4 },
+  answerCard: {
+    marginTop: 10,
+    backgroundColor: colors.card,
+    borderRadius: 18,
+    padding: 14,
+    borderWidth: 2,
+    borderStyle: 'dashed',
+    borderColor: colors.border,
+  },
+  chipsWrap: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  conceptChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    borderWidth: 2,
+    borderColor: colors.border,
+    backgroundColor: colors.card,
+    borderRadius: 14,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+  },
   num: { width: 24, height: 24, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   footer: {
     paddingHorizontal: 16,

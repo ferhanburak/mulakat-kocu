@@ -55,7 +55,7 @@ export const yazilim: Profession = {
           ['LCP: lcp, en büyük', 'INP: inp, etkileşim', 'CLS: cls, kayma', 'Optimizasyon: görsel, resim, lazy, cdn, önbellek'],
           'LCP en büyük içeriğin yüklenme süresi, INP etkileşime tepki süresi, CLS beklenmedik düzen kaymasıdır. Görselleri optimize edip CDN’den sunarak LCP’yi, ana thread’i rahatlatarak INP’yi, görsellere boyut vererek CLS’yi iyileştiririm.'),
         q('vaka', 'Büyük bir frontend projesinde state yönetimini nasıl kurgularsın?',
-          ['Sunucu state’i: server state, react query, swr, sunucu', 'Yerel state: yerel, local, bileşen', 'Global store: redux, zustand, context, global', 'Gereksiz global’den kaçınma: gerekmedikçe, minimum, sadece'],
+          ['Sunucu state’i: server state, react query, swr, sunucu', 'Yerel state: yerel, local, bileşen', 'Global store: redux, zustand, context, global', 'Gereksiz global’den kaçınma: gerekmedikçe, minimum, sadece, kaçınırım, az sayıda'],
           'Sunucudan gelen veriyi React Query gibi bir araçla ayrı yönetirim. Bileşene özgü durumu yerel tutarım. Gerçekten paylaşılan az sayıdaki durum için Zustand veya Context kullanırım; her şeyi global store’a koymaktan kaçınırım.'),
       ]],
     ]),
@@ -104,7 +104,7 @@ export const yazilim: Profession = {
       ]],
       ['Teknik Liderlik', 'Senior', [
         q('vaka', 'Bir projeyi sıfırdan kuracaksın. Teknoloji seçimlerini nasıl yaparsın?',
-          ['Gereksinimler: gereksinim, ihtiyaç', 'Ekip yetkinliği: ekip, bilgi, deneyim', 'Ekosistem: topluluk, ekosistem, kütüphane', 'Ölçek / maliyet: ölçek, maliyet'],
+          ['Gereksinimler: gereksinim, ihtiyaç', 'Ekip yetkinliği: ekip, bilgi, deneyim, ekib', 'Ekosistem: topluluk, ekosistem, kütüphane', 'Ölçek / maliyet: ölçek, maliyet'],
           'Önce gereksinimleri ve ölçek beklentisini netleştiririm. Ekibin bildiği, ekosistemi ve topluluğu güçlü teknolojileri tercih ederim. Maliyeti ve uzun vadeli bakım yükünü hesaba katıp kararı kısa bir belgeyle gerekçelendiririm.'),
       ]],
     ]),
@@ -140,7 +140,7 @@ export const yazilim: Profession = {
           ['Birim testler: birim, unit', 'Entegrasyon testleri: entegrasyon, integration', 'Uçtan uca testler: uçtan uca, e2e, ui', 'Oran / maliyet: az, çok, maliyet, hız'],
           'Tabanda çok sayıda hızlı ve ucuz birim test, ortada servislerin birlikte çalışmasını doğrulayan entegrasyon testleri, tepede az sayıda yavaş ve pahalı uçtan uca test olur. Yukarı çıktıkça test sayısı azalır, maliyet artar.'),
         q('teknik', 'İyi bir hata (bug) raporunda neler olmalı?',
-          ['Tekrarlama adımları: adım, tekrar', 'Beklenen / gerçekleşen: beklenen, gerçekleşen', 'Ortam bilgisi: ortam, sürüm, cihaz, tarayıcı', 'Kanıt: ekran görüntü, video, log', 'Öncelik: öncelik, şiddet, severity'],
+          ['Tekrarlama adımları: adım, tekrar', 'Beklenen / gerçekleşen: beklenen, gerçekleşen', 'Ortam bilgisi: ortam, sürüm, cihaz, tarayıcı', 'Kanıt: ekran görüntü, video, log', 'Öncelik: öncelik, şiddet, severity, önem derece'],
           'Kısa ve net bir başlık, hatayı tekrarlama adımları, beklenen ve gerçekleşen sonuç, ortam bilgisi (sürüm, cihaz, tarayıcı), ekran görüntüsü veya log ile kanıt ve önem derecesi.'),
       ]],
       ['Test Tasarımı', 'Mid', [
@@ -204,6 +204,66 @@ export const yazilim: Profession = {
         q('vaka', 'Bir sunucuda fidye yazılımı (ransomware) tespit edildi. Müdahale planın nedir?',
           ['Sınırlama: izole, sınırla, yayılma', 'Kapsam belirleme: kapsam, etkilenen, tespit', 'Kurtarma: yedek, geri yükle, kurtar', 'İletişim / yasal: bildir, yasal, yönetim, kvkk', 'Kök neden: kök neden, ders, açık'],
           'Önce etkilenen sistemleri izole ederek yayılmayı durdururum. Kapsamı ve giriş noktasını tespit eder, temiz yedeklerden geri yükleme planlarım. Yönetimi ve gerekirse KVKK kapsamında ilgili kurumları bilgilendiririm. Son olarak kök nedeni kapatır, olay sonrası raporla dersleri sürece eklerim.'),
+      ]],
+    ]),
+    track('yapay-zeka', 'Yapay Zekâ / ML', 'sparkles', 'Model eğitimi, LLM uygulamaları, MLOps', [
+      ['Temeller', 'Junior', [
+        q('teknik', 'Overfitting nedir ve nasıl önlenir?',
+          ['Tanım: ezber, genelle', 'Belirti: doğrulama hatası, test hatası', 'Düzenlileştirme: düzenlileştirme, dropout', 'Veri: daha fazla veri, veri artırma', 'Erken durdurma: erken durdur, çapraz doğrulama'],
+          'Overfitting, modelin eğitim verisini ezberleyip yeni verilere genelleyememesidir. Belirtisi, eğitim hatası düşerken doğrulama hatasının yükselmesidir. Önlemek için L2 düzenlileştirme ya da dropout gibi yöntemler kullanırım. Daha fazla veri toplamak veya veri artırma yapmak da çok etkilidir. Ayrıca çapraz doğrulama ile modeli değerlendirir, doğrulama hatası artmaya başlayınca erken durdurma uygularım.'),
+        q('teknik', 'Precision ve recall arasındaki fark nedir, hangisini ne zaman önemsersin?',
+          ['Precision: precision, kesinlik', 'Recall: recall, duyarlılık', 'Eşik ödünleşimi: eşik, ödünleşim', 'Örnek durum: örneğin', 'F1 skoru: f1'],
+          'Precision, modelin pozitif dediği örneklerin ne kadarının gerçekten pozitif olduğudur; kesinlik de denir. Recall ise gerçek pozitiflerin ne kadarını yakalayabildiğidir; duyarlılık olarak da bilinir. Karar eşiğini değiştirmek biri artarken diğerinin düştüğü bir ödünleşim yaratır. Örneğin kanser taramasında hastayı kaçırmamak için recall, spam filtresinde önemli e-postayı silmemek için precision daha önemlidir. İkisini birlikte izlemek için F1 skorunu kullanırım.'),
+      ]],
+      ['LLM Uygulamaları', 'Mid', [
+        q('vaka', 'Şirket dokümanlarına dayanarak soru cevaplayan bir asistan geliştireceksin. Nasıl tasarlarsın?',
+          ['RAG mimarisi: rag, getir', 'Parçalama ve vektör arama: parça, vektör', 'Kaynak gösterme: kaynak, halüsinasyon', 'Değerlendirme: test seti, değerlendir', 'Erişim yetkisi: yetki, erişim'],
+          'Modeli yeniden eğitmek yerine RAG yaklaşımı kullanırım: soruyla ilgili belgeleri getirip modele bağlam olarak veririm. Dokümanları anlamlı parçalara ayırır, gömme vektörleri oluşturup bir vektör veritabanında arama yaparım. Cevabın hangi kaynaktan geldiğini göstererek kullanıcı güvenini artırır, halüsinasyonu azaltırım. Gerçek sorulardan bir test seti hazırlayıp cevap kalitesini düzenli değerlendiririm. Kullanıcının sadece erişim yetkisi olan belgelerden cevap almasını sağlarım.'),
+      ]],
+      ['MLOps & Üretim', 'Senior', [
+        q('vaka', 'Canlıdaki bir modelin performansı zamanla düşüyor. Nasıl fark eder ve çözersin?',
+          ['İzleme ve alarm: izle, alarm', 'Veri kayması: kayma, drift', 'Kök neden: kök neden, veri kalitesi', 'Yeniden eğitim: yeniden eğit', 'Güvenli dağıtım: gölge, kademeli'],
+          'Modelin tahmin dağılımını ve gerçek sonuçlar geldikçe doğruluğunu izler, eşik aşılınca alarm üreten paneller kurarım. Girdi verisinin dağılımındaki kaymayı (data drift) istatistiksel testlerle takip ederim. Düşüş görünce kök neden olarak önce veri kalitesi sorunu mu yoksa gerçek bir davranış değişikliği mi olduğuna bakarım. Gerçek bir değişimse model güncel verilerle yeniden eğitilir. Yeni modeli önce gölge modda çalıştırıp sonra kademeli olarak canlıya alırım.'),
+      ]],
+    ]),
+    track('oyun', 'Oyun Geliştirme', 'game-controller', 'Oyun döngüsü, performans, oyun tasarımı', [
+      ['Temeller', 'Junior', [
+        q('teknik', 'Oyun döngüsü (game loop) nedir ve deltaTime neden önemlidir?',
+          ['Döngü adımları: girdi, güncelle, çiz', 'Kare hızı: kare hızı, fps', 'deltaTime: deltatime, geçen süre', 'Donanımdan bağımsızlık: bağımsız', 'Sabit adımlı fizik: sabit adım, fizik'],
+          'Oyun döngüsü her karede girdiyi okuyan, oyun durumunu güncelleyen ve sahneyi çizen sürekli bir döngüdür. Kare hızı (FPS) cihaza ve sahneye göre değişir. deltaTime, önceki kareden bu yana geçen süredir; hareketi bununla çarparak hesaplarım. Böylece oyun 30 ya da 120 FPS çalışsın, karakter aynı hızda hareket eder ve donanımdan bağımsız olur. Fizik hesapları için kararlılık amacıyla sabit adım kullanırım.'),
+        q('teknik', 'Bir mobil oyunda performans sorunlarını nasıl tespit edip giderirsin?',
+          ['Profiler: profiler', 'Çizim çağrıları: draw call, batch', 'Bellek ve çöp toplama: çöp toplama, nesne havuz', 'Varlık optimizasyonu: doku, lod', 'Düşük cihaz testi: düşük seviye cihaz'],
+          'Tahmin yerine önce profiler ile darboğazın işlemcide mi, grafik işlemcide mi yoksa bellekte mi olduğunu ölçerim. Draw call sayısını azaltmak için batch kullanır, malzemeleri birleştiririm. Sık oluşturulan nesneler için nesne havuzu kullanarak çöp toplama kaynaklı takılmaları önlerim. Doku boyutlarını sıkıştırır, uzaktaki modeller için LOD kullanırım. Değişiklikleri hedef kitlenin kullandığı düşük seviye cihazlarda test ederim.'),
+      ]],
+      ['Oyun Tasarımı', 'Mid', [
+        q('vaka', 'Oyuncuların büyük kısmı 3. bölümde oyunu bırakıyor. Ne yaparsın?',
+          ['Analitik verisi: analitik, huni', 'Zorluk eğrisi: zorluk', 'Oyun testi: oyun testi, gözlem', 'Deneme: a/b, dene', 'Tutundurma ölçümü: tutundurma'],
+          'Önce analitik verisiyle bir huni kurup oyuncuların 3. bölümün tam olarak hangi noktasında bıraktığını bulurum. Ani bir zorluk sıçraması, belirsiz bir hedef ya da yeni bir mekaniğin iyi öğretilmemesi gibi olasılıklara bakarım. Yeni oyuncularla oyun testi yapıp gözlem ile nerede takıldıklarını görürüm. Zorluğu yumuşatma ya da ipucu ekleme gibi değişiklikleri bir A/B testi ile denerim. Sonucu bölüm tamamlama ve tutundurma oranlarıyla ölçerim.'),
+      ]],
+      ['Teknik Liderlik', 'Senior', [
+        q('vaka', 'Bir oyunu mobil, PC ve konsol için aynı anda çıkarmak üzere mimariyi nasıl kurarsın?',
+          ['Platform soyutlama: soyutlama, platform katmanı', 'Girdi ve arayüz: girdi, arayüz', 'Kalite ayarları: kalite ayar', 'Otomatik derleme hattı: derleme hattı, otomatik', 'Sertifikasyon testleri: sertifikasyon'],
+          'Oyun mantığını platformdan ayırmak için dosya, ağ ve başarım gibi işlemleri bir platform katmanı arkasında soyutlama ile toplarım. Dokunmatik, fare-klavye ve gamepad için girdi sistemini ve arayüz ölçeklemesini en baştan esnek tasarlarım. Her platform için ayrı kalite ayarları ve performans bütçesi belirlerim. Her platformu her gün derleyip test eden otomatik bir derleme hattı kurarım. Konsol sertifikasyon gereksinimlerini erkenden takvime ekler, testleri düzenli yaparım.'),
+      ]],
+    ]),
+    track('bulut', 'Bulut Mimarlığı', 'cloud', 'AWS, Azure, GCP; ölçek ve maliyet', [
+      ['Temeller', 'Junior', [
+        q('teknik', 'IaaS, PaaS ve SaaS arasındaki fark nedir?',
+          ['IaaS: iaas, sanal makine', 'PaaS: paas, platform', 'SaaS: saas, hazır yazılım', 'Sorumluluk paylaşımı: sorumluluk', 'Örnekler: örneğin'],
+          'IaaS’ta sağlayıcı sanal makine, ağ ve depolama gibi altyapıyı sunar; işletim sistemi ve üstünü biz yönetiriz. PaaS’ta uygulamayı çalıştıracak platform hazırdır, biz sadece kodu ve veriyi yönetiriz. SaaS ise doğrudan kullanılan hazır yazılımdır. Aradaki temel fark sorumluluk paylaşımıdır: IaaS’tan SaaS’a gittikçe yönetim yükü sağlayıcıya geçer. Örneğin EC2 bir IaaS, Heroku bir PaaS, Gmail ise bir SaaS hizmetidir.'),
+        q('teknik', 'Bulutta yüksek erişilebilir bir web uygulaması için nasıl bir mimari kurarsın?',
+          ['Çoklu bölge: availability zone, birden fazla bölge', 'Yük dengeleyici: yük dengeleyici', 'Otomatik ölçekleme: otomatik ölçekleme', 'Durumsuz servisler: durumsuz', 'Yedekli veritabanı: replika, yedek'],
+          'Sunucuları birden fazla availability zone içine dağıtarak tek bir veri merkezinin arızasından etkilenmemeyi sağlarım. Önlerine trafiği sağlıklı sunuculara yönlendiren bir yük dengeleyici koyarım. Yüke göre sunucu ekleyip çıkaran otomatik ölçekleme grubu kurarım. Uygulama sunucularını durumsuz tasarlar, oturum bilgisini ortak bir önbellekte tutarım. Veritabanı için başka bir bölgede otomatik devreye giren bir replika ve düzenli yedek kullanırım.'),
+      ]],
+      ['Maliyet & Ölçek', 'Mid', [
+        q('vaka', 'Bulut faturası son 6 ayda iki katına çıktı. Nasıl düşürürsün?',
+          ['Maliyet görünürlüğü: etiket, kırılım', 'Doğru boyutlandırma: boyutlandır', 'Rezerve ve spot: rezerve, spot', 'Atıl kaynaklar: kullanılmayan, atıl', 'FinOps kültürü: finops, sorumluluk'],
+          'Önce tüm kaynakları ekip ve proje etiketleriyle işaretleyip maliyet kırılımını görünür hale getiririm. Kullanım oranı düşük sunucuları doğru boyutlandırma ile küçültürüm. Sürekli çalışan iş yükleri için rezerve kapasite, kesintiye dayanıklı işler için spot sunucular kullanırım. Kullanılmayan diskleri, unutulmuş test ortamlarını ve atıl kaynakları kapatırım. Her ekibin kendi harcamasını gördüğü bir FinOps düzeniyle maliyet sorumluluğunu ekiplere dağıtırım.'),
+      ]],
+      ['Göç & Strateji', 'Senior', [
+        q('vaka', 'Şirket içi veri merkezindeki uygulamaları buluta taşıma planını nasıl yaparsın?',
+          ['Envanter ve bağımlılıklar: envanter, bağımlılık', 'Taşıma stratejileri: rehost, refactor', 'Dalgalar halinde ilerleme: dalga, pilot', 'Güvenlik ve uyum: güvenlik, uyum', 'Test ve geri dönüş: test, geri dönüş'],
+          'Önce tüm uygulamaların envanterini çıkarıp aralarındaki bağımlılıkları haritalarım. Her uygulama için olduğu gibi taşıma (rehost), platform değiştirme ya da yeniden yazma (refactor) gibi bir strateji seçerim. Riski düşük bir pilot uygulamayla başlayıp taşımayı dalgalar halinde planlarım. Kimlik yönetimi, şifreleme ve veri yerleşimi gibi güvenlik ve uyum gereksinimlerini en baştan tasarıma katarım. Her geçişten önce test eder, sorun çıkarsa geri dönüş planını hazır tutarım.'),
       ]],
     ]),
   ],

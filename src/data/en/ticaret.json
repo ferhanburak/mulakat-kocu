@@ -1,0 +1,47 @@
+{
+  "dis-ticaret-uzmani-1": { "title": "Fundamentals", "q": [
+    ["What is the difference between the FOB and CIF terms?",
+      ["Incoterms: incoterms", "FOB: fob", "CIF: cif, insurance", "Freight: freight", "Transfer of risk: risk"],
+      "Both are Incoterms rules used in sea transport. Under FOB the seller is responsible until the goods are loaded on board the ship at the port of loading; the buyer pays the freight and insurance. Under CIF the seller pays the freight and minimum insurance to the port of destination. But under both rules, the risk passes to the buyer once the goods are on board at the port of loading. So under CIF, the cost responsibility and the risk end at different points."]
+  ]},
+  "dis-ticaret-uzmani-2": { "title": "Payment & Risk", "q": [
+    ["A new overseas buyer refuses to pay in advance. Which payment method do you suggest?",
+      ["Risk assessment: country risk, buyer", "Letter of credit: letter of credit", "Documentary collection: documentary collection, documents against payment", "Export insurance: insurance", "Build trust step by step: gradual, step by step"],
+      "First I assess the buyer’s finances and the country risk. For a first deal, a letter of credit, where banks guarantee the payment, is the safest choice. If the buyer objects to its cost, I could consider a documentary collection where the documents are released against payment. To reduce the risk I can also use export credit insurance from an export credit agency. As trust builds, I suggest moving step by step to more flexible payment terms."]
+  ]},
+  "dis-ticaret-uzmani-3": { "title": "Market Development", "q": [
+    ["How do you plan your company’s entry into a new export market?",
+      ["Market selection: market, data", "Competition and price: competit, price", "Regulations and certificates: regulation, certificat", "Sales channel: distributor, trade fair", "Government support: support"],
+      "First I use data such as import statistics to find growing markets with strong demand for our product. In the chosen market I study the competition and price levels and decide how we position ourselves. I check that the product meets the country’s regulation, labelling and certification requirements. I weigh channels such as working with a distributor or selling directly, and build contacts through trade fairs and trade missions. I use government export support to lower the cost of entering the market."]
+  ]},
+  "lojistik-1": { "title": "Transport Modes", "q": [
+    ["When do you choose road, sea or air freight?",
+      ["Air: air, urgent", "Sea: sea, volume", "Road: road, door-to-door", "Cost and time: cost, time", "Intermodal: intermodal, combined"],
+      "I choose air for urgent, small-volume, high-value cargo; it is fast but expensive. Sea is the most economical option for large-volume, non-urgent cargo. Road gives flexibility for door-to-door delivery and shorter distances. When choosing I always look at the balance between cost and delivery time. When needed I use intermodal transport that combines sea and road to get the advantages of both."]
+  ]},
+  "lojistik-2": { "title": "Operations Case", "q": [
+    ["A customer’s critical shipment is held at customs in port and the delivery date is close. What do you do?",
+      ["Find the cause: cause, missing document", "Inform the customer: customer", "Fast resolution: broker", "Alternative plan: alternative", "Prevent a repeat: checklist"],
+      "First I talk with our customs broker to find the cause of the hold; usually it is a missing document or a wrong declaration. I immediately and honestly inform the customer about the situation and the expected time. I work with the broker to speed things up by supplying the missing document or making the correction. If the date is critical, I prepare an alternative plan such as flying part of the goods. Afterwards I create a pre-shipment document checklist so the same problem does not happen again."]
+  ]},
+  "lojistik-3": { "title": "Network Design", "q": [
+    ["How do you design the warehouse network for an e-commerce company?",
+      ["Demand spread: demand, region", "Service level: delivery time", "Cost trade-off: inventory, transport cost", "Warehouse location and number: warehouse", "Scenario modelling: scenario"],
+      "First I map how demand from orders is spread by region and how it is expected to grow. The delivery time the company targets, for example next-day delivery, is the network’s main constraint. More warehouses cut delivery time and transport cost but raise inventory and operating costs; I balance that trade-off. I choose warehouse locations close to the regions where demand is concentrated. I run scenario modelling for different numbers of sites and choose the solution with the lowest total cost."]
+  ]},
+  "gumruk-1": { "title": "Customs Basics", "q": [
+    ["What is a tariff classification code and what happens if goods are classified wrongly?",
+      ["Tariff code: hs code, tariff code, code", "Duty rate: duty", "Permits and restrictions: permit, restriction", "Penalty risk: penalt", "Binding tariff information: binding tariff"],
+      "The tariff code is the goods’ classification code, based on the international Harmonized System (HS code); in Turkey it has 12 digits. This code sets the customs duty rate applied to the goods. It also decides which permits, restrictions and documents apply. Wrong classification can lead to underpaid duty, penalties and delays. When in doubt, a technical review should be done and, if needed, a Binding Tariff Information ruling obtained."]
+  ]},
+  "gumruk-2": { "title": "Compliance Case", "q": [
+    ["An internal check finds incorrect customs values declared on past declarations. What do you do?",
+      ["Define the scope: scope, period", "Calculate the impact: duty difference, difference", "Voluntary disclosure: correct, voluntary", "Root cause: root cause", "Control measures: control, training"],
+      "First I find the scope by working out which period and how many declarations the error affects. Using the correct value I calculate the duty difference that was underpaid or overpaid. I inform management and our customs broker and assess voluntary disclosure options to correct it before the authorities find it. I find the root cause, for example freight or licence fees not being added to the customs value. I add a new control step to the process and give training to the team involved."]
+  ]},
+  "gumruk-3": { "title": "Strategic Compliance", "q": [
+    ["How would you get Authorised Economic Operator (AEO) status for your company?",
+      ["Benefits: benefit, faster", "Criteria: criteria, financial solvency", "Self-assessment: self-assessment, gap", "Processes and security: security", "Application and audit: application, audit"],
+      "First I explain the benefits of AEO status, such as fewer physical checks and faster customs clearance, to management and get their support. I study the criteria, such as customs compliance, record keeping, financial solvency and security. I measure the company against them with a self-assessment and run a gap analysis. I close the gaps in processes and site security measures. Then I submit the application and prepare with the team for the on-site audit."]
+  ]}
+}

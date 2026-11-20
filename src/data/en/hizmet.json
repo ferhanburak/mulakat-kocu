@@ -52,7 +52,7 @@
   ]},
   "pilot-2": { "title": "Decision Making", "q": [
     ["You think the captain is making a wrong decision. What do you do?",
-      ["Speaking up: say, speak up, voice", "Respectful but clear: respect, clear", "Relying on information: data, indicator, instrument, procedure", "Escalating: again, insist, safety"],
+      ["Speaking up: say, speak up, voice, raise my concern", "Respectful but clear: respect, clear", "Relying on information: data, indicator, instrument, procedure", "Escalating: again, insist, safety"],
       "I raise my concern respectfully but clearly, based on the indicators I see and the procedure. If the captain doesn't respond, I repeat it more directly. If safety is directly at risk I insist, following CRM principles; hierarchy must never come before safety."]
   ]},
   "otel-1": { "title": "Guest Relations", "q": [
@@ -64,5 +64,35 @@
     ["The cleanliness score in guest reviews is falling. What do you do?",
       ["Data analysis: review, score, analy", "Root cause: root cause, staff, time, inspect", "Working with the department: housekeeping, team", "Monitoring: checklist, track, measure"],
       "First I analyze the reviews to see which rooms and issues the complaints concentrate on. With the housekeeping team I discuss root causes, such as staffing levels or time per room. I introduce a checklist and random inspections and track the scores weekly."]
+  ]},
+  "banka-mt-3": { "title": "Strategy", "q": [
+    ["As a bank moves to digital channels, what role should its branch network play?",
+      ["Customer segments: segment", "Digital transactions: digital, mobile", "Advice centre: advi, complex", "Cost and efficiency: cost, efficien", "Staff transformation: staff, skill"],
+      "As simple transactions move to mobile and digital channels, the branch’s role has to change. I would split customers into segments and look at which groups really need a branch. Branches should become advice centres for complex needs such as loans, investments and SME finance. The number and format of branches should be replanned using cost and efficiency data. This shift needs training that builds staff skills in advising customers."]
+  ]},
+  "banka-kredi-3": { "title": "Portfolio Risk", "q": [
+    ["You spot concentration risk in one sector in the loan portfolio. What do you recommend?",
+      ["Concentration analysis: concentrat, share", "Stress test: stress test, scenario", "Limit policy: limit", "Pricing and collateral: pric, collateral", "Report to committee: committee, report"],
+      "First I measure the sector’s share of the portfolio and the concentration in the largest borrowers. I run a stress test with a scenario such as falling demand in the sector and estimate the possible loss. I propose a limit for the sector and steer new lending to other sectors. I price loans in the risky sector more tightly and strengthen collateral terms. I present the findings and an action plan to the credit committee in a report."]
+  ]},
+  "banka-musteri-3": { "title": "Branch Leadership", "q": [
+    ["How do you raise your customer representatives’ sales without hurting customer satisfaction?",
+      ["Balanced targets: satisfaction, balance", "Needs-based selling: need", "Coaching: coaching, observ, feedback", "Measurement: nps, complaint", "Recognition: recogni"],
+      "At my previous branch, complaints rose when targets went up; my goal was to balance sales and satisfaction. With the team I built a sales conversation flow focused on the customer’s needs, not the product. I observed each rep’s meetings and gave one-on-one coaching and feedback. I added NPS and the number of complaints to the scorecard next to sales. As a result sales increased by 15% and complaints fell; I recognised the successes in team meetings."]
+  ]},
+  "kabin-3": { "title": "Cabin Leadership", "q": [
+    ["As a cabin manager, two crew members on your team are in conflict during a flight. What do you do?",
+      ["Safety first: safety", "Separate, calm talk: separate, calm", "Reassign duties: duties, dut", "Resolve after the flight: after the flight, debrief", "Report: report"],
+      "On one flight I noticed two colleagues arguing during the service. My first priority was that safety and the guest experience were not affected. I had a short, calm talk with each of them separately in the galley. To ease the tension I changed the duties for the rest of the flight. In the debrief after the flight we talked it through together and resolved it, and I wrote a short report as required."]
+  ]},
+  "pilot-3": { "title": "Captaincy & CRM", "q": [
+    ["As captain, you notice your first officer hesitates to point out your mistakes. What do you do?",
+      ["Open communication: open, encourag", "Briefing: briefing", "CRM principles: crm", "Feedback: feedback", "Lead by example: admitted my mistake, admit"],
+      "On one flight I saw that my first officer noticed a deviation of mine but mentioned it late. In the briefing on the next flights I clearly asked them to speak up about anything and encouraged them to do so. Under CRM principles, hierarchy in the cockpit must never come before safety. After the flight I gave honest feedback and asked for feedback in return. I admitted my mistake to set an example, and our communication on later flights was much more open."]
+  ]},
+  "otel-3": { "title": "Hotel Management", "q": [
+    ["The hotel’s guest review score has been dropping for months. What action plan do you make?",
+      ["Review analysis: review, theme", "Root cause: department, root cause", "Staff training: staff, training", "Quick wins: quick", "Reply and track: repl, track"],
+      "First I read the recent reviews and pull out recurring themes. I split complaints by department and find the root cause in areas such as housekeeping, breakfast or check-in. I act quickly on problems that can be fixed fast and plan staff training in the departments with issues. I reply to negative reviews personally and with a solution. I track the score weekly and share the results with the team."]
   ]}
 }

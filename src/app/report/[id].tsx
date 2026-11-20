@@ -81,6 +81,7 @@ export default function ReportScreen() {
             <View style={styles.chips}>
               <Chip icon="flash" label={`+${r.xp} XP`} color="#5B4BDB" bg="#fff" />
               <Chip icon="flame" label={t(`${streak} gün seri`, `${streak}-day streak`)} color={colors.streak} bg="#fff" />
+              {r.timed && <Chip icon="timer" label={t('Süreli', 'Timed')} color={colors.danger} bg="#fff" />}
               {!passed && <Chip icon="lock-open" label={t(`Geçmek için ${PASS_SCORE}`, `${PASS_SCORE} to pass`)} color="#B5621A" bg="#fff" />}
             </View>
           </FadeIn>

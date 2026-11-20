@@ -1,9 +1,11 @@
+import { danismanlik, mimarlik } from './catalog/danismanlik';
 import { finans, ik, pazarlama, satis, urun, veri } from './catalog/diger';
 import { genel } from './catalog/genel';
 import { bankacilik, havacilik } from './catalog/hizmet';
-import { egitim, saglik } from './catalog/kamu';
+import { egitim, kamuMulakat, saglik } from './catalog/kamu';
 import { elektrik, endustri, insaat, makine } from './catalog/muhendislik';
 import { hukuk, psikoloji } from './catalog/sosyal';
+import { disTicaret } from './catalog/ticaret';
 import { yazilim } from './catalog/yazilim';
 import { onLangChange, type Lang } from '@/lib/i18n';
 import { sharedBehaviouralTexts, type Profession, type Question, type Track, type Unit } from './build';
@@ -20,16 +22,20 @@ const TR_CATALOG: Profession[] = [
   elektrik,
   makine,
   insaat,
+  mimarlik,
   pazarlama,
   satis,
+  disTicaret,
   bankacilik,
   finans,
+  danismanlik,
   ik,
   havacilik,
   egitim,
   saglik,
   psikoloji,
   hukuk,
+  kamuMulakat,
 ];
 
 const catalogs: Partial<Record<Lang, Profession[]>> = { tr: TR_CATALOG };

@@ -37,6 +37,8 @@ type Progress = {
   profile: UserProfile | null;
   /** Chosen interviewer character. */
   interviewer: InterviewerId;
+  /** Timed mode: each answer has a time limit (TIMED_SECONDS). */
+  timed: boolean;
 };
 
 export type Session = { mode: 'user'; account: Account } | { mode: 'guest'; since: string } | null;
@@ -106,6 +108,7 @@ const EMPTY: Progress = {
   session: null,
   profile: null,
   interviewer: DEFAULT_INTERVIEWER,
+  timed: false,
 };
 const KEY = 'mulakat-kocu/progress/v2';
 
@@ -126,6 +129,10 @@ const applyCloud = (s: Progress, cloud: Record<string, unknown>): Progress =>
 
 export const dayKey = (d: Date) => `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
 export const levelOf = (xp: number) => Math.floor(xp / 100) + 1;
+/** Seconds per answer in timed mode. */
+export const TIMED_SECONDS = 120;
+/** Extra XP for finishing an interview in timed mode. */
+export const TIMED_BONUS_XP = 5;
 export const quizXp = (correct: number) => 5 + correct * 3;
 
 const addUnique = (arr: string[], v: string | undefined) => (v && !arr.includes(v) ? [...arr, v] : arr);
@@ -168,6 +175,7 @@ type Ctx = Progress & {
   addReviewResult: (correct: number) => void;
   setReminder: (r: Partial<Progress['reminder']>) => void;
   setVoice: (on: boolean) => void;
+  setTimed: (on: boolean) => void;
   startGuest: () => void;
   /** Call after sign-in or sign-up; loads the cloud copy (or uploads guest progress). Resolves to whether a profile exists. */
   signedIn: (account: Account) => Promise<boolean>;
@@ -359,6 +367,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const setVoice = useCallback((on: boolean) => setState((s) => ({ ...s, voice: on })), []);
+  const setTimed = useCallback((on: boolean) => setState((s) => ({ ...s, timed: on })), []);
 
   // Session and profile. Guest progress is kept when the guest signs up, so nothing is lost.
   const startGuest = useCallback(() => setState((s) => ({ ...s, session: { mode: 'guest', since: new Date().toISOString() } })), []);
@@ -414,6 +423,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       addReviewResult,
       setReminder,
       setVoice,
+      setTimed,
       startGuest,
       signedIn,
       signOut,
@@ -424,7 +434,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       isUnlocked: (unitIds, index) => index === 0 || (state.bestByUnit[unitIds[index - 1]] ?? 0) >= PASS_SCORE,
       reset: () => setState(EMPTY),
     }),
-    [state, ready, scheme, toasts, dismissToast, addReport, addQuizResult, addDailyResult, recordQuizAnswer, addReviewResult, setReminder, setVoice, startGuest, signedIn, signOut, saveProfile, renameAccount, setInterviewer],
+    [state, ready, scheme, toasts, dismissToast, addReport, addQuizResult, addDailyResult, recordQuizAnswer, addReviewResult, setReminder, setVoice, setTimed, startGuest, signedIn, signOut, saveProfile, renameAccount, setInterviewer],
   );
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;

@@ -12,7 +12,7 @@
   ]},
   "ik-mulakati-1": { "title": "First Impression", "q": [
     ["Could you briefly introduce yourself?",
-      ["Current role / education: currently, graduated, i work, studying", "Relevant experience: experience, project, year", "Concrete achievement: achieved, increased, %, result", "Why you're here: this position, this role, company"],
+      ["Current role / education: currently, graduated, i work, studying, i have been working, working as", "Relevant experience: experience, project, year", "Concrete achievement: achieved, increased, %, result, automated, cut", "Why you're here: this position, this role, company"],
       "I have been working as an analyst at Company X for two years. In that time I automated our reporting processes and cut the team's weekly workload by 30%. I enjoy working where decisions are made with data, and this position is exactly where I can use that experience at a larger scale."],
     ["Why do you want to work at our company?",
       ["Researching the company: product, service, value, culture", "Link to own goals: goal, growth, develop, career", "Contribution: contribut, bring, my experience"],
@@ -20,19 +20,19 @@
   ]},
   "ik-mulakati-2": { "title": "Tough Questions", "q": [
     ["What is your greatest weakness?",
-      ["A real weakness: weak, struggle, need to improve", "Awareness: realized, feedback", "Improvement step: working on, training, practi, learning", "Progress: now, result, better"],
+      ["A real weakness: weak, struggle, need to improve, hard to", "Awareness: realized, feedback", "Improvement step: working on, training, practi, learning, prepare, goal", "Progress: now, result, better"],
       "Through feedback from a manager I realized I found it hard to speak up in large meetings. So I now prepare notes before meetings and set myself the goal of sharing at least one suggestion. In the last six months I gave two presentations myself, and I feel much more comfortable with this now."],
     ["Why do you want to leave your current job?",
-      ["Positive language: learned, grateful, valu", "Forward-looking reason: growth, grow, new, responsibilit", "Not criticizing the employer: positive, without criticiz"],
+      ["Positive language: learned, grateful, valu", "Forward-looking reason: growth, grow, new, responsibilit", "Not criticizing the employer: positive, without criticiz, learned a lot, value my team"],
       "I have learned a lot at my current company and I value my team. But I have reached the limit of the responsibility I can take on there. I'm looking for a role where I can grow at a larger scale and in new areas, and this position offers that."]
   ]},
   "ik-mulakati-3": { "title": "Closing", "q": [
     ["Why should we hire you?",
-      ["Fit with the posting: requirement, looking for, posting", "Proven results: achieved, result, %", "Differentiator: different, also, unique", "Short and clear: in short, to sum up"],
+      ["Fit with the posting: requirement, looking for, posting", "Proven results: achieved, result, %, reduced", "Differentiator: different, also, unique", "Short and clear: in short, to sum up"],
       "Over the last two years I have personally handled the three core skills you list in the posting: data analysis, stakeholder management and project tracking. For example, in one project I led we reduced customer churn by 12%. I can also bridge the technical team and the business units. In short, I will contribute from day one and learn fast."],
     ["Do you have any questions for us?",
       ["About the role: role, first 90 days, expectation, success", "Team / culture: team, culture, way of working", "Growth: growth, training, career path", "Next step: process, next step"],
-      "Yes, I have a few. How do you define success in this role in the first 90 days? How does the team usually work and how are decisions made? And finally, could you tell me the next step in the process?"]
+      "Yes, I have a few. How do you define success in this role in the first 90 days? How does the team usually work and how are decisions made? What do growth and the career path look like in this position? And finally, could you tell me the next step in the process?"]
   ]},
   "maas-1": { "title": "Stating Your Expectations", "q": [
     ["What are your salary expectations?",
@@ -57,12 +57,17 @@
       ["Projects: project, capstone, club, volunteer", "Learning speed: learn fast, learned, self-taught, on my own", "Concrete example: for example, result", "Motivation: eager, motivat, excited"],
       "Although I have little professional experience, I built three real projects at university. For example, in my capstone project we built an ordering app for a cafeteria that 200 students used. I can learn a new technology on my own in a short time, and I'm very eager to learn and contribute in this role."],
     ["Can you describe a challenge you faced in a team project at school?",
-      ["Situation: project, team, course", "Challenge: challenge, problem, delay, disagree", "Your action: i, did, took on, suggested", "Result: result, deliver, grade"],
+      ["Situation: project, team, course", "Challenge: challenge, problem, delay, disagree, hadn't delivered", "Your action: i, did, took on, suggested", "Result: result, deliver, grade"],
       "In a term project, one teammate hadn't delivered their part by the last week. I talked it through with the team, suggested redistributing the work and took on part of the missing section myself. We also started short daily check-ins. As a result we delivered on time and got the top grade."]
   ]},
   "yeni-mezun-2": { "title": "Tough Questions", "q": [
     ["Why is your GPA low?",
-      ["Honesty: honest, admit", "Context: working, project, responsibilit", "Compensating evidence: project, certificate, internship, achiev", "Looking ahead: learned, now"],
+      ["Honesty: honest, admit", "Context: working, project, responsibilit", "Compensating evidence: project, certificate, internship, achiev", "Looking ahead: learned, now, taught"],
       "To be honest, I didn't focus enough on my classes in my first two years. In the last two years I raised my GPA every term while working part time. I also completed two certificate programs and built a project that went live during an internship. That taught me time management."]
+  ]},
+  "yeni-mezun-3": { "title": "The Offer Stage", "q": [
+    ["What do you look at when weighing your first job offer? How would you decide between several offers?",
+      ["Learning opportunity: learn, mentor", "Team and manager: team, manager", "Pay and benefits: salary, pay, benefit", "Company and industry: company, industry", "Long-term goal: career goal, long-term, long term"],
+      "At the start of my career I look most at how much I will learn and whether I will have a mentor. The working style of the team and manager I met in the interviews matters a lot to me. I compare salary and benefits with the market, but I do not make them the only criterion. I research how the company and its industry are growing. With several offers, I would score them by which one moves me closest to my long-term career goal and decide on that."]
   ]}
 }

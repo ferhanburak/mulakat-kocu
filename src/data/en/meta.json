@@ -17,7 +17,11 @@
     "egitim": ["Education", "Primary, subject and language teaching"],
     "saglik": ["Healthcare", "Nursing, pharmacy, physiotherapy, nutrition"],
     "psikoloji": ["Psychology", "Clinical, organizational, educational psychology"],
-    "hukuk": ["Law", "Commercial, employment, criminal, IT law"]
+    "hukuk": ["Law", "Commercial, employment, criminal, IT law"],
+    "danismanlik": ["Consulting", "Case interviews, strategy, technology consulting"],
+    "mimarlik": ["Architecture & Design", "Architecture, interior and graphic design"],
+    "kamu-mulakat": ["Public Sector Interviews", "Agency interviews, junior expert exams, public management"],
+    "dis-ticaret": ["Foreign Trade & Logistics", "Exports, logistics operations, customs"]
   },
   "tracks": {
     "ik-mulakati": ["General / HR Interview", "Introduce yourself, your weaknesses, why us?"],
@@ -78,6 +82,21 @@
     "psi-egitim": ["Educational Psychology & Counselling", "Learning, guidance, development"],
     "huk-ticaret": ["Commercial & Corporate Law", "Contracts, companies, mergers"],
     "huk-is": ["Employment Law", "Employer-employee relations"],
-    "huk-bilisim": ["IT Law & Data Protection", "Personal data, compliance, e-commerce"]
+    "huk-bilisim": ["IT Law & Data Protection", "Personal data, compliance, e-commerce"],
+    "yapay-zeka": ["AI / ML Engineering", "Model training, LLM apps, MLOps"],
+    "oyun": ["Game Development", "Game loop, performance, game design"],
+    "bulut": ["Cloud Architecture", "AWS, Azure, GCP; scale and cost"],
+    "vaka-mulakati": ["Case Interview", "Market sizing, profitability, strategy cases"],
+    "strateji-danismani": ["Strategy Consulting", "Problem solving, client management, transformation"],
+    "teknoloji-danismani": ["Technology Consulting", "ERP, digital transformation, implementation"],
+    "mimar": ["Architecture", "Design process, construction, project leadership"],
+    "ic-mimar": ["Interior Architecture", "Space, materials, clients and budget"],
+    "grafik": ["Graphic Design", "Portfolio, brand identity, creative direction"],
+    "kurum-mulakati": ["Agency Interview", "Oral exams, motivation, situational questions"],
+    "uzman-yardimciligi": ["Junior Expert Exams", "Ministry and regulator oral exams"],
+    "kamu-yoneticiligi": ["Public Management", "District governors, directors, crisis coordination"],
+    "dis-ticaret-uzmani": ["Foreign Trade Specialist", "Incoterms, payment terms, market development"],
+    "lojistik": ["Logistics Operations", "Transport modes, operations, warehouse networks"],
+    "gumruk": ["Customs & Compliance", "Tariff codes, customs procedures, compliance"]
   }
 }

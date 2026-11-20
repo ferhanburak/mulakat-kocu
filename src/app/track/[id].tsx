@@ -11,7 +11,7 @@ import { findTrack, type Unit } from '@/data/professions';
 import { GUEST_INTERVIEWS, useAccess, type Locked } from '@/lib/access';
 import { PASS_SCORE } from '@/lib/evaluator';
 import { pick, upper, useLang, useT } from '@/lib/i18n';
-import { useStore } from '@/lib/store';
+import { TIMED_BONUS_XP, TIMED_SECONDS, useStore } from '@/lib/store';
 
 const ROW = 200;
 const TOP = 90;
@@ -334,7 +334,7 @@ function ModeSheet({
   const insets = useSafeAreaInsets();
   const t = useT();
   const lang = useLang();
-  const { interviewer, setInterviewer } = useStore();
+  const { interviewer, setInterviewer, timed, setTimed } = useStore();
   const go = (path: '/session' | '/quiz') => {
     if (!unit) return;
     tap();
@@ -384,6 +384,31 @@ function ModeSheet({
           <T w="semibold" size={12} color={colors.muted} style={{ marginBottom: 14 }}>
             {pick(INTERVIEWERS.find((i) => i.id === interviewer)?.style ?? INTERVIEWERS[0].style, lang)}
           </T>
+          <Pressable
+            onPress={() => {
+              tap();
+              setTimed(!timed);
+            }}
+            style={[sheetStyles.timed, timed && { borderColor: colors.danger, backgroundColor: colors.tintRed }]}
+            accessibilityRole="switch"
+            accessibilityState={{ checked: timed }}
+          >
+            <Ionicons name="timer" size={20} color={timed ? colors.danger : colors.muted} />
+            <View style={{ flex: 1 }}>
+              <T w="black" size={14}>
+                {t('Süreli mod', 'Timed mode')}
+              </T>
+              <T w="semibold" size={12} color={colors.muted}>
+                {t(
+                  `Her cevap için ${TIMED_SECONDS / 60} dakika · +${TIMED_BONUS_XP} XP`,
+                  `${TIMED_SECONDS / 60} minutes per answer · +${TIMED_BONUS_XP} XP`,
+                )}
+              </T>
+            </View>
+            <View style={[sheetStyles.switch, timed && { backgroundColor: colors.danger }]}>
+              <View style={[sheetStyles.knob, timed && { alignSelf: 'flex-end' }]} />
+            </View>
+          </Pressable>
           <ModeCard
             icon="mic"
             color={color}
@@ -406,7 +431,10 @@ function ModeSheet({
             icon="flash"
             color="#F5A524"
             title={t('Hızlı Pratik', 'Quick Practice')}
-            desc={t('Çoktan seçmeli ve sıralama sorularıyla konuyu hızlıca tekrar et.', 'Review the topic quickly with multiple-choice and ordering questions.')}
+            desc={t(
+              'Çoktan seçmeli, sıralama, eşleştirme ve “eksik ne?” sorularıyla konuyu hızlıca tekrar et.',
+              'Review the topic quickly with multiple-choice, ordering, matching and “what’s missing?” questions.',
+            )}
             meta={bestQuiz !== undefined ? t(`En iyi: %${bestQuiz}`, `Best: ${bestQuiz}%`) : t('~3 dk · XP kazandırır', '~3 min · Earns XP')}
             onPress={() => go('/quiz')}
           />
@@ -481,6 +509,20 @@ const sheetStyles = themedStyles(() =>
   },
   grabber: { alignSelf: 'center', width: 44, height: 5, borderRadius: 3, backgroundColor: colors.border, marginBottom: 14 },
   people: { flexDirection: 'row', gap: 8, marginBottom: 8 },
+  timed: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    borderWidth: 2,
+    borderColor: colors.border,
+    backgroundColor: colors.card,
+    borderRadius: 16,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    marginBottom: 12,
+  },
+  switch: { width: 44, height: 26, borderRadius: 13, backgroundColor: colors.trackStrong, padding: 3, justifyContent: 'center' },
+  knob: { width: 20, height: 20, borderRadius: 10, backgroundColor: '#fff' },
   person: {
     flex: 1,
     alignItems: 'center',

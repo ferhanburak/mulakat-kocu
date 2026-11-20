@@ -64,5 +64,35 @@
     ["Customer data has been leaked at a company. What should be done legally?",
       ["Stopping the breach: stop, contain, identif, scope", "Notifying the authority: authority, board, 72 hours, notif", "Notifying affected people: data subject, customer, affected, notify", "Records and measures: record, measure, prevent"],
       "First, together with the technical team, we stop the breach and determine its scope. The data protection authority is notified as soon as possible and within 72 hours at the latest, and the affected people are informed. The incident is documented, and measures to prevent a repeat are recorded."]
+  ]},
+  "psi-klinik-3": { "title": "Supervision", "q": [
+    ["You notice that a therapist you supervise has crossed professional boundaries with a client. What do you do?",
+      ["Client safety: client safety, client’s safety, harm", "Direct conversation: openly, talk", "Ethics code: ethic", "Corrective plan: plan, closer supervision", "Record and report: record, report"],
+      "My first priority is the client’s safety and preventing any harm. I talk to the therapist openly but without blame and hear what happened in their own words. I assess the situation within the professional ethics code. We make a corrective plan, such as closer supervision and, if needed, transferring the case. I keep a record of our talks and report to the ethics board if there is a serious breach."]
+  ]},
+  "psi-orgut-3": { "title": "Assessment Centre", "q": [
+    ["How do you set up an assessment centre for management candidates at a company?",
+      ["Competency model: competenc", "Exercises: case, role play, group", "Assessor training: assessor", "Validity and reliability: validity, reliability", "Feedback: feedback, development"],
+      "First I build a competency model defining the behaviours needed to succeed in the role. I design a case analysis, a role play and a group discussion so that every competency is measured by more than one exercise. I train assessors in observing, recording and scoring. I check the validity and reliability of results through agreement between assessors and later job performance. Every candidate gets detailed feedback that turns into a development plan."]
+  ]},
+  "psi-egitim-3": { "title": "School-wide Program", "q": [
+    ["How do you design a school-wide program to prevent bullying?",
+      ["Needs assessment: survey, need", "School policy: policy, rule", "Teacher training: teacher training", "Peer program: peer", "Parent partnership and monitoring: parent, monitor"],
+      "First I run an anonymous survey of students to learn how often bullying happens and where, so the need is clear. With the school leadership we create an anti-bullying policy with clear rules. Teacher training builds the skills to spot bullying early and respond well. I start peer support programs that teach students not to be bystanders. I work with parents and monitor the program’s effect with end-of-term surveys."]
+  ]},
+  "huk-ticaret-3": { "title": "Mergers & Acquisitions", "q": [
+    ["How do you run the legal due diligence process in a company acquisition?",
+      ["Scope and priorities: scope, priorit", "Data room: data room", "Risk areas: contract, litigation, licen", "Reporting: report, red flag", "Reflect in the agreement: indemnit, warrant"],
+      "First I set the scope of the review based on the deal structure and the client’s priorities. I prepare the request list for the seller and split the documents in the virtual data room among the team. I review risk areas such as key contracts, pending litigation, licences and permits, employment and tax. I present the findings in a report ranked by importance and highlight red flags separately. I reflect the risks found in the representations, warranties and indemnities of the purchase agreement."]
+  ]},
+  "huk-is-3": { "title": "Collective Dismissal", "q": [
+    ["Your employer client wants to carry out a collective dismissal. What do you advise them to watch out for?",
+      ["Collective dismissal threshold: collective, threshold", "Notice obligation: 30 days, notif", "Union consultation: union, representative", "Employee rights: severance, notice pay", "Objective criteria: criteria, discriminat"],
+      "First we check whether the number of employees to be dismissed, relative to the workforce, exceeds the legal threshold for a collective dismissal. If it does, written notification must be given at least 30 days in advance to union representatives, the regional labour directorate and the employment agency. There must be consultation with union representatives on avoiding the dismissals or reducing their effect. Employees’ rights such as severance and notice pay must be paid in full. Who is dismissed should be decided with objective criteria such as performance, avoiding any risk of discrimination."]
+  ]},
+  "huk-bilisim-3": { "title": "Compliance Program", "q": [
+    ["How do you set up a company’s data protection compliance program from scratch?",
+      ["Data inventory: inventory", "Privacy notices and consent: notice, consent", "Registry filing: regist", "Technical and organisational measures: measure, access", "Training and audits: training, audit"],
+      "First I meet each department and build a data inventory showing which personal data is processed for which purpose. For each processing activity I set the legal basis and prepare privacy notices and, where needed, consent forms. If the company is required to, I file it in the data controllers’ registry. I put in place technical and organisational measures such as access rights, encryption and a retention and destruction policy. I train employees and check compliance with regular internal audits."]
   ]}
 }
