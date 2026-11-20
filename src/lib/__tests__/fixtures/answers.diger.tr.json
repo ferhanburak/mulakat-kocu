@@ -1,1 +1,978 @@
-{}
+{
+  "INNER JOIN ile LEFT JOIN arasındaki fark nedir? Ne zaman hangisini kullanırsın?": {
+    "good": [
+      "INNER JOIN yalnızca her iki tarafta karşılığı bulunan satırları döndürür, yani kesişimi alır. LEFT JOIN ise soldaki tablonun bütün satırlarını korur; sağda karşılığı yoksa o sütunlar NULL gelir. Mesela hiç sipariş vermemiş müşterileri listelemek istersem LEFT JOIN yapıp sipariş id'si NULL olanları filtrelerim.",
+      "INNER JOIN'de sadece match eden kayıtlar gelir, iki tabloda da olması lazım. LEFT JOIN'de left table'daki tüm row'lar gelir, match yoksa null döner. Örneğin users ile orders'ı join'lerken siparişi olmayan user'ları da görmek istiyorsam LEFT kullanırım.",
+      "Ben şöyle düşünüyorum: INNER ikisinin ortak kısmı, Venn şemasındaki kesişim gibi. LEFT'te sol taraf hep tam gelir, sağ taraf eksikse boş, NULL kalır. Geçen ay raporda kampanya alan ama hiç alışveriş yapmamış müşterileri bulmak için LEFT JOIN kullandım."
+    ],
+    "partial": [
+      "INNER JOIN iki tabloda da eşleşen kayıtları getirir, diğerlerini atar.",
+      "INNER eşleşen satırları alır, LEFT ise sol tablonun hepsini getirir ve karşılığı olmayan yerleri null bırakır."
+    ],
+    "wrong": [
+      "Bilmiyorum, SQL ile pek çalışmadım açıkçası.",
+      "İkisi de tabloları birleştirir, duruma göre birini seçerim, çok fark etmez.",
+      "LEFT JOIN sadece iki tabloda eşleşen satırları getirir, INNER JOIN ise soldaki tablonun tamamını getirir."
+    ]
+  },
+  "Ortalama ile medyan arasındaki farkı ve hangisinin ne zaman yanıltıcı olduğunu anlat.": {
+    "good": [
+      "Ortalama bütün değerleri toplayıp sayıya bölerek bulunur, medyan ise sıraladığımızda ortadaki değerdir. Birkaç aşırı uç değer ortalamayı kendine doğru çeker. Bu yüzden maaş gibi sağa çarpık verilerde ortalama yanıltır, medyan daha gerçekçi bir tablo verir.",
+      "Mean tüm gözlemlerin toplamı bölü n, median ise sorted listede ortadaki eleman. Outlier'lar mean'i ciddi şekilde kaydırır ama median'ı pek etkilemez. Skewed distribution'larda, mesela gelir verisinde, ben median raporlarım.",
+      "Diyelim bir odada on kişi var ve biri milyarder. Ortalama servet birden uçar ama ortadaki kişinin serveti, yani medyan, neredeyse hiç değişmez. O milyarder tipik bir aykırı değer. Ev fiyatları, gelir gibi dağılımı dengesiz verilerde o yüzden medyana bakmak daha doğru."
+    ],
+    "partial": [
+      "Ortalama değerlerin toplamının adede bölünmesiyle bulunur, medyan da sıralanmış verinin tam ortasıdır.",
+      "Medyan sıralı verideki ortadaki değer. Uç değerler olduğunda ortalama yanıltıcı olabilir, o yüzden dikkat etmek lazım."
+    ],
+    "wrong": [
+      "Hiç hatırlamıyorum, istatistik dersi çok önceydi.",
+      "İkisi de verinin genelini gösterir, hangisi kolaysa onu kullanırım.",
+      "Medyan en sık tekrar eden değerdir, ortalama ise en büyük ile en küçüğün ortası. Uç değerler medyanı daha çok etkiler, ortalamayı etkilemez."
+    ]
+  },
+  "Uygulamanın günlük aktif kullanıcı sayısı geçen hafta %15 düştü. Nasıl analiz edersin?": {
+    "good": [
+      "İlk iş ölçümün kendisinden şüphelenirim; analytics tarafında bir veri hatası ya da event kaybı var mı doğrularım. Sonra düşüşü iOS/Android, ülke ve yeni-eski kullanıcı gibi kırılımlara ayırırım. O hafta yeni bir sürüm çıktı mı, bir kampanya bitti mi diye bakarım; bayram tatili veya rakibin büyük bir hamlesi gibi dış etkenleri de listeleyip her birini veriyle test ederim.",
+      "Önce tracking'de bir bug var mı, event'ler doğru geliyor mu check ederim. Sonra segment bazında bakarım: platform, country, acquisition channel. Geçen hafta bir release çıktıysa crash rate'e, bir push kampanyası kapandıysa ona bakarım. Her olası nedeni bir hipotez olarak yazıp tek tek eleriz.",
+      "Geçen yıl benzer bir şey yaşadık, panik yapmadan önce rakamın gerçek olup olmadığını kontrol ettik; meğer SDK güncellemesinden sonra bazı event'ler düşmüyormuş. Gerçek düşüş olsaydı bile önce hangi platformda ve hangi ülkede olduğuna bakardık. Sezonsallık, okulların kapanması gibi dış nedenleri ve kendi yaptığımız değişiklikleri karşılaştırırdık."
+    ],
+    "partial": [
+      "Düşüşü platform ve ülke kırılımlarına ayırıp nerede yoğunlaştığına bakarım.",
+      "Önce tracking'in doğru çalıştığını doğrularım, sonra segmentlere bakarım ve aklıma gelen nedenleri hipotez olarak yazarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, muhtemelen kullanıcılar sıkılmıştır, olur böyle şeyler.",
+      "Kullanıcılara bildirim gönderip uygulamaya geri çağırırım, sayılar toparlanır.",
+      "%15 düşüş normal dalgalanmadır, analiz etmeye gerek yok; bir sonraki haftaya kendiliğinden düzelir."
+    ]
+  },
+  "Bir A/B testinin sonucunun güvenilir olduğundan nasıl emin olursun?": {
+    "good": [
+      "Testi başlatmadan önce yeterli örneklem büyüklüğünü ve testin kaç gün süreceğini hesaplarım. Kullanıcıların gruplara rastgele dağıtıldığını, grupların dengeli olduğunu kontrol ederim. Sonuç çıktığında p-değerine ve güven aralığına bakarım, erken dönemde iyi görünüyor diye testi kesmem.",
+      "Sample size'ı power analizine göre baştan belirlerim. Randomization doğru mu, SRM var mı bakarım. Peeking yapmam, test en az iki tam hafta koşar; sonra sonucun statistically significant olup olmadığına bakarım.",
+      "Bir keresinde ilk üç günde varyant %10 öndeydi, herkes bitirelim dedi; ben beklettim, iki hafta sonra fark kayboldu. O yüzden önce kaç kullanıcıya ihtiyacım olduğunu hesaplıyorum, atamanın rastgele olduğundan emin oluyorum ve farkın istatistiksel olarak anlamlı olup olmadığına bakıyorum."
+    ],
+    "partial": [
+      "Sonucun istatistiksel olarak anlamlı olup olmadığına, p değerine bakarım.",
+      "Yeterli örneklem olduğundan ve testin en az bir hafta sürdüğünden emin olurum."
+    ],
+    "wrong": [
+      "A/B testi hiç yapmadım, bilmiyorum.",
+      "Sonuç iyi görünüyorsa güvenilirdir, ekibe sorarım.",
+      "Varyant bir gün bile önde gidiyorsa testi hemen durdurup kazananı ilan ederim, p-değer 0.5'in altındaysa sonuç anlamlıdır."
+    ]
+  },
+  "Yönetici, verinin desteklemediği bir sonucu raporda görmek istiyor. Ne yaparsın?": {
+    "good": [
+      "Önce yöneticinin bu sonucu neden istediğini, asıl neye ulaşmaya çalıştığını anlamaya çalışırım. Verinin gerçekte ne söylediğini sade bir grafikle gösteririm. Desteklenmeyen bir iddiayı rapora koymam, bu etik değil; ama amacına hizmet edecek, verinin desteklediği başka bir açıyı öneririm.",
+      "Manager'ın aklındaki story'yi anlamak isterim, belki başka bir KPI'dan bahsediyordur. Data'nın ne dediğini dashboard üzerinden net şekilde gösteririm, rakamları manipüle etmem; transparent olmak benim için kırmızı çizgi. Alternatif bir analiz önerip birlikte bakalım derim.",
+      "Bir keresinde satış müdürüm kampanyanın işe yaradığını yazmamı istedi ama rakamlar düz çıkıyordu. Ona tabloyu açıp gösterdim, dürüst davranmazsam raporun güvenilirliğinin biteceğini anlattım. Sonra kampanyanın yeni müşteri tarafında küçük bir etkisi olduğunu bulduk, raporu o şekilde farklı bir açıdan kurduk."
+    ],
+    "partial": [
+      "Verinin ne söylediğini grafiklerle gösteririm, gerisi yöneticinin kararı.",
+      "Önce neden bunu istediğini anlamaya çalışırım, sonra elimdeki rakamlarla neyin mümkün olduğunu açıkça gösteririm."
+    ],
+    "wrong": [
+      "Bilmiyorum, ne derse onu yaparım herhalde.",
+      "Yönetici o, ne isterse o olur; raporu onun istediği gibi hazırlarım.",
+      "Yönetici istiyorsa veriyi biraz düzenleyip sonucu destekleyecek şekilde gösteririm, sonuçta onun raporu."
+    ]
+  },
+  "İyi bir dashboard nasıl tasarlanır?": {
+    "good": [
+      "İlk soru bu ekranı kimin, hangi karar için açacağı. Yöneticiye beş-altı ana göstergeyi koyarım, kalabalık yapmam. Zaman içindeki değişim için çizgi, kategoriler arası kıyas için çubuk grafik kullanırım ve her rakamın yanına geçen ay ile hedefi koyarım.",
+      "Dashboard'u önce audience'a göre tasarlarım, CEO ile operasyon ekibi aynı şeyi görmek istemez. Önemli 4-5 KPI ile sınırlarım, gerisi drill-down'a gider. Trend için line chart, kıyas için bar chart; her KPI'ın yanında target ve önceki dönem değeri olur.",
+      "Bir kere 40 grafikli bir rapor devraldım, kimse açmıyordu. Kullanıcılarla konuşup gerçekten baktıkları üç metriği bulduk, ekranı onlara odakladık. Her metriğin yanına geçen haftayla karşılaştırma ekledik, kullanım iki katına çıktı."
+    ],
+    "partial": [
+      "Doğru grafik türünü seçmek önemli, trend için çizgi grafik kullanırım.",
+      "Dashboard'u kullanacak kişiyi düşünür, ona gereken grafikleri koyarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, Excel'de tablo yapıyorum genelde.",
+      "Renkli ve göz alıcı olsun, ne kadar çok bilgi koyarsak o kadar iyi.",
+      "Ne kadar çok metrik koyarsak o kadar iyi; her şeyi tek ekrana sığdırırım, pasta grafiği her durumda en iyi seçimdir."
+    ]
+  },
+  "Star schema (yıldız şema) nedir?": {
+    "good": [
+      "Ortada satış gibi ölçülebilir olayları tutan bir olgu tablosu olur. Etrafında müşteri, ürün, tarih gibi onu açıklayan boyut tabloları dizilir, şekli yıldıza benzer. Az join'le raporlama sorguları hızlı çalışır.",
+      "Merkezde fact table, etrafında dimension'lar. Fact'te foreign key'ler ve amount, quantity gibi measure'lar durur; dimension'larda customer, product, date bilgileri. Denormalize olduğu için BI sorguları performanslı çalışır.",
+      "Bir e-ticaret DWH'ında siparişleri ortadaki bir olay tablosunda tuttuk, ürün ve müşteri gibi açıklayıcı bilgileri ayrı boyut tablolarına koyduk, hepsi merkeze tek join'le bağlanıyordu. Power BI'da raporlar eskisine göre çok hızlı açılmaya başladı."
+    ],
+    "partial": [
+      "Ortada bir fact tablosu olan bir veri ambarı modeli.",
+      "Ortada fact tablosu, etrafında dimension tabloları olan bir model."
+    ],
+    "wrong": [
+      "Hiç duymadım, bir tür grafik mi?",
+      "Verileri yıldız şeklinde göstermeye yarayan bir yöntem bence.",
+      "Star schema tüm verilerin tek bir büyük tabloda tutulduğu, hiç join gerektirmeyen modeldir; normalize edilmiş en hızlı yapı budur."
+    ]
+  },
+  "İki farklı rapordaki ciro rakamı birbirini tutmuyor. Nasıl incelersin?": {
+    "good": [
+      "İlk olarak iki raporda cironun nasıl hesaplandığına bakarım: iadeler düşülmüş mü, KDV dahil mi. Tarih aralığı ve filtreler aynı mı, biri UTC biri yerel saatle mi çalışıyor kontrol ederim. Hangi tablodan beslendiklerini izlerim; sonunda tanımı bir metrik sözlüğüne yazıp herkesi oraya bağlarım.",
+      "İki query'yi yan yana açıp definition farkı var mı bakarım; biri net, biri gross olabilir, return'ler, tax dahil olabilir. Date filter'ları, timezone farkı sık çıkan bir sorun. Source tabloları farklıysa ETL'e kadar takip ederim.",
+      "Geçen sene finans ile satışın cirosu %4 farklı çıkıyordu. Baktık ki biri iptal ve iadeleri düşmüyor, diğeri siparişi teslim tarihine göre sayıyormuş. İkisi de aynı ERP tablosundan geliyordu ama hesap farklıydı; ortak bir standart tanım yazıp sorunu kapattık."
+    ],
+    "partial": [
+      "Raporların hangi tablolardan veri çektiğine bakarım.",
+      "Önce ciro tanımları aynı mı bakarım, sonra tarih filtrelerini kontrol ederim."
+    ],
+    "wrong": [
+      "Bilmiyorum, IT'ye sorarım.",
+      "Muhtemelen biri yanlış yazmıştır, büyük olan rakamı doğru kabul ederim.",
+      "Farkın nedeni önemli değil, iki rakamın ortalamasını alıp raporlara onu yazarım."
+    ]
+  },
+  "Şirketin farklı birimleri aynı metrik için farklı rakamlar raporluyor. Tek bir doğru kaynak nasıl kurarsın?": {
+    "good": [
+      "Önce her birimin bu metriği nasıl hesapladığını çıkarırım. İlgili paydaşları toplayıp tek bir tanımda uzlaşırız ve bunu metrik sözlüğüne yazarız. Her metriğin bir iş sahibi olur; hesaplama da raporlarda değil, ortak bir semantik katmanda yapılır. Otomatik testlerle rakamları sürekli kontrol ederim.",
+      "Metric definition'larını bir data catalog'da tek yerde topluyoruz, her metric'in bir owner'ı var. Hesaplamayı dbt'de merkezi bir semantic layer'a taşıyoruz, BI tool'ları sadece oradan okuyor. Data quality test'leri ve alert'ler ile drift olursa hemen görüyoruz. İlgili ekiplerin lead'leriyle workshop yapıp tanımlarda mutabık kalıyoruz.",
+      "Önceki şirketimde 'aktif müşteri' için üç ayrı rakam dolaşıyordu. Satış, pazarlama ve finansı aynı masaya oturtup ortak bir tanım çıkardık, her metriğe bir sahip atadık. Hesabı tek bir merkezi modelde topladık, değişiklik olursa haber veren kontroller kurduk."
+    ],
+    "partial": [
+      "Herkesin aynı tanımı kullanması için ortak bir metrik sözlüğü hazırlarım.",
+      "Ortak bir tanım belirleyip her metriğe bir sahip atarım, bunu da düzenli olarak kontrol ederim."
+    ],
+    "wrong": [
+      "Emin değilim, bu daha çok IT'nin işi.",
+      "Herkes kendi rakamını kullanabilir, önemli olan trendin aynı yönde olması.",
+      "En büyük birimin rakamını doğru kabul eder, diğerlerinin raporlarını kapatırım; tartışmaya gerek yok."
+    ]
+  },
+  "Overfitting (aşırı öğrenme) nedir, nasıl önlersin?": {
+    "good": [
+      "Model eğitim setini ezberler, yeni gördüğü veride performansı çöker. Bunu eğitim ve doğrulama hatası arasındaki farktan anlarım, k-fold cross-validation kullanırım. Önlemek için L2 regularization, dropout, erken durdurma ya da daha basit bir model ve daha fazla veri kullanırım.",
+      "Training accuracy %99, test accuracy %70 ise overfit etmiştir; model noise'u öğrenmiştir. Validation set ile izlerim. Regularization, early stopping, feature sayısını azaltma ve data augmentation ile çözerim.",
+      "Öğrenciye benziyor: soruları ezberleyen sınavda aynı soru gelince tam yapar, farklı soru gelince kalır. Model de eğitim verisine fazla uyunca böyle olur. Ben ayrı bir doğrulama setiyle kontrol eder, modeli sadeleştirir, ağaç derinliğini kısıtlar, mümkünse daha çok veri toplarım."
+    ],
+    "partial": [
+      "Modelin eğitim verisini ezberleyip yeni veride kötü sonuç vermesidir.",
+      "Overfitting'i önlemek için dropout ve L2 regularization kullanırım."
+    ],
+    "wrong": [
+      "Bilmiyorum, makine öğrenmesine yeni başladım.",
+      "Modelin çok iyi çalışması demek, genelde sorun değildir.",
+      "Overfitting modelin yeterince öğrenememesidir; çözmek için modeli daha da karmaşık yapıp epoch sayısını artırırım."
+    ]
+  },
+  "Precision ve recall arasındaki farkı bir örnekle açıklar mısın?": {
+    "good": [
+      "Precision, pozitif diye işaretlediklerimizin ne kadarının gerçekten pozitif olduğu. Recall ise gerçek pozitiflerin ne kadarını yakalayabildiğimiz. Spam filtresinde önemli bir maili kaçırmamak için precision'ı, kanser taramasında hastayı kaçırmamak için recall'u öne alırız; eşiği oynatarak ikisi arasında denge kurarız.",
+      "Precision = TP/(TP+FP), recall = TP/(TP+FN). Fraud detection'da recall'u yüksek tutmak isteriz ama false positive artınca müşteriler kızar; threshold ile bu trade-off'u ayarlarız.",
+      "Diyelim bir balıkçı ağı attın. Ağdan çıkanların ne kadarı gerçekten istediğin balık, o kesinlik. Göldeki o balıkların ne kadarını yakaladın, o da duyarlılık. Ağı büyütürsen daha çok yakalarsın ama çöp de artar."
+    ],
+    "partial": [
+      "Precision, modelin pozitif dediklerinin ne kadarının doğru olduğunu gösterir.",
+      "Precision doğru pozitiflerin oranı, recall ise yakalanan gerçek pozitiflerin oranı."
+    ],
+    "wrong": [
+      "Bunları karıştırıyorum, emin değilim.",
+      "İkisi de modelin ne kadar iyi olduğunu gösterir, accuracy gibi.",
+      "Recall, pozitif dediklerimizin ne kadarının doğru olduğudur; precision ise gerçek pozitiflerin ne kadarını yakaladığımız. İkisi birlikte artar, aralarında bir ödünleşim yoktur."
+    ]
+  },
+  "Bir müşteri kaybı (churn) modeli geliştireceksin. Adımların neler?": {
+    "good": [
+      "Önce churn'ü tanımlarım, örneğin 30 gün hiç giriş yapmamak. Giriş sıklığı, son siparişten geçen gün, destek talepleri gibi özellikler çıkarırım. Gradient boosting gibi bir modeli AUC ve recall ile değerlendiririm. En önemlisi, riskli müşterilere özel teklif gibi somut bir aksiyon bağlamak.",
+      "Target'ı netleştiririm: hangi davranış churn sayılıyor. Feature engineering'de usage, payment, support datasını kullanırım. Train/test split, AUC ve lift ile ölçüm yaparım. Çıktıyı CRM ekibine verip retention kampanyalarında kullanırız.",
+      "Geçen yıl bir telekom projesinde ilk iki hafta sadece 'kaybedilen müşteri' tanımını tartıştık, çünkü yanlış hedefle iyi model işe yaramaz. Sonra fatura gecikmesi, şikâyet sayısı gibi sinyalleri hazırladık. Skoru en yüksek müşterileri her hafta müşteri ekibine liste olarak verdik, onlar arayıp indirim önerdi."
+    ],
+    "partial": [
+      "Önce churn'ün tanımını netleştiririm, kimi kaybedilmiş sayacağımıza karar veririm.",
+      "Kullanıcı davranışlarından özellikler çıkarıp bir sınıflandırma modeli kurarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, hiç yapmadım böyle bir şey.",
+      "Müşterileri arayıp neden ayrıldıklarını sorarım, en iyisi bu.",
+      "Accuracy %95 ise model mükemmeldir, başka metriğe bakmaya gerek yok; churn oranı zaten düşük olduğu için herkesi kalacak diye tahmin etmek de yeterli."
+    ]
+  },
+  "İş birimine bir makine öğrenmesi projesinin değerini nasıl kanıtlar ve projeleri nasıl önceliklendirirsin?": {
+    "good": [
+      "Her projeyi gelir artışı ya da maliyet düşüşü gibi somut bir hedefe bağlarım. Önce basit bir kural tabanlı çözümle başlarım ki modelin ne kadar fark yarattığı ölçülebilsin. Etkiyi A/B testiyle kanıtlarım. Projeleri beklenen getiri ve eforlarına göre sıralarım, yanlılık riski olanlara ekstra kontrol koyarım.",
+      "Business KPI'ı baştan konuşurum: churn mü düşecek, cost mu azalacak. Heuristic bir baseline ile kıyaslarım, sonra controlled experiment yaparım. ROI'si yüksek, effort'u düşük projeleri öne alırım; model bias'ı ve regülasyon risk'ini de önceliklendirmede hesaba katarım.",
+      "Bir perakende şirketinde talep tahmini projesini satmak için önce mevcut Excel yöntemini baseline aldık. Pilot mağazalarda deney yaptık, stok maliyetinde %12 düşüş gösterdik. Sonra diğer projeleri de aynı mantıkla, hangisi en hızlı değer üretiyorsa ona göre sıraladık."
+    ],
+    "partial": [
+      "Projenin değerini göstermek için sonuçlarını bir A/B testiyle ölçerim.",
+      "Projeleri gelire etkisine göre sıralarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, yöneticiler zaten yapay zekâya inanıyor.",
+      "Modelin doğruluğu yüksekse iş birimi ikna olur, başka bir şeye gerek yok.",
+      "Değeri kanıtlamak için en karmaşık derin öğrenme modelini kurarım; ne kadar karmaşık olursa o kadar değerlidir, basit yöntemlerle kıyaslamak zaman kaybı."
+    ]
+  },
+  "En sevdiğin uygulamayı seç. Onu nasıl geliştirirsin?": {
+    "good": [
+      "Spotify'ı seçiyorum. Ana hedef kitlem işe giderken podcast dinleyen kullanıcılar olsun. Onların sorunu, yarım kalan bölümleri farklı cihazlarda bulmakta zorlanmaları. Buna 'kaldığın yerden devam' kartı gibi bir özellik öneririm ve başarıyı bölüm tamamlama oranıyla ölçerim.",
+      "Duolingo'yu alayım. Target persona: sabah 10 dakika çalışmak isteyen yoğun çalışanlar. Pain point'leri streak kaybettiklerinde motivasyonlarının düşmesi. Streak freeze'i otomatik öneren bir feature eklerim, success metric olarak D30 retention'a bakarım.",
+      "Ben Getir'i çok kullanıyorum. Benim gibi akşam geç saatte sipariş verenler için sorun şu: ürün tükenmiş oluyor ve sonradan haber veriyorlar. Sepete eklerken stok durumunu gösteren bir çözüm yapardım, iptal oranının düşüp düşmediğine bakardım."
+    ],
+    "partial": [
+      "Instagram'ı seçerim ve daha çok özellik eklerim, mesela yeni filtreler öneririm.",
+      "WhatsApp'ı seçerim; kullanıcıların en büyük sorunu eski mesajları aramanın zor olması."
+    ],
+    "wrong": [
+      "Pek uygulama kullanmıyorum, bir şey diyemem.",
+      "Rengini değiştirirdim, daha güzel olurdu.",
+      "Kullanıcıya hiç sormadan aklıma gelen tüm özellikleri eklerim; ölçmeye gerek yok, ne kadar çok özellik o kadar iyi."
+    ]
+  },
+  "Bir özellik listesini nasıl önceliklendirirsin?": {
+    "good": [
+      "RICE gibi bir çerçeveyle her özelliğin erişimini, etkisini, güven düzeyini ve eforunu puanlarım. Bunu şirketin o çeyrekteki hedefiyle eşleştiririm. Puanları kullanıcı görüşmeleri ve kullanım verisiyle beslerim, hissiyatla değil.",
+      "Impact/effort matrisine koyarım, quick win'ler öne çıkar. Hepsini bu quarter'ın OKR'larına map ederim. Customer feedback ve analytics data ile impact tahminini desteklerim.",
+      "Bir startup'ta 30 maddelik backlog'umuz vardı. MoSCoW ile 'olmazsa olmaz'ları ayırdık, kalanları müşteri şikâyetlerinin sıklığına göre dizdik. Hepsini yılın büyüme stratejisine bakarak kestik."
+    ],
+    "partial": [
+      "Her özelliğin etkisine ve eforuna bakarak sıralarım.",
+      "Kullanıcı geri bildirimlerine bakar, şirket hedefine en çok katkı sağlayanı öne alırım."
+    ],
+    "wrong": [
+      "Bilmiyorum, sırayla yaparım.",
+      "En kolay olanları önce yaparım, gerisi zamanla gelir.",
+      "Önceliği en yüksek sesle isteyen yönetici belirler; en kıdemli kişinin istediği özellik her zaman ilk sıraya girer."
+    ]
+  },
+  "Bir yemek siparişi uygulamasının başarısını hangi metriklerle ölçersin?": {
+    "good": [
+      "Kuzey yıldızı metriğim haftalık tamamlanan sipariş sayısı olur. Yanında yeni kullanıcı kazanımı ve ilk siparişe dönüşüm, kullanıcıların tekrar sipariş verme oranı, ortalama sepet tutarına bakarım. Bunları büyütürken teslim süresi ve iptal oranı kötüleşiyor mu diye izlerim.",
+      "North star olarak weekly orders derim. Acquisition için CAC ve install sayısı, retention için D7/D30 cohort'ları, monetization için AOV. Guardrail olarak delivery time ve NPS.",
+      "Ben müşterinin gözünden bakarım: uygulamayı indirip ilk siparişi veriyor mu, memnun kalıp ertesi hafta tekrar sipariş veriyor mu. Yemeği soğuk gelirse ya da 50 dakika beklerse gelmiyor, o yüzden şikâyet ve teslimat süresi kritik. Şirket tarafında da sipariş başına kazanç önemli."
+    ],
+    "partial": [
+      "Günlük sipariş sayısına bakarım, ana metrik bu.",
+      "Yeni kullanıcı sayısına, tekrar sipariş oranına ve sepet tutarına bakarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, indirme sayısı yeterli herhalde.",
+      "Uygulama ne kadar popülerse o kadar başarılıdır.",
+      "Tek bakmam gereken metrik indirme sayısıdır; indirme artıyorsa uygulama başarılıdır, teslim süresi ve iptaller önemli değil."
+    ]
+  },
+  "Şirket yeni bir pazara (örneğin Almanya) açılmak istiyor. Nasıl karar verirsin?": {
+    "good": [
+      "Önce Almanya'daki pazarın büyüklüğünü ve büyüme hızını hesaplarım. Orada kimlerle rekabet edeceğimize, rakiplerin fiyatlarına bakarım. Dil, ödeme alışkanlıkları ve GDPR gibi yasal gereklilikleri çıkarırım. Büyük yatırım yerine tek bir şehirde pilot yapıp sonuçlara göre karar veririm.",
+      "TAM/SAM/SOM ile market size'ı çıkarırım. Competitor landscape'e bakarım, local player'lar ne kadar güçlü. Localization ve compliance maliyetini hesaplarım, sonra küçük bir MVP ile Berlin'de test ederim.",
+      "Bir önceki şirketimde Hollanda'ya açılırken acele ettik ve hata yaptık: Felemenkçe destek yoktu, müşteriler güvenmedi. Şimdi olsa önce oradaki talebi ve kaç potansiyel müşteri olduğunu araştırır, yerli rakipleri incelerdim, küçük bir deneme ile başlardım."
+    ],
+    "partial": [
+      "Almanya pazarının ne kadar büyük olduğuna bakarım.",
+      "Rakipleri incelerim ve küçük bir pilotla başlarım."
+    ],
+    "wrong": [
+      "Almanya güzel bir ülke, bence gidelim.",
+      "Yöneticiler istiyorsa açılırız, sonra görürüz.",
+      "Türkiye'de tutan ürün Almanya'da da aynen tutar; yerelleştirmeye ya da pilot yapmaya gerek yok, doğrudan tüm ülkeye açılırız."
+    ]
+  },
+  "İyi bir user story nasıl yazılır?": {
+    "good": [
+      "Klasik kalıbı kullanırım: 'Bir müşteri olarak siparişimi takip etmek istiyorum, böylece ne zaman geleceğini bilirim.' Altına test edilebilir kabul kriterleri yazarım. Story bir sprintte bitecek kadar küçük ve diğerlerinden bağımsız olmalı. En önemlisi kullanıcıya hangi değeri sağladığı açık olmalı.",
+      "As a ... I want ... so that formatını kullanırım. Acceptance criteria'yı Given/When/Then ile yazarım. INVEST prensibine uyarım: independent, small, testable. Story'nin business value'su net olmalı.",
+      "Ben story yazarken kendimi kullanıcının yerine koyuyorum: kim, ne istiyor, ona ne kazandıracak. Mesela 'öğretmen olarak ödevleri toplu notlandırmak istiyorum ki zaman kazanayım'. Ne zaman bitmiş sayacağımızı madde madde yazıyorum ve story'yi iki-üç günde bitecek boyutta tutuyorum."
+    ],
+    "partial": [
+      "'Kullanıcı olarak şunu istiyorum, böylece şu olur' kalıbıyla yazılır.",
+      "Kullanıcı olarak ... istiyorum formatında yazar, altına kabul kriterleri eklerim."
+    ],
+    "wrong": [
+      "User story nedir tam bilmiyorum.",
+      "Yazılımcıya ne yapması gerektiğini detaylıca anlatan bir metin.",
+      "User story teknik bir görev listesidir; veritabanı tablosu ve API detaylarını yazarız, kabul kriterine gerek yoktur çünkü geliştirici zaten bilir."
+    ]
+  },
+  "Scrum’daki toplantıları ve amaçlarını anlatır mısın?": {
+    "good": [
+      "Sprint başında planlama toplantısında hangi işleri alacağımıza ve sprint hedefine karar veririz. Her gün 15 dakikalık günlük toplantıda engelleri konuşuruz. Sprint sonunda review'da yapılanı paydaşlara demo ederiz, retrospektifte de süreci nasıl iyileştireceğimizi tartışırız.",
+      "Sprint planning, daily stand-up, sprint review ve retro. Planning'de backlog'dan commit ettiğimiz item'ları seçeriz, daily'de sync oluruz, review'da increment'i gösteririz, retro'da 'ne iyi gitti, ne kötü' konuşuruz.",
+      "Bizim ekipte iki haftalık sprint var. Pazartesi sabahı oturup iki haftada neler yapacağımızı planlıyoruz. Her sabah ayakta kısa bir toplantı yapıyoruz, kim neyde takıldı diye. Sprint bitince ürün sahibine çalışan özellikleri gösteriyoruz, sonra kendi aramızda nasıl daha iyi çalışırız diye geriye dönük bir değerlendirme yapıyoruz."
+    ],
+    "partial": [
+      "Her gün daily toplantı yapılır, herkes ne yaptığını anlatır.",
+      "Sprint planlama ve retrospektif toplantıları var; birinde işleri seçeriz, diğerinde süreci değerlendiririz."
+    ],
+    "wrong": [
+      "Scrum'ı hiç kullanmadım, bilmiyorum.",
+      "Bol bol toplantı yapılır, herkes durum anlatır.",
+      "Scrum'da sadece haftalık bir toplantı vardır, yönetici herkesin performansını değerlendirir; retrospektif ise müşteriye demo yapılan toplantıdır."
+    ]
+  },
+  "Sprint ortasında acil bir talep geldi. Ne yaparsın?": {
+    "good": [
+      "Önce talebin gerçekten ne kadar kritik olduğunu ve etkisini anlamaya çalışırım. Gerçekten kritikse ekiple konuşur, sprintten eşdeğer büyüklükte bir işi çıkarıp yerine bunu alırız. Kararı ve neyin erteleneceğini ilgili paydaşlara açıkça bildiririm.",
+      "Product owner olarak urgency'yi sorgularım, bug mı, müşteri mi kaybediyoruz. Gerçekten P1 ise scope swap yaparız: aynı story point'lik bir item'ı çıkarırız. Team ile hızlıca sync olurum, stakeholder'lara güncel sprint planını iletirim.",
+      "Bizde bu çok oluyordu. Talep gelince 'bunu şu an yapmazsak ne kaybederiz' diye sorardım. Cevap ciddiyse geliştiricilerle oturur, hangi işi bir sonraki sprinte atabileceğimize birlikte karar verirdik. Sonra talep sahibine ve diğer ilgililere neyin kaydığını yazılı olarak haber verirdim."
+    ],
+    "partial": [
+      "Talebin aciliyetini ve etkisini değerlendiririm.",
+      "Önce ekiple konuşurum, sonra paydaşları bilgilendiririm."
+    ],
+    "wrong": [
+      "Bilmiyorum, yöneticime sorarım.",
+      "Gelen her işi yaparım, sorun çıkarmam.",
+      "Acil talep geldiyse sprinti hiç değiştirmeden ekibe ek iş olarak veririm, herkes fazla mesai yapar; kimseye haber vermeye gerek yok."
+    ]
+  },
+  "Birden fazla takımın aynı ürün üzerinde çalıştığı bir yapıda bağımlılıkları ve öncelikleri nasıl yönetirsin?": {
+    "good": [
+      "Önce tüm takımların bağlı olduğu ortak hedefleri ve yol haritasını netleştiririm. Bağımlılıkları bir panoda görünür hale getiririm. Çeyrek başında ortak planlama oturumu yaparız, herkes kendi planını diğerleriyle eşleştirir. Haftalık scrum of scrums ile engelleri erken yakalarız.",
+      "Company-level OKR'ları takımlara indiririz. Dependency map'i Jira'da tutarız. PI planning benzeri bir big room planning yaparız ve tek bir prioritized backlog üzerinden gideriz. Lead'lerle haftalık sync toplantısı.",
+      "Üç takımın aynı uygulamaya dokunduğu bir projede herkes kendi önceliğini en önemli sanıyordu. Çeyrek başında tüm takımları aynı odada bir planlama oturumuna aldık, hepsini tek bir öncelik listesinde topladık. Kimin kimi beklediğini gösteren bir tablo yaptık ve her salı liderlerle yarım saatlik senkron toplantısı koyduk."
+    ],
+    "partial": [
+      "Bağımlılıkları herkesin görebileceği bir panoda takip ederim.",
+      "Ortak hedefleri netleştirir, bağımlılıkları görünür kılar, haftalık senkron toplantısı yaparım."
+    ],
+    "wrong": [
+      "Bilmiyorum, her takım kendi işine bakar.",
+      "Takımlar birbirleriyle anlaşır, ben çok karışmam.",
+      "Her takımın kendi öncelik listesi olmalı, takımlar arası ortak plan zaman kaybıdır; bağımlılık çıkarsa takımlar kendi aralarında çözer."
+    ]
+  },
+  "Kullanıcı araştırması yöntemlerinden bildiklerini anlatır mısın?": {
+    "good": [
+      "Nitel tarafta birebir kullanıcı görüşmeleri ve prototip üzerinde kullanılabilirlik testleri yaparım. Nicel tarafta geniş kitleye anket gönderirim. Ürün içindeki davranışı da analitik araçlar ve ısı haritalarıyla izlerim.",
+      "User interview, usability testing, survey ve product analytics. Bir de A/B test ve card sorting var. Interview 'neden'i anlamak, analytics 'ne oluyor'u görmek için.",
+      "Geçen projede önce beş kullanıcıyla oturup sohbet ettik, nasıl alışveriş yaptıklarını anlattılar. Sonra prototipi ellerine verip görevleri yapmalarını izledik, nerede takıldıklarını not aldık. Yüzlerce kişiye de kısa bir anket attık, Hotjar'daki oturum kayıtlarına baktık."
+    ],
+    "partial": [
+      "Kullanıcılara anket gönderip fikirlerini sorarım.",
+      "Kullanıcılarla birebir görüşme yapar, bir de anket gönderirim."
+    ],
+    "wrong": [
+      "Bilmiyorum, araştırmayı genelde başkası yapıyor.",
+      "Kullanıcılar ne istediğini bilmez, ben kendi tecrübeme güvenirim.",
+      "Tek yöntem odak grubudur; beş kişiye ne istediklerini sorarsın, söyledikleri her şeyi aynen yaparsın, test etmeye gerek kalmaz."
+    ]
+  },
+  "Bir tasarım kararını ikna olmayan bir paydaşa nasıl savunursun?": {
+    "good": [
+      "Kendi zevkimi değil, kullanıcı araştırmasında gördüklerimizi anlatırım. Kararın hangi iş hedefine hizmet ettiğini, hangi metriği iyileştirmesini beklediğimizi gösteririm. Değerlendirdiğimiz diğer seçenekleri neden elediğimizi açıklarım. Hâlâ ikna olmazsa küçük bir A/B testiyle karar verelim derim.",
+      "Önce stakeholder'ın concern'ünü dinlerim. Usability testlerinden quote'lar ve data gösteririm. Conversion'a etkisini anlatırım, alternatif mockup'ları da masaya koyarım.",
+      "Bir keresinde pazarlama müdürü butonun kırmızı olmasını istiyordu. Ona görüşmelerde kullanıcıların kırmızıyı hata sandığını anlattım, iki versiyonu yan yana koydum ve bir hafta canlıda deneyelim dedim. Sonuçta yeşil buton satın almayı %8 artırdı."
+    ],
+    "partial": [
+      "Kararımı kullanıcı araştırmasından gelen bulgularla desteklerim.",
+      "Kullanıcı verilerini gösterir, gerekirse bir A/B testi öneririm."
+    ],
+    "wrong": [
+      "Bilmiyorum, ikna olmazsa olmasın.",
+      "Ben tasarımcıyım, en iyisini ben bilirim; tartışmaya açmam.",
+      "Paydaş ikna olmuyorsa kararımı savunmam, ne derse onu yaparım; test etmeye ya da kullanıcı verisine bakmaya gerek yok."
+    ]
+  },
+  "Bir uygulamanın kayıt akışında terk oranı yüksek. Nasıl iyileştirirsin?": {
+    "good": [
+      "Önce huni analizi yapıp kullanıcıların hangi adımda en çok çıktığını bulurum. Gereksiz alanları kaldırıp formu kısaltırım, Google veya Apple ile sosyal giriş eklerim. Birkaç kullanıcıyı kayıt olurken gözlemleyip nerede zorlandıklarını izlerim. Her değişiklikten sonra tamamlama oranını ölçerim.",
+      "Funnel'a bakıp drop-off'un en yüksek olduğu step'i bulurum. Field sayısını azaltır, SSO eklerim, e-posta doğrulamayı sonraya atarım. Session recording ve usability test ile kullanıcıları izlerim; conversion rate'i A/B test ile takip ederim.",
+      "Kendi uygulamamızda kayıt 7 ekrandı, insanlar 4. ekranda, telefon doğrulamada bırakıyordu. O adımı ilk siparişe kadar erteledik ve ekran sayısını 3'e indirdik. Beş kullanıcıyla deneme yaptık, sonrasında kayıt tamamlama %38'den %61'e çıktı."
+    ],
+    "partial": [
+      "Kayıt formundaki alan sayısını azaltırım.",
+      "Hangi adımda kullanıcı kaybettiğimize bakar, o adımı kısaltırım."
+    ],
+    "wrong": [
+      "Bilmiyorum, kullanıcılar sabırsız sanırım.",
+      "Uygulamanın rengini ve logosunu değiştiririm, daha çekici olur.",
+      "Terk oranını düşürmek için kayıt formuna daha çok zorunlu alan eklerim; kullanıcıyı tanıdıkça bağlılık artar, ölçmeye gerek yok."
+    ]
+  },
+  "Tasarım sistemi olmayan, hızla büyüyen bir üründe tasarım tutarlılığını nasıl sağlarsın?": {
+    "good": [
+      "Önce üründeki tüm buton, renk ve form örneklerinin envanterini çıkarırım, kaç farklı varyant olduğunu görürüz. En çok kullanılanlardan ortak bir bileşen kütüphanesi kurarım. Renk, boşluk, tipografi için tasarım token'ları tanımlarım. Geliştiricilerle birlikte çalışıp ekiplerin benimsemesi için eğitim veririm; kimin nasıl katkı yapacağını ve sürümlemeyi de bir yönetişim süreciyle belirlerim.",
+      "UI audit ile başlarım. Figma'da component library ve design token'lar oluştururum, Storybook'ta kodla eşlerim. Developer'larla pairing yaparak adoption'ı artırırım. Contribution model ve versioning ile sistemi canlı tutarım.",
+      "Önceki işimde 14 farklı mavi kullandığımızı fark ettik; tüm ekranların bir denetimini yapıp hepsini bir duvarda topladık. Sonra en sık kullanılan 20 parçayı ortak bir bileşen kütüphanesine aldık, renkleri isimli değişkenlere bağladık. Yazılımcıların kolay kullanması için dokümantasyon ve kısa eğitimler hazırladık, yeni parça ekleme için de bir katkı kuralı belirledik."
+    ],
+    "partial": [
+      "Ortak bir bileşen kütüphanesi kurarım, herkes oradan kullanır.",
+      "Mevcut ekranların envanterini çıkarır, bir bileşen kütüphanesi kurar, renkler için token tanımlarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, her tasarımcı kendi bildiği gibi yapsın.",
+      "Daha çok tasarımcı işe alırım, tutarlılık kendiliğinden gelir.",
+      "Tasarım sistemi büyük şirketlere göredir; hızlı büyürken her ekip kendi bileşenlerini yapmalı, tutarlılık sonra düşünülür."
+    ]
+  },
+  "Bir dijital kampanyanın başarısını hangi metriklerle ölçersin?": {
+    "good": [
+      "Önce kampanyanın amacına bakarım: farkındalık mı, satış mı. Satış odaklıysa dönüşüm oranı, dönüşüm başına maliyet ve ROAS ana metriklerim olur. Farkındalıkta erişim ve frekansa bakarım.",
+      "Funnel'a göre: awareness'ta reach ve CPM, consideration'da CTR, conversion'da CPA ve ROAS. Hepsini campaign objective'e göre seçerim.",
+      "Geçen yıl bir e-ticaret kampanyasında sadece tıklamaya bakıyorduk, bol tıklama vardı ama satış yoktu. Sonra her satışın bize kaça geldiğini ve harcadığımız her liranın kaç lira ciro getirdiğini izlemeye başladık. Hedefimiz netleşince bütçeyi doğru reklamlara kaydırdık."
+    ],
+    "partial": [
+      "Tıklama başına maliyete, yani CPC'ye bakarım.",
+      "Dönüşüm oranına ve ROAS'a bakarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, beğeni sayısına bakarım herhalde.",
+      "Kampanya çok kişiye ulaştıysa başarılıdır.",
+      "Tek önemli metrik beğeni ve takipçi sayısıdır; ROAS ve dönüşüm sadece büyük markalar için anlamlıdır."
+    ]
+  },
+  "50.000 TL bütçeyle yeni bir kahve markasını nasıl tanıtırsın?": {
+    "good": [
+      "Önce hedef kitleyi netleştiririm: 20-35 yaş, şehirde yaşayan, üçüncü dalga kahve seven gençler. Bu kitle için Instagram ve TikTok ana kanallar olur, birkaç mikro influencer ile çalışırım. Bütçenin %40'ını reklama, %30'unu influencer'a, kalanını numune dağıtımına ayırırım. Her kanalı kod ve linklerle ölçer, iyi gideni büyütürüm.",
+      "Target audience'ı tanımlayıp 2 persona çıkarırım. Paid social, özellikle Reels ve TikTok, plus micro-influencer seeding. Budget split: 25K paid, 15K creator, 10K sampling. CAC ve engagement'ı track ederim, haftalık test yaparım.",
+      "Ben olsam ofis çalışanlarını hedeflerdim. Plazaların yanındaki kafelerde tadım standı kurar, insanlar fotoğraf paylaşırsa bedava kahve verirdim. Parayı üçe bölüp dağıtırdım: tadım, sosyal medya reklamı, yerel fenomenler. Hangi şubede satışın arttığına bakıp ona göre devam ederdim."
+    ],
+    "partial": [
+      "Instagram'da reklam veririm, kahve fotoğrafları paylaşırım.",
+      "Hedef kitleyi belirler, onlara Instagram'da ulaşırım."
+    ],
+    "wrong": [
+      "Bilmiyorum, 50 bin az bir para.",
+      "Güzel bir logo yaparım, gerisi gelir.",
+      "Bütçenin tamamını tek bir ünlüye veririm; ünlü paylaşınca herkes alır, ölçmeye gerek yok."
+    ]
+  },
+  "Kampanyanın ROAS değeri iki haftada yarıya düştü. Ne yaparsın?": {
+    "good": [
+      "Önce düşüşün hangi kanal, kampanya ve reklam setinde olduğunu kırılımlarla bulurum. Aynı kreatifler uzun süredir dönüyorsa frekans artmış, kitle yorulmuş olabilir; yeni kreatif denerim. Hedefleme ayarlarında bir değişiklik var mı bakarım. Ayrıca pixel ve dönüşüm takibinin bozulmadığını kontrol ederim.",
+      "Ad set ve creative bazında breakdown alırım. Frequency 4'ü geçtiyse creative fatigue vardır. Audience overlap ve targeting değişikliklerine bakarım; iOS güncellemesi sonrası tracking ve attribution kaybı da olabilir.",
+      "Bunu yaşadım: iki haftada ROAS 4'ten 2'ye indi. Önce kampanyaları tek tek açıp hangi reklam setinde düştüğüne baktık. Gördük ki aynı videoyu insanlar 6-7 kere görmüş, sıkılmışlar. Ayrıca site güncellemesinde satın alma kodu kopmuş, satışların yarısı takip edilmiyormuş. Videoyu yeniledik, kodu düzelttik, rakam toparlandı."
+    ],
+    "partial": [
+      "Kreatiflerin eskiyip eskimediğine, frekansın artıp artmadığına bakarım.",
+      "Hedefleme ayarlarını kontrol ederim."
+    ],
+    "wrong": [
+      "Bilmiyorum, reklam ajansına sorarım.",
+      "Bütçeyi iki katına çıkarırım, ROAS kendiliğinden düzelir.",
+      "ROAS düştüyse kampanyayı hemen tamamen kapatırım; sebebine bakmaya gerek yok, reklam artık çalışmıyor demektir."
+    ]
+  },
+  "Pazarlama bütçesini kanallar arasında nasıl dağıtırsın ve hangi kanalın gerçekten işe yaradığını nasıl ölçersin?": {
+    "good": [
+      "Önce hedefi ve ana KPI'yı belirlerim, örneğin kabul edilebilir CAC. Son tıklama atribüsyonu tek başına yanıltır, o yüzden çok kanallı bir modelle bakarım. Bir kanalın gerçekten işe yarayıp yaramadığını holdout gruplu artımlılık testleriyle ölçerim. Bütçeyi marjinal getirisi en yüksek kanala doğru kaydırırım ve müşterinin yaşam boyu değerini hesaba katarım.",
+      "Target CAC ve LTV:CAC oranını belirlerim. Last-click attribution yerine data-driven model kullanırım; asıl kanıt için geo holdout veya conversion lift test yaparım. MMM ile marginal ROAS'a bakıp bütçeyi realloc ederim.",
+      "Bir şirkette Google bize en iyi kanal diyordu çünkü son tıklamayı o alıyordu. Bir ay bazı şehirleri kontrol grubu yapıp markalı aramaları kapattık; satışlar neredeyse hiç düşmedi, demek ki o kanal satışı yaratmıyor, sadece üstleniyormuş. Parayı yeni müşteri getiren sosyal kanallara kaydırdık, hedefimiz uzun vadede değerli müşteri kazanmaktı."
+    ],
+    "partial": [
+      "Bütçeyi en düşük CAC'li kanala veririm.",
+      "Hedef KPI'yı belirler, holdout testleriyle kanalları ölçer ve bütçeyi iyi çalışana kaydırırım."
+    ],
+    "wrong": [
+      "Bilmiyorum, her kanala eşit para veririm.",
+      "Hangi kanal popülerse oraya veririm.",
+      "Son tıklama raporu kanalın gerçek etkisini kesin olarak gösterir; en çok son tıklamayı alan kanala bütçenin tamamını veririm."
+    ]
+  },
+  "Bir markanın sosyal medya içerik takvimini nasıl planlarsın?": {
+    "good": [
+      "Önce markanın hedefini ve kime konuştuğunu netleştiririm. İçeriği eğitici, ürün, topluluk gibi 3-4 temaya ayırırım. Her platform için uygun formatı ve sıklığı belirlerim, mesela Instagram'da haftada dört paylaşım. Ay sonunda erişim ve etkileşime bakıp takvimi güncellerim.",
+      "Audience ve brand goal ile başlarım. Content pillar'lar belirlerim: educational, behind the scenes, UGC. Posting cadence platforma göre değişir; Notion'da aylık bir calendar tutarım. Engagement rate ve reach'e göre optimize ederim.",
+      "Bir butik pastane için yapmıştım. Takipçilerinin çoğu genç anneydi, onlara göre tarif, mutfak arkası ve kampanya günleri diye üç başlık koyduk. Salı ve cuma Reels, her gün story. Hangi gönderinin daha çok etkileşim aldığına bakıp ayı planladık."
+    ],
+    "partial": [
+      "Her hafta belli günlerde paylaşım yaparım, haftada üç post gibi.",
+      "Hedef kitleyi belirler, içeriği birkaç temaya ayırırım."
+    ],
+    "wrong": [
+      "Bilmiyorum, aklıma geldikçe paylaşırım.",
+      "Ne kadar çok paylaşırsam o kadar iyi, günde on post atarım.",
+      "Takvim yapmaya gerek yok; her platforma aynı içeriği aynı anda atarım, ölçmek de zaman kaybı."
+    ]
+  },
+  "Bir paylaşım yanlış anlaşıldı ve tepki çekiyor. Ne yaparsın?": {
+    "good": [
+      "Hemen müdahale ederim, sessiz kalmak tepkiyi büyütür. Önce yorumları okuyup insanların neye kızdığını anlarım. Sonra samimi bir özür ve net bir açıklama yayınlarım. İç tarafta da paylaşım onay sürecini gözden geçirip bundan ders çıkarırız.",
+      "Social listening ile sentiment'i takip ederim, krizin boyutunu ölçerim. İlk bir saat içinde holding statement çıkarırım, sonra transparent bir apology post. Post-mortem yapıp approval workflow'u sıkılaştırırım.",
+      "Bir markada şaka yollu bir paylaşım bazı kesimleri kırdı. Paylaşımı kaldırıp aynı gün 'sizi kırdığımız için üzgünüz' diye yazdık, eleştirileri tek tek okuyup ne hissettiklerini anlamaya çalıştık. Sonra her paylaşımın iki kişiden geçmesi kuralını getirdik."
+    ],
+    "partial": [
+      "Hemen paylaşımı silerim.",
+      "Önce insanların neden kızdığını anlarım, sonra açık bir özür yayınlarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, bir süre bekler unutulmasını umarım.",
+      "Yorum yapanları engellerim, sorun kalmaz.",
+      "Hiçbir açıklama yapmam, özür dilemek zayıflıktır; tepki gösterenleri engeller, olayın kendi kendine sönmesini beklerim."
+    ]
+  },
+  "Bir markanın sosyal medya stratejisini sıfırdan nasıl kurarsın?": {
+    "good": [
+      "Önce hedef kitleyi ve personaları çıkarırım. Sonra 'altı ayda takipçi değil, siteye trafik' gibi ölçülebilir hedefler ve KPI'lar koyarım. Kitlenin olduğu platformları seçer, içerik sütunlarını ve marka tonunu belirlerim. Her ay sonuçları analiz edip stratejiyi iyileştiririm.",
+      "Target audience research, persona'lar. SMART goal'ler ve KPI'lar. Channel mix: LinkedIn B2B için, TikTok genç kitle için. Content pillar'lar ve brand voice. Monthly reporting ve optimization.",
+      "Bir kafe zinciri için sıfırdan kurmuştum. İlk iş hedef kitlemizi konuştuk: üniversite öğrencileri ve genç çalışanlar. Instagram ve TikTok'u ana platform seçtik, Facebook'u hiç açmadık. Esprili, samimi bir ton seçtik, ilk üç ay için mağaza ziyaretini ölçülebilir bir hedef koyduk. Her ay sonuçları analiz edip planı düzelttik."
+    ],
+    "partial": [
+      "Instagram ve TikTok gibi doğru platformları seçerim.",
+      "Hedef kitleyi belirler, uygun platformu seçer, marka tonunu netleştiririm."
+    ],
+    "wrong": [
+      "Bilmiyorum, her gün bir şeyler paylaşırım.",
+      "Bütün platformlarda hesap açarım, ne kadar çok o kadar iyi.",
+      "Strateji kurmaya gerek yok, viral olacak komik videolar çekeriz; takipçi sayısı tek ölçülebilir hedeftir."
+    ]
+  },
+  "SEO’nun teknik, içerik ve otorite (backlink) taraflarını açıklar mısın?": {
+    "good": [
+      "Teknik tarafta sitenin hızlı açılması, mobil uyum, site haritası ve sayfaların doğru indekslenmesi var. İçerikte kullanıcının arama niyetine uyan, doğru anahtar kelimeleri hedefleyen sayfalar yazarız. Otorite için güvenilir sitelerden backlink alırız. Hepsini Search Console'daki sıralama ve organik trafikle takip ederim.",
+      "Technical SEO: Core Web Vitals, crawlability, sitemap, canonical. On-page: keyword research, search intent, content quality. Off-page: kaliteli link building ve domain authority. KPI olarak organic traffic ve ranking.",
+      "Bunu bir ev gibi düşünüyorum. Teknik kısım temel: Google sitenin sayfalarını rahatça tarayabiliyor mu, sayfalar hızlı açılıyor mu. İçerik evin eşyası: insanlar ne arıyorsa ona cevap veren yazılar. Diğer sitelerin sana link vermesi de komşuların seni tavsiye etmesi gibi, otoriteni artırır. Sonra sıralamalarını izlersin."
+    ],
+    "partial": [
+      "Sitenin hızlı açılması ve site haritası olması önemlidir.",
+      "Doğru anahtar kelimelerle içerik üretir, başka sitelerden backlink alırım."
+    ],
+    "wrong": [
+      "SEO hakkında çok bilgim yok açıkçası.",
+      "Google'a para verip en üste çıkarız, olay bu.",
+      "Sayfaya aynı anahtar kelimeyi ne kadar çok tekrar edersen o kadar üst sıralara çıkarsın; backlink ise satın alınıp toplu eklenirse en hızlı otorite kazandırır."
+    ]
+  },
+  "Organik trafik aniden %30 düştü. Nasıl incelersin?": {
+    "good": [
+      "Önce o tarihlerde bir Google algoritma güncellemesi olmuş mu bakarım. Sonra teknik tarafı kontrol ederim: robots.txt, yanlışlıkla eklenmiş noindex, indekslenen sayfa sayısı. Search Console'da düşüşün hangi sayfa ve sorgularda olduğunu bulurum. Rakiplerin bizim kelimelerde öne geçip geçmediğine de bakarım.",
+      "Core update takvimini kontrol ederim. Crawl error, robots ve canonical hatalarına, site migration varsa redirect'lere bakarım. Landing page ve query bazında GSC'den breakdown alırım. Competitor'ların SERP'teki durumunu incelerim.",
+      "Bir haber sitesinde bunu yaşadık. Sabah trafik bir anda çökmüştü. Meğer yeni tema yüklenirken tüm sitede noindex açık kalmış. Ama ilk aklıma gelen Google'ın yine bir güncelleme yapıp yapmadığıydı; onu da kontrol ettik. En çok düşen sayfaları listeledik, birkaçında rakipler bizi geçmişti."
+    ],
+    "partial": [
+      "Google'ın son algoritma güncellemesine bakarım.",
+      "Robots.txt ve noindex hatası var mı kontrol eder, hangi sayfaların düştüğüne bakarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, belki insanlar artık aramıyordur.",
+      "Daha çok reklam veririm, trafik geri gelir.",
+      "Organik trafik düşüşü her zaman mevsimseldir, incelemeye gerek yok; birkaç haftaya kendiliğinden geri gelir."
+    ]
+  },
+  "Organik trafiği bir yılda iki katına çıkarmak için nasıl bir SEO stratejisi kurarsın?": {
+    "good": [
+      "İlk ay kapsamlı bir teknik denetim yapar, tarama ve hız sorunlarını çözerim. Anahtar kelime araştırmasıyla arama niyetine göre fırsatları çıkarırım. Bunları konu kümeleri halinde bir içerik planına dökerim. Dijital PR ve iş ortaklıklarıyla backlink kazanırım, aylık olarak Search Console'dan takip ederim.",
+      "Technical audit, keyword gap analizi, topic cluster'lar ve pillar page'ler, link building ve GSC ile aylık raporlama.",
+      "Önceki işimde blog trafiğini bir yılda 2,5 katına çıkardık. Önce sitedeki teknik hataları temizledik. Sonra insanların gerçekten ne aradığını bulup her ana konu için bir rehber sayfa ve etrafında küçük yazılar yazdık. Sektör sitelerine misafir yazarlık yapıp bağlantı aldık ve her hafta sıralamaları takip ettik."
+    ],
+    "partial": [
+      "Sitenin teknik denetimini yapar, hataları düzeltirim.",
+      "Anahtar kelime araştırması yapar, içerik planı çıkarır, Search Console ile takip ederim."
+    ],
+    "wrong": [
+      "Bilmiyorum, SEO şansa bağlı.",
+      "Her gün çok sayıda kısa yazı yayınlarım, sayı arttıkça trafik artar.",
+      "Yapay zekâyla günde yüz yazı üretip yayınlarım; anahtar kelimeyi her paragrafta tekrar edersem trafik kesin iki katına çıkar."
+    ]
+  },
+  "Bana bu kalemi sat.": {
+    "good": [
+      "Hemen kalemi övmeye başlamam, önce birkaç soru sorarım: Gün içinde en çok ne için yazı yazıyorsunuz, en son kaleminiz neden bitti? İhtiyaca göre bu kalemin sağladığı faydayı anlatırım, mesela toplantıda imza atarken mürekkebin bulaşmaması. Pahalı derse kaç ay dayandığını hesaplarım. Sonunda 'Elinize alın, bir deneyin; üçlü paketi bugün size özel fiyatla verebilirim' diye kapatırım.",
+      "Discovery soruları ile başlarım: kalemi ne sıklıkla, nerede kullanıyorsunuz? Pain point'e göre benefit anlatırım, feature değil. Objection gelirse handle ederim, sonra trial close yaparım: 'Hangi rengi alalım?'",
+      "Size bir sorum var: en son ne zaman önemli bir şey imzaladınız? İşte o an elinizde kaliteli bir kalem olması güzel bir ilk izlenim bırakır. 'Ama ben telefondan yazıyorum' diyebilirsiniz, haklısınız, ama imzayı hâlâ elle atıyoruz. Buyurun, elinize alın, bugün alırsanız yanına bir yedek de ekleyeyim."
+    ],
+    "partial": [
+      "Bu kalem çok kaliteli, yazması kolay ve uzun ömürlü.",
+      "Önce kalemi ne için kullandığınızı sorar, sonra size sağladığı faydayı anlatırım."
+    ],
+    "wrong": [
+      "Satış yapmayı pek bilmem, kalem işte, alın.",
+      "Bu çok güzel bir kalem, mavi renkli ve çok güzel yazıyor, almalısınız.",
+      "Müşteriye soru sormak zaman kaybıdır; kalemin bütün özelliklerini tek tek sayarım, ısrar ettikçe satın alır."
+    ]
+  },
+  "Müşteri “Rakibiniz %20 daha ucuz” diyor. Ne cevap verirsin?": {
+    "good": [
+      "Önce neye göre kıyasladığını sorarım; aynı kapsamı mı, aynı hizmet seviyesini mi alıyor. Sonra fiyatın ötesinde toplam maliyeti, destek kalitesini ve sağladığımız değeri anlatırım. İndirim gerekiyorsa karşılığında uzun vadeli sözleşme veya daha büyük bir paket isterim.",
+      "Hemen discount vermem. 'Teklif detayını paylaşabilir misiniz?' derim, apples-to-apples kıyaslıyor muyuz anlamak için. TCO, SLA ve onboarding desteğini vurgularım. Fiyatta esneyeceksem karşılığında 2 yıllık commitment isterim.",
+      "Geçen yıl bir müşteri aynısını söyledi. 'Haklı olabilirsiniz, karşılaştırdığınız teklifte kurulum ve eğitim dahil mi?' dedim. Değildi. Bizim fiyatın içinde 7/24 destek olduğunu, arıza olunca kaybettiği günün maliyetini anlattım. Sonunda iki yıllık anlaşma karşılığında %5 indirimle kapattık."
+    ],
+    "partial": [
+      "Ürünümüzün kalitesinin ve desteğinin daha iyi olduğunu anlatırım.",
+      "Hemen indirim yapmam, ama uzun vadeli sözleşme imzalarsa fiyatta biraz esneyebilirim."
+    ],
+    "wrong": [
+      "Bilmiyorum, o zaman rakibe gitsin derim.",
+      "Hemen %20 indirim yaparım, müşteriyi kaçırmayalım.",
+      "Rakibin ürünü kötü, müşteri yanlış bilgi veriyor derim; fiyatı da hemen rakiple eşitlerim."
+    ]
+  },
+  "Satış hunini (pipeline) nasıl yönetirsin?": {
+    "good": [
+      "Huniyi ilk temas, ihtiyaç analizi, teklif, pazarlık ve kapanış gibi net aşamalara bölerim. Her fırsatı bütçe, ihtiyaç ve karar verici açısından nitelendiririm. Tüm görüşmeleri CRM'e kaydederim. Aşamalar arası dönüşüm oranlarıyla çeyrek sonu tahminini çıkarırım.",
+      "Pipeline stage'lerini tanımlarım, her stage'in exit criteria'sı olur. BANT ya da MEDDIC ile qualify ederim. Salesforce'u güncel tutarım, haftalık pipeline review yaparım; conversion rate ve velocity'ye göre forecast çıkarırım.",
+      "Ben her sabah CRM'imi açıp kahvemi içerken listeme bakıyorum. Hangi müşteri hangi adımda, kim üç haftadır yerinden kıpırdamıyor, onları görüyorum. Yeni gelen her müşteri adayına önce 'parası var mı, kararı kim veriyor' diye bakıyorum, yoksa vakit harcamıyorum. Geçmiş kapanma oranlarıma göre ay sonunu tahmin ediyorum."
+    ],
+    "partial": [
+      "Bütün müşteri görüşmelerimi CRM'e kaydederim.",
+      "Huniyi aşamalara ayırıp her aşamadaki dönüşüm oranını takip ederim."
+    ],
+    "wrong": [
+      "Bilmiyorum, aklımda tutarım.",
+      "Ne kadar çok müşteri ararsam o kadar satış yaparım, gerisi detay.",
+      "Her fırsat eninde sonunda kapanır, elemeye gerek yok; tüm adayları kesin satış diye ay sonu rakamına yazarım."
+    ]
+  },
+  "Satış ekibin çeyrek hedefinin %30 gerisinde. Çeyreği kurtarmak için ne yaparsın?": {
+    "good": [
+      "Önce pipeline'ı açıp çeyrek içinde kapanabilecek fırsatları çıkarırım. Fırsatların hangi aşamada takıldığına bakıp darboğazı bulurum. Ekibin zamanını kapanmaya en yakın büyük fırsatlara öncelik verecek şekilde yeniden dağıtırım. Her satışçıyla birebir koçluk yaparım ve yönetime gerçekçi bir tahmin sunarım.",
+      "Pipeline coverage'a bakarım, 3x değilse prospecting'i artırırım. Deal'leri stage bazında review eder, stuck olanları bulurum. Top 10 deal'e deal desk ve exec sponsor atarım. Rep'lerle 1:1 deal coaching yapar, leadership'e honest bir forecast veririm.",
+      "Bir dönem tam bu durumdaydık. Her satışçıyla birebir oturup huniyi tek tek konuştuk, gerçekten bu çeyrek kapanacak olanları ayırdık. Gördük ki teklif aşamasından sonra her şey bekliyordu; fiyat onayını hızlandırdık. En büyük beş müşteriye ben de bizzat gittim. Yönetime de 'en iyi ihtimalle hedefin %90'ı' dedim, sürpriz olmasın."
+    ],
+    "partial": [
+      "Satışçılarla birebir koçluk yaparım.",
+      "Pipeline'ı analiz eder, darboğazı bulur ve yönetime gerçekçi bir tahmin sunarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, bu çeyrek olmadı, gelecek çeyreğe bakarız.",
+      "Ekibe daha çok çalışın derim, motivasyon konuşması yaparım.",
+      "Herkese hedefi tutturmazsa işten çıkarılacağını söylerim; tahmini de yönetime hedefe ulaşacakmışız gibi gösteririm."
+    ]
+  },
+  "Mağazaya giren bir müşteriye nasıl yaklaşırsın?": {
+    "good": [
+      "Göz teması kurup gülümseyerek selam veririm, hemen üstüne gitmem. Bir süre bakmasına izin verip 'Ne arıyordunuz, özel bir gün için mi?' gibi açık uçlu sorular sorarım. İhtiyacına uygun iki üç ürün öneririm. Sonunda ayakkabının yanına bakım spreyi gibi tamamlayıcı bir ürün de gösteririm.",
+      "Greeting'i sıcak yaparım, müşteriyi rahat bırakırım. Discovery soruları sorarım, needs'i anlarım. Recommendation yapar, sonra cross-sell ve upsell denerim.",
+      "Müşteri içeri girince 'Hoş geldiniz' derim, ama yapışmam. Raflara bakarken neye ilgi gösterdiğini izlerim, sonra 'Kendiniz için mi bakıyorsunuz yoksa hediye mi?' diye sorarım. Hediye ise bütçesine uygun birkaç seçenek gösteririm, paketlerken yanına güzel bir kart da öneririm."
+    ],
+    "partial": [
+      "Müşteriyi güler yüzle karşılarım, hoş geldiniz derim.",
+      "Ne aradığını sorar, ihtiyacına göre ürün öneririm."
+    ],
+    "wrong": [
+      "Bilmiyorum, müşteri bir şey isterse söyler.",
+      "Kapıda bekler, müşteriyi gözümle takip ederim.",
+      "Müşteri girer girmez peşine takılıp en pahalı ürünü anlatırım; soru sormak müşteriyi kaçırır, ne kadar ısrar edersem o kadar satarım."
+    ]
+  },
+  "Sinirli bir müşteri ürünü iade etmek istiyor ama iade süresi geçmiş. Ne yaparsın?": {
+    "good": [
+      "Önce sakin kalıp müşteriyi sözünü kesmeden dinlerim, sinirini anladığımı söylerim. İade süresinin neden geçtiğini ve kuralı nazikçe açıklarım. Para iadesi olmasa da değişim, mağaza puanı ya da yöneticimle konuşup bir istisna gibi alternatifler sunarım. Amacım müşterinin memnun ayrılıp tekrar gelmesi.",
+      "Empathy gösterir, aktif dinleme yaparım. Policy'yi şeffafça anlatırım. Exchange veya store credit teklif ederim, gerekirse store manager'a eskalasyon yaparım. Customer retention için uzun vadeyi düşünürüm.",
+      "Bir kere tam böyle bir müşteri geldi, sesi yükselmişti. Önce bir bardak su verip oturttum, ne olduğunu anlattırdım. Sistem 30 günden sonra iade almıyor dedim, ama ürünü bir bedenle değiştirebileceğimizi söyledim. Adam sakinleşti, hatta iki hafta sonra tekrar gelip alışveriş yaptı."
+    ],
+    "partial": [
+      "Müşteriyi sakin bir şekilde dinlerim.",
+      "Müşteriyi dinler, iade süresinin geçtiğini ve kuralı açıklarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, kural kuraldır.",
+      "Süre geçmiş, yapacak bir şey yok derim ve gönderirim.",
+      "Kural kuraldır, müşteriye süre geçti der geçerim; sinirliyse güvenliği çağırırım, böyle müşteriyi kaybetmek dert değil."
+    ]
+  },
+  "Yönettiğin mağazanın satışları bölge ortalamasının altında. Nasıl toparlarsın?": {
+    "good": [
+      "Önce satışı parçalarına ayırırım: mağazaya giren ziyaretçi sayısı, dönüşüm oranı ve ortalama sepet. Trafik düşükse vitrin ve dış görünüşe, dönüşüm düşükse personel ve vardiya planına bakarım; yoğun saatte yeterli kişi var mı. Çok satan ürünlerde stok eksiği var mı kontrol ederim. Ekibe günlük hedef verip her akşam takip ederim.",
+      "Footfall, conversion rate ve basket size'ı bölge ortalamasıyla kıyaslarım. Staff scheduling'i peak saatlere göre ayarlarım. Visual merchandising ve stok availability'e bakarım. Daily target'lar koyup KPI'ları takip ederim.",
+      "Bir AVM mağazasını devraldığımda aynı durumdaydı. Kapıdan girenlerin çoğu bir şey almadan çıkıyordu, yani dönüşüm oranı düşüktü. Akşam en kalabalık saatte kasada tek kişi vardı; personelin vardiyalarını değiştirdik. Bedenleri eksik ürünleri depodan çektik, vitrini her hafta yeniledik ve her sabah ekiple günlük hedefi konuştuk."
+    ],
+    "partial": [
+      "Personelin vardiya planını yoğun saatlere göre düzenlerim.",
+      "Dönüşüm oranına ve sepet ortalamasına bakar, vitrini yenilerim, stokları kontrol ederim."
+    ],
+    "wrong": [
+      "Bilmiyorum, bölgemiz kötü sanırım.",
+      "Herkese indirim yaparım, satışlar artar.",
+      "Satışlar düşükse sorun personeldir; hepsini değiştiririm, rakamlara bakmaya gerek yok."
+    ]
+  },
+  "Müşteri memnuniyetini nasıl ölçersin?": {
+    "good": [
+      "Tavsiye etme eğilimini NPS ile, tek bir etkileşimden memnuniyeti kısa bir CSAT anketiyle ölçerim. Puanların yanında açık uçlu geri bildirimleri ve online yorumları okurum. Asıl davranışsal kanıt için tekrar alım ve müşteri kaybı oranına bakarım.",
+      "NPS, CSAT ve CES kullanırım. Support ticket'larından ve app store review'larından sentiment çıkarırım. Retention ve repeat purchase rate en dürüst göstergeler.",
+      "Bir kafede çalışırken her ay müşterilere 'bizi arkadaşınıza önerir misiniz?' diye soruyorduk, 0-10 arası. Masalara küçük kartlar koyup öneri ve şikâyet topladık. Ama en çok, düzenli gelenlerin sayısı artıyor mu ona bakıyordum."
+    ],
+    "partial": [
+      "Müşterilere memnuniyet anketi gönderirim.",
+      "NPS skoruna ve müşteri yorumlarına bakarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, müşteri bir şey demiyorsa memnundur.",
+      "Satışlar iyiyse herkes memnun demektir.",
+      "Şikâyet gelmiyorsa müşteri memnundur; anket yapmaya gerek yok, NPS de sadece büyük şirketlerin kullandığı bir şey."
+    ]
+  },
+  "Büyük bir müşteri sözleşmeyi yenilemeyeceğini söylüyor. Ne yaparsın?": {
+    "good": [
+      "Önce müşteriyle görüşüp neden ayrılmak istediğini dinlerim, yorum katmadan anlamaya çalışırım. Bizimle çalışarak elde ettiği kazancı somut bir raporla gösteririm. Şikâyetlerine karşı tarihli bir çözüm planı sunarım. Gerekirse kendi üst yönetimimi devreye sokup karşı taraftaki yöneticiyle görüştürürüm.",
+      "Root cause'u bulmak için stakeholder interview yaparım. ROI'yi gösteren bir QBR hazırlarım. Success plan ile somut action item'lar sunarım, executive sponsor'ı toplantıya çağırırım.",
+      "Bir keresinde en büyük müşterimiz 'yeterince ilgi görmüyoruz' dedi. Hemen gidip ekibin ne yaşadığını dinledim; meğer destek talepleri haftalarca bekliyormuş. Kendilerine özel bir destek kişisi atadık, ilk ayın sonunda neler düzeldiğini rakamlarla gösterdik. Bizim genel müdür de bir telefon açtı, sözleşmeyi iki yıl yeniledik."
+    ],
+    "partial": [
+      "Neden yenilemediğini anlamak için müşteriyi dinlerim.",
+      "Nedenini dinler, sorunlarına yönelik bir çözüm planı sunarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, giderse gider.",
+      "Fiyatı yarıya indiririm, kalır.",
+      "Hemen büyük bir indirim teklif ederim, nedenini sormaya gerek yok; müşteriler zaten sadece fiyata bakar."
+    ]
+  },
+  "Müşteri kayıp oranını (churn) düşürmek için ekip olarak nasıl bir program kurarsın?": {
+    "good": [
+      "Önce kaybedilen müşterileri segmentlere ayırıp neden gittiklerini çıkarırım. Kullanım ve destek verisinden bir sağlık skoru kurarım, skor düşünce erken uyarı gelir. Yeni müşteriler için güçlü bir onboarding süreci tasarlarım. Riskli hesaplarla proaktif, düzenli temas kurarız ve programın etkisini churn oranı ve NRR ile ölçerim.",
+      "Churn reason analizi ve cohort'lar. Product usage'tan health score, at-risk alert'leri. Structured onboarding ve time-to-value. QBR'ler ve proactive outreach. Gross/net retention ve logo churn takibi.",
+      "Önceki şirketimde ayrılan 40 müşteriyi tek tek arayıp neden ayrıldıklarını sorduk, çoğu ürünü hiç tam kurmamıştı. Bu yüzden ilk 30 günü baştan tasarladık, her yeni müşteriye onboarding'de kurulum desteği verdik. Giriş sıklığı düşen hesapları erken uyarı listesine alıp her pazartesi arıyorduk. Altı ayda kayıp oranımız %3'ten %1,8'e indi."
+    ],
+    "partial": [
+      "Yeni müşteriler için iyi bir onboarding süreci kurarım.",
+      "Müşterilerin neden ayrıldığını analiz eder, bir sağlık skoru kurar, churn oranını takip ederim."
+    ],
+    "wrong": [
+      "Bilmiyorum, müşteri gitmek isterse gider.",
+      "Daha çok yeni müşteri bulursak kayıp önemli değil.",
+      "Churn'ü düşürmenin tek yolu indirimdir; ayrılmak isteyen herkese %50 indirim veririz, nedenleri analiz etmek zaman kaybı."
+    ]
+  },
+  "Üç temel finansal tabloyu ve birbirleriyle ilişkisini açıklar mısın?": {
+    "good": [
+      "Gelir tablosu belli bir dönemdeki gelirleri, giderleri ve sonunda kâr ya da zararı gösterir. Bilanço belli bir andaki varlıkları, yükümlülükleri ve özkaynağı gösterir. Nakit akış tablosu nakdin işletme, yatırım ve finansman faaliyetlerinden nasıl geldiğini anlatır. Gelir tablosundaki net kâr bilançoda özkaynağa aktarılır, nakit akışında da başlangıç noktasıdır.",
+      "P&L, balance sheet ve cash flow statement. Net income retained earnings'e gider, balance sheet'teki equity'yi artırır. Cash flow, net income'dan başlayıp working capital değişimleri ve depreciation ile düzeltilir; kapanış nakdi bilançodaki cash ile tutar.",
+      "Ben şöyle anlatıyorum: gelir tablosu bir yılın filmi, ne kazandık ne harcadık, sonunda kâr mı zarar mı. Bilanço yıl sonunda çekilen fotoğraf: neyimiz var, kime borçluyuz. Nakit akış tablosu da kasaya gerçekten ne girdi ne çıktı. Filmin sonundaki kâr fotoğraftaki özsermayeye eklenir, kasa da ikisini birbirine bağlar."
+    ],
+    "partial": [
+      "Bilanço şirketin varlıklarını, borçlarını ve özkaynağını gösterir.",
+      "Gelir tablosu kâr ve zararı, bilanço da varlık ve yükümlülükleri gösterir."
+    ],
+    "wrong": [
+      "Muhasebe benim alanım değil, bilmiyorum.",
+      "Şirketin parasını gösteren tablolar, hepsi aşağı yukarı aynı.",
+      "Gelir tablosu şirketin kasasındaki parayı gösterir; kâr eden şirketin nakdi de mutlaka aynı oranda artar, bilanço ile ilişkisi yoktur."
+    ]
+  },
+  "Ay sonu kapanış sürecinde neler yaparsın?": {
+    "good": [
+      "Banka hesaplarının ve cari hesapların mutabakatını yaparım. Dönemine ait giderler için tahakkuk ve şüpheli alacak gibi karşılıkları kaydederim. Mizanı kontrol edip olağandışı kalemleri doğrularım. Son olarak yönetim raporlarını ve bütçe karşılaştırmasını hazırlarım.",
+      "Bank reconciliation, intercompany mutabakat, accrual'lar ve provision'lar, amortisman kayıtları. Sonra trial balance review ve flux analizi; en son management reporting paketini hazırlarım.",
+      "Benim kapanış listem belli: ilk gün bankadaki hareketlerle kayıtlarımızı tek tek eşleştiririm. Sonra faturası gelmemiş ama bu aya ait elektrik, danışmanlık gibi giderleri tahakkuk ederim, amortismanı ayırırım. Mizanda geçen aya göre çok oynayan kalemi sorgularım. Dördüncü gün müdüre özet tabloyu gönderirim."
+    ],
+    "partial": [
+      "Banka hesaplarının mutabakatını yaparım.",
+      "Mutabakatları yapar, sonunda ay sonu raporunu hazırlarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, ay sonu muhasebeci ne yapıyorsa.",
+      "Faturaları dosyalar, klasörleri düzenlerim.",
+      "Ay sonunda sadece kesilen faturaları sisteme girerim; tahakkuk ve karşılık ayırmaya gerek yok, ödenmeyen gider o ayın gideri sayılmaz."
+    ]
+  },
+  "Ay sonu kapanışı 10 günde bitiyor. 5 güne nasıl indirirsin?": {
+    "good": [
+      "Önce mevcut süreci adım adım çıkarıp darboğazları bulurum. Banka ve cari mutabakatlarını otomasyona bağlarım. Her adım için sorumlu ve saat belirten bir kapanış takvimi yaparım. Tahakkukların bir kısmını ay içinde, ön kapanışla öne çekerim ve herkesin aynı kontrol listesini kullanmasını sağlarım.",
+      "Close process'i map'leyip critical path'i bulurum. RPA ve ERP otomasyonu ile reconciliation'ları hızlandırırım. Close calendar, RACI ve daily stand-up. Soft close ile işlerin yarısını ay bitmeden yaparım; standart checklist'ler.",
+      "Bir önceki şirketimde kapanış 9 gündü, 4'e indirdik. Herkesin hangi gün ne teslim edeceğini yazan bir takvim yaptık. Bankadan gelen hareketleri otomatik eşleştiren bir araç aldık. Amortisman, kira gibi sabit kayıtları ay bitmeden, ayın 25'inde girmeye başladık. Bir de tekrar eden hataları yakalamak için kontrol listesi oluşturduk."
+    ],
+    "partial": [
+      "Mutabakatları otomasyona bağlarım.",
+      "Süreçteki darboğazları bulur, bir kapanış takvimi yapar, kontrol listesi kullanırım."
+    ],
+    "wrong": [
+      "Bilmiyorum, daha hızlı çalışırız.",
+      "Ekibe fazla mesai yaptırırım, beş günde biter.",
+      "Kontrolleri ve mutabakatları atlarsak kapanış zaten beş günde biter; hata çıkarsa sonraki ay düzeltiriz."
+    ]
+  },
+  "Kârlı görünen bir şirket neden nakit sıkıntısı yaşayabilir?": {
+    "good": [
+      "Kâr tahakkuk esasına göre hesaplanır, nakit ise gerçekten kasaya giren paradır; ikisi arasında fark olabilir. Müşterilere uzun vadeli satış yapıp tahsil edemiyorsa kâr görünür ama para gelmez. Stoklara fazla para bağlanmış olabilir. Büyük yatırım harcamaları da gelir tablosunda değil nakit akışında hemen görünür.",
+      "Working capital sorunu: DSO yüksek, receivables birikmiş, inventory şişmiş. Capex yoğun bir dönemdeyse FCF negatif olur. Accrual accounting'de revenue kaydedilir ama cash gelmeyebilir.",
+      "Bir tekstil firmasında gördüm: sipariş patlamıştı, kâğıt üstünde çok kârlıydı. Ama büyük zincirler 120 gün vadeyle ödüyordu, bizse kumaşı peşin alıyorduk. Depo da stokla doluydu. Maaş günü kasada para yoktu; kârla nakit arasındaki fark böyle ortaya çıkar."
+    ],
+    "partial": [
+      "Müşteriler vadeli alıp geç ödüyor olabilir, alacaklar tahsil edilemiyordur.",
+      "Alacakların tahsil edilememesi ve stoklara çok para bağlanması nedeniyle olabilir."
+    ],
+    "wrong": [
+      "Bilmiyorum, kârlıysa nakit sorunu olmaz bence.",
+      "Muhasebeci yanlış hesaplamıştır, başka sebebi olamaz.",
+      "Kârlı bir şirket nakit sıkıntısı yaşayamaz; kâr ile nakit her zaman aynıdır, sorun ancak hırsızlıktır."
+    ]
+  },
+  "Bir şirketi değerlemek için hangi yöntemleri kullanırsın?": {
+    "good": [
+      "Temel yöntemim indirgenmiş nakit akışları: gelecekteki serbest nakit akışlarını sermaye maliyetiyle bugüne indiririm. Bunu benzer şirketlerin F/K ve FD/FAVÖK çarpanlarıyla karşılaştırırım. Büyüme oranı ve iskonto oranı varsayımlarını açıkça yazarım. Sonucu tek rakam değil, duyarlılık tablosu ve senaryolarla bir aralık olarak veririm.",
+      "DCF, trading comps ve precedent transactions. EV/EBITDA, P/E multiple'larına bakarım. WACC ve terminal growth en kritik assumption'lar, o yüzden sensitivity table yaparım.",
+      "Bir startup değerlemesinde bulundum. Önce önümüzdeki beş yılın nakitlerini tahmin edip bugüne indirdik. Sonra borsadaki benzer şirketler kaç kat kazançla işlem görüyor, ona baktık. İki sonuç farklı çıktı çünkü büyüme varsayımımız çok iyimserdi; iyimser, baz ve kötü senaryo çıkarıp aralık verdik."
+    ],
+    "partial": [
+      "İndirgenmiş nakit akışları yöntemini kullanırım.",
+      "DCF ve benzer şirket çarpanlarıyla değerleme yaparım."
+    ],
+    "wrong": [
+      "Bilmiyorum, şirketin binasına ve arabalarına bakarım.",
+      "Şirketin değeri sahibinin istediği fiyattır.",
+      "Şirketin değeri geçen yılki cirosuna eşittir; DCF ve çarpanlar gereksiz, varsayım yapmaya gerek yok."
+    ]
+  },
+  "Şirket yeni bir fabrikaya yatırım yapmayı düşünüyor. Bu kararı nasıl değerlendirirsin?": {
+    "good": [
+      "Önce fabrikanın kuruluş maliyetini ve yıllara göre nakit akışı projeksiyonunu çıkarırım. Bu akışları şirketin sermaye maliyetiyle iskonto edip net bugünkü değer ve iç verim oranını hesaplarım. Talep ve maliyet varsayımları için duyarlılık ve senaryo analizi yaparım. Son olarak yatırımın şirket stratejisine uyumunu ve operasyonel riskleri değerlendiririm.",
+      "Capex ve operating cash flow forecast'ı yaparım. NPV, IRR ve payback hesaplarım, WACC ile kıyaslarım. Sensitivity analysis ve best/base/worst case. Strategic fit ve execution risk.",
+      "Daha önce bir depo yatırımında benzerini yaptım. On yıllık beklenen nakit girişlerini ve çıkışlarını tahmin ettik, paranın bugünkü değerine indirgeyip yatırımın kendini kaç yılda geri ödediğine baktık. Talep %20 düşerse ne olur diye kötü senaryoyu da hesapladık. Yönetim kurulu, rakamlar sınırda olsa da şirketin büyüme stratejisi için onay verdi."
+    ],
+    "partial": [
+      "Net bugünkü değer hesaplarım, pozitifse yaparım.",
+      "Nakit akış projeksiyonu yapar, net bugünkü değeri hesaplar, senaryo analiziyle desteklerim."
+    ],
+    "wrong": [
+      "Bilmiyorum, fabrika büyük iş.",
+      "Paramız varsa yaparız, fabrika her zaman iyidir.",
+      "Paranın zaman değeri önemsizdir; toplam gelir toplam maliyetten fazlaysa yatırım kârlıdır, risk ve senaryo hesabına gerek yok."
+    ]
+  },
+  "İç kontrol nedir, neden önemlidir?": {
+    "good": [
+      "İç kontrol, şirketin varlıklarını korumak ve kayıtların doğru olmasını sağlamak için kurulan kurallar bütünüdür. En temel ilkesi görevler ayrılığıdır. Belli tutarın üzerindeki ödemeler yetkili kişinin onayından geçer. Böylece hata ve suistimal riski azalır. Örneğin faturayı kaydeden kişi ödemeyi onaylamamalı.",
+      "Internal control, COSO framework'üne göre risk assessment, control activities ve monitoring içerir. Segregation of duties ve approval matrix en kritik kontroller. Fraud ve misstatement riskini azaltır; örneğin vendor master'ı değiştiren kişi payment yapamaz.",
+      "Bir keresinde küçük bir şirkette tek bir kişi hem satın alma yapıyor, hem faturayı giriyor, hem de ödemeyi gönderiyordu. Kimse kontrol etmediği için hayali bir tedarikçiye para gittiği ortaya çıktı. İç kontrol tam bunu önler: işleri farklı kişilere bölersin, büyük harcamalar ikinci bir imza ister."
+    ],
+    "partial": [
+      "Ödemelerin bir yetkilinin onayından geçmesi gibi kurallardır.",
+      "Hata ve suistimal riskini azaltmak için görevler ayrılığı uygulanır."
+    ],
+    "wrong": [
+      "Bilmiyorum, şirket içi denetim olabilir.",
+      "Çalışanların mesaisini kontrol etmek.",
+      "İç kontrol sadece yıl sonunda dış denetçinin yaptığı bir kontroldür; küçük şirketlerde aynı kişinin hem kayıt yapıp hem ödeme onaylaması sorun değildir."
+    ]
+  },
+  "Bir masraf kaleminde olağandışı bir artış fark ettin. Nasıl incelersin?": {
+    "good": [
+      "Önce kalemi geçmiş aylarla ve bütçeyle karşılaştırıp trendi incelerim. Artışı yaratan işlemlerden bir örneklem seçip fatura ve sözleşmelerini kontrol ederim. İlgili birim yöneticisiyle görüşüp açıklama isterim. Bulgularımı ve önerilerimi bir raporla yönetime sunarım.",
+      "Variance analysis ile YoY ve MoM kıyaslarım. Sample seçip supporting document'leri vouch ederim. Process owner ile walkthrough yaparım, finding'leri audit report'a yazarım.",
+      "Geçen yıl kargo giderleri bir çeyrekte iki katına çıkmıştı. Önce son iki yılın aylık rakamlarını yan yana koydum. Sonra en büyük 30 faturayı açıp tek tek baktım, bir kısmı aynı gönderinin iki kere faturalanmasıydı. Lojistik müdürüyle konuştum, sistem hatasıymış. Durumu finans direktörüne yazılı bildirdim."
+    ],
+    "partial": [
+      "İlgili faturaları ve belgeleri tek tek kontrol ederim.",
+      "Geçmiş dönemlerle karşılaştırıp trende bakar, ilgili kişiyle görüşürüm."
+    ],
+    "wrong": [
+      "Bilmiyorum, muhasebeye bırakırım.",
+      "Fiyatlar artmıştır, normaldir.",
+      "Artış varsa kesin biri hırsızlık yapıyordur; kimseye sormadan sorumluyu işten çıkarırım, belge incelemeye gerek yok."
+    ]
+  },
+  "Yıllık iç denetim planını risk bazlı olarak nasıl hazırlarsın?": {
+    "good": [
+      "Önce şirketin tüm süreç ve birimlerinden oluşan denetim evrenini çıkarırım. Her alanın riskini olasılık ve etki üzerinden puanlarım. Yüksek riskli alanları öncelikli olarak plana koyarım. Ekibin kapasitesine ve gereken uzmanlık kaynağına göre takvimi kurarım. Planı denetim komitesinin onayına sunarım.",
+      "Audit universe'ü tanımlarım, risk assessment ile likelihood x impact skorlarım. High-risk area'lar her yıl, düşük riskler rotasyonla. Resource planning ve co-source ihtiyacı. Final plan audit committee approval'ına gider.",
+      "Geçen yılki planı hazırlarken birim müdürleriyle görüşüp en çok neyin canlarını sıktığını sordum. Her süreci 'olursa ne kadar acıtır, ne kadar olası' diye 1-5 arası puanladık. Siber güvenlik ve satın alma en üste çıktı, onlara öncelik verip daha çok gün ayırdık. Ekibimizin kapasitesini hesaplayıp planı denetim komitesine götürdük."
+    ],
+    "partial": [
+      "Süreçleri risklerine göre sıralar, yüksek riskli olanlara öncelik veririm.",
+      "Planı hazırlayıp denetim komitesinin onayına sunarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, her yıl aynı planı kullanırız.",
+      "Her birimi sırayla denetleriz, herkese eşit zaman.",
+      "Risk bazlı plan gereksiz; her yıl tüm birimleri aynı derinlikte denetleriz, komite onayına da gerek yok."
+    ]
+  },
+  "Bulunması zor bir pozisyon için adayları nasıl bulursun?": {
+    "good": [
+      "Önce işe alım yöneticisiyle oturup gerçek ihtiyacı ve olmazsa olmaz gereksinimleri netleştiririm. İlanı LinkedIn, sektörel kariyer siteleri ve topluluklarda yayınlarım. Pasif adaylara doğrudan, kişiye özel mesajla ulaşırım. Çalışanlardan referans isterim, ödüllü bir tavsiye programı da çok işe yarar.",
+      "Hiring manager ile intake meeting yapıp ideal candidate profile çıkarırım. LinkedIn Recruiter'da boolean search ile sourcing yaparım, GitHub ve meetup'lara bakarım. Employee referral programını aktive ederim.",
+      "Bir keresinde gömülü yazılım uzmanı arıyorduk, aylardır bulunamamıştı. Ekip lideriyle konuşup bu rolün gerçek gereksinimlerini çıkardık. Sonra bu işi yapan insanların takıldığı forumlara ve konferans listelerine baktım, tek tek kişisel mesaj attım. Sonunda bir çalışanımızın tavsiyesiyle eski iş arkadaşını bulduk."
+    ],
+    "partial": [
+      "LinkedIn'de ilan açarım.",
+      "Adaylara LinkedIn'den doğrudan ulaşırım."
+    ],
+    "wrong": [
+      "Bilmiyorum, ilan verip beklerim.",
+      "Bulunmuyorsa pozisyonu kapatırız.",
+      "Zor pozisyonlarda beklemek en iyisidir; ilanı açıp başvuru gelmesini beklerim, adaylara doğrudan yazmak etik değildir."
+    ]
+  },
+  "Yetkinlik bazlı mülakat nedir?": {
+    "good": [
+      "Rol için kritik yetkinlikleri, örneğin problem çözme ya da ekip çalışmasını önceden tanımlarız. Adaydan 'Bir keresinde...' diye başlayan geçmiş deneyimlerinden somut örnekler isteriz, varsayımsal sorular değil. Tüm adaylara aynı soruları sorarız, yani yapılandırılmıştır. Cevapları önceden belirlenmiş bir puanlama ölçeğiyle değerlendiririz.",
+      "Competency framework'ten rolün kritik competency'lerini seçeriz. Behavioral sorular sorarız, STAR formatında past behavior dinleriz. Structured interview guide ve scoring rubric ile bias'ı azaltırız.",
+      "Mantığı şu: geçmişte nasıl davrandıysan gelecekte de öyle davranırsın. O yüzden 'zor bir müşteriyle ne yaptın, anlat' gibi sorular sorarız. Her aday aynı sorulara cevap verir, biz de hepsine 1'den 5'e not veririz ki karşılaştırabilelim."
+    ],
+    "partial": [
+      "Adaya geçmişteki deneyimlerini sorarız.",
+      "Önce yetkinlikleri belirler, adaydan geçmişinden örnekler isteriz."
+    ],
+    "wrong": [
+      "Bilmiyorum, normal mülakat gibi bir şey.",
+      "Adayın ne kadar özgüvenli olduğuna bakılan mülakat.",
+      "Yetkinlik bazlı mülakatta adaya 'olsaydı ne yapardın' gibi varsayımsal sorular sorulur; her adaya farklı sorular sorulur, puanlama sezgiyle yapılır."
+    ]
+  },
+  "Çok istediğiniz bir aday teklifi reddetti. Ne yaparsın?": {
+    "good": [
+      "Önce adayı arayıp kararının nedenini açıkça sorar, anlamaya çalışırım. Sorun maaşsa ya da esnek çalışma, yan haklar gibi bir konuysa nerede esneyebileceğimizi düşünürüm. İşe alım yöneticisiyle konuşup bütçe ve rol tarafında yapılabilecekleri değerlendiririm. Yine de olmazsa ilişkiyi iyi kapatır, gelecekteki fırsatlar için iletişimde kalırım.",
+      "Candidate'e bir debrief call yapıp gerçek reason'ı öğrenirim. Counter offer gerekiyorsa total comp, sign-on bonus, hybrid/remote seçeneklerine bakarım. Hiring manager'dan approval alırım. Olmazsa talent pool'a ekler, nurture ederim.",
+      "Geçen yıl çok beğendiğimiz bir tasarımcı son anda hayır dedi. Telefonda nedenini sorduğumda asıl derdinin haftanın beş günü ofise gelmek olduğunu söyledi. Yöneticisiyle görüşüp esnek çalışma, haftada iki gün ofis teklif ettik, kabul etti. Kabul etmeseydi bile kapıyı açık bırakacaktım."
+    ],
+    "partial": [
+      "Adaya neden reddettiğini sorarım.",
+      "Nedenini sorar, maaş konusunda biraz esneyebiliriz diye teklif yaparım."
+    ],
+    "wrong": [
+      "Bilmiyorum, başka aday bakarız.",
+      "Reddettiyse kendi kaybı, bir daha aramam.",
+      "Reddeden adayla bir daha iletişim kurmam; nedenini sormak zaman kaybı, ilan tekrar açılır."
+    ]
+  },
+  "Şirket bir yılda 100 mühendis işe almak istiyor. Bunu nasıl planlarsın?": {
+    "good": [
+      "Önce bölümlerle birlikte hangi rollere, hangi seviyede ve hangi çeyrekte ihtiyaç olduğunu çıkarırım. Kanalları çeşitlendiririm: çalışan referansı, üniversite işbirlikleri, doğrudan sourcing ve ajanslar. Mühendislerin bizi tercih etmesi için teknik blog ve etkinliklerle işveren markasına yatırım yaparım. Mülakatçı havuzunu eğitip haftalık mülakat kapasitesini hesaplarım. Pozisyon dolum süresi ve aşamalar arası dönüşüm oranlarını haftalık izlerim.",
+      "Headcount plan'ı quarter bazında role ve seniority'ye böleriz. Referral, campus, sourcing kanallarını mix'leriz. Employer branding için tech talk ve open source. Interviewer pool'u ve capacity'i planlarız; time-to-hire ve funnel conversion metriklerini takip ederiz.",
+      "Önceki şirketimde bir yılda 60 yazılımcı aldık, en çok öğrendiğim şey darboğazın aday değil mülakatçı kapasitesi olduğuydu. O yüzden önce kaç mühendisin haftada kaç saat mülakata ayırabileceğini hesaplardım. Ekiplerin hangi çeyrekte hangi rollere ihtiyacı olduğunu bir tabloya dökerdim. Çalışanların arkadaşlarını getirmesini ödüllendirir, üniversitelerde etkinlik yapıp işveren markamızı güçlendirirdim."
+    ],
+    "partial": [
+      "Çalışan referansı ve üniversite işbirlikleriyle aday bulurum.",
+      "Hangi rollere ihtiyaç olduğunu çeyrek bazında çıkarır, işveren markasına yatırım yapar, mülakatçı kapasitesini planlarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, çok fazla ilan veririz.",
+      "Bir ajansa veririz, onlar halleder.",
+      "Yüz kişiyi hızlı almak için mülakatları kaldırırız, CV'si iyi olan herkese teklif yaparız; metrik takibine gerek yok."
+    ]
+  },
+  "Bir çalışan yöneticisinden şikâyetçi olarak sana geldi. Nasıl ilerlersin?": {
+    "good": [
+      "Önce çalışanı sakin bir ortamda dinler, konuşmanın gizli kalacağı konusunda güven veririm. Somut örnekler, tarihler ve varsa yazışmalar gibi bilgileri toplarım. Hüküm vermeden iki tarafı da dinler, yöneticiyle ayrıca görüşürüm. Sonra bir aksiyon planı belirler ve çözülüp çözülmediğini takip ederim.",
+      "Confidential bir görüşme ayarlar, active listening yaparım. Specific incident'ları ve evidence'ı dokümante ederim. Neutral kalırım, manager'ın tarafını da dinlerim. Gerekirse formal investigation başlatır, follow-up yaparım.",
+      "Bir keresinde bir çalışan ağlayarak geldi. Önce kapıyı kapattım, anlattıklarının aramızda kalacağını söyledim. Ne olduğunu, ne zaman olduğunu not aldım, mesajları gösterdi. Yöneticisini de dinledim, sonra ikisiyle ayrı ayrı bir plan üzerinde anlaştık ve bir ay boyunca her hafta durumu sordum."
+    ],
+    "partial": [
+      "Çalışanı dinler, söylediklerinin gizli kalacağını belirtirim.",
+      "Çalışanı dinler, sonra yöneticiyle de konuşup iki tarafı anlamaya çalışırım."
+    ],
+    "wrong": [
+      "Bilmiyorum, kendi aralarında çözsünler.",
+      "Yöneticiye çalışanın şikâyetini hemen iletirim, o halleder.",
+      "Yönetici her zaman haklıdır; çalışanı dinlemeden şikâyetini doğrudan yöneticisine iletirim, böylece konu kapanır."
+    ]
+  },
+  "Bir ekipte çalışan devir oranı (turnover) çok yükseldi. Nasıl analiz edersin?": {
+    "good": [
+      "Önce ayrılma oranını kıdem, rol ve dönem kırılımlarıyla veriden incelerim; kimler, ne zaman gidiyor. Çıkış görüşmelerindeki nedenleri gruplarım. Ekibin yöneticisinin tarzı ve liderliği sık bir etken, onu ayrıca değerlendiririm. Bulgulara göre maaş, kariyer yolu ya da yönetici koçluğu içeren bir aksiyon planı hazırlarım.",
+      "Attrition data'sını tenure ve performance bazında segment'lerim. Exit interview ve stay interview yaparım. Manager effectiveness skorlarına bakarım; engagement survey sonuçlarıyla korelasyonu incelerim. Compensation benchmark ve career path üzerinden retention plan çıkarırım.",
+      "Bir müşteri hizmetleri ekibinde altı ayda on kişi gitmişti. Gidenlerle tek tek görüştük, hepsi aynı şeyi söyledi: takım lideri herkesi herkesin önünde azarlıyordu. Ayrıca yan ekip aynı iş için %15 daha fazla kazanıyordu. Lideri koçluğa aldık, maaşları eşitledik, bir yıl sonra ayrılan sayısı ikiye indi."
+    ],
+    "partial": [
+      "Çıkış görüşmelerinde ayrılma nedenlerini sorarım.",
+      "Ayrılma oranını kırılımlarıyla inceler, çıkış görüşmelerindeki nedenlere bakarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, insanlar artık iş değiştirmeyi seviyor.",
+      "Herkese maaş artışı yaparız, sorun çözülür.",
+      "Turnover'ın tek nedeni maaştır; herkese zam yaparız, analiz etmeye ya da yöneticiyle konuşmaya gerek yok."
+    ]
+  },
+  "Bir yeniden yapılanma sürecinde çalışanların bağlılığını nasıl korursun?": {
+    "good": [
+      "Değişikliğin nedenini ve kimi nasıl etkileyeceğini şeffaf biçimde, erken anlatırım. Yöneticileri ekiplerinden gelecek sorulara önceden hazırlarım. Kısa anketlerle ve birebirlerle çalışanları dinlerim. Etkilenenlere kariyer desteği ve iç fırsatlar sunarım. Bağlılık skorlarını düzenli olarak takip ederim.",
+      "Transparent bir change communication planı, town hall ve Q&A'lar. Manager'lara talking point ve training veririm. Pulse survey ile sentiment'i izlerim. Outplacement ve internal mobility destekleri sunarım; engagement skorunu her ay ölçerim.",
+      "İki yıl önce şirketimiz birleşti ve iki ekip birleştirildi. İnsanları en çok tedirgin eden belirsizlikti, o yüzden her hafta 'neyi biliyoruz, neyi bilmiyoruz' toplantısıyla şeffaf olduk. Ekip liderlerini sorulara cevap verebilsinler diye önceden hazırladık. Kaygılarını anlatsınlar diye anonim bir anket açtık, rolü değişenlere yeni pozisyonlar için destek verdik."
+    ],
+    "partial": [
+      "Çalışanlara kariyer desteği sunarım.",
+      "Nedenini şeffaf anlatır, yöneticileri hazırlar, anketle çalışanları dinlerim."
+    ],
+    "wrong": [
+      "Bilmiyorum, zor bir süreç.",
+      "Çalışanlara hiçbir şey söylemem, süreç bitince öğrenirler.",
+      "Belirsizliği azaltmak için bilgiyi son ana kadar saklarım, çalışanların fikrini sormaya gerek yok; işini kaybetmeyenler zaten bağlı kalır."
+    ]
+  }
+}
