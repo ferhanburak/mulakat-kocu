@@ -3,7 +3,7 @@ import { professions, type Question } from '@/data/professions';
 import { answerSignals } from '@/lib/evaluator';
 import { setLang } from '@/lib/i18n';
 import { reactionTo } from '@/lib/reactions';
-import answersTr from './fixtures/answers.tr.json';
+import { ANSWER_SETS, type Groups } from './fixtures';
 
 jest.mock('@react-native-async-storage/async-storage', () =>
   // jest.mock factories run before imports, so the mock has to be required here.
@@ -20,8 +20,10 @@ jest.mock('@react-native-async-storage/async-storage', () =>
  * - wrong: under half of the key points once wrong claims are counted, and the interviewer
  *   reacts with a weak-answer line.
  * When an answer lands in the wrong group, fix the question's stems or traps, not the answer.
+ *
+ * Answers live in fixtures/answers.<catalogue>.tr.json (see fixtures/index.ts). Use
+ * scripts/train_stems.py to apply stem and trap changes to a catalogue file.
  */
-type Groups = { good?: string[]; partial?: string[]; wrong?: string[] };
 
 function questionsByText(): Map<string, Question> {
   const map = new Map<string, Question>();
@@ -32,11 +34,12 @@ function questionsByText(): Map<string, Question> {
 describe('practice answers (Turkish)', () => {
   beforeAll(() => setLang('tr'));
 
-  it('land in their expected group', () => {
+  it.each(Object.keys(ANSWER_SETS))('land in their expected group: %s', (set) => {
+    const answers = ANSWER_SETS[set];
     const byText = questionsByText();
     const elif = findInterviewer('ik');
     const problems: string[] = [];
-    for (const [text, groups] of Object.entries(answersTr as Record<string, Groups>)) {
+    for (const [text, groups] of Object.entries(answers)) {
       const q = byText.get(text);
       if (!q) {
         problems.push(`question not found: ${text}`);
