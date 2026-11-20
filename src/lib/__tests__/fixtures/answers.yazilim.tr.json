@@ -193,5 +193,725 @@
       "State yönetimine gerek yok, props yeterli.",
       "Değişkenleri window objesine koyarım."
     ]
+  },
+  "Native ve cross-platform (React Native, Flutter) geliştirmeyi karşılaştırır mısın?": {
+    "good": [
+      "Native geliştirmede Swift ve Kotlin ile iki uygulamayı ayrı ayrı yazarsın; performans en iyisidir ve kamera, bluetooth gibi platform API'lerine doğrudan erişirsin. Ama bu iki ayrı kod tabanı ve çoğu zaman iki ayrı ekip demek. React Native ya da Flutter ile tek bir kodla iOS ve Android'e çıkarsın, geliştirme süresi ve maliyet ciddi düşer. Çok özel bir donanım özelliği gerekirse araya küçük bir native modül yazarsın.",
+      "Cross-platform'da single codebase'den iki store'a birden release çıkıyoruz, küçük bir team için büyük avantaj, budget'ı neredeyse yarıya indiriyor. Native tarafta ise performance ve animasyonlar daha smooth, yeni iOS özelliklerine ilk gün erişiyorsun. React Native'de eksik kalan bir şey olursa bridge üzerinden native module yazıyoruz.",
+      "Geçen projede Flutter seçtik çünkü üç kişilik bir ekiptik, iki platformu ayrı yazacak vaktimiz yoktu. Bir kez yazıp iki tarafta çalıştırmak çok rahattı. Ağır grafik isteyen bir ekranda biraz takılma gördük, native olsa daha akıcı olurdu. Ödeme SDK'sı için de küçük bir native köprü yazmak zorunda kaldık."
+    ],
+    "partial": [
+      "Cross-platform ile tek kod yazıp iki platforma birden çıkabiliyorsun, bence en büyük avantajı bu.",
+      "Native daha hızlı çalışır ve cihaz özelliklerine tam erişir, cross-platform biraz daha yavaş kalabilir."
+    ],
+    "wrong": [
+      "Bilmiyorum, ben hiç mobil uygulama yazmadım.",
+      "İkisi de iş görür, hangisi rahat gelirse onu kullanırım, çok fark yok bence.",
+      "Flutter ve React Native kodu doğrudan makine koduna çevirdiği için native'den her zaman daha hızlıdır, native geliştirmenin artık hiçbir avantajı kalmadı."
+    ]
+  },
+  "Mobil uygulama yaşam döngüsünü (lifecycle) açıklar mısın?": {
+    "good": [
+      "Uygulama açıkken ön plandadır, kullanıcı ana ekrana dönünce arka plana geçer, bir süre sonra da askıya alınır. İşletim sistemi belleğe ihtiyaç duyarsa arka plandaki uygulamayı tamamen kapatabilir. Bu yüzden arka plana geçerken form taslağı gibi önemli verileri kaydederim, tekrar açılınca geri yüklerim.",
+      "Android'de onCreate, onPause, onStop gibi callback'ler var, iOS'ta da foreground ve background geçişleri. React Native'de AppState ile dinliyorum; app background'a gidince state'i AsyncStorage'a persist ediyorum çünkü OS memory baskısında process'i kill edebiliyor.",
+      "Kullanıcı uygulamadan çıkıp WhatsApp'a baktı diyelim; bizim uygulama arkaya düşer. Telefon zorlanırsa sistem uygulamayı öldürür, kullanıcı geri geldiğinde her şey sıfırdan açılır. Yazdığı mesaj kaybolmasın diye arkaya düşerken taslağı diske yazarım."
+    ],
+    "partial": [
+      "Uygulama ön planda ya da arka planda olabilir, kullanıcı başka bir uygulamaya geçince arka plana alınır.",
+      "Arka plana geçerken kullanıcının verisini kaydetmek gerekir, yoksa geri döndüğünde kaybolabilir."
+    ],
+    "wrong": [
+      "Lifecycle, uygulamanın mağazada yayınlanma süreci diye biliyorum, pek detayını bilmiyorum.",
+      "Uygulama açılır, kullanılır, kapanır; genel olarak böyle.",
+      "Arka plana alınan uygulama işletim sistemi tarafından asla kapatılmaz, o yüzden durumu kaydetmeye gerek yoktur."
+    ]
+  },
+  "Uygulama çevrimdışıyken de çalışmalı. Nasıl tasarlarsın?": {
+    "good": [
+      "Veriyi cihazda SQLite ya da Realm gibi yerel bir veritabanında tutarım, ekranlar hep oradan okur. Kullanıcı internetsizken yaptığı değişiklikleri bir kuyruğa atarım, bağlantı gelince sırayla sunucuya gönderirim. Aynı kaydı iki cihazdan değiştirirlerse hangisinin kazanacağını önceden belirlerim, mesela son güncelleme kazanır. Ekranın üstünde de çevrimdışı olduğunu belirten bir şerit gösteririm.",
+      "Offline-first yaklaşımla local DB'yi source of truth yaparım. Mutation'ları bir outbox'a yazıp online olunca sync ederim; conflict olursa timestamp'e göre last-write-wins yaparım ya da kullanıcıya sorarım. UI'da da offline banner'ı gösteririm.",
+      "Metroda interneti kesilen bir kullanıcı düşünelim. Not yazmaya devam edebilmeli, o yüzden notlar telefonda saklanır. Yazdıkları bekleyen işler listesine girer, internet gelince arka planda gönderilir. İki cihazdan aynı not değişmişse ikisini de saklayıp kullanıcıya hangisini istediğini sorarım. Bağlantı olmadığını küçük bir ikonla gösteririm."
+    ],
+    "partial": [
+      "Verileri telefonda yerel bir veritabanında tutarım ki internet yokken de görüntülenebilsin.",
+      "Veriyi SQLite'ta tutarım, internet gelince değişiklikleri sunucuya senkronize ederim."
+    ],
+    "wrong": [
+      "Bilmiyorum, internet olmadan uygulama çalışmaz zaten.",
+      "Uygulamayı iyi tasarlarım, kullanıcı deneyimine dikkat ederim, her şey düzgün çalışır.",
+      "Çevrimdışı destek için verileri cihazda tutmaya gerek yok; telefon zaten her isteği otomatik önbelleğe alıyor, internet gelince her şey kendiliğinden senkron olur."
+    ]
+  },
+  "Uygulamanın açılış süresi yavaş. Neye bakarsın?": {
+    "good": [
+      "Önce açılışın nerede zaman kaybettiğini ölçerim, Android'de Perfetto, iOS'ta Instruments kullanırım. Açılışta şart olmayan analitik ve uzak config yüklemesini ilk ekran çizildikten sonraya ertelerim. Uygulamanın boyutunu küçültmek için kullanılmayan kütüphaneleri çıkarırım ve büyük görselleri sıkıştırırım.",
+      "Startup'ı profile ederim, cold start'ta main thread'i bloklayan ne var bakarım. SDK init'lerini lazy yaparım, bundle size'ı analyze edip tree shaking uygularım, büyük image'ları WebP'ye çeviririm.",
+      "Geçen ay bizim uygulama 5 saniyede açılıyordu. Adım adım süre tutunca açılışta 4 farklı SDK'nın aynı anda başlatıldığını gördük, onları ana ekran geldikten sonra başlattık. Splash'teki devasa PNG'yi de küçülttük, açılış 2 saniyenin altına indi."
+    ],
+    "partial": [
+      "Büyük resimler açılışı yavaşlatıyor olabilir, onları optimize ederim.",
+      "Önce profil çıkarıp ölçerim, sonra başlangıçta yapılan gereksiz işleri ertelerim."
+    ],
+    "wrong": [
+      "Kullanıcıya daha hızlı bir telefon almasını öneririm.",
+      "Açılışa güzel bir animasyon koyarım, kullanıcı beklediğini fark etmez.",
+      "Açılışı hızlandırmak için tüm verileri ve ekranları başlangıçta önceden yüklerim, böylece sonra hiç beklemez; paket boyutunun açılışa hiçbir etkisi yoktur."
+    ]
+  },
+  "Uygulamayı mağazaya yayınlama ve sürüm stratejin nasıl olur?": {
+    "good": [
+      "Yeni sürümü Play Console'da önce yüzde 5 kullanıcıya açarım, sorun yoksa yavaş yavaş artırırım. Bu sırada Crashlytics'ten çökme oranını takip ederim. Eski sürümde ciddi bir güvenlik açığı varsa sunucudan minimum sürümü yükseltip kullanıcıyı güncellemeye zorlarım. Sadece JavaScript tarafındaki küçük düzeltmeleri de EAS Update ile mağazayı beklemeden gönderirim.",
+      "Staged rollout yaparım, %10 ile başlayıp crash-free rate'e göre devam ederim. Sentry'den alert gelirse rollout'u durdururum. Breaking API change'lerde force update ekranı çıkar, minor fix'leri OTA ile push ederiz.",
+      "Benim alışkanlığım şu: önce iç test grubuna, sonra beta kullanıcılarına, en son herkese açmak. Her aşamada hata raporlarını izliyorum. Kritik bir sorun olursa eski sürümlerin açılmasını engelleyip güncellemeyi şart koşuyoruz. Ufak metin hatalarını mağaza onayını beklemeden uzaktan düzeltiyoruz."
+    ],
+    "partial": [
+      "Çökmeleri izlemek için Crashlytics kurarım, sürüm sonrası hata oranına bakarım.",
+      "Önce küçük bir yüzdeye açarım, Sentry ile hataları izlerim."
+    ],
+    "wrong": [
+      "Bilmiyorum, sanırım dosyayı mağazaya yükleyip onay bekliyoruz.",
+      "Hazır olunca yayınlarım, kullanıcılar zaten yeni sürümü indirir.",
+      "Her yeni sürümü doğrudan tüm kullanıcılara aynı anda açarım; OTA ile native kodu da güncelleyebildiğimiz için mağaza sürümüne pek gerek kalmıyor."
+    ]
+  },
+  "Mobil uygulamada güvenliği nasıl sağlarsın?": {
+    "good": [
+      "Oturum token'ını iOS'ta Keychain'de, Android'de Keystore destekli şifreli depoda tutarım, düz AsyncStorage'a koymam. Bütün istekler HTTPS üzerinden gider, bankacılık gibi kritik uygulamalarda sertifika sabitleme de eklerim. Kişisel verileri log'a yazmam. API secret'larını uygulamanın içine koymam çünkü APK açılıp okunabilir; o işlemleri backend'de yaparım.",
+      "Sensitive data'yı SecureStore'da saklarım, TLS ve certificate pinning kullanırım. Production build'de console log'ları kapatırım, obfuscation yaparım. Private key'leri asla client'a gömmem, bir proxy backend üzerinden çağırırım.",
+      "Bir keresinde kodda Google Maps anahtarını açık bıraktığımızı fark ettik; o günden beri gizli anahtarları sunucuda tutuyoruz. Kullanıcının şifresini telefonda hiç saklamıyoruz, sadece token'ı güvenli depoda tutuyoruz. Trafiği HTTPS ile şifreliyoruz ve hassas bilgileri ekran görüntüsünden de gizliyoruz."
+    ],
+    "partial": [
+      "Bütün trafiği HTTPS ile gönderirim, böylece araya giren biri veriyi okuyamaz.",
+      "Token'ları Keychain'de saklarım ve hassas verileri şifrelerim."
+    ],
+    "wrong": [
+      "Güvenlik backend'in işi, mobil tarafta yapacak pek bir şey yok.",
+      "Kullanıcıdan güçlü bir şifre isterim, gerisi zaten telefonun kendisinde güvenli.",
+      "API anahtarlarını kodun içine gömmek sorun değil çünkü uygulama derlendiği için kimse okuyamaz; token'ı da AsyncStorage'da tutmak yeterince güvenli."
+    ]
+  },
+  "Bir kullanıcı giriş (login) sistemini uçtan uca nasıl kurarsın?": {
+    "good": [
+      "Kayıtta şifreyi düz metin olarak değil, bcrypt ile tuzlanmış hash olarak saklarım. Girişte hash'i karşılaştırır, başarılıysa httpOnly bir oturum çerezi veririm. Tüm iletişim HTTPS üzerinden olur. Formda e-posta formatı ve boş alan kontrolünü hem istemcide hem sunucuda yaparım; çok hatalı denemede de kısa süreli kilit koyarım.",
+      "Backend'de password'ları argon2 ile hash'lerim, login endpoint'i access ve refresh token döner, mobilde secure storage'da tutarız. Her şey TLS üzerinden gider, rate limit ve input validation da şart.",
+      "Kendi yan projemde şöyle yaptım: kullanıcı formu doldurunca alanları kontrol ediyorum, sunucuda da tekrar kontrol ediyorum. Şifreyi bcrypt'ten geçirip veritabanına yazıyorum. Giriş başarılı olunca JWT veriyorum, frontend onu her istekte gönderiyor. Site zaten SSL sertifikalı, yani her şey şifreli gidiyor."
+    ],
+    "partial": [
+      "Kullanıcı adı ve şifre alan bir form yaparım, girişte veritabanındaki şifreyle karşılaştırırım.",
+      "Şifreleri bcrypt ile hash'lerim, girişte JWT token veririm."
+    ],
+    "wrong": [
+      "Hazır bir şablon bulup kopyalarım, nasıl çalıştığını çok bilmiyorum.",
+      "Kullanıcı adı ve şifreyi alıp kontrol ederim, doğruysa içeri alırım.",
+      "Şifreleri veritabanında düz metin saklarım ki kullanıcı unutursa e-postayla geri gönderebileyim; HTTPS'e de gerek yok, şifreyi base64 ile kodlamak yeterli."
+    ]
+  },
+  "CORS nedir ve neden “CORS hatası” alırız?": {
+    "good": [
+      "Tarayıcı güvenlik nedeniyle bir sayfanın kendi alan adı dışındaki adreslere yaptığı istekleri sınırlar, buna same-origin policy denir. Frontend localhost:3000'de, API başka bir portta olunca bu farklı bir origin sayılır. Sunucu yanıtta Access-Control-Allow-Origin başlığını doğru dönmezse tarayıcı yanıtı JavaScript'e vermez. PUT gibi isteklerde önce OPTIONS ile bir preflight gider. Çözüm, sunucuda izinli origin'leri tanımlamaktır.",
+      "Browser, cross-origin request'lerde response header'larına bakar; backend Access-Control-Allow-Origin set etmezse request bloklanır. Custom header varsa önce preflight atılır. Postman'de bu hatayı almamamızın sebebi de bu, CORS bir browser kuralı.",
+      "Junior'ken ilk karşılaştığım hatalardan biriydi: React uygulaması kendi API'mize istek atınca konsolda kırmızı bir CORS hatası. Meğer sayfa ile API farklı domain'deymiş, tarayıcı da bunu güvenlik için durduruyormuş. Backend'de cors middleware'ine frontend'in adresini ekleyince düzeldi."
+    ],
+    "partial": [
+      "CORS, tarayıcının uyguladığı bir güvenlik kuralıdır.",
+      "Farklı bir origin'e istek atınca tarayıcı bunu engelleyebilir."
+    ],
+    "wrong": [
+      "CORS bir JavaScript kütüphanesi galiba, tam bilmiyorum.",
+      "İnternet bağlantısı kötü olunca çıkan bir hata, sayfayı yenileyince geçer.",
+      "CORS hatası sunucunun isteği reddetmesidir; istemci tarafında fetch'e mode: 'no-cors' eklersen sorun tamamen çözülür."
+    ]
+  },
+  "Yeni bir özelliği veritabanından arayüze kadar nasıl planlarsın?": {
+    "good": [
+      "Önce ürün ekibiyle gereksinimi netleştirip veritabanında hangi tabloların ve kolonların gerektiğini çıkarırım, migration yazarım. Sonra frontend'le oturup endpoint'lerin istek ve yanıt formatında anlaşırız. Arayüz tarafında ekranları ve bileşenleri bu sözleşmeye göre yaparız. Her katmana birim ve entegrasyon testleri eklerim, en sonda da uçtan uca bir senaryoyla doğrularım.",
+      "Data model'i ve DB schema'yı tasarlarım, sonra OpenAPI ile contract'ı yazarım ki FE mock'la başlayabilsin. Backend ve UI paralel ilerler, feature flag arkasında merge ederiz, unit ve e2e test'ler CI'da koşar.",
+      "Mesela favori ürünler özelliği: kullanıcı ve ürün id'sini tutan yeni bir tablo eklerim. Ekleme, silme ve listeleme için üç endpoint yazarım. Ürün kartına kalp ikonu, profil ekranına da favoriler listesi koyarım. Kritik yolları testlerle güvenceye alırım."
+    ],
+    "partial": [
+      "Önce veritabanı tablolarını tasarlar, migration'ı hazırlarım.",
+      "Önce API'yi yazarım, sonra arayüzü ona göre geliştiririm."
+    ],
+    "wrong": [
+      "Direkt kodlamaya başlarım, ilerledikçe şekillenir.",
+      "Ekiple konuşur, iyi bir plan yapar, zamanında teslim ederim.",
+      "Önce bütün arayüzü bitiririm, veritabanını en sona bırakırım; test yazmak zaman kaybı olduğu için hiç yazmam, müşteri zaten deneyip söyler."
+    ]
+  },
+  "Sayfalama (pagination) nasıl yaparsın?": {
+    "good": [
+      "Basit listelerde LIMIT ve OFFSET ile sayfa sayfa çekerim. Ama tablo milyonlarca satıra çıkınca OFFSET büyüdükçe veritabanı atlanacak satırları da okuduğu için yavaşlar; orada son görülen id'yi kullanan cursor tabanlı sayfalama yaparım. Sıraladığım kolonda indeks olmasına dikkat ederim. Arayüzde de akış tipi ekranlarda sonsuz kaydırma, yönetim panellerinde sayfa numaraları kullanırım.",
+      "Keyset pagination'ı tercih ederim, yani where id > lastId order by id limit 20. Offset'li yaklaşım deep page'lerde slow kalıyor. Index'li kolon şart. Mobilde infinite scroll, admin panelde klasik page number'lı UI.",
+      "Instagram akışını düşün: aşağı kaydırdıkça yeni gönderiler geliyor. Arkada her yanıtta bir sonraki sayfanın imlecini dönüyorum, istemci onu bir sonraki istekte geri gönderiyor. Sayfa numarasıyla gitseydim araya yeni gönderi girince aynı gönderi iki kez görünebilirdi. Sorgu da created_at üzerindeki indeks sayesinde hızlı kalıyor."
+    ],
+    "partial": [
+      "Sorguya limit ve offset ekleyerek veriyi parça parça çekerim.",
+      "Küçük listelerde limit-offset kullanırım, kullanıcıya da sayfa numaraları gösteririm."
+    ],
+    "wrong": [
+      "Bütün veriyi tek seferde çekip ekranda gösteririm, kullanıcı kaydırır.",
+      "Sayfalama tasarımcının işi, ben backend'den gelen veriyi gösteririm.",
+      "Her zaman offset kullanırım çünkü cursor sadece NoSQL veritabanlarında çalışır; offset ne kadar büyürse büyüsün sorgu süresi değişmez."
+    ]
+  },
+  "Bir projeyi sıfırdan kuracaksın. Teknoloji seçimlerini nasıl yaparsın?": {
+    "good": [
+      "Önce ürünün ne yapacağını, kaç kullanıcı beklendiğini, gerçek zamanlı bir ihtiyaç olup olmadığını netleştiririm. Ekibin zaten hâkim olduğu dillere öncelik veririm, çünkü yeni bir teknolojiyi öğrenmek hız kaybettirir. Aktif topluluğu ve olgun kütüphaneleri olan araçları seçerim. Lisans, sunucu maliyeti ve uzun vadeli bakımı da tartar, kararı kısa bir ADR ile yazıya dökerim.",
+      "Requirement'ları ve NFR'ları çıkarırım: latency, throughput, compliance. Team'in skill set'ine bakarım, herkes TypeScript biliyorsa Go'ya geçmek risk. Community support, dokümantasyon ve library ekosistemi önemli. TCO'yu ve scaling ihtiyacını da hesaplarım.",
+      "Son girişimde backend'i Node ile kurduk, çünkü ekipteki herkes JavaScript biliyordu. Çok popüler bir platform, her sorunun cevabı internette var, hazır paket bulmak kolay. İlk yıl için büyük bir kullanıcı sayısı beklemiyorduk, o yüzden pahalı ve karmaşık bir altyapıya girmedik."
+    ],
+    "partial": [
+      "Ekibin en iyi bildiği teknolojiyi seçerim.",
+      "Projenin ihtiyaçlarına bakarım ve ekibin deneyimini göz önüne alırım."
+    ],
+    "wrong": [
+      "Ne yeni çıktıysa onu seçerim, trendleri takip etmek lazım.",
+      "Bilmiyorum, genelde şirketin kullandığını kullanırız.",
+      "Her projede en yeni ve en hızlı teknolojiyi seçerim; ekibin bilip bilmemesi önemli değil, nasılsa öğrenirler."
+    ]
+  },
+  "CI/CD nedir, bir pipeline’da hangi adımlar olur?": {
+    "good": [
+      "CI, geliştiricilerin kodu sık sık ana dala birleştirmesi ve her birleştirmede kodun otomatik olarak derlenip testlerden geçirilmesidir. CD ise testleri geçen sürümün otomatik olarak test ve canlı ortama dağıtılmasıdır. Tipik bir pipeline'da kodun çekilmesi, bağımlılıkların kurulması, lint, birim testleri, Docker image'ının oluşturulması ve deploy adımları olur.",
+      "Her push'ta GitHub Actions tetikleniyor: install, lint, unit test, build, sonra image'ı registry'ye push edip staging'e deploy ediyoruz. Main'e merge olunca production'a otomatik release çıkıyor. Continuous integration ile continuous delivery'yi böyle ayırıyorum.",
+      "Eskiden sürüm çıkmak bir gün sürerdi, biri elle sunucuya bağlanıp dosya kopyalardı. Şimdi kodu gönderdiğim anda her şey otomatik: sistem derliyor, testleri koşturuyor, kırmızı bir şey yoksa sunucuya kuruyor. Ben sadece sonucu Slack'ten görüyorum."
+    ],
+    "partial": [
+      "Her commit'te testlerin çalışmasını sağlayan bir sistem.",
+      "Kod push edilince otomatik olarak build alınır ve testler koşar."
+    ],
+    "wrong": [
+      "Bilmiyorum, bir proje yönetim aracı olabilir.",
+      "Kodu yazıp arkadaşlara gönderiyoruz, onlar da bakıyor, öyle işte.",
+      "CI/CD sadece canlıya deploy etmek demek; testler pipeline'da değil, deploy ettikten sonra kullanıcılar tarafından yapılır."
+    ]
+  },
+  "Container ile sanal makine arasındaki fark nedir?": {
+    "good": [
+      "Sanal makinede hipervizör üzerinde her VM kendi tam işletim sistemini çalıştırır. Container ise host'un çekirdeğini paylaşır, sadece uygulamayı ve bağımlılıklarını içerir. Bu yüzden container saniyeler içinde açılır ve megabaytlarla ifade edilir, VM ise gigabaytlarca yer tutar. Öte yandan VM'lerin izolasyonu daha güçlüdür. Container'ları genelde Docker image'ı olarak paketleriz.",
+      "VM full guest OS boot ediyor, container'lar ise host kernel'i share ediyor, namespace ve cgroup'larla ayrılıyor. Startup time saniyeler, resource overhead çok düşük. Security isolation açısından VM daha sağlam. Dockerfile yazıp image build ediyoruz.",
+      "Benim gözümde VM komple ayrı bir bilgisayar gibi; içine Windows ya da Linux kurulu, açılması dakikalar sürüyor. Container ise aynı makinedeki bir işlemi kutuya koymak gibi, bilgisayarın çekirdeğini ortak kullanıyor ve anında ayağa kalkıyor. Biz uygulamayı Docker ile paketleyip her yerde aynı şekilde çalıştırıyoruz."
+    ],
+    "partial": [
+      "Container'lar sanal makinelere göre çok daha hafiftir ve hızlı açılır.",
+      "Docker container'ı host'un kernel'ini paylaşır, VM ise kendi işletim sistemini çalıştırır."
+    ],
+    "wrong": [
+      "İkisi de aynı şey, container sadece yeni adı.",
+      "Bilmiyorum, ben hep hazır sunucu kullandım.",
+      "Container da sanal makine gibi kendi işletim sistemi çekirdeğini çalıştırır, sadece Docker adı altında satılan daha pahalı bir VM'dir."
+    ]
+  },
+  "Sıfır kesintiyle (zero-downtime) deploy nasıl yapılır?": {
+    "good": [
+      "Load balancer arkasında eski sürüm çalışırken yeni sürümü ayağa kaldırırım. Yeni pod'lar sağlık kontrolünden geçmeden trafiğe alınmaz; Kubernetes'te rolling update bunu kendisi yapıyor. Daha riskli değişikliklerde blue-green kurup trafiği tek seferde çeviririm, sorun olursa eskiye geri dönerim. Veritabanı değişikliğini de önce yeni kolonu ekleyip eskisini sonra silecek şekilde geriye uyumlu yaparım.",
+      "Rolling update ile pod'ları tek tek değiştiririm, readiness probe'u geçmeyen pod'a trafik gitmez. Kritik release'lerde canary ile %5 trafikle başlarım, error rate artarsa otomatik rollback olur. DB tarafında expand-contract pattern'iyle migration yaparım ki eski kod da çalışmaya devam etsin.",
+      "Kullanıcı hiçbir şey fark etmeden sürüm değiştirmek istiyorsak iki ortam tutarız: biri canlı, diğeri yeni sürümü alır. Yeni ortam test edilip sağlıklı olduğu görülünce yönlendiriciyi ona çeviririz. Bir sorun olursa birkaç saniyede eski ortama geçeriz. Veritabanında da eski sürümü bozacak bir değişiklik yapmamaya dikkat ederiz."
+    ],
+    "partial": [
+      "Kubernetes'te rolling update kullanırım, pod'lar sırayla yenilenir.",
+      "Blue-green deploy yaparım, sorun çıkarsa hemen rollback ederim."
+    ],
+    "wrong": [
+      "Gece kimse yokken deploy ederiz, kesinti olsa da fark edilmez.",
+      "Dikkatli deploy ederim, önceden her şeyi iyice kontrol ederim.",
+      "Sıfır kesinti için tek yapmanız gereken sunucuyu hızlıca yeniden başlatmak; veritabanı migration'larını da deploy anında kolonları silip yeniden oluşturarak yaparım."
+    ]
+  },
+  "Kubernetes’te bir pod sürekli yeniden başlıyor. Ne yaparsın?": {
+    "good": [
+      "Önce kubectl logs --previous ile çöken container'ın son loglarına bakarım. Sonra kubectl describe pod ile olaylara, çıkış koduna ve sebebe bakarım. OOMKilled yazıyorsa bellek limiti düşüktür ya da uygulamada sızıntı vardır. Uygulama yavaş açılıyorsa liveness probe onu erkenden öldürüyor olabilir, başlangıç gecikmesini artırırım. Eksik bir ConfigMap ya da secret da sık görülen bir neden.",
+      "CrashLoopBackOff görünce ilk iş logs'a bakarım, sonra describe'daki event'lere. Exit code 137 ise memory limit'e takılmıştır, limit'i yükseltirim ya da leak'i ararım. Liveness probe'un timeout'u çok kısaysa onu da düzeltirim.",
+      "Geçen hafta tam bunu yaşadık: pod sürekli yeniden başlıyordu. Konteynerin önceki çıktısına baktık, uygulama veritabanı adresini bulamadığı için kapanıyormuş; ortam değişkeni eksik girilmiş. Pod'un geçmişinde bir kez de yetersiz bellek yüzünden öldürüldüğünü gördük, kaynak ayarlarını güncelledik. Sağlık kontrolünün süresini de biraz uzattık."
+    ],
+    "partial": [
+      "Pod'un loglarına bakar, hatanın ne olduğunu anlamaya çalışırım.",
+      "kubectl describe ile event'lere bakarım, OOMKilled var mı kontrol ederim."
+    ],
+    "wrong": [
+      "Pod'u silip yeniden oluştururum, genelde düzelir.",
+      "Kubernetes çok karmaşık, ben olsam DevOps ekibine sorardım.",
+      "Pod'un sürekli yeniden başlaması normaldir, Kubernetes bellek sızıntılarını kendisi temizlediği için bir şey yapmaya gerek yok."
+    ]
+  },
+  "İyi bir izleme (monitoring) ve alarm sistemi nasıl kurarsın?": {
+    "good": [
+      "Üç ayağı birlikte kurarım: Prometheus ile metrikler, merkezi log toplama ve dağıtık izleme için trace. Kullanıcı açısından önemli olan gecikme ve hata oranı için SLO belirlerim, örneğin isteklerin yüzde 99'u 300 ms altında olmalı. Alarmları CPU yüzde 80 gibi sebeplere değil, SLO'nun bozulmasına bağlarım; böylece gece boşuna uyandıran gürültülü alarmlar azalır. Her alarmın ne yapılacağını anlatan bir runbook'u ve net bir nöbet sırası olur.",
+      "Observability stack'imiz Grafana, Loki ve Tempo; metrics, logs, traces hepsi tek yerde. SLI'ları tanımlayıp error budget'a göre alert yazarız. Alert fatigue olmasın diye her alert actionable olmalı, değilse sileriz. PagerDuty'de on-call rotasyonu var, her alert'in bir playbook'u var.",
+      "Önceki işimde gecede 30 alarm geliyordu ve kimse artık bakmıyordu. Önce hepsini elden geçirdik, kullanıcıya etkisi olmayanları kapattık. Sonra ödeme başarı oranı gibi birkaç kritik göstergeye hedef koyduk. Grafiklerin yanında logları ve istek izlerini de topladık. Her alarm için kısa bir ne yapmalı dokümanı yazıp nöbetçi listesi oluşturduk."
+    ],
+    "partial": [
+      "Prometheus ile metrik toplar, Grafana'da panel yaparım.",
+      "Metrik ve logları toplarım, kritik hatalarda nöbetçiye alarm gider."
+    ],
+    "wrong": [
+      "Sunucuya arada bir girip her şey yolunda mı bakarım.",
+      "İyi bir araç seçerim, o da gerisini halleder.",
+      "Ne kadar çok alarm o kadar iyi; her metrik için ayrı alarm kurarım, CPU yüzde 50'yi geçse bile tüm ekibe gece mesaj atılsın."
+    ]
+  },
+  "Altyapıyı kod olarak yönetmenin (IaC) faydaları nelerdir?": {
+    "good": [
+      "Altyapıyı Terraform gibi bir araçla kod olarak yazınca test, staging ve canlı ortamları birebir aynı şekilde, tekrar tekrar kurabiliyorum. Kod Git'te durduğu için her değişikliğin geçmişi var ve pull request ile gözden geçiriliyor. Biri konsoldan elle bir ayar değiştirirse plan çıktısında bu sapmayı görüp düzeltebiliyorum. Felaket durumunda da tüm ortamı dakikalar içinde yeniden kurarım.",
+      "Terraform module'leriyle environment'ları reproducible yapıyoruz. Her şey version control'de, PR açıp review'dan geçiriyoruz, Atlantis plan'ı yorum olarak atıyor. Console'dan manual değişiklik olursa drift detection yakalıyor.",
+      "Eskiden sunucuları elle kuruyorduk ve her biri biraz farklı oluyordu, kimin neyi değiştirdiği de bilinmiyordu. Ansible'a geçince tek komutla aynı kurulumu yüzlerce sunucuya yapabildik. Değişiklikler artık commit geçmişinde duruyor, ekipten biri onaylamadan uygulanmıyor."
+    ],
+    "partial": [
+      "Terraform ile altyapıyı kodla tanımlarız, elle uğraşmayız.",
+      "Altyapı kodu Git'te durur ve her ortam aynı şekilde kurulur."
+    ],
+    "wrong": [
+      "IaC'yi duydum ama ne olduğunu tam bilmiyorum.",
+      "Altyapıyı düzenli tutmaya yarar, işleri kolaylaştırır.",
+      "IaC sadece ilk kurulumda işe yarar; sonrasında konsoldan elle değişiklik yapmak daha hızlıdır ve kodla altyapı arasında fark oluşması sorun değildir."
+    ]
+  },
+  "Test piramidini açıklar mısın?": {
+    "good": [
+      "Piramidin tabanında en çok sayıda olan birim testleri var; tek bir fonksiyonu izole test eder, milisaniyeler içinde koşar. Ortada modüllerin ve veritabanı gibi dış bileşenlerin birlikte çalışmasını kontrol eden entegrasyon testleri olur. Tepede ise kullanıcı gibi tarayıcıda tıklayan uçtan uca testler bulunur; bunlar yavaş, kırılgan ve pahalı olduğu için sayıları az tutulur.",
+      "Unit test'ler base'de, binlerce tane, ucuz ve fast. Integration katmanında API ile DB'yi beraber test ederiz. En üstte Cypress ya da Playwright ile birkaç kritik e2e senaryo var. Yukarı çıktıkça cost artıyor, feedback yavaşlıyor.",
+      "Bir e-ticaret sitesi düşünelim. Sepet toplamını hesaplayan fonksiyon için onlarca küçük test yazarım. Sepet servisinin veritabanıyla birlikte çalıştığını birkaç testle kontrol ederim. Bir de baştan sona ödeme yapan tek bir tarayıcı testi koyarım. Yukarıdakiler yavaş ve bozulmaya meyilli olduğu için azdır."
+    ],
+    "partial": [
+      "Birim testleri piramidin temelidir.",
+      "En altta unit testler, onların üstünde integration testler vardır."
+    ],
+    "wrong": [
+      "Test piramidi bir proje yönetim yöntemi galiba, emin değilim.",
+      "Testler önemlidir, ne kadar test o kadar kalite.",
+      "Piramidin tabanında en çok uçtan uca testler olmalı çünkü gerçek kullanıcıyı taklit ederler; birim testleri gereksizdir, en az onlardan yazılır."
+    ]
+  },
+  "İyi bir hata (bug) raporunda neler olmalı?": {
+    "good": [
+      "Hatanın ne olduğunu tek cümlede anlatan bir başlık, hatayı yeniden oluşturmak için numaralı adımlar, beklenen sonuç ve gerçekte ne olduğu. Hangi uygulama sürümü, hangi cihaz ve işletim sistemi olduğunu yazarım. Ekran görüntüsü ya da kısa bir video eklerim, varsa konsol logunu da. Son olarak kullanıcıyı ne kadar etkilediğine göre önem derecesini belirtirim.",
+      "Title, steps to reproduce, expected vs actual result, environment bilgisi (build number, OS, browser), screenshot ya da screen recording ve severity/priority. Jira'da bunları template olarak tutuyoruz.",
+      "Bir geliştirici olarak en çok sevdiğim rapor şöyleydi: iPhone 13, iOS 17, uygulamanın 4.2 sürümünde sepete ürün ekleyip kuponu girince ödeme butonu kayboluyor, oysa butonun görünmesi gerekiyordu. Altında bir video ve hangi sırayla tıkladığı yazıyordu. Ödemeyi engellediği için de kritik olarak işaretlenmişti."
+    ],
+    "partial": [
+      "Hatanın ekran görüntüsünü eklerim.",
+      "Hatanın nasıl tekrarlanacağını adım adım yazarım ve hangi tarayıcıda olduğunu belirtirim."
+    ],
+    "wrong": [
+      "Hatayı bulduğumu geliştiriciye söylerim, o halleder.",
+      "İyi bir raporda her şey açık ve net olmalı.",
+      "Rapora sadece 'çalışmıyor' yazmak yeterli; adımları yazmaya gerek yok çünkü geliştirici kodu bildiği için hatayı kendisi bulur."
+    ]
+  },
+  "Bir giriş formu için test senaryolarını nasıl çıkarırsın?": {
+    "good": [
+      "Önce mutlu yol: geçerli e-posta ve şifreyle giriş yapılabiliyor mu. Sonra negatifler: yanlış şifre, kayıtlı olmayan e-posta, boş alanlar, hatalı e-posta formatı. Sınır değerlerde şifrenin minimum ve maksimum uzunluğunu, Türkçe karakterleri ve baştaki boşlukları denerim. Güvenlik tarafında SQL injection denemesi, beş hatalı denemeden sonra hesabın kilitlenmesi ve şifrenin maskeli görünmesini kontrol ederim.",
+      "Happy path, negative case'ler, boundary value'lar ve security test'leri diye gruplarım. Valid credential'la login, invalid password, empty field, max length aşımı, special character'lar, SQLi payload'ları ve rate limiting.",
+      "Kendimi kötü niyetli bir kullanıcının yerine koyarım. Şifre alanına bin karakterlik bir metin yapıştırırım, e-posta alanına ' OR 1=1 yazarım, aynı hesaba arka arkaya on kez yanlış şifre denerim. Tabii önce normal bir kullanıcının doğru bilgilerle sorunsuz girebildiğinden emin olurum. Alanları boş bırakıp butona basmayı da unutmam."
+    ],
+    "partial": [
+      "Doğru kullanıcı adı ve şifreyle giriş yapılabildiğini test ederim.",
+      "Doğru bilgilerle girişi, sonra yanlış şifre ve boş alan durumlarını denerim."
+    ],
+    "wrong": [
+      "Formu bir kez doldururum, giriş yapabiliyorsam test tamamdır.",
+      "Test senaryolarını yazılımcılar yazar, ben sadece tıklarım.",
+      "Giriş formunda güvenlik testine gerek yok çünkü şifre alanı zaten yıldızlı görünüyor; SQL injection sadece arama kutularında olur."
+    ]
+  },
+  "Hangi testleri otomasyona alırsın, hangilerini manuel bırakırsın?": {
+    "good": [
+      "Her sürümde tekrar tekrar koşulan regresyon testlerini otomasyona alırım, özellikle giriş ve ödeme gibi kritik ve pek değişmeyen akışları. Arayüzü her sprintte değişen ekranlarda otomasyon sürekli kırılır, onları manuel test ederim. Keşif testi, kullanılabilirlik ve görsel kontroller de insan gözü ister. Bir testi otomatikleştirmeden önce yazma ve bakım maliyetini, elle koşmanın toplam süresiyle karşılaştırırım.",
+      "Regression suite'i ve smoke test'leri automate ederim, stable olan critical flow'lar öncelikli. Sık değişen UI'larda maintenance cost çok yüksek oluyor. Exploratory testing, usability ve edge case keşfi manual kalır. Kararı ROI'ye bakarak veririm.",
+      "Geçen projede her yayından önce 200 adımlık bir kontrol listesini elle yapıyorduk, iki gün sürüyordu. Hiç değişmeyen kısımları otomatiğe aldık, süre yarım saate indi. Ama yeni tasarlanan ekranları otomatiğe almadık, çünkü her hafta değiştikleri için testleri güncellemekten yorulurduk. Yeni özellikleri hâlâ elle kurcalayarak test ediyoruz."
+    ],
+    "partial": [
+      "Tekrar eden regresyon testlerini otomasyona alırım.",
+      "Sık tekrar eden testleri otomatikleştiririm, keşif testlerini manuel yaparım."
+    ],
+    "wrong": [
+      "Bence ya her şey otomasyona alınmalı ya da hiçbir şey, ortası olmaz.",
+      "Bilmiyorum, bu kararı genelde yönetici verir.",
+      "Her testi yüzde yüz otomasyona alırım çünkü otomasyonun bakım maliyeti yoktur, bir kez yazınca sonsuza kadar çalışır; manuel teste hiç gerek kalmaz."
+    ]
+  },
+  "Flaky (bazen geçip bazen kalan) testlerle nasıl başa çıkarsın?": {
+    "good": [
+      "Önce flaky testi ayrı bir karantina listesine alırım ki herkesin pipeline'ını kırmızıya boyamasın, ama orada unutulmasın diye bir görev açarım. Sonra kök nedeni ararım: çoğu zaman sabit sleep ile beklenip asenkron bir işlem bitmeden kontrol yapılıyordur, onu bir koşul gerçekleşene kadar beklemeye çeviririm. Testler aynı veriyi paylaşıyorsa her teste kendi izole verisini veririm. Sıra bağımlılığını yakalamak için testleri rastgele sırada koşarım.",
+      "Flaky test'leri quarantine'e alıp tag'leriz, retry ile maskelemeyiz. Root cause genelde race condition ya da hard-coded timeout oluyor; explicit wait kullanırız. Shared state ve test data çakışmasını önlemek için her test kendi fixture'ını oluşturur.",
+      "Bir ekipte testlerimizin yüzde onu rastgele kalıyordu ve insanlar kırmızıyı görmezden gelmeye başlamıştı. Bunları ayrı bir etiketle işaretleyip ana hattan çıkardık. Tek tek incelediğimizde çoğu, sayfanın yüklenmesini beklemeden butona tıklıyordu. Bir kısmı da başka testin bıraktığı kayıtlara bağlıydı; her testin kendi kaydını oluşturmasını sağladık."
+    ],
+    "partial": [
+      "Flaky testleri karantinaya alırım ki pipeline'ı bozmasın.",
+      "Kök nedeni bulmaya çalışırım, genelde sabit sleep yerine koşullu bekleme yeterli olur."
+    ],
+    "wrong": [
+      "Test kırmızı olunca bir daha çalıştırırım, yeşil olursa devam ederim.",
+      "Bilmiyorum, öyle testlerle hiç karşılaşmadım.",
+      "Flaky testleri pipeline'da otomatik olarak üç kez yeniden çalıştırırım, biri geçerse sorun yoktur; kök nedenine bakmaya gerek yok çünkü bu hep test ortamından kaynaklanır."
+    ]
+  },
+  "Release öncesi kalite stratejini nasıl kurarsın?": {
+    "good": [
+      "Önce bu sürümde neyin değiştiğine bakıp risk analizi yaparım; ödeme gibi kritik ve çok değişen alanlara test eforunun çoğunu ayırırım. Her hikâyenin kabul kriterlerinin karşılandığını doğrularım. Otomatik regresyon setini koşar, canlıya çıktıktan hemen sonra da kısa bir smoke test yaparım. Açık kritik hata sayısı, test kapsamı ve önceki sürümlerdeki kaçak hata oranı gibi metriklere bakarak yayın kararını veririm.",
+      "Risk-based testing yaparım, change impact analysis'le scope'u belirleriz. Acceptance criteria'lar Definition of Done'ın parçası. Release candidate üzerinde full regression, deploy sonrası smoke. Go/no-go toplantısında open bug sayısı, coverage ve escape rate'e bakarız.",
+      "Bizde yayın haftası şöyle işliyor: pazartesi değişen modülleri listeleyip en tehlikeli olanları belirliyoruz. Ürün sahibiyle her özelliğin bitti sayılması için ne gerektiğini zaten baştan konuşmuş oluyoruz, onları tek tek işaretliyoruz. Otomatik testler gece koşuyor. Yayından sonra canlıda temel akışları hızlıca deniyoruz. Açık kritik hata varsa yayın yapmıyoruz."
+    ],
+    "partial": [
+      "Yayından önce tüm regresyon testlerini çalıştırırım.",
+      "Risklere göre öncelik verir, kabul kriterlerini kontrol ederim."
+    ],
+    "wrong": [
+      "Yayından önce bir kez uygulamayı açıp bakarım, açılıyorsa sorun yok.",
+      "Kalite herkesin sorumluluğu, ekip dikkatli olursa sorun çıkmaz.",
+      "Kod kapsamı yüzde 100 ise uygulamada hata olmadığı kesindir, o yüzden release öncesi başka bir teste gerek yoktur."
+    ]
+  },
+  "ETL ile ELT arasındaki fark nedir?": {
+    "good": [
+      "ETL'de veri kaynaktan çekilir, ayrı bir sunucuda temizlenip dönüştürülür, sonra hedefe yüklenir. ELT'de ise ham veri olduğu gibi Snowflake ya da BigQuery gibi bir veri ambarına yüklenir, dönüşüm orada SQL ile, çoğu zaman dbt ile yapılır. Bulut ambarlarının işlem gücü çok yüksek ve esnek ölçeklendiği için ELT bugün daha yaygın; ham veri de elde kaldığı için sonradan farklı dönüşümler yapılabilir.",
+      "ETL'de transform step'i load'dan önce, mesela bir Spark job'ında oluyor. ELT'de raw data'yı warehouse'a load edip transformation'ı in-warehouse yapıyoruz, dbt model'leriyle. Modern cloud DWH'lerde compute ayrı scale olduğu için ELT daha flexible.",
+      "Eski şirketimde gece çalışan bir Python betiği verileri çekip temizliyor, sonra raporlama veritabanına yazıyordu; bu klasik ETL. Yeni yerde her şeyi ham haliyle BigQuery'ye döküyoruz, temizliği orada SQL ile yapıyoruz. BigQuery'nin gücü yettiği için ayrı bir dönüşüm sunucusuna gerek kalmıyor."
+    ],
+    "partial": [
+      "ETL'de veri yüklenmeden önce dönüştürülür.",
+      "ELT'de ham veri önce veri ambarına yüklenir, dönüşüm orada yapılır."
+    ],
+    "wrong": [
+      "ETL ve ELT aynı şey, harflerin yeri değişmiş sadece.",
+      "Bilmiyorum, veriyle pek çalışmadım.",
+      "ELT'de veri ambara yüklenmeden önce mutlaka ayrı bir sunucuda dönüştürülür, ETL'de ise hiç dönüşüm yapılmaz."
+    ]
+  },
+  "SQL’de window function nedir? Bir örnek verir misin?": {
+    "good": [
+      "Window function, GROUP BY gibi satırları tek satıra indirmeden, her satır için ilgili bir satır kümesi üzerinde hesap yapar. OVER içinde PARTITION BY ile grubu, ORDER BY ile sırayı belirtiriz. Örneğin her müşterinin siparişlerini tarihe göre numaralamak için ROW_NUMBER() OVER (PARTITION BY musteri_id ORDER BY tarih) yazarım; LAG ile de bir önceki siparişin tutarına bakabilirim.",
+      "Aggregate'i row'ları collapse etmeden hesaplıyor. Mesela running total için SUM(amount) OVER (ORDER BY created_at), departman içi maaş sıralaması için RANK() OVER (PARTITION BY dept ORDER BY salary DESC). Her row korunuyor, yanına hesaplanan bir kolon ekleniyor.",
+      "Bir raporda her ürünün satışını kategorisinin toplam satışıyla yan yana göstermem gerekiyordu. GROUP BY yapınca ürün detayı kayboluyordu. SUM'ı OVER ile kullanıp kategoriye göre bölünce her ürün satırının yanında kategori toplamı geldi, tek sorguda bitti."
+    ],
+    "partial": [
+      "Window function'lar OVER ifadesiyle kullanılır.",
+      "ROW_NUMBER veya RANK gibi fonksiyonlar, satırları kaybetmeden sıra numarası verir."
+    ],
+    "wrong": [
+      "Window function, Windows işletim sisteminde çalışan SQL fonksiyonları sanırım.",
+      "SQL'de veri çekmeye yarayan fonksiyonlardan biri, çok kullanılıyor.",
+      "Window function aslında GROUP BY ile aynıdır, sonuçta her grup tek satıra iner ve diğer satırlar kaybolur."
+    ]
+  },
+  "Batch ve streaming işleme ne zaman tercih edilir?": {
+    "good": [
+      "Sonucun birkaç saat sonra gelmesi sorun değilse batch seçerim; günlük satış raporu ya da gece çalışan faturalama buna örnek. Kurması, test etmesi ve hata durumunda yeniden çalıştırması kolaydır, maliyeti de düşüktür. Saniyeler içinde tepki gerekiyorsa, örneğin kartla yapılan şüpheli bir ödemeyi anında durdurmak için, Kafka ve Flink ile streaming kurarım. Ama streaming'i işletmek ve sıra dışı gelen olaylarla uğraşmak daha karmaşıktır.",
+      "Latency requirement'ına bakarım. Daily aggregation'lar için Spark batch job yeterli ve cheap. Fraud detection, real-time recommendation gibi use case'lerde Kafka + Flink streaming lazım; exactly-once, late events, state management derken operational complexity artıyor.",
+      "Bir lojistik firmasında araç konumlarını haritada canlı göstermek istedik; bunu her gece toplu işleyemezdik, akış şeklinde işlememiz gerekti. Ama aylık yakıt raporlarını hâlâ toplu işliyoruz, çünkü acelesi yok ve sürekli çalışan bir sistemi ayakta tutmak hem pahalı hem zahmetli."
+    ],
+    "partial": [
+      "Gerçek zamanlı bir ihtiyaç varsa streaming, yoksa batch kullanırım.",
+      "Anlık tepki gerekiyorsa Kafka ile streaming kurarım, diğer işler için batch yeterli."
+    ],
+    "wrong": [
+      "Bilmiyorum, ikisini de daha önce duymadım.",
+      "Duruma göre değişir, ikisinin de avantajları var.",
+      "Streaming her durumda batch'ten daha ucuz ve basittir, bu yüzden günlük raporları bile Kafka ile anlık işlerim; batch artık eskidi."
+    ]
+  },
+  "Veri kalitesini nasıl güvence altına alırsın?": {
+    "good": [
+      "Hattın her adımına otomatik kontroller koyarım. Gelen verinin şemasının beklenenle uyuştuğunu, zorunlu kolonlarda null olmadığını ve aynı kaydın iki kez gelmediğini kontrol ederim. Satır sayısının dünküyle kıyaslandığında aniden düşmesi gibi anormallikleri de izlerim. Bir kontrol başarısız olursa ekibe alarm gider ve bozuk veri raporlara akmadan bekletilir.",
+      "Great Expectations ya da dbt test'leriyle not_null, unique, accepted_values gibi assertion'lar yazarız. Schema contract'ları upstream ekiplerle anlaşılır, schema change olursa pipeline fail eder. Data freshness ve volume anomaly'leri için monitoring var, Slack'e alert düşer.",
+      "Bir gün CEO'nun panosunda satışlar sıfır görünüyordu; kaynak sistem bir kolonun adını değiştirmiş ve kimsenin haberi olmamış. Ondan sonra gelen her dosyanın kolon yapısını kontrol eden bir adım ekledik. Boş ve mükerrer kayıtları sayan kontroller koyduk, eşik aşılınca nöbetçiye bildirim gidiyor."
+    ],
+    "partial": [
+      "Verinin doğru gelip gelmediğini test ederim.",
+      "Null değerleri ve tekrar eden kayıtları kontrol ederim."
+    ],
+    "wrong": [
+      "Veri kalitesi önemli, dikkat etmek lazım.",
+      "Bilmiyorum, veriyi kim gönderiyorsa onun sorumluluğu.",
+      "Kaynak sistem doğru veri gönderdiği sürece kontrol yapmaya gerek yok; hatalı kayıt gelirse raporu kullanan zaten fark eder."
+    ]
+  },
+  "Günde milyonlarca olay için bir veri hattı tasarla.": {
+    "good": [
+      "Uygulamalardan gelen olayları Kafka'ya yazarım, böylece ani yük artışları tamponlanır. Ham olayları tarihe ve saate göre bölümlenmiş şekilde Parquet formatında S3'e atarım, bu bizim data lake'imiz olur. Spark işleriyle bu veriyi temizleyip özetler, Snowflake gibi bir ambara yüklerim. Bütün işlerin sırasını ve tekrar denemelerini Airflow ile yönetirim. Anlık panolar için ayrıca Kafka'dan okuyan bir stream işleme kolu kurarım.",
+      "Ingestion için Kafka, retention birkaç gün. Raw zone S3'te, dt/hour partition'lı. Processing Spark structured streaming ya da hourly batch. Orchestration Airflow DAG'leriyle, warehouse olarak BigQuery. Schema registry ile event şemalarını yönetiriz.",
+      "Önceki işimde mobil uygulamadan günde 50 milyon tıklama olayı geliyordu. Olaylar önce bir mesaj kuyruğunda birikiyor, oradan nesne depolamaya saat saat klasörlere yazılıyordu. Her saat başı çalışan işler bunları temizleyip analitik veritabanına aktarıyordu, iş akışını da bir zamanlayıcı yönetiyordu."
+    ],
+    "partial": [
+      "Olayları Kafka ile toplarım.",
+      "Olayları Kafka'ya alır, S3'e yazıp Spark ile işlerim."
+    ],
+    "wrong": [
+      "Çok büyük bir veritabanı alırım, her şeyi oraya yazarım.",
+      "Bunu bulut sağlayıcısının hazır hizmetleriyle hallederim, detayları onlar düşünür.",
+      "Her olayı geldiği anda doğrudan ilişkisel veritabanına tek tek insert ederim; bölümleme ve kuyruk gereksiz karmaşıklıktır."
+    ]
+  },
+  "CIA üçlüsü (gizlilik, bütünlük, erişilebilirlik) nedir? Birer örnek verir misin?": {
+    "good": [
+      "Gizlilik, bilginin sadece görmeye yetkili kişilerce görülmesidir; örneğin müşteri kartı bilgilerini veritabanında şifreleyerek saklamak. Bütünlük, verinin yolda ya da depoda fark edilmeden değiştirilmemesidir; indirilen bir dosyanın hash değerini kontrol etmek buna örnektir. Erişilebilirlik, sistemin ihtiyaç duyulduğu anda ayakta olmasıdır; DDoS koruması ve yedekli sunucular bunu sağlar.",
+      "Confidentiality için encryption at rest ve in transit, access control. Integrity için checksum, digital signature; mesela bir release dosyasının SHA256'sını doğrulamak. Availability için redundancy, DDoS mitigation, failover.",
+      "Bir hastane sistemini düşünelim. Hasta dosyasını sadece doktoru görebilmeli, bu gizlilik. Kimse tahlil sonucunu sessizce değiştirememeli, bu bütünlük. Acil serviste sistem çöktüğünde doktor dosyaya ulaşamıyorsa erişilebilirlik bozulmuş demektir."
+    ],
+    "partial": [
+      "Gizlilik, verinin sadece yetkili kişilerce görülmesi demektir.",
+      "Gizlilik verinin yetkisiz kişilere açılmaması, bütünlük ise verinin bozulmamasıdır."
+    ],
+    "wrong": [
+      "Bilmiyorum, CIA bir istihbarat örgütü değil mi?",
+      "Güvenlikle ilgili üç kural, hepsi önemli.",
+      "Erişilebilirlik verinin şifrelenmesi demektir, bütünlük ise sistemin hep açık kalması; ikisi aslında aynı kavram."
+    ]
+  },
+  "SQL injection nedir ve nasıl önlenir?": {
+    "good": [
+      "Uygulama kullanıcıdan gelen metni doğrudan SQL cümlesine yapıştırırsa saldırgan oraya kendi SQL'ini ekleyip sorgunun anlamını değiştirebilir; mesela giriş formuna ' OR 1=1 -- yazıp şifresiz girebilir. En sağlam önlem parametreli sorgular ya da ORM kullanmaktır, böylece girdi veri olarak gider, kod olarak çalışmaz. Ek olarak girdiyi tip ve uzunluk açısından doğrularım ve uygulamanın veritabanı kullanıcısına sadece ihtiyacı kadar yetki veririm.",
+      "User input'u string concatenation ile query'ye eklersen attacker query'yi manipüle edebilir. Prepared statement ve bind parameter kullanırız, input validation ve WAF ek katman. DB user'ı least privilege ile çalışır, DROP yetkisi yok.",
+      "Stajdayken arama kutusuna tek tırnak yazınca sayfanın veritabanı hatası verdiğini gördüm, bu klasik bir injection işaretiydi. Kodda arama kelimesi doğrudan sorgu metnine ekleniyordu. Sorguyu yer tutucularla yazıp değeri ayrıca gönderecek şekilde düzelttik. Uygulamanın veritabanı hesabının tablo silme izni de vardı, onu da kaldırdık."
+    ],
+    "partial": [
+      "Kullanıcı girdisiyle SQL sorgusunun değiştirilmesidir.",
+      "Saldırgan sorguya kod enjekte eder; parametreli sorgular kullanarak önlenir."
+    ],
+    "wrong": [
+      "SQL injection veritabanına aşı yapmak gibi bir şey herhalde, bilmiyorum.",
+      "Güçlü bir şifre ve iyi bir antivirüs kullanarak önlenir.",
+      "SQL injection'ı önlemek için girdideki tek tırnakları silmek yeterlidir, parametreli sorguya gerek yoktur."
+    ]
+  },
+  "OWASP Top 10’dan bildiğin açıkları ve önlemlerini anlatır mısın?": {
+    "good": [
+      "Injection başta geliyor; SQL ya da komut enjeksiyonu parametreli sorgular ve girdi doğrulamayla önlenir. Bozuk erişim kontrolü de çok yaygın: örneğin URL'deki sipariş id'sini değiştirip başkasının siparişini görmek; her istekte sunucu tarafında yetki kontrolü yaparak önlerim. XSS'te saldırgan sayfaya script enjekte eder, çıktıyı encode edip CSP başlığı koyarak engellerim. Zayıf kimlik doğrulamaya karşı MFA ve güvenli oturum yönetimi, bilinen açıklı bileşenlere karşı da bağımlılıkları güncel tutmak gerekir.",
+      "Broken access control, injection, XSS, security misconfiguration, vulnerable components diye gider. IDOR için object-level authorization check, injection için parameterized query, XSS için output encoding ve CSP, auth tarafında MFA ve rate limiting, dependency'ler için Dependabot.",
+      "Son pentest raporumuzda dört bulgu vardı. Birincisi profil sayfasında id'yi değiştirerek başka birinin bilgilerini görebiliyordunuz, her endpoint'e sahiplik kontrolü ekledik. İkincisi yorum alanına yazılan script çalışıyordu, çıktıyı kaçışlayarak düzelttik. Üçüncüsü eski bir kütüphane sürümündeki bilinen bir açıktı, onu güncelledik. Ayrıca giriş sayfasında deneme sınırı yoktu, kaba kuvvetle şifre denenebiliyordu; oturum kilidi ekledik."
+    ],
+    "partial": [
+      "SQL injection en bilinen açıklardan biri, parametreli sorgularla önlenir.",
+      "Injection ve XSS listede var; girdiyi doğrulayıp çıktıyı encode ederek önlenir."
+    ],
+    "wrong": [
+      "OWASP bir antivirüs programı sanırım.",
+      "Güvenlik açıkları çok önemli, hepsine dikkat etmek lazım.",
+      "XSS veritabanına yapılan bir saldırıdır ve parametreli sorgularla tamamen önlenir; diğer açıklar için firewall yeterlidir."
+    ]
+  },
+  "Şüpheli bir oltalama (phishing) e-postasına bir çalışan tıklamış. Ne yaparsın?": {
+    "good": [
+      "Önce çalışanın bilgisayarını ağdan ayırırım ki zararlı bir şey indirildiyse yayılmasın. Hemen şifresini değiştirtir, tüm açık oturumlarını kapatır ve MFA'yı kontrol ederim. Sonra e-posta ve uç nokta loglarını inceleyip linkin nereye gittiğini, bir dosya çalışıp çalışmadığını, hesapla neye erişildiğini belirlerim. Aynı e-postanın kimlere gittiğini bulup kutulardan sildiririm. Olayı yönetime raporlar, birkaç hafta sonra da tüm ekibe kısa bir farkındalık eğitimi düzenlerim.",
+      "Endpoint'i EDR üzerinden network isolation'a alırım. Credential'ları resetler, session token'larını revoke ederim. SIEM'de IOC'lere göre hunt yaparım, mail gateway'den aynı kampanyayı purge ederim. Incident report yazıp security awareness training planlarım.",
+      "Çalışan bana panikle geldi, linke tıklayıp şifresini girmiş. Hiç kızmadan teşekkür ettim çünkü erken söylemek çok önemli. Hesabının parolasını hemen değiştirdik, bilgisayarını internetten kopardık. Hesaptan dışarıya mail gönderilmiş mi diye kayıtlara baktık. Sonra herkese bu e-postanın örneğini gösteren bir uyarı gönderdik."
+    ],
+    "partial": [
+      "Kullanıcının şifresini hemen sıfırlarım.",
+      "Bilgisayarı ağdan ayırır, şifresini sıfırlarım."
+    ],
+    "wrong": [
+      "Çalışanı uyarırım, bir daha dikkat etsin.",
+      "Bilmiyorum, bu IT'nin işi.",
+      "Tıklamakla bir şey olmaz, sadece dosya indirilirse tehlikelidir; o yüzden şifre değiştirmeye ya da cihazı ağdan ayırmaya gerek yok."
+    ]
+  },
+  "Bir sunucuda fidye yazılımı (ransomware) tespit edildi. Müdahale planın nedir?": {
+    "good": [
+      "İlk iş sunucuyu ve aynı ağ segmentindeki makineleri izole ederek yayılmayı durdururum, ama kanıt kaybolmasın diye kapatmam. Sonra hangi sistemlerin etkilendiğini, saldırganın nereden girdiğini ve veri sızdırılıp sızdırılmadığını tespit ederim. Yedeklerin temiz olduğunu doğrulayıp sistemleri temiz bir ortamda geri yüklerim. Yönetimi, hukuku ve kişisel veri etkilendiyse KVKK kapsamında kurumu bilgilendiririm. En sonda giriş noktasını kapatır, olay sonrası bir değerlendirme toplantısıyla dersleri sürece eklerim.",
+      "Containment: host'u network'ten izole ederiz, lateral movement'ı engellemek için credential reset. Scoping: EDR ve log'larla blast radius'ü çıkarırız. Recovery: immutable backup'lardan restore. Legal ve PR ekibiyle iletişim, KVKK bildirimi 72 saat içinde. Son olarak post-mortem ile root cause'u kapatırız.",
+      "Bir sabah dosya sunucusundaki her şeyin uzantısı değişmişti ve masaüstünde fidye notu vardı. Sunucunun ağ kablosunu çektik, diğer makinelere bulaşmasın diye. Yönetime de durumu hemen anlattık. Hangi klasörlerin şifrelendiğine baktık, neyse ki dün geceki yedek sağlamdı ve oradan döndük. Fidye ödemedik. Saldırganın açık bıraktığımız uzak masaüstü bağlantısından girdiğini bulduk ve onu kapattık."
+    ],
+    "partial": [
+      "Sunucuyu hemen ağdan izole ederim ki yayılmasın.",
+      "Sunucuyu izole eder, sonra yedekten geri yüklerim."
+    ],
+    "wrong": [
+      "Fidyeyi öderim, en hızlı çözüm bu.",
+      "Bilmiyorum, sanırım sunucuyu kapatıp beklerim.",
+      "Önce fidyeyi öderim çünkü ödeme yapınca veriler her zaman geri gelir; yedekten dönmek çok uzun sürer, yönetime de haber vermeye gerek yok."
+    ]
+  },
+  "Overfitting nedir ve nasıl önlenir?": {
+    "good": [
+      "Overfitting, modelin eğitim verisindeki gürültüyü de ezberleyip yeni veride kötü sonuç vermesidir. Eğitim hatası düşmeye devam ederken doğrulama hatası artmaya başlıyorsa bunu anlarım. Önlemek için L1/L2 düzenlileştirme ve dropout kullanırım, modeli sadeleştiririm. Daha fazla veri toplamak ya da veri artırma yapmak da çok etkilidir. Eğitimi doğrulama kaybı kötüleşmeye başladığında erken durdururum.",
+      "Model training set'i memorize ediyor, generalization zayıf kalıyor. Train loss düşük ama validation loss yükseliyorsa overfit var demektir. Regularization (L2, weight decay), dropout, data augmentation, early stopping ve k-fold cross validation kullanırım.",
+      "Bir sınıflandırma projesinde eğitimde yüzde 99, test setinde yüzde 70 doğruluk aldık; model resmen soruları ezberlemişti. Katman sayısını azalttık, araya dropout koyduk, resimleri döndürüp kırparak veri setini büyüttük. Doğrulama skoru düşmeye başladığı turda eğitimi kesince fark yüzde 5'e indi."
+    ],
+    "partial": [
+      "Modelin eğitim verisini ezberleyip yeni veride başarısız olmasıdır.",
+      "Modelin ezber yapmasıdır; dropout ve daha fazla veri ile önlenir."
+    ],
+    "wrong": [
+      "Overfitting modelin çok yavaş çalışması demek, daha güçlü bir GPU ile çözülür.",
+      "Modelin iyi öğrenmemesi diyebilirim, daha çok eğitmek lazım.",
+      "Overfitting modelin yetersiz eğitilmesidir; çözümü epoch sayısını artırıp eğitim hatası sıfır olana kadar eğitmektir."
+    ]
+  },
+  "Precision ve recall arasındaki fark nedir, hangisini ne zaman önemsersin?": {
+    "good": [
+      "Precision, modelin pozitif dediği örneklerden kaçının gerçekten pozitif olduğunu gösterir; yani yanlış alarmları ölçer. Recall ise gerçekte pozitif olanların ne kadarını yakalayabildiğimizdir, kaçırdıklarımızı ölçer. Karar eşiğini yükseltince precision artar ama recall düşer, ikisi arasında bir denge kurmak gerekir. Örneğin kanser taramasında hastayı kaçırmamak için recall'u, spam filtresinde önemli bir maili silmemek için precision'ı önemserim. Tek sayıyla bakmak istersem F1 skoruna bakarım.",
+      "Precision = TP / (TP + FP), recall = TP / (TP + FN). Threshold'u oynattıkça bir trade-off oluşuyor, PR curve'e bakarak seçeriz. Fraud detection'da false negative pahalıysa recall'u, kullanıcıya yanlış uyarı göstermek pahalıysa precision'ı optimize ederiz. Dengeli bakmak için F1-score kullanırız.",
+      "Bir dolandırıcılık modelinde çalışırken şunu öğrendim: model 'dolandırıcı' dediğinde gerçekten haklı mı, buna kesinlik diyoruz; gerçek dolandırıcıların kaçını yakalıyor, buna duyarlılık. Eşiği düşürünce daha çok dolandırıcı yakaladık ama masum müşterilerin kartı da bloke olmaya başladı. Sonunda ikisinin harmonik ortalaması olan F1'e göre bir nokta seçtik."
+    ],
+    "partial": [
+      "Precision, modelin pozitif dediklerinin ne kadarının gerçekten pozitif olduğudur.",
+      "Precision yanlış alarmlarla, recall ise kaçırılan pozitiflerle ilgilidir; ikisini birlikte değerlendirmek için F1 kullanılır."
+    ],
+    "wrong": [
+      "Bilmiyorum, istatistik dersinde görmüştüm ama hatırlamıyorum.",
+      "Precision ve recall ikisi de modelin başarısını ölçen metrikler, duruma göre hangisi lazımsa ona bakarım.",
+      "Precision ile recall aynı şeyi ölçer, ikisi de accuracy'nin farklı adıdır; birini artırmak diğerini de her zaman artırır."
+    ]
+  },
+  "Şirket dokümanlarına dayanarak soru cevaplayan bir asistan geliştireceksin. Nasıl tasarlarsın?": {
+    "good": [
+      "Modeli şirket dokümanlarıyla yeniden eğitmek yerine RAG kurarım: kullanıcının sorusuna en ilgili belge parçalarını bulup modelin önüne bağlam olarak koyarım. Dokümanları başlık yapısını koruyarak parçalara böler, her parçanın embedding'ini çıkarıp bir vektör veritabanına yazarım. Cevapta hangi belgeden alıntı yapıldığını link olarak gösteririm, bağlamda cevap yoksa modelin bilmiyorum demesini isterim; böylece halüsinasyon azalır. Gerçek çalışan sorularından bir test seti hazırlayıp her değişiklikte cevap kalitesini ölçerim. Kullanıcının sadece erişim yetkisi olan belgeler aramaya dahil edilir.",
+      "Retrieval-augmented generation pipeline'ı kurarım: ingestion'da doküman chunking, embedding, pgvector'a index. Query time'da hybrid search (BM25 + vector), reranker, top-k chunk'ı prompt'a koyarız. Citation zorunlu, grounded olmayan cevabı reddederiz. Golden dataset ile offline eval yaparız. ACL'leri metadata filter olarak uygularız ki kullanıcı yetkisi olmayan dokümanı görmesin.",
+      "Geçen yıl İK politikaları için bir asistan yaptık. Kullanıcı 'yıllık izin kaç gün' diye sorunca sistem önce ilgili yönetmelik paragraflarını arıyor, sonra modele 'sadece bu metinlere dayanarak cevap ver' diyor. Cevabın altında hangi dokümanın hangi bölümünden geldiği yazıyor. Yüz soruluk bir test listesiyle her hafta cevapları kontrol ediyoruz. Yönetici maaş belgeleri ise sadece yöneticilere açık."
+    ],
+    "partial": [
+      "RAG kullanırım, ilgili belgeleri modele bağlam olarak veririm.",
+      "Dokümanları parçalara bölüp vektör veritabanında ararım, cevapta kaynağı gösteririm."
+    ],
+    "wrong": [
+      "ChatGPT'ye dokümanları yapıştırırım, o cevaplar.",
+      "İyi bir yapay zekâ modeli seçerim, gerisini model halleder.",
+      "Tüm şirket dokümanlarını modele bir kez fine-tune ederek öğretirim, böylece model asla halüsinasyon görmez ve kaynak göstermeye gerek kalmaz."
+    ]
+  },
+  "Canlıdaki bir modelin performansı zamanla düşüyor. Nasıl fark eder ve çözersin?": {
+    "good": [
+      "Canlıda modelin tahmin dağılımını, gerçek etiketler geldikçe de doğruluğunu izleyen bir panel kurarım; metrik belirli bir eşiğin altına düşünce alarm gelir. Girdi özelliklerinin dağılımını eğitim verisiyle karşılaştırıp veri kaymasını, yani drift'i takip ederim. Düşüş görünce kök nedene bakarım: bir kaynak sistem veri formatını mı değiştirdi, yoksa kullanıcı davranışı mı gerçekten değişti. Gerçek bir değişimse modeli güncel verilerle yeniden eğitirim. Yeni modeli önce gölge modda eskisiyle yan yana çalıştırır, sonra kademeli olarak trafiğe alırım.",
+      "Model monitoring için Evidently ya da WhyLabs ile feature drift ve prediction drift'i takip ederiz, PSI belirli bir değeri geçince alert gelir. Önce data quality issue mu, concept drift mi ayırt ederiz; upstream pipeline'da bir bozulma olabilir. Gerekirse fresh data ile retrain eder, yeni modeli shadow deployment ve canary ile çıkarırız.",
+      "Bir öneri modelimiz pandemide birden kötüleşti, çünkü insanların alışveriş alışkanlığı tamamen değişmişti. Bunu haftalık tıklama oranı grafiğindeki düşüşten fark ettik. Önce verinin kendisinde bir bozulma olup olmadığına baktık, sorun yoktu. Son üç ayın verisiyle modeli tekrar eğittik ve önce kullanıcıların yüzde 10'unda denedik."
+    ],
+    "partial": [
+      "Modeli düzenli olarak yeniden eğitirim.",
+      "Veri kaymasını izler, gerekirse modeli yeniden eğitirim."
+    ],
+    "wrong": [
+      "Model bir kez eğitilince bozulmaz, sorun başka yerdedir.",
+      "Daha büyük bir model alırım, o daha iyi çalışır.",
+      "Performans düşüşü normaldir, modeli izlemeye gerek yok; her ay körlemesine yeniden eğitip doğrudan tüm trafiğe açmak yeterli."
+    ]
+  },
+  "Oyun döngüsü (game loop) nedir ve deltaTime neden önemlidir?": {
+    "good": [
+      "Oyun döngüsü, oyun açık olduğu sürece her karede tekrar eden döngüdür: oyuncunun girdisini okur, oyun durumunu ve fiziği günceller, sonra sahneyi çizer. Kare hızı her bilgisayarda aynı olmaz, biri 30 FPS'te, biri 144 FPS'te çalışır. deltaTime son kareden bu yana geçen süredir; hızı deltaTime ile çarparsam karakter her makinede saniyede aynı mesafeyi gider, yani hareket donanımdan bağımsız olur. Fizik hesaplarını ise kararlılık için sabit adımla, örneğin saniyede 50 kez yaparım.",
+      "Game loop'ta process input, update, render sırası var. Frame rate cihaza göre değişiyor; movement'ı deltaTime ile scale etmezsen 120 Hz ekranda oyun iki kat hızlı oynar, yani frame-rate independent olmaz. Physics için Unity'deki FixedUpdate gibi fixed timestep kullanırız ki çarpışmalar tutarlı olsun.",
+      "İlk yaptığım oyunda karakteri her karede 5 piksel kaydırıyordum. Arkadaşımın güçlü bilgisayarında FPS yüksek olduğu için karakter uçuyordu, benimkinde sürünüyordu. Sonra hareketi iki kare arasındaki süreyle çarpmayı öğrendim, karakter herkeste aynı hızda gitmeye başladı. Çarpışmalar ise ancak fiziği sabit aralıklarla hesaplayınca düzgün çalıştı."
+    ],
+    "partial": [
+      "Game loop her seferinde girdiyi okuyup oyunu güncelleyen ve ekranı çizen döngüdür.",
+      "deltaTime iki kare arasında geçen süredir, hareketi bununla çarparız ki FPS değişse de hız sabit kalsın."
+    ],
+    "wrong": [
+      "Oyun döngüsü, oyuncunun oyunu bitirip tekrar başlamasıdır.",
+      "deltaTime oyunun zamanlayıcısı, önemli bir şey.",
+      "deltaTime sadece animasyonlar için kullanılır; hareketi her karede sabit bir miktar artırmak yeterlidir çünkü tüm cihazlar aynı FPS'te çalışır."
+    ]
+  },
+  "Bir mobil oyunda performans sorunlarını nasıl tespit edip giderirsin?": {
+    "good": [
+      "Tahminle değil, önce Unity Profiler ya da Xcode Instruments ile ölçerim; darboğaz CPU'da mı, GPU'da mı, bellekte mi onu görürüm. Draw call sayısı yüksekse statik objeleri batch'ler, malzemeleri bir texture atlas'ta birleştiririm. Mermi gibi sık yaratılan nesneler için nesne havuzu kurarak çöp toplayıcının oyunu takıltmasını önlerim. Dokuları sıkıştırır, uzaktaki modeller için LOD kullanırım. Her değişikliği hedef kitlenin elindeki eski ve düşük seviye cihazlarda denerim.",
+      "Profiling'le başlarım, frame time breakdown'a bakarım. SetPass ve draw call'ları azaltmak için GPU instancing ve static batching kullanırım. GC spike'larını object pooling ile keserim. Texture compression (ASTC), mipmap ve LOD group'lar kullanırım. Test için low-end Android cihazlardan oluşan bir device farm'ımız var.",
+      "Geçen oyunumuzda eski telefonlarda kare hızı 20'ye düşüyordu. Ölçünce her karede yüzlerce küçük nesnenin yaratılıp silindiğini gördük; hafıza temizlenirken oyun donuyordu. Nesneleri tekrar kullanmaya başladık. Ekrandaki ağaçları birleştirip tek seferde çizdirdik, büyük resimleri de küçülttük. Son testleri yine o eski telefonlarda yaptık."
+    ],
+    "partial": [
+      "Profiler ile darboğazı bulurum.",
+      "Profiler ile ölçerim, draw call sayısını batch ile azaltırım."
+    ],
+    "wrong": [
+      "Oyunu daha basit yaparım, grafikleri kaldırırım.",
+      "Telefonlar artık çok güçlü, performans pek sorun olmuyor.",
+      "Performans sorunlarının tek nedeni yüksek çözünürlüklü dokulardır; bu yüzden profiler kullanmadan tüm dokuları en düşük kaliteye indiririm, düşük seviye cihazlarda test etmeye gerek kalmaz."
+    ]
+  },
+  "Oyuncuların büyük kısmı 3. bölümde oyunu bırakıyor. Ne yaparsın?": {
+    "good": [
+      "Önce analitik verisiyle bir huni kurup oyuncuların 3. bölümde tam olarak hangi noktada bıraktığını bulurum: belli bir bulmacada mı, bir boss'ta mı. Orada ani bir zorluk sıçraması, belirsiz bir hedef ya da iyi öğretilmemiş yeni bir mekanik var mı bakarım. Yeni oyuncularla oyun testi yapıp ekranlarını izleyerek nerede takıldıklarını gözlemlerim. Zorluğu azaltma ya da ipucu ekleme gibi çözümleri A/B testiyle denerim. Sonucu bölüm tamamlama ve 7 günlük tutundurma oranıyla ölçerim.",
+      "Funnel analysis yaparım, event'lerle level 3'teki drop-off noktasını bulurum. Difficulty spike var mı, heatmap'le bakarım. Playtest session'larında oyuncuları izlerim. Hipotezleri A/B test ile doğrularım, D1 ve D7 retention'a etkisini ölçerim.",
+      "Bizim bir bulmaca oyunumuzda aynen bu olmuştu. Verilere bakınca oyuncuların çoğunun 3-4 numaralı bulmacada 10 dakikadan fazla takılıp çıktığını gördük. Birkaç arkadaşımıza oynatıp arkalarından izledik, hiçbiri yeni mekaniği anlamamıştı. İki farklı öğretici ekran hazırlayıp oyuncuların yarısına birini, yarısına diğerini gösterdik. Kazanan versiyon, oyuncuların ertesi gün geri dönme oranını belirgin artırdı."
+    ],
+    "partial": [
+      "Analitik verilerine bakıp oyuncuların nerede bıraktığını bulurum.",
+      "Bölümün zorluğuna bakarım, oyun testi yapıp oyuncuları gözlemlerim."
+    ],
+    "wrong": [
+      "Oyuncular sıkılmıştır, yapacak bir şey yok.",
+      "Bölümü daha güzel yaparım, grafikleri iyileştiririm.",
+      "Oyuncular bırakıyorsa sorun kesinlikle zorluktur, veri ya da test gerekmez; 3. bölümü tamamen silerim."
+    ]
+  },
+  "Bir oyunu mobil, PC ve konsol için aynı anda çıkarmak üzere mimariyi nasıl kurarsın?": {
+    "good": [
+      "Oyun mantığını platformdan tamamen ayırırım; dosya kaydı, başarımlar, satın alma ve ağ gibi işler ortak bir arayüzün arkasında, her platform için ayrı uygulanan bir platform katmanında durur. Girdi sistemini dokunmatik, fare-klavye ve gamepad'i aynı aksiyonlara bağlayacak şekilde, arayüzü de farklı ekran boyutlarına göre ölçeklenecek şekilde baştan tasarlarım. Her platform için ayrı kalite ayarları ve bellek bütçesi belirlerim. CI'da her gece üç platform için otomatik build alıp test eden bir derleme hattı kurarım. Konsol sertifikasyon gereksinimlerini de projenin başında takvime koyarım.",
+      "Core gameplay'i engine-agnostic tutup platform-specific kodu bir abstraction layer arkasına koyarım. Input System'de action map'lerle touch, mouse ve controller'ı soyutlarım, UI scaling'i responsive yaparım. Her platform için ayrı quality preset'leri olur. Jenkins ile nightly build pipeline kurarız; TRC ve lotcheck gibi certification checklist'leri sprint'lere dağıtılır.",
+      "Son projemizde aynı oyunu Switch, PC ve telefonda çıkardık. En çok işimize yarayan şey, kaydetme ve başarım gibi her şeyi tek bir ara katmandan geçirmekti; oyun kodu hangi cihazda çalıştığını bilmiyordu. Telefonda grafikleri kısan, PC'de açan ayar profilleri hazırladık. Her gece üç sürümü birden derleyen bir sunucumuz vardı. Nintendo'nun onay sürecine erkenden başvurmasak takvimi kaçırırdık."
+    ],
+    "partial": [
+      "Oyun mantığını platformdan ayırmak için bir soyutlama katmanı kullanırım.",
+      "Platform katmanıyla soyutlama yapar, her platform için ayrı kalite ayarları belirlerim."
+    ],
+    "wrong": [
+      "Her platform için ayrı bir ekip kurarım, onlar kendi bildikleri gibi yapar.",
+      "İyi bir oyun motoru seçerim, gerisi kendiliğinden olur.",
+      "Oyun motoru her şeyi otomatik hallettiği için platforma özel bir kod yazmaya gerek yoktur; konsol sertifikasyonu da en son, çıkıştan bir hafta önce yapılır."
+    ]
+  },
+  "IaaS, PaaS ve SaaS arasındaki fark nedir?": {
+    "good": [
+      "IaaS'ta sağlayıcı bize sanal makine, ağ ve disk verir; işletim sistemini kurmak, yamalamak ve uygulamayı çalıştırmak bizim işimizdir. PaaS'ta işletim sistemi ve çalışma ortamıyla sağlayıcı uğraşır, biz sadece kodu ve veriyi yükleriz. SaaS'ta ise yazılımın kendisini hazır kullanırız, hiçbir şeyi yönetmeyiz. Yani fark, sorumluluğun ne kadarının bizde ne kadarının sağlayıcıda olduğudur. Örneğin AWS EC2 IaaS, Heroku PaaS, Google Workspace SaaS'tır.",
+      "IaaS'ta VM'leri ve network'ü biz provision ederiz, OS patching bizde. PaaS'ta runtime managed, sadece deploy ederiz; Elastic Beanstalk, App Engine gibi. SaaS ise end-user'ın direkt kullandığı ürün, Salesforce ya da Slack. Shared responsibility model'de yukarı çıktıkça yük provider'a geçer.",
+      "Pizza örneğiyle anlatayım: IaaS'ta fırını kiralarsın, hamuru da malzemeyi de sen hazırlarsın. PaaS'ta hazır hamuru alıp sadece üstünü sen seçersin. SaaS'ta pizzayı kapına getirirler, sadece yersin. Sunucuyu biz yönetiyorsak IaaS, uygulamayı yükleyip bırakıyorsak PaaS, Gmail gibi doğrudan kullanıyorsak SaaS."
+    ],
+    "partial": [
+      "SaaS, Gmail gibi doğrudan kullandığımız hazır yazılımlardır.",
+      "IaaS'ta sanal makineyi biz yönetiriz, PaaS'ta sadece kodu yükleriz."
+    ],
+    "wrong": [
+      "Bilmiyorum, bulutla ilgili kısaltmalar galiba.",
+      "IaaS, PaaS ve SaaS bulut hizmet türleri, hepsi bulutta çalışıyor, aralarında çok fark yok.",
+      "SaaS'ta sunucuları ve işletim sistemini biz yönetiriz, IaaS'ta ise sağlayıcı her şeyi yönetir; sorumluluk paylaşımı her modelde aynıdır."
+    ]
+  },
+  "Bulutta yüksek erişilebilir bir web uygulaması için nasıl bir mimari kurarsın?": {
+    "good": [
+      "Uygulama sunucularını en az iki, tercihen üç availability zone'a dağıtırım ki bir veri merkezi çökerse diğerleri devam etsin. Önlerine sağlık kontrolü yapan bir yük dengeleyici koyarım. Sunucuları CPU ve istek sayısına göre büyüyüp küçülen bir otomatik ölçekleme grubunda tutarım. Sunucuların kendisi durumsuz olur, oturum bilgisi Redis gibi ortak bir yerde durur. Veritabanını Multi-AZ çalıştırır, başka bir bölgede okuma replikası ve düzenli yedekler tutarım.",
+      "Multi-AZ deployment, önünde ALB, arkasında Auto Scaling Group. App tier stateless, session'lar ElastiCache'te. RDS Multi-AZ ile synchronous standby, cross-region read replica ve point-in-time backup. Statik içerik de CloudFront üzerinden.",
+      "Hiçbir parçanın tek başına kalmaması prensibiyle kurarım. Sunucular iki farklı veri merkezinde çalışır, aradaki trafiği bir dağıtıcı paylaştırır. Yük artınca yeni sunucular kendiliğinden eklenir. Hiçbir sunucu kullanıcıya özel bilgi tutmaz, o yüzden biri ölse kimse fark etmez. Veritabanının da sürekli güncel bir kopyası başka bir yerde bekler."
+    ],
+    "partial": [
+      "Sunucuların önüne bir yük dengeleyici koyarım.",
+      "Yük dengeleyici ve otomatik ölçekleme kullanırım."
+    ],
+    "wrong": [
+      "Güçlü bir sunucu alırım, iyi bir sunucu hiç çökmez.",
+      "Bulut zaten kendi kendine yüksek erişilebilir, ekstra bir şey yapmaya gerek yok.",
+      "Tüm sunucuları aynı veri merkezinde tutmak en iyisi çünkü gecikme düşer; veritabanını tek sunucuda çalıştırıp günde bir yedek almak yeterli."
+    ]
+  },
+  "Bulut faturası son 6 ayda iki katına çıktı. Nasıl düşürürsün?": {
+    "good": [
+      "Önce paranın nereye gittiğini görmem lazım: Cost Explorer'da servis ve hesap bazında kırılım çıkarır, kaynaklara ekip ve proje etiketlerini zorunlu hale getiririm. CPU'su sürekli yüzde 10'da gezen sunucuları doğru boyutlandırma ile küçültürüm. Sürekli çalışan iş yükleri için rezerve kapasite ya da savings plan alır, kesintiye dayanıklı batch işlerini spot sunuculara taşırım. Kimseye bağlı olmayan diskleri, unutulmuş test ortamlarını ve atıl IP'leri kapatırım. Her ekibin kendi harcamasını gördüğü aylık bir FinOps toplantısı kurarım.",
+      "Cost allocation tag'leriyle showback yaparız. Compute Optimizer önerileriyle rightsizing, steady-state workload için Reserved Instance ve Savings Plans, stateless işler için spot instance. Orphan EBS volume'ları ve idle load balancer'ları temizleriz. Engineering team'lerini budget alert'leriyle kendi maliyetlerinden sorumlu tutarız.",
+      "Geçen yıl tam olarak bunu yaşadık. Faturayı servis servis açınca en büyük kalemin geliştiricilerin kapatmayı unuttuğu dev ortamları olduğunu gördük; akşam 8'de otomatik kapanacak şekilde ayarladık. Veritabanı sunucusu ihtiyacın dört katı büyüklükteydi, bir alt boyuta indirdik. Yıllık taahhütle indirim aldık. Sonra her ekibe kendi harcamasını haftalık mail olarak göndermeye başladık."
+    ],
+    "partial": [
+      "Kullanılmayan kaynakları bulup kapatırım.",
+      "Sunucuları doğru boyutlandırır, sürekli çalışanlar için rezerve kapasite alırım."
+    ],
+    "wrong": [
+      "Bulut sağlayıcısını arayıp indirim isterim.",
+      "Daha az şey kullanırız, dikkat ederiz.",
+      "Maliyeti düşürmek için bütün sunucuları spot instance'a taşırım, veritabanı dahil; spot sunucular asla kesilmediği için risk yoktur."
+    ]
+  },
+  "Şirket içi veri merkezindeki uygulamaları buluta taşıma planını nasıl yaparsın?": {
+    "good": [
+      "Önce veri merkezindeki tüm uygulamaların, sunucuların ve veritabanlarının envanterini çıkarır, hangisinin hangisine bağlı olduğunu haritalarım. Her uygulama için bir strateji seçerim: olduğu gibi taşıma yani rehost, küçük değişikliklerle replatform, gerekirse refactor ya da emekliye ayırma. Riski düşük bir pilot uygulamayla başlar, birbirine bağlı uygulamaları aynı dalgada taşırım. Kimlik yönetimi, şifreleme ve verinin hangi ülkede duracağı gibi güvenlik ve uyum gereksinimlerini baştan tasarıma katarım. Her geçişi önce test ortamında prova eder, sorun olursa eski sisteme geri dönüş planını hazır tutarım.",
+      "Discovery tool'larıyla application portfolio ve dependency mapping çıkarırız. 7R framework'üyle lift-and-shift, re-platform ya da re-architect kararını veririz. Migration wave'lerini planlarız, ilk wave düşük riskli bir PoC olur. Landing zone'da IAM, encryption ve compliance guardrail'leri hazır olur. Cutover öncesi rehearsal yapar, rollback planı yazarız.",
+      "Bir bankanın taşımasında çalıştım. İlk iki ay sadece neyin nerede çalıştığını ve hangi sistemin hangisiyle konuştuğunu listeledik. Eski muhasebe uygulamasını hiç değiştirmeden sanal makineye taşıdık, müşteri portalını ise bulut için baştan yeniden yazdık. İşe en az kritik olan iç raporlama sistemiyle başladık, sonra gruplar halinde ilerledik. BDDK kuralları yüzünden verinin Türkiye'de kalması şarttı. Her geçişten önce eski sisteme dönebileceğimiz bir plan hazırdı."
+    ],
+    "partial": [
+      "Önce bütün uygulamaların envanterini çıkarırım.",
+      "Envanteri çıkarıp bağımlılıkları haritalarım, sonra bir pilot uygulamayla başlarım."
+    ],
+    "wrong": [
+      "Her şeyi bir hafta sonu buluta kopyalarız, pazartesi yeni sistemdeyiz.",
+      "Bulut sağlayıcısının danışmanlarını çağırırım, onlar planlar.",
+      "En hızlısı bütün uygulamaları tek seferde aynı gece taşımak; bulutta güvenlik sağlayıcının sorumluluğunda olduğu için ayrıca bir güvenlik çalışmasına gerek yok."
+    ]
   }
 }
