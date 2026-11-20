@@ -59,19 +59,19 @@ export const BEHAVIOURAL: Question[] = [
     'davranissal',
     'Bir ekip arkadaşınla fikir ayrılığı yaşadığın bir durumu ve nasıl çözdüğünü anlatır mısın?',
     ['Durumu tanımlama: proje, ekip, durum', 'Dinleme / empati: dinle, anla, empati, bakış', 'Somut aksiyon: konuştu, toplantı, önerdi, yaptı', 'Sonuç: sonuç, çözül, anlaş, teslim'],
-    'Durum: sprint sonunda bir özelliğin kapsamında anlaşamadık. Görev: teslim tarihini kaçırmadan ortak karar almak. Aksiyon: birebir görüşüp iki seçeneğin maliyetini çıkardım, kararı veriye bağladık. Sonuç: zamanında teslim ettik, kalan kısmı sonraki sprintte ekledik.',
+    'Durum: sprint sonunda bir özelliğin kapsamında anlaşamadık. Görev: teslim tarihini kaçırmadan ortak karar almak. Aksiyon: birebir görüşüp iki seçeneğin maliyetini çıkardım, kararı veriye bağladık. Sonuç: zamanında teslim ettik, kalan kısmı sonraki sprintte ekledik.', ['Karşı tarafı dinlememek: dinlemeden kendi bildiğimi; ben haklı olurum'],
   ),
   q(
     'davranissal',
     'Başarısız olduğun bir işi ve bundan ne öğrendiğini anlatır mısın?',
-    ['Sorumluluk alma: hata, benim, sorumlu, yanlış', 'Öğrenim: öğren, ders, fark', 'Değişen davranış: artık, sonrasında, değiştir, uygul'],
-    'Bir lansmanda test planını kısa tuttum ve canlıda hata çıktı. Sorumluluğu üstlendim, geri alıp düzelttik. O günden beri her sürüm öncesi kontrol listesi kullanıyorum; sonraki 6 sürümde benzer hata yaşanmadı.',
+    ['Sorumluluk alma: hata, benim, sorumlu, yanlış', 'Öğrenim: öğren, ders, fark, öğret, önemini', 'Değişen davranış: artık, sonrasında, değiştir, uygul, günden beri, o zamandan beri'],
+    'Bir lansmanda test planını kısa tuttum ve canlıda hata çıktı. Sorumluluğu üstlendim, geri alıp düzelttik. O günden beri her sürüm öncesi kontrol listesi kullanıyorum; sonraki 6 sürümde benzer hata yaşanmadı.', ['Başarısızlığı inkâr: hiç başarısız olmadım; her zaman başarıyla'],
   ),
   q(
     'davranissal',
     'Neden bu pozisyona başvurdun ve kendini 3 yıl sonra nerede görüyorsun?',
-    ['Şirket / rol bağlantısı: şirket, rol, pozisyon, ürün', 'Kendi güçlü yönü: deneyim, güçlü, beceri, yetkinlik', 'Gelecek hedefi: yıl, hedef, büyü, liderlik, uzman'],
-    'Ürününüzü kullanıcı olarak tanıyorum ve bu rol deneyimimle örtüşüyor. 3 yıl içinde alanımda uzmanlaşıp küçük bir ekibe mentorluk yapmayı hedefliyorum.',
+    ['Şirket / rol bağlantısı: şirket, rol, pozisyon, ürün', 'Kendi güçlü yönü: deneyim, güçlü, beceri, yetkinlik', 'Gelecek hedefi: yıl, hedef, büyüme, liderlik, uzman'],
+    'Ürününüzü kullanıcı olarak tanıyorum ve bu rol deneyimimle örtüşüyor. 3 yıl içinde alanımda uzmanlaşıp küçük bir ekibe mentorluk yapmayı hedefliyorum.', ['Kalmayı düşünmemek: bu iş geçici; kendi işimi kuracağım; uzun kalmayı düşünmüyorum'],
   ),
 ];
 
