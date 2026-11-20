@@ -1,1 +1,146 @@
-{}
+{
+  "FOB ve CIF teslim şekilleri arasındaki fark nedir?": {
+    "good": [
+      "İkisi de Incoterms'te deniz yolu için kullanılan teslim şekilleri. FOB'da satıcı malı yükleme limanında gemiye koyana kadar sorumlu, navlunu alıcı öder. CIF'te satıcı varış limanına kadar navlunu ve sigortayı öder. Ama risk her ikisinde de mal gemiye yüklendiği anda alıcıya geçer.",
+      "FOB, Free On Board; CIF ise Cost, Insurance and Freight. FOB'da freight alıcıya ait. CIF'te navlun ve sigorta satıcıda. İkisinde de risk transferi yükleme limanında olur, bu çok karıştırılır.",
+      "Bir ihracatımızda alıcı CIF istemişti; biz navlunu ve sigortayı ödedik, malı Hamburg'a kadar taşıttık. Ama mal yolda hasar görseydi risk zaten alıcıdaydı çünkü gemiye yüklendiğinde risk geçmişti. FOB olsaydı navlunu alıcı ayarlayacaktı."
+    ],
+    "partial": [
+      "FOB'da satıcı malı gemiye yükleyene kadar sorumludur.",
+      "FOB ve CIF Incoterms kurallarıdır; CIF'te satıcı navlunu öder."
+    ],
+    "wrong": [
+      "Bilmiyorum, dış ticaret terimlerini pek bilmiyorum.",
+      "İkisi de malın teslim şekliyle ilgili, biri pahalı biri ucuz.",
+      "FOB'da sigorta satıcıdadır; CIF'te ise risk varış limanında alıcıya geçer çünkü navlunu satıcı ödüyor."
+    ]
+  },
+  "İlk kez çalışacağın yurt dışı bir alıcı peşin ödemeyi kabul etmiyor. Hangi ödeme şeklini önerirsin?": {
+    "good": [
+      "Önce alıcının mali yapısını ve ülkesinin riskini araştırırım. İlk iş için akreditif öneririm, çünkü ödemeyi banka garanti eder. Alıcı akreditifi pahalı bulursa vesaik mukabili ödemeyi konuşabilirim. Eximbank'ın alacak sigortasını da kullanırım.",
+      "Letter of credit, yani akreditif öneririm. Alıcının kredi notuna ve ülke riskine bakarım. Akreditif masrafı çok gelirse CAD, yani vesaik mukabili olabilir. Zamanla güven oluşunca kademeli olarak mal mukabiline geçeriz.",
+      "Geçen yıl bir Nijeryalı alıcıyla tam bu durumu yaşadık. Ülke riski yüksekti, akreditif istedik. Alıcı ilk sevkiyattan sonra güvenince vesaik mukabiline geçtik, ayrıca ihracat kredi sigortası yaptırdık."
+    ],
+    "partial": [
+      "Akreditif öneririm, en güvenli ödeme şekli o.",
+      "Alıcının ülke riskini değerlendirip akreditif ile çalışmayı öneririm."
+    ],
+    "wrong": [
+      "Bilmiyorum, ödeme şekillerini muhasebe ayarlar.",
+      "Alıcıyla güzelce konuşur, bir şekilde anlaşırız.",
+      "Mal mukabili gönderirim, ilk işte alıcıya güvenmek ilişkiyi güçlendirir ve hiçbir risk taşımaz."
+    ]
+  },
+  "Şirketinin ihracatını yeni bir pazara açmak için nasıl bir plan yaparsın?": {
+    "good": [
+      "Trade Map gibi kaynaklardan ithalat istatistiklerine bakıp ürünümüze talebi artan pazarları seçerim. O ülkedeki rakipleri ve fiyat seviyelerini incelerim. Ürünün o ülkenin mevzuatına ve sertifika şartlarına uyup uymadığını kontrol ederim. Bir distribütör bulur, sektör fuarlarına katılırım.",
+      "Önce market research yaparım, data ile hedef pazar belirlerim. Competitor analizi ve fiyatlama yaparım. Satış kanalı olarak distribütör ya da e-ihracat düşünürüm. Ticaret Bakanlığı'nın fuar ve pazara giriş desteklerinden yararlanırım.",
+      "Önceki şirketimde Körfez'e açıldık. İstatistiklere baktık, talep büyüyordu. Helal sertifikası şartı vardı, onu aldık. Dubai'deki fuara katıldık, oradan bir distribütör bulduk. Fuar masrafının yarısını devlet desteğinden karşıladık."
+    ],
+    "partial": [
+      "Yeni pazarda fuarlara katılır, bir distribütör bulurum.",
+      "Verilere bakarak hedef pazarı seçer, rakiplerin fiyatlarını incelerim."
+    ],
+    "wrong": [
+      "Bilmiyorum, bu genel müdürün kararı.",
+      "İyi bir planla yeni pazara gireriz, çok çalışırız.",
+      "Ürün Türkiye'de satılıyorsa her ülkede satılır; hedef ülkenin kurallarını incelemeye gerek yok, direkt gönderirim."
+    ]
+  },
+  "Karayolu, denizyolu ve havayolu taşımacılığını hangi durumlarda tercih edersin?": {
+    "good": [
+      "Acil, küçük ve pahalı yükleri havayoluyla gönderirim; hızlı ama pahalı. Büyük hacimli ve acelesi olmayan yükler için denizyolu en ucuzu. Avrupa'ya kapıdan kapıya teslim gereken yüklerde karayolunu seçerim. Kararı hep maliyet ile süre dengesine göre veririm.",
+      "Air freight acil ve yüksek değerli kargolar için. Sea freight büyük hacim, konteyner yükleri için. Karayolu yakın mesafe ve door-to-door. Bazen intermodal, yani kombine taşıma yaparız."
+    ],
+    "partial": [
+      "Acil yükleri havayoluyla gönderirim.",
+      "Büyük hacimli yüklerde denizyolu, acil işlerde havayolu tercih ederim.",
+      "Bir müşterinin yedek parçası makinesi durduğu için acil gerekiyordu, uçakla gönderdik. Aynı müşterinin yıllık hammaddesini gemiyle getiriyoruz, çünkü hacim büyük. Balkanlara ise tırla gönderiyoruz, kapıdan kapıya kolay."
+    ],
+    "wrong": [
+      "Bilmiyorum, lojistik firması karar veriyor.",
+      "Duruma göre değişir, hangisi uygunsa onu seçerim.",
+      "Denizyolu her zaman en hızlı seçenektir; havayolu ise büyük hacimli yükler için en ekonomik taşımadır."
+    ]
+  },
+  "Müşterinin kritik sevkiyatı limanda gümrükte takıldı ve teslim tarihi yaklaşıyor. Ne yaparsın?": {
+    "good": [
+      "Önce gümrük müşavirimizi arayıp malın neden bekletildiğini öğrenirim; çoğu zaman eksik bir evrak olur. Müşteriye hemen durumu ve tahmini süreyi dürüstçe söylerim. Müşavirle birlikte eksiği tamamlayıp süreci hızlandırırım. Tarih çok kritikse bir kısmını uçakla göndermek gibi alternatif bir plan yaparım.",
+      "Root cause'u öğrenirim, belge eksikliği mi beyan hatası mı. Müşteriyi bilgilendiririm. Müşavirle hızlı çözüm ararım. Bir B planı hazırlarım. Sonra bir checklist yapıp tekrarını önlerim.",
+      "Bizde bir kere menşe şahadetnamesi eksik diye konteyner bekledi. Müşavirle konuştum, nedeni buydu. Müşteriyi aynı gün aradım, saklamadım. Belgeyi ihracatçıdan acil istettik. Sonra her sevkiyat öncesi bir belge kontrol listesi kurduk."
+    ],
+    "partial": [
+      "Gümrük müşavirini arayıp sorunun nedenini öğrenirim.",
+      "Müşteriyi hemen bilgilendirir, alternatif bir sevkiyat planı hazırlarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, gümrük işlerine hiç girmedim.",
+      "Beklerim, gümrük zaten bir şekilde bırakır.",
+      "Gümrük memuruna biraz para verip malı hızlıca çekeriz, böyle durumlarda en pratik yol budur."
+    ]
+  },
+  "Bir e-ticaret şirketi için depo ağını nasıl tasarlarsın?": {
+    "good": [
+      "Önce siparişlerin hangi şehirlerden geldiğine, bölge bazında talebe bakarım. Şirketin hedefi ertesi gün teslimatsa ağ bu teslim süresine göre kurulur. Depo sayısını artırınca taşıma maliyeti düşer ama stok ve işletme maliyeti artar; bu dengeyi kurarım. Farklı senaryolar çalıştırıp en düşük toplam maliyeti seçerim.",
+      "Demand analizi ile başlarım, regional dağılımı çıkarırım. Service level, yani teslim süresi hedefi belirleyici. Depo lokasyonlarını talebe yakın seçerim. Birkaç senaryo için modelleme yaparım.",
+      "Bir önceki işimde Türkiye için bunu yaptık. Siparişlerin %40'ı Marmara'dan geliyordu. İstanbul'a ana depo, Ankara ve İzmir'e küçük depolar koyduk. Üç farklı senaryoyu karşılaştırıp toplam maliyeti en düşük olanı seçtik."
+    ],
+    "partial": [
+      "Talebin yoğun olduğu bölgelere depo kurarım.",
+      "Siparişlerin bölgesel dağılımına bakar, teslim süresi hedefine göre depo yeri seçerim."
+    ],
+    "wrong": [
+      "Bilmiyorum, depo konusunda tecrübem yok.",
+      "İyi bir lokasyonda büyük bir depo açarım.",
+      "Ne kadar çok depo açarsak toplam maliyet o kadar düşer; her şehre bir depo açarım."
+    ]
+  },
+  "GTİP nedir ve yanlış sınıflandırmanın sonuçları nelerdir?": {
+    "good": [
+      "GTİP, eşyanın gümrük tarife istatistik pozisyonu; armonize sisteme dayanan 12 haneli bir kod. Hangi gümrük vergisi oranının uygulanacağını bu kod belirler. Ürünün hangi izinlere ve kısıtlamalara tabi olduğu da buna bağlı. Yanlış kod eksik vergi, ceza ve gecikme demektir.",
+      "HS code'un Türkiye versiyonu diyebiliriz, 12 haneli tarife kodu. Vergi oranı ve ithalat rejimi buna göre değişir. Yanlış sınıflandırmada idari para cezası çıkar. Emin değilsek bağlayıcı tarife bilgisi alırız.",
+      "Bir ithalatımızda yanlış kod kullanılmıştı, ek vergi ve ceza ödedik. GTİP yanlış olunca hem vergi farkı çıkıyor hem de gereken izin belgesi atlanabiliyor. O yüzden tereddütte BTB başvurusu yapıyoruz."
+    ],
+    "partial": [
+      "GTİP, ürünlerin gümrükteki tarife kodudur.",
+      "GTİP gümrük vergisini belirleyen koddur, yanlış olursa ceza çıkar."
+    ],
+    "wrong": [
+      "Bilmiyorum, bu müşavirin işi.",
+      "Gümrükte kullanılan bir şey, önemli bir konu.",
+      "GTİP sadece istatistik amaçlı tutulan bir numaradır, vergi oranını etkilemez ve yanlış olsa da sorun çıkmaz."
+    ]
+  },
+  "İç kontrolde geçmiş beyannamelerde hatalı kıymet beyanı tespit ettin. Ne yaparsın?": {
+    "good": [
+      "Önce hatanın hangi dönemleri ve kaç beyannameyi kapsadığını çıkarırım. Doğru kıymete göre ödenmesi gereken vergi farkını hesaplarım. Yönetime ve müşavire haber verip gümrük idaresi bulmadan pişmanlıkla düzeltme yoluna giderim. Hatanın neden olduğunu bulur, sürece yeni bir kontrol adımı eklerim.",
+      "Scope'u belirlerim: hangi dönem, kaç beyanname. Eksik ödenen vergi farkını hesaplarım. Kendiliğinden düzeltme ve pişmanlık başvurusunu değerlendiririm. Kök nedeni bulur, ekibe eğitim veririm.",
+      "Bir denetimde lisans bedelinin kıymete eklenmediğini görmüştük. İki yıllık beyannameleri taradık, kapsamı çıkardık. Vergi farkını hesaplayıp idareye kendimiz gidip düzelttik. Kök neden sözleşmelerin gümrük ekibine iletilmemesiydi, bunu bir kontrol adımıyla çözdük."
+    ],
+    "partial": [
+      "Hatalı beyannameleri düzeltmek için gümrüğe başvururum.",
+      "Hangi dönemlerin etkilendiğini belirler ve vergi farkını hesaplarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, öyle bir durumla karşılaşmadım.",
+      "Durumu not alırım, ileride bakarız.",
+      "Geçmiş beyannameler kapandığı için bir şey yapmaya gerek yok, gümrük zaten bunları bir daha incelemez."
+    ]
+  },
+  "Şirketin için Yetkilendirilmiş Yükümlü (YYS) statüsü almak için nasıl bir yol izlersin?": {
+    "good": [
+      "Önce yönetime YYS'nin daha az fiziki muayene ve hızlı gümrük işlemi gibi faydalarını anlatıp destek alırım. Mevzuattaki kriterlere bakarım: uyum geçmişi, kayıt sistemi, mali yeterlilik, güvenlik. Şirketi bu kriterlere göre öz değerlendirmeyle ölçüp eksiklerimizi çıkarırım. Eksikleri tamamlayıp başvururum ve denetime hazırlanırım.",
+      "Benefit'leri yönetime sunarım. Kriterleri incelerim, mali yeterlilik dahil. Gap analizi, yani boşluk analizi yaparım. Tesis güvenliğini sağlarım. Başvuruyu yapar, yerinde denetime ekibi hazırlarım.",
+      "Önceki şirketimde bu süreci yönettim. İlk iş öz değerlendirme formunu doldurduk, güvenlik tarafında eksiklerimiz çıktı. Kamera ve giriş kontrolü kurduk. Başvurduk, gümrük denetimini geçtik ve işlemlerimiz ciddi şekilde hızlandı."
+    ],
+    "partial": [
+      "YYS için başvuru yapar, denetime hazırlanırım.",
+      "Önce kriterleri incelerim, sonra öz değerlendirme yapıp eksikleri görürüm."
+    ],
+    "wrong": [
+      "Bilmiyorum, YYS'yi ilk kez duyuyorum.",
+      "Gerekli adımları atar, statüyü almaya çalışırım.",
+      "YYS için sadece dilekçe vermek yeterlidir; herhangi bir kriter ya da denetim yoktur."
+    ]
+  }
+}
