@@ -1,1 +1,322 @@
-{}
+{
+  "Bilişsel davranışçı terapinin (BDT) temel varsayımı nedir?": {
+    "good": [
+      "BDT'ye göre bizi üzen olayın kendisi değil, o olayı nasıl yorumladığımızdır; düşüncelerimiz duygularımızı ve davranışlarımızı etkiler. Terapide kişinin otomatik düşüncelerini ve felaketleştirme gibi bilişsel çarpıtmalarını fark edip sınarız. Seanslar yapılandırılmıştır, genelde kısa süreli bir terapidir ve ev ödevleri verilir. Etkinliği pek çok araştırmayla desteklenmiş, kanıta dayalı bir yaklaşımdır.",
+      "Temel fikir düşünce, duygu ve davranışın birbirine bağlı olması. Danışanın kafasında hızlıca beliren otomatik düşünceleri yakalayıp gerçekçi olup olmadıklarını test ederiz. Her seansın bir gündemi var, structured ilerleriz ve araya homework koyarız. Evidence-based bir terapi olduğu için depresyon ve kaygıda ilk tercih edilen yöntemlerden biri.",
+      "Şöyle düşün: sınavdan düşük not alan biri 'ben aptalım' derse kendini kötü hisseder ve çalışmayı bırakır. BDT tam bu zinciri, yani düşüncenin duyguyu ve davranışı nasıl belirlediğini ele alır. O anlık otomatik düşünceyi fark edip sorgularız. Yapılandırılmış, birkaç ay süren kısa süreli bir çalışma olur, danışan seanslar arasında ödev yapar ve yöntemin işe yaradığına dair güçlü kanıtlar var."
+    ],
+    "partial": [
+      "BDT'de kişinin düşüncelerinin duygularını ve davranışlarını etkilediği varsayılır, terapide bunun üzerine çalışılır.",
+      "Düşüncelerimiz duygu ve davranışlarımızı belirler. Terapist danışanın otomatik düşüncelerini fark etmesine yardımcı olur, ama gerisini çok detaylı bilmiyorum."
+    ],
+    "wrong": [
+      "Bunu tam bilmiyorum, okulda çok az görmüştük.",
+      "Danışanı rahatlatıp konuşturmaya dayanan bir terapi türü, insanlar anlattıkça kendilerini iyi hisseder.",
+      "BDT'nin temel varsayımı sorunların çocuklukta bastırılmış bilinçdışı çatışmalardan kaynaklandığıdır, yıllarca süren uzun bir terapidir."
+    ]
+  },
+  "Psikolojik değerlendirmede gizlilik ilkesi ve sınırları nelerdir?": {
+    "good": [
+      "Danışanın seansta anlattıkları gizli kalır, bu güven ilişkisinin temelidir. İlk görüşmede bilgilendirilmiş onam alırken gizliliğin nerede biteceğini de açıklarım. Kişinin kendine ya da başkasına ciddi zarar verme riski, intihar tehlikesi veya çocuk istismarı şüphesi gibi durumlar istisnadır. Ayrıca mahkeme kararı gibi yasal yükümlülükler varsa bilgi paylaşmak zorunda kalabilirim.",
+      "Confidentiality her şeyin başı; danışanın mahremiyetine saygı duyarım. Daha ilk seansta onam formunu imzalatırken sınırları anlatırım. Kendine ya da çevresine tehlike oluşturuyorsa gizliliği bozmam gerekebilir. Bir de yasal olarak bildirim zorunluluğu olan durumlar ve mahkemenin istediği raporlar var.",
+      "Mesela bir danışan bana sırrını anlattığında bu odadan çıkmaz, gizlilik esastır. Ama başta onu bilgilendiririm: canına kıymayı düşünüyorsa ya da birine zarar vermek üzereyse bu bir istisna olur. Kanunun bildirmemi zorunlu tuttuğu durumlar da var, örneğin istismar ya da bir dava sırasında mahkeme talebi."
+    ],
+    "partial": [
+      "Danışanın anlattıkları gizlidir, terapist bunları kimseyle paylaşmamalıdır.",
+      "Her şey gizli kalır ama danışan kendine zarar verecekse bu gizlilik bozulabilir."
+    ],
+    "wrong": [
+      "Bu konuyu pek bilmiyorum açıkçası.",
+      "Terapist kendi uygun gördüğü kişilere anlatabilir, önemli olan danışana iyi gelmesi.",
+      "Gizliliğin hiçbir istisnası yoktur, danışan intihar edeceğini söylese bile terapist kimseye söyleyemez."
+    ]
+  },
+  "İlk görüşmede danışan intihar düşüncelerinden bahsetti. Ne yaparsın?": {
+    "good": [
+      "Paniğe kapılmadan konuyu doğrudan sorarım: kendini öldürmeyi düşünüyor musun, bir planın var mı? Açıkça sormak riski artırmaz. Plan, araç, geçmiş girişim ve destek sistemi gibi risk faktörlerini değerlendiririm. Birlikte bir güvenlik planı yaparız, risk yüksekse psikiyatriye ya da acile yönlendiririm. Görüşmeyi ayrıntılı kaydeder, süpervizörüme danışırım.",
+      "Önce sakin kalıp ona açıkça ne düşündüğünü sorarım, bu konuda dolambaçlı konuşmam. Sonra risk assessment yaparım: plan var mı, yöntem eline ulaşılabilir mi, daha önce denedi mi. Kriz anında arayabileceği kişilerle bir safety plan hazırlarız. Gerekirse psikiyatrist ile iş birliği yaparım, her şeyi dosyasına not eder ve süpervizyon alırım.",
+      "Böyle bir anda en kötüsü konuyu geçiştirmek. Ben doğrudan sorardım, 'hayatına son vermeyi düşündün mü' diye. Ne kadar ciddi olduğunu, bir planı olup olmadığını değerlendirirdim. Ailesinden ya da arkadaşlarından kimin destek olabileceğini konuşup güvenlik planı yapardık. Durum acilse onu hastanenin acil servisine yönlendirirdim."
+    ],
+    "partial": [
+      "Danışanı dinler, intihar riskini değerlendiririm.",
+      "Konuyu doğrudan sorarım ve risk seviyesini değerlendiririm, sonra ne yapacağıma karar veririm."
+    ],
+    "wrong": [
+      "Bilmiyorum, sanırım konuyu değiştirirdim.",
+      "Onu sakinleştirmeye çalışır, her şeyin yoluna gireceğini söylerdim.",
+      "Bunu açıkça sormam çünkü intiharı sormak kişinin aklına fikir sokar ve riski artırır."
+    ]
+  },
+  "Süpervizyon verdiğin bir terapistin danışanıyla mesleki sınırları aştığını fark ettin. Ne yaparsın?": {
+    "good": [
+      "Önceliğim danışanın güvenliği, ona zarar gelmesini önlemem gerekir. Terapistle suçlamadan ama açıkça görüşür, olanı onun ağzından dinlerim. Durumu meslek etik kurallarına göre değerlendiririm. Daha yakın süpervizyon, gerekirse vakanın başka birine devri gibi düzeltici bir plan yaparız. Tüm görüşmeleri kayıt altına alır, ciddi bir ihlal varsa etik kurula bildiririm.",
+      "İlk düşündüğüm şey danışan, onun zarar görmemesi. Terapistle birebir oturup durumu açıkça konuşurum, savunmaya itmeden. Ethics kodlarına göre bunun ne kadar ciddi bir ihlal olduğuna bakarım. Daha sık süpervizyon içeren bir plan hazırlarız. Görüşme notlarını dokümante ederim, gerekiyorsa derneğe ya da kurula bildiririm.",
+      "Diyelim ki terapist danışanla seans dışında arkadaşça buluşmaya başlamış. Danışanın güvenliğini düşünür, terapistle açıkça görüşürüm. Bunun etik açıdan neden sorunlu olduğunu birlikte konuşuruz. Bir düzeltme planı yapar, haftalık yakın süpervizyon koyarım ve süreci kayda geçiririm."
+    ],
+    "partial": [
+      "Terapistle bu konuyu açıkça görüşür, neden böyle yaptığını sorarım.",
+      "Danışanın güvenliğini düşünür ve durumu etik kurallar açısından değerlendiririm."
+    ],
+    "wrong": [
+      "Bilmiyorum, böyle bir durumla hiç karşılaşmadım.",
+      "Görmezden gelirim, herkesin kendi tarzı vardır.",
+      "Danışanla arkadaşlık kurmak terapiyi güçlendirir, sınır aşmak sorun değildir, bu yüzden bir şey yapmam."
+    ]
+  },
+  "Bir işe alım testinin geçerli ve güvenilir olması ne demektir?": {
+    "good": [
+      "Güvenilirlik testin tutarlı ölçmesi demek; aynı kişi testi tekrar alsa benzer puan alır. Geçerlilik ise testin ölçmesi gereken şeyi gerçekten ölçmesi. İşe alımda en önemlisi testin iş performansını yordaması. Bir de test farklı gruplara karşı önyargılı olmamalı, adil olmalı.",
+      "Reliability açısından test tekrar uygulandığında aynı sonucu vermeli, tutarlı olmalı. Validity açısından da ölçmeyi iddia ettiği özelliği ölçmeli. İyi bir test işteki başarıyı önceden tahmin eder. Cinsiyet ya da yaş gibi gruplar için adil olması da şart.",
+      "Mesela bir dikkat testini pazartesi ve cuma yaptığında sonuçlar çok farklıysa test güvenilir değildir. Satış becerisini ölçtüğünü söyleyip aslında okuma hızını ölçüyorsa geçerli değildir. Sonuçta testi alanların sonraki iş performansıyla puanları uyuşmalı ve hiçbir aday grubuna haksızlık etmemeli."
+    ],
+    "partial": [
+      "Güvenilir test tutarlı sonuç verir, her seferinde benzer puanlar çıkar.",
+      "Güvenilirlik tutarlılık demektir, geçerlilik de testin ölçmesi gereken şeyi ölçmesidir."
+    ],
+    "wrong": [
+      "Bilmiyorum, istatistik tarafına hiç girmedim.",
+      "Testin profesyonel görünmesi ve adayları zorlaması demek.",
+      "Güvenilirlik testin ölçmesi gereken şeyi ölçmesidir, geçerlilik ise tekrar edildiğinde aynı sonucu vermesidir."
+    ]
+  },
+  "Bir şirkette çalışan bağlılığı anketinde puanlar çok düştü. Nasıl ilerlersin?": {
+    "good": [
+      "Sonuçları departman, kıdem ve lokasyon kırılımında analiz edip düşüşün nerede yoğunlaştığını bulurum. Sonra o ekiplerle odak grup ve birebir görüşmeler yaparak nedenleri derinleştiririm. Yöneticilerle birlikte somut aksiyon planları çıkarırız. Sonuçları çalışanlarla paylaşır, birkaç ay sonra tekrar ölçerek değişimi takip ederim.",
+      "Önce datayı segmentlere bölerim, hangi birimde ne kadar düşmüş bakarım. Rakamlar nedenini söylemez, o yüzden focus group yaparım. Her yöneticiyle action plan hazırlarız. Çalışanlara 'sizi duyduk, şunları yapıyoruz' diye geri dönüş yapar, üç ay sonra pulse survey ile tekrar ölçeriz.",
+      "Geçen işimde benzer bir şey oldu; puanlar genel düşmüş görünüyordu ama departman bazında bakınca sadece iki ekipte çöktüğünü gördük. Onlarla görüşmeler yaptık, sorun yeni gelen yöneticiydi. Yöneticiyle bir plan hazırladık, sonuçları ekiple paylaştık ve altı ay sonra tekrar ölçtüğümüzde puanlar toparlanmıştı."
+    ],
+    "partial": [
+      "Sonuçları departman bazında inceleyip sorunun nerede olduğunu bulurum.",
+      "Verileri departmanlara göre analiz eder, ardından çalışanlarla odak grup görüşmeleri yaparım."
+    ],
+    "wrong": [
+      "Bilmiyorum, anketlere pek güvenmem zaten.",
+      "Çalışanlara biraz moral verip motivasyon konuşması yaparım.",
+      "Anket sonuçları gizli tutulmalı, çalışanlarla asla paylaşılmamalı; düşük puanları yönetime göstermeden kapatırım."
+    ]
+  },
+  "Bir şirkete yönetici adayları için değerlendirme merkezi (assessment center) nasıl kurarsın?": {
+    "good": [
+      "Önce rolde başarıyı belirleyen davranışları çıkarıp bir yetkinlik modeli kurarım. Her yetkinliği birden çok egzersizle ölçecek şekilde vaka analizi, rol oyunu ve grup tartışması hazırlarım. Değerlendiricileri gözlem ve puanlama konusunda eğitirim. Değerlendiriciler arası uyuma bakarak geçerlik ve güvenirliği kontrol ederim. Sonunda her adaya gelişim planına dönüşen bir geri bildirim veririm.",
+      "İlk adım competency framework: liderlik, karar verme, iletişim gibi yetkinlikleri tanımlarım. Sonra in-basket, role play ve grup egzersizleri tasarlarım. Assessor'lara kalibrasyon eğitimi veririm ki herkes aynı ölçüyle puanlasın. Sistemin geçerliğini adayların sonraki performansıyla karşılaştırırım. Her katılımcıya detaylı feedback ve gelişim önerisi veririm.",
+      "Bir bankada bunu kurmuştum. Şube müdürlüğü için gereken yetkinlikleri belirledik, buna göre bir vaka çalışması, zor müşteri rol oyunu ve grup tartışması hazırladık. Değerlendiricileri iki gün eğittik. Puanların tutarlı olup olmadığına, yani güvenirliğe baktık. Adaylara da birebir geri bildirim verdik."
+    ],
+    "partial": [
+      "Adaylar için vaka analizi ve rol oyunu gibi egzersizler hazırlarım.",
+      "Önce yetkinlikleri belirler, sonra bunlara uygun grup tartışması ve vaka egzersizleri tasarlarım."
+    ],
+    "wrong": [
+      "Assessment center'ı hiç duymadım açıkçası.",
+      "Adaylarla sohbet eder, kimin daha iyi olduğunu sezgiyle seçerim.",
+      "Tek bir kişilik testi yeterlidir, değerlendirici eğitimine gerek yoktur çünkü test her şeyi ölçer."
+    ]
+  },
+  "Piaget’nin bilişsel gelişim dönemlerini sayar mısın?": {
+    "good": [
+      "Dört dönem var: duyusal-motor dönem 0-2 yaş, işlem öncesi dönem 2-7 yaş, somut işlemler dönemi 7-11 yaş ve soyut işlemler dönemi 11 yaş sonrası.",
+      "İlki sensorimotor yani duyusal motor dönem, bebek dünyayı duyuları ve hareketleriyle tanır. Sonra işlem öncesi dönem gelir, benmerkezcilik belirgindir. Somut işlemler döneminde korunum kazanılır. Son olarak soyut işlemler döneminde çocuk hipotetik düşünebilir.",
+      "Bebeklikte çocuk her şeyi ağzına götürür, bu duyusal-motor dönem. Okul öncesinde sembolik oyun başlar ama mantık yürütemez, işlem öncesi dönem. İlkokulda somut nesnelerle mantık kurar, somut işlemler. Ergenlikte artık soyut kavramlarla düşünebilir, soyut işlemler dönemi."
+    ],
+    "partial": [
+      "İlki duyusal-motor dönem, bebeklikte görülür. Diğerlerini tam hatırlamıyorum.",
+      "Duyusal-motor dönem ve işlem öncesi dönem var, sonrasını unuttum."
+    ],
+    "wrong": [
+      "Hatırlamıyorum, Piaget'yi çok okumadım.",
+      "Çocuk büyüdükçe daha iyi düşünür, birkaç dönemden geçer.",
+      "Piaget'nin dönemleri oral, anal, fallik ve genital dönemlerdir."
+    ]
+  },
+  "Akademik başarısı birden düşen bir öğrenci için ne yaparsın?": {
+    "good": [
+      "Önce öğrenciyle güven duyacağı bir ortamda görüşür, onu yargılamadan dinlerim. Öğretmenlerinden ve ailesinden bilgi toplarım. Düşüşün ailedeki bir sorundan mı, arkadaş ilişkilerinden mi, duygusal bir zorluktan mı yoksa öğrenme güçlüğünden mi kaynaklandığını ayırt ederim. Ona göre bir destek planı yapar, gerekirse uzmana yönlendirip takip ederim.",
+      "İlk iş öğrenciyle birebir konuşurum, rapport kurmadan bir şey çözülmez. Sınıf öğretmeniyle ve veliyle görüşüp gözlemlerini alırım. Evde boşanma gibi bir kriz mi var, zorbalığa mı uğruyor, depresif mi diye nedenleri ayırırım. Sonra haftalık görüşmelerle ilerleyen bir plan yapar, düzenli takip ederim.",
+      "Bir öğrencim vardı, notları bir dönemde çok düştü. Onu odama çağırıp dinledim, başta hiçbir şey yok dedi. Öğretmenleriyle konuştum, ailesini aradım; anne babanın ayrıldığını öğrendim. Sorunun duygusal olduğunu görünce bir destek planı yaptık ve onu bir psikoloğa yönlendirdim, ayda bir de takip ettim."
+    ],
+    "partial": [
+      "Öğrenciyle görüşüp ne olduğunu dinlerim.",
+      "Öğrenciyle konuşur, ailesinden ve öğretmenlerinden bilgi alırım."
+    ],
+    "wrong": [
+      "Bilmiyorum, bu öğretmenin işi bence.",
+      "Daha çok çalışması gerektiğini söylerim, motive olursa düzelir.",
+      "Başarı düşüşü her zaman tembellikten kaynaklanır, bu yüzden öğrenciye ek ödev verip cezalandırırım."
+    ]
+  },
+  "Okul genelinde akran zorbalığını önleme programını nasıl tasarlarsın?": {
+    "good": [
+      "Önce öğrencilere anonim bir anket yaparak zorbalığın ne sıklıkta ve nerede yaşandığını belirlerim. Okul yönetimiyle birlikte açık kuralları olan bir zorbalık karşıtı politika oluştururuz. Öğretmenlere erken fark etme ve müdahale eğitimi veririm. Seyirci kalmamayı öğreten bir akran destek programı başlatırım. Velilerle iş birliği yapar, programın etkisini dönem sonunda tekrar anketle izlerim.",
+      "Başlangıçta bir needs assessment yaparım, öğrencilere gizli bir survey uygularım. Sonra okulun zorbalığa sıfır tolerans kuralını yazılı hale getiririz. Öğretmenler için workshop'lar düzenlerim. Akran arabuluculuğu gibi peer programları kurarım. Velilerle toplantılar yapar, her dönem verileri karşılaştırarak ilerlemeyi takip ederim.",
+      "Çalıştığım okulda şöyle yaptık: önce bir anketle teneffüs ve servislerde zorbalığın yoğun olduğunu gördük. Disiplin yönetmeliğine net kurallar ekledik. Öğretmenlere eğitim verdik, büyük sınıflardan gönüllü akran elçileri seçtik. Veli toplantısında programı anlattık ve yıl sonunda tekrar ölçtük."
+    ],
+    "partial": [
+      "Öğrencilere bir anket yapar, zorbalığın ne kadar yaygın olduğunu öğrenirim.",
+      "Öğrencilere anket yapar, sonra öğretmenlere bu konuda eğitim veririm."
+    ],
+    "wrong": [
+      "Bilmiyorum, çocuklar kendi aralarında halleder.",
+      "Öğrencilere zorbalığın kötü olduğunu anlatan bir konuşma yaparım.",
+      "Zorbalık çocukların büyümesinin doğal bir parçasıdır, müdahale etmek onları güçsüzleştirir, bu yüzden program gereksizdir."
+    ]
+  },
+  "Anonim şirket ile limited şirket arasındaki temel farklar nelerdir?": {
+    "good": [
+      "Anonim şirkette pay devri kolaydır, limited şirkette ise noter onayı ve genel kurul onayı gerekir. AŞ yönetim kurulu ile, limited ise müdürlerle yönetilir. Limited şirket ortakları ödenmeyen kamu borçlarından payları oranında sorumlu olabilir. Bir de asgari sermaye tutarları farklıdır.",
+      "AŞ'de hisse devri serbest, borsada bile işlem görebilir; limitedde devir noterde yapılır ve ortakların onayı lazım. AŞ'yi board yani yönetim kurulu yönetir, limitedi şirket müdürü. Limitedde ortaklar vergi ve SGK gibi kamu borçlarından kişisel olarak sorumlu tutulabilir. Kuruluş sermayesi de AŞ'de daha yüksektir.",
+      "Bir müvekkil bana gelip hangisini kursun diye sorduğunda şöyle anlatırım: ileride yatırımcı alacaksan AŞ, çünkü payları devretmek kolay ve yönetim kurulu yapısı var. Limitedde payını satmak için noter ve genel kurul gerekir, şirketi müdür yönetir. Ayrıca limitedde şirketin vergi borcu ödenmezse senin peşine düşerler. Gereken sermaye miktarı da aynı değil."
+    ],
+    "partial": [
+      "Anonim şirkette yönetim kurulu, limited şirkette müdür şirketi yönetir.",
+      "AŞ'de pay devri kolaydır, limitedde noter onayı gerekir. Ayrıca AŞ'yi yönetim kurulu yönetir."
+    ],
+    "wrong": [
+      "Bilmiyorum, ikisi de şirket sonuçta.",
+      "Anonim şirket büyük şirketler için, limited küçükler için, başka bir farkı yok.",
+      "Limited şirket ortakları şirketin tüm borçlarından sınırsız ve şahsen sorumludur, anonim şirkette pay devri noter onayı gerektirir."
+    ]
+  },
+  "Bir sözleşmeyi incelerken öncelikle nelere bakarsın?": {
+    "good": [
+      "İlk önce tarafların doğru tanımlanıp tanımlanmadığına ve sözleşmenin konusuna bakarım. Sonra karşılıklı edimleri, ödeme ve teslim sürelerini incelerim. Fesih koşullarını ve cezai şartı kontrol ederim. Son olarak uyuşmazlık çıkarsa hangi mahkemenin yetkili olduğuna ya da tahkim şartı olup olmadığına bakarım.",
+      "Taraflar kim, imza yetkileri var mı, scope ne, bunlarla başlarım. Kimin ne yapacağı, ödeme takvimi ve teslim tarihleri net mi bakarım. Termination maddeleri ve cezai şart benim için kritik. Dispute resolution kısmında yetkili mahkeme ya da arbitration maddesini kontrol ederim.",
+      "Geçenlerde bir kira sözleşmesine baktım mesela. Kiracı ve kiraya verenin bilgileri doğru mu, kiralanan yer net tarif edilmiş mi kontrol ettim. Kira ödeme günü ve süresi yazıyor muydu, ona baktım. Erken çıkışta fesih ve cezai şart ne olacak, bir de anlaşmazlıkta hangi şehrin mahkemeleri yetkili, bunları inceledim."
+    ],
+    "partial": [
+      "Tarafların kim olduğuna ve sözleşmenin konusuna bakarım.",
+      "Tarafları ve konuyu kontrol eder, ödeme sürelerini incelerim."
+    ],
+    "wrong": [
+      "Bilmiyorum, genelde imzalayıp geçiyorum.",
+      "Sözleşmenin uzun ve resmi görünmesine bakarım, gerisi detay.",
+      "Cezai şart Türk hukukunda geçersizdir, bu yüzden o maddelere hiç bakmam."
+    ]
+  },
+  "Müvekkil şirket, bir tedarikçinin sözleşmeyi ihlal ettiğini söylüyor. Nasıl ilerlersin?": {
+    "good": [
+      "Önce sözleşmeyi ve taraflar arasındaki tüm yazışmaları inceleyip ihlalin ve zararın delillerini toplarım. Tedarikçinin temerrüde düşüp düşmediğini değerlendiririm. Gerekirse noter aracılığıyla ihtarname çekerim. Müvekkile arabuluculuk, uzlaşma ve dava seçeneklerini maliyet ve süre açısından karşılaştırarak sunarım.",
+      "İlk iş contract'ı ve e-postaları baştan sona okurum, faturalar ve teslim tutanakları gibi evidence toplarım. Tedarikçinin edimini yerine getirmediği, yani ihlalin net olup olmadığını tespit ederim. Noterden ihtar göndeririz. Sonra müvekkille dava mı açalım, arabulucuya mı gidelim yoksa tazminat karşılığı uzlaşalım mı, bunu konuşuruz.",
+      "Diyelim ki tedarikçi malları üç ay geç teslim etmiş. Sözleşmedeki teslim maddesine ve sipariş yazışmalarına bakarak bunu belgelerim. Gecikme temerrüt sayılır mı, değerlendiririm. Noter kanalıyla ihtarname çekip süre veririm. Olmazsa müvekkilin zararı için tazminat davası ya da önce zorunlu arabuluculuk yoluna gideriz."
+    ],
+    "partial": [
+      "Önce sözleşmeyi ve yazışmaları incelerim.",
+      "Sözleşmeyi incelerim, sonra tedarikçiye noterden ihtarname çekerim."
+    ],
+    "wrong": [
+      "Bilmiyorum, ticaret hukukunda pek tecrübem yok.",
+      "Tedarikçiyi arayıp sert bir şekilde uyarırım, genelde korkup düzeltirler.",
+      "Hemen dava açarım; ticari uyuşmazlıklarda arabuluculuğa gitmek gerekmez, ihtar da çekmeye gerek yoktur."
+    ]
+  },
+  "Bir şirket satın alımında hukuki durum tespiti (due diligence) sürecini nasıl yönetirsin?": {
+    "good": [
+      "Önce işlemin yapısına ve müvekkilin önceliklerine göre incelemenin kapsamını belirlerim. Satıcıdan istenecek belgelerin listesini hazırlar, sanal veri odasındaki belgeleri ekip içinde paylaştırırım. Önemli sözleşmeler, süren davalar, lisans ve izinler gibi risk alanlarını incelerim. Bulguları önem sırasına göre raporlar, kırmızı bayrakları ayrıca vurgularım. Tespit edilen riskleri satış sözleşmesindeki beyan ve tazminat hükümlerine yansıtırım.",
+      "İlk adımda scope'u netleştiririz, hangi alanlar öncelikli. Data room açılınca request list üzerinden belgeleri takip ederim. Kritik müşteri sözleşmeleri, devam eden davalar, ruhsatlar ve iş hukuku risklerine bakarız. Sonunda red flag raporu hazırlarım. Bu bulgular SPA'da garanti, beyan ve tazmin maddelerine dönüşür.",
+      "Bir enerji şirketinin satın alımında şöyle yaptık: müvekkilin en çok endişelendiği konular lisanslardı, kapsamı buna göre çizdik. Veri odasında yüzlerce belge vardı, ekibe bölüştürdük. Lisanslar, kira sözleşmeleri ve bir çevre davası çıktı. Bir rapor yazıp en kritik üç konuyu kırmızı bayrak olarak işaretledik ve satıcıdan özel tazminat aldık."
+    ],
+    "partial": [
+      "Şirketin sözleşmelerini ve davalarını incelerim.",
+      "Önce kapsamı belirler, sonra sözleşmeleri, davaları ve lisansları incelerim."
+    ],
+    "wrong": [
+      "Due diligence'ı pek bilmiyorum.",
+      "Şirketin genel durumuna bakar, iyi görünüyorsa satın almayı öneririm.",
+      "Due diligence sadece mali tabloların incelenmesidir, hukuki sözleşmelere veya davalara bakmaya gerek yoktur."
+    ]
+  },
+  "Haklı ve geçerli fesih arasındaki fark nedir?": {
+    "good": [
+      "Haklı fesih, ahlak ve iyiniyet kurallarına aykırılık gibi ağır sebeplerle sözleşmenin derhal, bildirim süresi beklenmeden feshedilmesidir. Geçerli fesih ise performans düşüklüğü veya işletme gereği gibi sebeplerle ve bildirim sürelerine uyularak yapılır. Haklı fesihte işçi kıdem tazminatı alamayabilir, geçerli fesihte kıdem ve ihbar tazminatı ödenir.",
+      "Haklı nedenle fesihte, mesela işçi hırsızlık yaparsa, işveren sözleşmeyi hemen sona erdirir. Geçerli feshin sebebi işçinin yetersizliği ya da ekonomik nedenlerdir, burada ihbar süresine uyulur. Sonuçları da farklı: geçerli fesihte işçi kıdem ve ihbar tazminatını alır.",
+      "Bir işçi işyerinde kavga çıkarıp amirine hakaret etti diyelim, işveren onu o gün çıkarabilir, bu haklı fesih. Ama şirket küçülmeye gidiyorsa bu işletme gereği geçerli fesih olur, işçiye bildirim yapılır ya da süresi kadar ücret ödenir. Haklı fesihte kıdem genelde ödenmez, geçerli fesihte kıdem tazminatı ödenir."
+    ],
+    "partial": [
+      "Haklı fesihte işveren sözleşmeyi derhal sona erdirebilir.",
+      "Haklı fesih derhal yapılır, geçerli fesih ise performans gibi sebeplerle yapılır."
+    ],
+    "wrong": [
+      "Bilmiyorum, ikisi aynı gibi geliyor bana.",
+      "İkisinde de işçi işten çıkarılıyor, sadece isimleri farklı.",
+      "Geçerli fesihte işveren işçiyi bildirim süresi olmadan derhal çıkarır, haklı fesihte ise ihbar süresi verilir."
+    ]
+  },
+  "Bir çalışan işten çıkarıldığını ve tazminatının ödenmediğini söylüyor. Nasıl ilerlersin?": {
+    "good": [
+      "Önce iş sözleşmesini, bordroları ve fesih bildirimini inceleyerek kıdem süresini belirlerim. Feshin türüne, haklı mı geçerli mi olduğuna bakarım. Alacak kalemlerini hesaplarım. Dava açmadan önce zorunlu arabuluculuğa başvururum ve hak düşürücü süreler ile zamanaşımını kaçırmamaya dikkat ederim.",
+      "Belgeleri toplarım: sözleşme, maaş bordroları, SGK hizmet dökümü. İşverenin hangi gerekçeyle sözleşmeyi sonlandırdığına bakarım. İşçi alacakları için kanunen önce arabulucuya gitmek gerekiyor. İşe iade için bir aylık süre var, alacaklarda da beş yıllık zamanaşımı, bunları takvime koyarım.",
+      "Bir müvekkilim böyle geldi, on yıl çalışmış ve tek kuruş almadan çıkarılmış. SGK dökümünden kıdemini belgeledim. İşveren çıkışı haklı nedene dayandırmıştı ama gerekçe zayıftı. Arabulucuya başvurduk, anlaşma olmayınca süre dolmadan dava açtık."
+    ],
+    "partial": [
+      "İş sözleşmesini ve bordroları incelerim.",
+      "Belgeleri inceler, sonra arabulucuya başvururum."
+    ],
+    "wrong": [
+      "Bilmiyorum, iş hukukuna pek bakmadım.",
+      "İşverene bir mail atıp ödemesini rica ederim.",
+      "Arabuluculuğa gerek yoktur, işçi alacakları için doğrudan dava açılır ve bunun için herhangi bir süre sınırı yoktur."
+    ]
+  },
+  "İşveren müvekkilin toplu işten çıkarma yapmak istiyor. Nelere dikkat etmesini söylersin?": {
+    "good": [
+      "Önce çıkarılacak işçi sayısının kanundaki toplu çıkarma eşiğini aşıp aşmadığına bakarız. Aşıyorsa en az 30 gün önceden sendika temsilcilerine, bölge müdürlüğüne ve İŞKUR'a yazılı bildirim yapılmalı. Sendika temsilcileriyle çıkarmanın etkisini azaltmak üzere görüşmeler yapılmalı. İşçilerin kıdem ve ihbar tazminatları eksiksiz ödenmeli. Kimin çıkarılacağı objektif ölçütlerle belirlenmeli, ayrımcılık yapılmamalı.",
+      "İlk iş işyerindeki çalışan sayısına göre toplu çıkarma sınırına takılıyor mu, onu hesaplarım. Takılıyorsa 30 gün önceden bildirim şartı var. İşyeri sendikasıyla müzakere etmek zorunlu. Herkesin kıdemi ve ihbarı tam ödenmeli. Seçimi performans gibi kriterlere bağlamalıyız ki discrimination iddiası gelmesin.",
+      "Bir fabrikada 80 kişinin çıkarılması gündeme geldiğinde müvekkile önce bunun toplu işten çıkarma sayıldığını söyledim. Bir ay önceden yazılı bildirim yaptık, işçi temsilcileriyle oturup görüştük. Kıdem ve ihbar tazminatlarını hesapladık. Listeyi kıdem ve performans gibi şeffaf ölçütlerle oluşturduk."
+    ],
+    "partial": [
+      "İşçilerin kıdem ve ihbar tazminatlarını eksiksiz ödemesini söylerim.",
+      "Toplu çıkarma sayılıp sayılmadığına bakarız, sayılıyorsa önceden bildirim yapılmalı."
+    ],
+    "wrong": [
+      "Bilmiyorum, bunu insan kaynakları halleder.",
+      "Çalışanlara kibarca durumu anlatsın, gerisi sorun olmaz.",
+      "Toplu işten çıkarmada işverenin kimseye bildirim yapmasına gerek yoktur, işçileri ertesi gün çıkarabilir."
+    ]
+  },
+  "KVKK kapsamında veri sorumlusunun temel yükümlülükleri nelerdir?": {
+    "good": [
+      "Veri sorumlusu ilgili kişileri aydınlatmalı, verileri açık rıza ya da kanundaki diğer hukuki sebeplere dayanarak işlemeli. Gerekli teknik ve idari güvenlik tedbirlerini almalı. Şartları sağlıyorsa VERBİS'e kayıt olmalı ve ilgili kişilerin başvurularını süresinde yanıtlamalı.",
+      "Önce aydınlatma metni ile kişiyi bilgilendirmek gerekir. Her işlemenin bir legal basis'i olmalı, gerekirse explicit consent alınır. Verilerin güvenliği için şifreleme, erişim yetkilendirme gibi önlemler alınmalı. Sicile kayıt zorunluluğu var. Kişi verisiyle ilgili başvuru yaparsa 30 gün içinde cevap verilmeli.",
+      "Mesela bir e-ticaret sitesi düşün. Üye olurken kullanıcıya verisinin neden işlendiğini anlatan aydınlatma metni gösterilmeli. Pazarlama e-postası için açık rıza alınmalı. Veritabanı yetkisiz erişime karşı korunmalı, şirket büyükse VERBİS'e kaydolmalı. Müşteri 'verimi silin' derse bu talebe cevap verilmeli."
+    ],
+    "partial": [
+      "Veri sorumlusu kişileri aydınlatmak ve verileri güvende tutmak zorundadır.",
+      "Aydınlatma yapmalı, açık rıza almalı ve güvenlik tedbirlerini almalıdır."
+    ],
+    "wrong": [
+      "KVKK'yı tam bilmiyorum.",
+      "Veri sorumlusu verileri dikkatli kullanmalı, kimseye zarar vermemeli.",
+      "Açık rıza alındıktan sonra veri sorumlusunun başka hiçbir yükümlülüğü kalmaz, veriyi istediği gibi kullanabilir."
+    ]
+  },
+  "Bir şirkette müşteri verileri sızdırıldı. Hukuki olarak ne yapılmalı?": {
+    "good": [
+      "Önce teknik ekiple ihlali durdurur ve kapsamını tespit ederiz. Kişisel Verileri Koruma Kurulu'na gecikmeksizin ve en geç 72 saat içinde bildirim yapılır. Etkilenen müşteriler de bilgilendirilir. Olay kayıt altına alınır ve tekrarını önleyecek tedbirler belgelenir.",
+      "İlk iş sızıntıyı kapatmak ve hangi verilerin, kaç kişinin etkilendiğini bulmak. Sonra 72 saatlik süre içinde Kurul'a ihlal bildirimi yaparız. Etkilenen data subject'lere, yani ilgili kişilere de makul sürede haber verilir. Her şeyi bir ihlal raporunda dokümante eder, bir daha olmaması için güvenlik önlemlerini güncelleriz.",
+      "Bir müşterimde e-posta listesi dışarı sızmıştı. IT ekibiyle önce erişimi durdurduk, kaç kaydın gittiğini tespit ettik. Ertesi gün Kurul'a bildirim formunu doldurduk. Müşterilere tek tek e-posta attık. Olayı kayıt altına aldık ve şifre politikasını değiştirdik."
+    ],
+    "partial": [
+      "Önce sızıntıyı durdurup ne kadar verinin gittiğini tespit ederiz.",
+      "Sızıntıyı durdururuz ve Kurul'a 72 saat içinde bildirim yaparız."
+    ],
+    "wrong": [
+      "Bilmiyorum, IT ekibinin işi bu.",
+      "Konuyu sessizce çözmeye çalışırız, kimsenin haberi olmazsa sorun büyümez.",
+      "Kurul'a bildirim yapmak zorunlu değildir, müşterilere de haber vermeye gerek yoktur."
+    ]
+  },
+  "Bir şirket için KVKK uyum programını baştan nasıl kurarsın?": {
+    "good": [
+      "Önce birimlerle görüşüp hangi kişisel verinin hangi amaçla işlendiğini gösteren bir veri envanteri çıkarırım. Her işleme için hukuki sebebi belirler, aydınlatma metinlerini ve gerekiyorsa açık rıza metinlerini hazırlarım. Şirket yükümlüyse VERBİS kaydını yaparım. Erişim yetkileri, şifreleme ve saklama-imha politikası gibi teknik ve idari tedbirleri hayata geçiririm. Çalışanlara eğitim verir, uyumu düzenli iç denetimle kontrol ederim.",
+      "İlk adım data inventory: departmanlarla oturup hangi veriyi topluyoruz, nerede tutuyoruz çıkarırım. Aydınlatma metinlerini yazar, rıza gereken yerler için consent formlarını hazırlarım. VERBİS'e kaydı tamamlarım. Rol bazlı erişim, loglama ve imha politikası gibi önlemleri kurarım. Personel için awareness eğitimi yapar, yılda bir audit planlarım.",
+      "Bir hastanede bunu sıfırdan kurdum. Önce her birimle görüşüp büyük bir envanter tablosu hazırladık. Hastalar için aydınlatma ve rıza metinlerini yazdık, sicile kaydolduk. Hasta dosyalarına erişimi yetkiye bağladık. Doktor ve sekreterlere eğitim verdik, altı ayda bir de denetim yaptık."
+    ],
+    "partial": [
+      "Önce şirketin hangi verileri işlediğini gösteren bir envanter çıkarırım.",
+      "Veri envanteri çıkarır, aydınlatma metinlerini hazırlar ve VERBİS kaydını yaparım."
+    ],
+    "wrong": [
+      "KVKK uyumu konusunda bilgim yok.",
+      "Web sitesine bir gizlilik politikası koyarım, uyum için bu yeterli olur.",
+      "Her işleme için açık rıza almak yeterlidir, veri envanterine veya teknik tedbirlere gerek yoktur."
+    ]
+  }
+}
