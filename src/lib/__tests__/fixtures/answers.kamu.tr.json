@@ -1,1 +1,514 @@
-{}
+{
+  "Derste sürekli konuşan ve dersi bölen bir öğrenciyle nasıl ilgilenirsin?": {
+    "good": [
+      "Yılın başında sınıfla birlikte kuralları belirlerim, böylece neyin beklendiği baştan bellidir. Öğrenci konuşmaya devam ederse dersi durdurmadan yanına giderim. Teneffüste onunla birebir konuşup neden böyle davrandığını anlamaya çalışırım. Ona tahtayı silmek ya da materyal dağıtmak gibi bir görev veririm ve doğru davrandığında onu överim. Değişmezse veliyle görüşürüm.",
+      "Bu tür öğrencilerin çoğu aslında ilgi istiyor. O yüzden önce olumlu davranışını yakalayıp pekiştiririm. Sınıfa grup lideri gibi bir sorumluluk vererek enerjisini işe yarar bir yöne çekerim. Dersten sonra kendisiyle konuşur, ailesiyle de iletişime geçip evde de aynı dili kullanmamızı isterim.",
+      "Geçen yıl tam böyle bir öğrencim vardı. Sınıf kurallarını hatırlattım ama yetmedi; sonra onunla baş başa konuştum, meğer evde bir sorun varmış. Ona sınıf başkan yardımcılığı görevini verdim, her güzel davranışında olumlu geri bildirimde bulundum. Anneyle de görüşüp birlikte takip ettik, iki ayda epey düzeldi."
+    ],
+    "partial": [
+      "Öğrenciyi dersten sonra yanıma çağırıp birebir konuşurum, neden sürekli konuştuğunu sorarım.",
+      "Sınıf kurallarını baştan net koyarım ve öğrenci uyunca onu överim, olumlu davranışı pekiştiririm."
+    ],
+    "wrong": [
+      "Bilmiyorum, bu durumda ne yapılacağını pek düşünmedim.",
+      "Sabırlı olurum, zamanla geçer diye düşünüyorum.",
+      "Onu sınıfın önünde azarlarım ve dersin geri kalanında koridora çıkarırım, diğerlerine de ders olur."
+    ]
+  },
+  "Farklı öğrenme hızlarındaki öğrencileri aynı derste nasıl desteklersin?": {
+    "good": [
+      "Aynı kazanım için kolaydan zora birkaç seviyede çalışma kâğıdı hazırlarım. Öğrencileri karışık gruplara ayırırım, hızlı olanlar arkadaşlarına anlatırken kendileri de pekişir. Yavaş ilerleyenlerle ders sonunda kısa tekrarlar yaparım. Her hafta küçük bir quiz ile kimin nerede olduğunu ölçerim.",
+      "Farklılaştırılmış öğretim yaparım; herkese aynı hedef ama farklı zorlukta etkinlik. Peer learning'i çok kullanıyorum, akran eşleştirmesi işe yarıyor. Zorlananlar için ek destek ve tekrar materyali veririm, ilerlemeyi de gözlem notlarıyla takip ederim.",
+      "Sınıfımda hep üç grup olur gibi düşünürüm. İleri olanlara ek etkinlik veririm ki sıkılmasınlar, takılanlara birebir destek olurum. Arada grup çalışması yaptırırım. Ders sonunda da kısa çıkış kartlarıyla kimin anladığını değerlendiririm."
+    ],
+    "partial": [
+      "Öğrencileri gruplara ayırıp akranlarından öğrenmelerini sağlarım.",
+      "Hızlı öğrenenlere ek etkinlik veririm, yavaşlara da tekrar yaptırırım. Böylece kimse geride kalmaz."
+    ],
+    "wrong": [
+      "Bu konuda pek fikrim yok açıkçası.",
+      "Herkes kendi hızında öğrenir, öğretmen olarak elimden geleni yaparım.",
+      "Herkese tamamen aynı şeyi aynı hızda anlatırım; yetişemeyen öğrenci zaten çalışmıyordur, ona özel bir şey yapmam."
+    ]
+  },
+  "Çocuğunun notundan memnun olmayan bir veli sert bir şekilde şikâyet ediyor. Ne yaparsın?": {
+    "good": [
+      "Önce veliyi sözünü kesmeden dinlerim, sakin kalırım ve kaygısını anladığımı söylerim. Sonra öğrencinin sınav kâğıtlarını ve ödevlerini gösteririm, puanın nereden geldiğini açıklarım. Birlikte evde ve okulda neler yapabileceğimizi konuşup bir plan yaparız. İki hafta sonra tekrar görüşmek için gün belirleriz.",
+      "Velinin öfkesi genelde çocuğu için endişeden gelir, o yüzden empati kurarım. Elimdeki somut verileri, yani sınav sonuçlarını ve sınıf içi gözlemlerimi paylaşırım. Aileyle birlikte küçük bir çalışma programı çıkarırız ve takip için ayda bir görüşme ayarlarım.",
+      "Bir keresinde böyle bir veli geldi, bağırıyordu. Sakinleşmesini bekledim, dinledim. Sonra kızının son üç sınavını masaya koydum, nerede puan kaybettiğini gösterdim. Evde haftada iki gün tekrar yapmaları için birlikte plan kurduk, bir ay sonra da takip görüşmesi yaptık."
+    ],
+    "partial": [
+      "Veliyi sakin bir şekilde dinlerim, kaygısını anladığımı gösteririm.",
+      "Veliye öğrencinin sınav kâğıtlarını gösteririm, notun neden böyle olduğunu anlatırım ve birlikte bir plan yaparız."
+    ],
+    "wrong": [
+      "Hiç böyle bir durum yaşamadım, ne derim bilmiyorum.",
+      "Veliyi müdüre yönlendiririm, bu benim işim değil.",
+      "Velinin ısrarı varsa notu yükseltirim, veliyle sorun yaşamaya değmez."
+    ]
+  },
+  "Zümre başkanı olarak öğretmenler arasında ortak bir ölçme-değerlendirme standardı nasıl oluşturursun?": {
+    "good": [
+      "İlk toplantıda dönem boyunca hangi kazanımları ölçeceğimizi netleştiririz. Proje ve yazılı ödevler için hep beraber bir dereceli puanlama anahtarı hazırlarız. Sınavlardan sonra sonuçları sınıf sınıf paylaşıp neden farklılık olduğunu konuşuruz. Kararları tek başıma almam, herkesin fikrini alırım.",
+      "Ortak bir rubric hazırlamak işin merkezinde. Önce kazanımlar üzerinde uzlaşırız, sonra rubrik ve ölçütleri birlikte yazarız. Ortak sınav sonuçlarını analiz edip zümrede paylaşırız. Öğretmenlerin birbirinin dersini gözlemlemesini de öneririm.",
+      "Önceki okulumda bunu yaptım. Öğretmenlerin fikrini aldım, kimseye dayatmadım. Kazanımları listeledik, ortak bir değerlendirme ölçütü belirledik. Dönem sonunda sonuçları karşılaştırıp paylaştık, iki sınıf arasındaki farkın nedenini birlikte bulduk."
+    ],
+    "partial": [
+      "Öğretmenlerle birlikte ortak bir rubrik hazırlarız.",
+      "Hangi kazanımları ölçeceğimizi belirler, sınav sonuçlarını zümrede paylaşırız."
+    ],
+    "wrong": [
+      "Bilmiyorum, ölçme değerlendirme konusunda pek tecrübem yok.",
+      "Her öğretmen kendi bildiği gibi yapsın, bence standart gereksiz.",
+      "Standardı ben belirlerim ve herkese uygulatırım; zümrede tartışmak zaman kaybıdır."
+    ]
+  },
+  "Etkili bir ders planında neler olur?": {
+    "good": [
+      "Her şeyden önce dersin sonunda öğrencinin ne kazanacağı yazılı olmalı. Başta bir merak uyandıran soru veya kısa bir videoyla dikkat çekerim. Sonra öğrencilerin yaparak öğrendiği bir uygulama gelir. Arada sorularla kontrol ederim, en sonda kısa bir özetle bitiririm.",
+      "Hedefler, giriş, etkinlik, değerlendirme ve kapanış. Girişte warm-up yaparım, ön bilgileri yoklarım. Main activity kısmında öğrenciler aktif olmalı. Exit ticket gibi kısa bir ölçme yaparım, ödevi de kapanışta veririm.",
+      "Benim için iyi bir plan; net bir hedef, ilgi çekici bir başlangıç ve öğrencinin elini taşın altına koyduğu bir etkinlik demek. Dersin sonunda da birkaç soruyla ne kadar anlaşıldığını değerlendiririm."
+    ],
+    "partial": [
+      "Ders planında öğrencilerin aktif olduğu etkinlikler mutlaka olmalı.",
+      "Dersin kazanımları belli olmalı ve sonunda kısa bir özetle ders kapatılmalı."
+    ],
+    "wrong": [
+      "Bilmiyorum, ders planı yazmadım hiç.",
+      "İyi bir ders planı düzenli olmalı ve öğretmen ona sadık kalmalı.",
+      "Ders planı aslında sadece müfredattaki konu başlıklarının listesidir; öğretmen konuyu anlatır, öğrenci dinler."
+    ]
+  },
+  "Derse ilgisi çok düşük bir sınıfı nasıl motive edersin?": {
+    "good": [
+      "Önce öğrencilerle konuşup neyi sevdiklerini, dersten neden soğuduklarını anlamaya çalışırım. Konuları günlük hayattan örneklerle anlatırım, mesela yüzdeleri indirim etiketleriyle. Grup yarışmaları ve küçük projelerle derse katılırlar. Küçük hedefler koyup başardıklarında hemen geri bildirim veririm.",
+      "Kısa bir anket yaparak ilgi alanlarını öğrenirim. Dersi oyunlaştırırım, Kahoot gibi araçlar kullanırım. Gerçek hayattan bağlantı kurarım. Her hafta ulaşılabilir küçük bir hedef koyarım ki başarıyı tatsınlar.",
+      "Bir sınıfım vardı, kimse dinlemiyordu. Ben de dersin neden onlara sıkıcı geldiğini sordum. Sonra konuları onların ilgilendiği futbol ve oyun örnekleriyle anlattım, proje ödevleri verdim. Başaranları hemen övdüm, birkaç haftada sınıf canlandı."
+    ],
+    "partial": [
+      "Dersi daha eğlenceli hale getirmek için oyun ve grup çalışmaları kullanırım.",
+      "Öğrencilerin ilgi alanlarını öğrenip konuları günlük hayattan örneklerle anlatırım."
+    ],
+    "wrong": [
+      "Bilmiyorum, motivasyon öğrencinin kendi işi.",
+      "Öğrencilere derse önem vermelerini söylerim, motive olurlar.",
+      "Not kırarım; düşük not korkusu bir sınıfı motive etmenin en etkili yoludur."
+    ]
+  },
+  "Okulunda bir dersteki başarı ortalaması yıllardır düşük. Nasıl bir iyileştirme planı önerirsin?": {
+    "good": [
+      "Önce son yılların sınav sonuçlarını kazanım kazanım incelerim, hangi konularda kopma olduğunu görürüm. Öğrencilerle konuşur, eksik temelden mi yoksa isteksizlikten mi kaynaklandığını anlarım. Zümreyle derste daha çok uygulama ve farklı yöntemler kullanmayı planlarız. Zorlananlara etüt açarım ve dönem içinde kısa sınavlarla takip ederim.",
+      "Data-driven gitmek lazım: konu bazında veriyi analiz ederim. Kök nedene bakarım, belki önceki yıllardan gelen ön bilgi eksikliği vardır. Öğretim yöntemlerini çeşitlendiririz, etüt ve akran desteği kurarız. Ara sınavlarla ilerlemeyi izleriz.",
+      "Böyle bir tabloda tahminle hareket etmem. Notları açar, hangi konuların düştüğüne bakarım. Sonra hocalarla oturup yöntemimizi değiştiririz, daha etkileşimli etkinlikler koyarız. Hafta sonu destek kursları açarım. Dönemde iki kez ara ölçme yapıp planı güncelleriz."
+    ],
+    "partial": [
+      "Başarısı düşük öğrenciler için ek etüt saatleri açarım.",
+      "Önce sınav verilerini kazanım bazında incelerim, sonra etüt ile destek veririm."
+    ],
+    "wrong": [
+      "Bilmiyorum, bu idarenin işi bence.",
+      "Öğretmenlerle konuşur, daha çok çalışmalarını isterim.",
+      "Sınavları biraz kolaylaştırırım, böylece ortalama yükselir ve sorun çözülür."
+    ]
+  },
+  "Öğrencilerin konuşma becerisini nasıl geliştirirsin?": {
+    "good": [
+      "Derste ben az konuşur, öğrencileri çok konuştururum; amaç iletişim kurmak. Öğrencileri ikişerli eşleştiririm, herkes sırayla konuşur. Hata yapınca kimse gülmez, bunu baştan kural yaparım. Restoranda sipariş verme gibi canlandırmalar yaptırırım.",
+      "Communicative approach kullanırım. Pair work ve group work ile speaking time'ı artırırım. Öğrencilerin mistake yapmaktan korkmadığı bir ortam kurarım. Role-play ve gerçek task'lerle dili kullanırlar.",
+      "Sınıfta konuşmayan öğrenciler genelde utanıyor. O yüzden önce güvenli bir ortam yaratırım, hatayı normal görürüm. Küçük gruplar halinde çalıştırırım, sonra drama ve rol oyunlarıyla gerçek durumları canlandırırız."
+    ],
+    "partial": [
+      "Öğrencileri ikili gruplara ayırıp birbirleriyle konuşturuyorum.",
+      "Öğrencilerin hata yapmaktan korkmadığı güvenli bir ortam kurarım ve onları ikili çalışmalarla konuştururum."
+    ],
+    "wrong": [
+      "Bilmiyorum, ben hep dilbilgisi öğrettim.",
+      "Öğrencilere çok pratik yapmalarını söylerim.",
+      "Önce tüm dilbilgisi kurallarını ezberletirim; kuralları bilmeyen öğrenci konuşmaya başlamamalıdır."
+    ]
+  },
+  "Öğrencilerin konuşmaktan çekindiği bir İngilizce sınıfında konuşma becerisini nasıl geliştirirsin?": {
+    "good": [
+      "İlk iş hatanın normal olduğunu gösteririm, kaygılarını azaltırım. Herkesin önünde konuşturmam, önce ikili ve küçük gruplarla başlarım. Konuşmadan önce birkaç dakika düşünme süresi ve işe yarar kalıplar veririm. Hataları anında düzeltmem, en sonda genel geri bildirim veririm.",
+      "Anxiety'yi düşürmek için safe bir ortam kurarım. Pair work yaparım, mesela otelde check-in gibi role-play'ler. Öğrencilere önce hazırlık süresi ve useful phrases veririm. Feedback'i etkinlik bitince toplu veririm.",
+      "Çekingen bir sınıfım olmuştu. Önce eşli çalışmalarla başladım, kimse sınıfın önüne çıkmak zorunda değildi. Her etkinlikten önce kalıp cümleler verdim. Yol tarifi gibi küçük görevler yaptırdım, en sonda nazikçe genel düzeltmeler yaptım."
+    ],
+    "partial": [
+      "Öğrencileri eşli çalıştırırım, sınıfın önünde konuşmak zorunda kalmazlar.",
+      "Hata yapmaktan korkmadıkları güvenli bir ortam kurarım, ayrıca konuşmadan önce hazırlık süresi veririm."
+    ],
+    "wrong": [
+      "Bilmiyorum, bu öğrencilerle ne yapılır emin değilim.",
+      "Öğrencileri cesaretlendiririm, zamanla açılırlar.",
+      "Her hatayı anında düzeltirim; yanlışlar hemen düzeltilmezse kalıcı olur, öğrenci bundan çekinmemeli."
+    ]
+  },
+  "Bir dil okulunun A1–B2 seviyeleri için müfredat çerçevesini nasıl tasarlarsın?": {
+    "good": [
+      "Avrupa Ortak Dil Çerçevesi'ni temel alırım, her seviye için öğrencinin neler yapabileceğini yazarım. Okuma, yazma, dinleme ve konuşmayı birlikte geliştiririm. Konular sarmal ilerler, bir yapı her seviyede tekrar edilip genişler. Başta seviye tespit sınavı, her kurun sonunda da kur sınavı yaparım.",
+      "CEFR descriptor'larını kullanırım, A1'den B2'ye can-do statement'lar yazarım. Four skills dengeli olmalı. Spiral bir yapı kurarım. Uygun coursebook ve materyalleri seçer, öğretmenlere bir rehber hazırlarım.",
+      "Önce her seviyenin hedefini CEFR'a göre koyarım. Sonra dört beceriyi her ünitede birleştiririm. Ölçme tarafında giriş için placement test, çıkış için kur sonu sınavı yaparım. Öğretmenlere materyal seti ve kısa bir eğitim veririm."
+    ],
+    "partial": [
+      "Müfredatı CEFR seviyelerine göre hazırlarım.",
+      "Her seviyede dört beceriyi dengeli işlerim ve öğretmenler için materyal hazırlarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, hiç müfredat yazmadım.",
+      "İyi bir kitap seçer, onu baştan sona işleriz.",
+      "A1'den B2'ye kadar sadece dilbilgisi konularını sıralamak yeterlidir; beceriler kendiliğinden gelişir."
+    ]
+  },
+  "Aynı anda birden fazla hastanın ihtiyacı varsa nasıl önceliklendirirsin?": {
+    "good": [
+      "Hayatı tehdit eden durum kimdeyse ona önce giderim; nefes alamayan bir hasta her zaman ilk sıradadır. Ardından diğerlerini aciliyetine göre sıraya koyarım. Yetişemiyorsam arkadaşlarımdan yardım isterim. Yaptığım her müdahaleyi de kayda geçiririm.",
+      "ABC'ye bakarım: airway, breathing, circulation. Triage mantığıyla öncelik belirlerim. Gerekirse ekipteki hemşire ya da personele delege ederim. Sonra her şeyi hemşire notlarına kaydederim.",
+      "Gece nöbetinde bir kere üç hasta aynı anda zil çaldı. Birinin satürasyonu düşüyordu, önce ona koştum. Ağrısı olan hastayı ikinci sıraya koydum, su isteyen hastayı da personel arkadaşa bıraktım. Sonra hepsini kayıt altına aldım."
+    ],
+    "partial": [
+      "Hayati tehlikesi olan hastaya önce bakarım.",
+      "Önce acil hastaya giderim, diğerleri için ekipten yardım isterim."
+    ],
+    "wrong": [
+      "Bilmiyorum, ilk çağıran hangisiyse ona giderim herhalde.",
+      "Hepsine yetişmeye çalışırım, hızlı olurum.",
+      "Zile ilk basan hastaya önce giderim; öncelik geliş sırasına göredir."
+    ]
+  },
+  "İlaç uygulamasında hataları önlemek için nelere dikkat edersin?": {
+    "good": [
+      "Doğru hasta, doğru ilaç, doğru doz, doğru yol ve doğru zaman kurallarını her seferinde kontrol ederim. Hastanın kol bandındaki bilgileri sorarak teyit ederim. İlaç vermeden önce alerjisi olup olmadığına bakarım. Uyguladıktan hemen sonra da kayıt yaparım.",
+      "Bütün doğru ilkelerini uygularım; özellikle doğru doz ve doğru hasta. Patient ID'yi bileklikten kontrol ederim, allergy bilgisini mutlaka sorarım. Uygulamayı anında sisteme kaydederim.",
+      "Bizim serviste şöyle yapıyorum: hastanın adını ve doğum tarihini kendisine söyletip bilekliğe bakarım. Order'daki ilacın doğru ilaç olduğunu, dozun ve saatin uyduğunu kontrol ederim. Alerji kaydına bakarım. Sonra kayıt."
+    ],
+    "partial": [
+      "Hastanın alerjisi olup olmadığını mutlaka kontrol ederim.",
+      "Hastanın kimliğini bileklikten doğrular, uygulamadan sonra kayıt yaparım."
+    ],
+    "wrong": [
+      "Bilmiyorum, dikkatli olmaya çalışırım.",
+      "İlaç verirken çok dikkat ederim, acele etmem.",
+      "Tecrübeli bir hemşire olarak hastayı tanıyorsam kimlik kontrolü yapmama gerek yok, zaman kazanırım."
+    ]
+  },
+  "Bir hasta yakını tedavi sürecine çok öfkeli ve personele bağırıyor. Ne yaparsın?": {
+    "good": [
+      "Sakin kalırım ve önce onu dinlerim, endişesini anladığımı söylerim. Koridorda diğer hastaların önünde değil, ayrı bir odaya alırım. Bilebildiğim kadarını açıklarım, gerekirse doktorla görüşmesini ayarlarım. Bağırması tehdide ya da şiddete dönerse güvenliği çağırırım.",
+      "Empati kurarım; çoğu zaman öfke korkudan gelir. Onu sakin bir yere alıp konuşurum. Tedavi süreci hakkında bilgilendiririm, sorusu tıbbi ise doktoru çağırırım. Fiziksel risk varsa güvenlik ekibini çağırırım.",
+      "Acilde bir kere bir hasta yakını bağırıyordu. Sesimi yükseltmeden yanına gittim, dinledim. Onu bekleme salonundan ayrı bir alana aldım ve doktorla görüştürdüm. Bir sınır çizdim, saygısızlığa devam ederse güvenliğin geleceğini söyledim."
+    ],
+    "partial": [
+      "Sakin kalır ve hasta yakınını dinlerim.",
+      "Hasta yakınını ayrı bir yere alıp doktorla görüşmesini sağlarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, öyle bir durumda ne yaparım emin değilim.",
+      "Durumu idare etmeye çalışırım.",
+      "Ben de sesimi yükseltirim; bağıran birine karşı daha yüksek sesle konuşmazsan seni ciddiye almaz."
+    ]
+  },
+  "Sorumlu hemşire olarak serviste ilaç hatalarının arttığını fark ettin. Ne yaparsın?": {
+    "good": [
+      "Önce ekibe hataları cezalandırmayacağımı, bildirmelerini istediğimi söylerim. Gelen bildirimleri inceler, hataların neden olduğunu araştırırım; belki yoğun saatler, belki benzer ambalajlar. Riskli ilaçlarda iki hemşirenin kontrol etmesini kural yaparım. Ekibe kısa bir eğitim verir, hata sayısını her ay takip ederim.",
+      "Blame-free bir bildirim kültürü kurarım. Root cause analizi yaparım. Yüksek riskli ilaçlar için çift kontrol koyarım, barkod sistemi varsa kullanırız. Ekibe eğitim veririm ve hata oranını izlerim.",
+      "Bizde bu oldu. Önce kimseyi suçlamadan bildirim yapılmasını istedim. Bildirimlere bakınca hataların vardiya değişiminde arttığını gördüm, kök neden buydu. Teslim sürecine çift kontrol ekledik, ekiple eğitim yaptık."
+    ],
+    "partial": [
+      "Ekibe ilaç güvenliği konusunda eğitim veririm.",
+      "Hataların kök nedenini bulur, yüksek riskli ilaçlarda çift kontrol uygularım."
+    ],
+    "wrong": [
+      "Bilmiyorum, sorumlu hemşire olmadım hiç.",
+      "Ekipten daha dikkatli olmalarını isterim.",
+      "Hata yapan hemşireleri tespit edip disiplin cezası veririm; ceza korkusu hataları en hızlı bitirir."
+    ]
+  },
+  "Reçetesiz ağrı kesici isteyen bir müşteriye nasıl danışmanlık yaparsın?": {
+    "good": [
+      "Önce ağrının nerede olduğunu, ne zamandır sürdüğünü sorarım. Başka ilaç kullanıp kullanmadığını, tansiyon ya da mide gibi kronik bir hastalığı olup olmadığını, hamile olup olmadığını öğrenirim. Ona uygun bir ürün önerir, günde kaç kez ve ne kadar alacağını anlatırım. Üç gün içinde geçmezse doktora gitmesini söylerim.",
+      "Birkaç soru sorarım: şikayet ne, ne zamandır var. Kullandığı ilaçlarla etkileşim olmasın diye ilaç listesine bakarım. Uygun bir ağrı kesici ve doz öneririm. Ateş, uyuşma gibi uyarı işaretleri varsa doktora yönlendiririm.",
+      "Eczanede çok sık oluyor. Müşteriye hemen kutuyu vermem, önce şikayetini dinlerim. Kan sulandırıcı kullanıyor mu, kronik bir derdi var mı diye sorarım. Uygun olanı seçip dozunu tarif ederim."
+    ],
+    "partial": [
+      "Müşteriye şikayetinin ne zamandır olduğunu sorar, ona göre bir ilaç veririm.",
+      "Müşteriye uygun bir ağrı kesici öneririm ve doğru dozu anlatırım."
+    ],
+    "wrong": [
+      "Bilmiyorum, ben eczacı değilim aslında.",
+      "Müşterinin istediği ilacı veririm, fazla soru sormam.",
+      "Reçetesiz ağrı kesicilerin hiçbir yan etkisi olmaz, hamileler dahil herkes istediği kadar kullanabilir."
+    ]
+  },
+  "Bir reçetede ciddi bir ilaç etkileşimi fark ettin. Ne yaparsın?": {
+    "good": [
+      "Önce etkileşimi güvenilir bir veri tabanından ya da kaynaktan kontrol ederim. Sonra reçeteyi yazan doktoru arar, alternatif ya da doz değişikliği öneririm. Hastaya korkutmadan durumu anlatırım. Konuşmayı ve değişikliği not alırım.",
+      "Lexicomp ya da benzeri bir kaynakta doğrularım. Hekimi telefonla arayıp etkileşimi bildiririm. Hastayı bilgilendiririm, neden beklediğini açıklarım. Son olarak kayıt düşerim.",
+      "Bir kez varfarin ile bir antibiyotik birlikte yazılmıştı. Kaynaktan kontrol ettim, ciddi bir etkileşimdi. Doktora ulaştım, ilacı değiştirdi. Hastaya sakin bir şekilde açıkladım."
+    ],
+    "partial": [
+      "Reçeteyi yazan doktoru arayıp durumu bildiririm.",
+      "Etkileşimi kaynaklardan doğrular, sonra hekimle konuşurum."
+    ],
+    "wrong": [
+      "Bilmiyorum, reçete doktorun sorumluluğu.",
+      "Biraz araştırırım, ne yapacağıma sonra karar veririm.",
+      "Reçeteyi doktor yazdığı için etkileşim olsa da ilacı veririm; eczacının reçeteye karışma yetkisi yoktur."
+    ]
+  },
+  "Eczanenin kârlılığı azalıyor. Nasıl iyileştirirsin?": {
+    "good": [
+      "Önce stoğa bakarım; dönmeyen ve son kullanma tarihi yaklaşan ürünleri azaltırım. Dermokozmetik ve vitamin gibi ürünlerin payını mahallenin müşterisine göre artırırım. Tansiyon ve şeker ölçümü gibi hizmetler sunarım. Kira dışında personel ve elektrik gibi giderleri gözden geçiririm.",
+      "Stok devir hızını analiz ederim. Ürün karmasını dermokozmetik ve takviyelerle genişletirim. Giderlerde tasarruf ararım. Düzenli müşteriler için sadakat programı kurarım.",
+      "Bir eczanede çalışırken ciro düşmüştü. Raflara baktık, miadı dolan ürünler zarar yazıyordu. Stok siparişini düzenledik, takviye ürünlerine bir köşe açtık. Masrafları kıstık ve kronik hastaları arayıp ilaç hatırlatması yapmaya başladık, müşteriler bağlandı."
+    ],
+    "partial": [
+      "Stoğu azaltırım, miadı yaklaşan ürünleri satmaya çalışırım.",
+      "Dermokozmetik ürünleri artırır, giderleri azaltırım."
+    ],
+    "wrong": [
+      "Bilmiyorum, işletme konusunu bilmiyorum.",
+      "Daha çok çalışırım ve müşteriye güler yüz gösteririm.",
+      "Bütün ilaçlara zam yaparım; ilaç fiyatlarını eczacı istediği gibi belirleyebilir."
+    ]
+  },
+  "Bel ağrısıyla gelen yeni bir hastayı nasıl değerlendirirsin?": {
+    "good": [
+      "İlk olarak ağrının ne zaman başladığını, nasıl bir ağrı olduğunu ve işini ne kadar etkilediğini sorarım. Bacaklarda uyuşma ya da idrar kaçırma var mı diye sorarım; varsa hekime gönderirim. Sonra hareket açıklığına, kas gücüne bakar, özel testleri yaparım. Hastayla beraber hedef belirleyip planı çıkarırım.",
+      "Detaylı bir anamnez alırım. Red flag'leri sorgularım. Fizik muayenede ROM, kas kuvveti ve nörolojik testlere bakarım. Bulgulara göre ölçülebilir hedefler koyup tedavi planı yaparım.",
+      "Geçen hafta tam böyle bir hasta geldi. Önce hikayesini dinledim, iki haftadır ağrısı varmış. Kırmızı bayrak yoktu. Hareketlerini test ettim, eğilmede kısıtlılık vardı. Ona ayakkabısını ağrısız bağlamak gibi bir hedef koyduk."
+    ],
+    "partial": [
+      "Hastanın öyküsünü alırım, ağrının ne zaman başladığını sorarım.",
+      "Kırmızı bayrakları sorgularım ve hareket açıklığı ile kas kuvvetini test ederim."
+    ],
+    "wrong": [
+      "Bilmiyorum, doktor ne yazdıysa onu uygularım.",
+      "Hastaya nasıl hissettiğini sorarım, sonra tedaviye başlarım.",
+      "Bel ağrısında değerlendirmeye gerek yok, her hastaya aynı egzersiz protokolünü uygularım."
+    ]
+  },
+  "Hasta ev egzersizlerini yapmıyor ve ilerleme durdu. Ne yaparsın?": {
+    "good": [
+      "Önce neden yapamadığını sorarım; vakit mi yok, ağrı mı yapıyor, yoksa nasıl yapılacağını mı unuttu. Programı on dakikaya inecek şekilde kısaltıp basitleştiririm. Telefonuna egzersiz videoları gönderir, hatırlatma kurmasını isterim. Ona hedefini ve şimdiye kadar ne kadar ilerlediğini gösteririm.",
+      "Bariyerleri anlarım, nedenini konuşuruz. Programı sadeleştiririm. Video ve takvim gibi takip araçları veririm. Kişisel hedefiyle bağ kurarım.",
+      "Bir hastam vardı, hiç yapmıyordu. Konuştuk, iş yüzünden zamanı yokmuş. Egzersizleri iki taneye indirdim, sabah dişini fırçalarken yapacağı kadar kısa. Bir çizelge verdim, işaretledi. Torunuyla yürüyüş hedefini hatırlattım."
+    ],
+    "partial": [
+      "Hastaya egzersizleri neden yapmadığını sorarım.",
+      "Programı kısa ve basit hale getiririm, hatırlatma için video gönderirim."
+    ],
+    "wrong": [
+      "Bilmiyorum, hasta yapmıyorsa yapacak bir şey yok.",
+      "Hastaya egzersizlerin önemli olduğunu tekrar söylerim.",
+      "Hasta egzersizleri yapmıyorsa tedaviyi sonlandırırım, sorumluluk tamamen ondadır."
+    ]
+  },
+  "Bir rehabilitasyon kliniğinde tedavi sonuçlarını nasıl ölçer ve iyileştirirsin?": {
+    "good": [
+      "Her tanı grubu için geçerli ölçekler seçerim, örneğin ağrı için VAS, fonksiyon için Oswestry. Bunları tedavinin ilk gününde ve son gününde uygular, farkı karşılaştırırım. Sonucu kötü olan gruplarda tedaviyi güncel kanıtlara göre yenileriz. Ayda bir vaka toplantısı yaparız.",
+      "Standart outcome measure'lar belirlerim. Başlangıç ve taburculuk değerleri karşılaştırılır. Kanıta dayalı protokoller oluşturur, düzenli vaka toplantılarında zor hastaları konuşuruz. Hastalardan geri bildirim de toplarım.",
+      "Çalıştığım klinikte bunu kurduk. Her hastaya başta ve sonda aynı ölçekleri uyguladık, sonuçları karşılaştırdık. Diz protezinde sonuçlar zayıftı, protokolü literatüre göre değiştirdik. Memnuniyet anketiyle hastanın gözünden de baktık."
+    ],
+    "partial": [
+      "Hastalara memnuniyet anketi yaparım.",
+      "Standart ölçekleri tedavinin başında ve sonunda uygular, sonuçları karşılaştırırım."
+    ],
+    "wrong": [
+      "Bilmiyorum, klinik yönetimini hiç düşünmedim.",
+      "Hastalar iyileşiyorsa sonuç iyidir, ayrıca ölçmeye gerek yok.",
+      "Tedavi sonucunu ölçmenin en doğru yolu terapistin kendi izlenimidir; ölçekler sadece zaman kaybıdır."
+    ]
+  },
+  "Kilo vermek isteyen yeni bir danışanla ilk görüşmeyi nasıl yaparsın?": {
+    "good": [
+      "Önce sağlık geçmişini sorarım; tiroid, diyabet gibi bir hastalığı ya da kullandığı ilaç var mı. Günde kaç öğün yediğini, neler yediğini öğrenirim. Boyunu, kilosunu ve bel çevresini ölçerim. Sonra ayda 2-3 kilo gibi gerçekçi bir hedef belirleriz.",
+      "Anamnez alırım, hastalıkları ve ilaçlarını öğrenirim. 24 saatlik besin tüketim kaydı alırım. Antropometrik ölçümler yaparım: boy, kilo, bel çevresi. Danışanla birlikte sürdürülebilir bir hedef koyarız.",
+      "İlk görüşmede danışanı tanımaya çalışırım. Ne yiyip içtiğini, öğün atlayıp atlamadığını sorarım. Ölçümlerini alırım. Ona hızlı değil kalıcı sonuç alacağımızı, gerçekçi bir hedefle ilerleyeceğimizi anlatırım."
+    ],
+    "partial": [
+      "Danışanın boyunu ve kilosunu ölçerim.",
+      "Danışanın beslenme alışkanlıklarını sorar, gerçekçi bir hedef belirleriz."
+    ],
+    "wrong": [
+      "Bilmiyorum, hazır bir liste veririm.",
+      "Danışana kilo vermenin önemli olduğunu anlatırım.",
+      "İlk görüşmede hemen günde 800 kalorilik bir diyet veririm; ne kadar hızlı kilo verirse o kadar iyidir."
+    ]
+  },
+  "Kilo vermede platoya giren ve motivasyonu düşen bir danışana nasıl yaklaşırsın?": {
+    "good": [
+      "Danışana kilo vermede duraklamanın çok normal olduğunu, vücudun alıştığını anlatırım. Birlikte son haftaların yemek ve hareket kayıtlarına bakarız. Gerekirse kaloriyi ve egzersizi değiştirip planı yenileriz. Haftalık küçük hedefler koyarız ve bel ölçüsündeki düşüşü gösteririm.",
+      "Platonun normal olduğunu açıklarım. Food log'larını incelerim. Planı güncellerim, belki aktiviteyi artırırız. Küçük hedeflerle motivasyon sağlarım, tartı dışı başarıları da konuşuruz.",
+      "Bir danışanım üç hafta aynı kiloda kaldı, bırakmak istedi. Ona platonun herkeste olduğunu söyledim. Kayıtlarına baktık, akşam atıştırmaları artmış. Planı biraz değiştirdik, haftalık küçük bir hedef koyduk."
+    ],
+    "partial": [
+      "Danışana platonun normal olduğunu anlatırım.",
+      "Danışanın besin kayıtlarını inceler ve planı güncellerim."
+    ],
+    "wrong": [
+      "Bilmiyorum, belki başka bir diyetisyene yönlendiririm.",
+      "Danışana sabırlı olmasını söylerim.",
+      "Plato varsa danışan diyete uymuyor demektir; kaloriyi yarıya indiririm, motivasyon onun sorunu."
+    ]
+  },
+  "Bir şirketin yemekhanesi için sağlıklı beslenme programını nasıl kurarsın?": {
+    "good": [
+      "Önce şu anki menüye ve çalışanların ne yediğine bakarım, kısa bir anket yaparım. Sebze, protein ve tahıl dengesini gözeten dönüşümlü bir menü hazırlarım. Her yemeğin yanına kalori bilgisi yazan kartlar koyarım. Çalışanlara kısa seminerler veririm.",
+      "Mevcut durum analizi yaparım, survey ile alışkanlıkları öğrenirim. Dengeli bir menü planlarım. Kalori etiketleri koyarım. Memnuniyet anketiyle ve tüketim verisiyle takip ederim.",
+      "Bir fabrikada bunu yaptık. Önce yemekhane menüsünü inceledim, çok kızartma vardı. Menüyü dengeledik, haftada iki balık koyduk. Tabldot hattına kalori etiketi koyduk ve her ay memnuniyeti takip ettik."
+    ],
+    "partial": [
+      "Yemekhanede dengeli bir menü hazırlarım.",
+      "Çalışanlara anket yapar, yemeklere kalori etiketi koyarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, yemekhane benim alanım değil.",
+      "Yemekleri daha sağlıklı yaparım, herkes memnun olur.",
+      "Menüden tüm karbonhidratları çıkarırım; karbonhidrat sağlıksızdır ve kilo aldırır."
+    ]
+  },
+  "Neden kamuda ve özellikle bu kurumda çalışmak istiyorsun?": {
+    "good": [
+      "Kamuda çalışmanın vatandaşa doğrudan dokunan bir iş olduğunu düşünüyorum. Başvurmadan önce kurumun görev alanını ve stratejik planını okudum, e-hizmet projeleri dikkatimi çekti. Stajımda veri analizi yaptım, bu deneyimle katkı sağlayabileceğimi düşünüyorum. Uzun vadede bu alanda uzmanlaşmak istiyorum.",
+      "Benim için kamu hizmeti bir sorumluluk. Kurumun görevlerini ve son projelerini inceledim. Üniversitede yaptığım çalışmalar ve deneyimimle burada değer katabilirim. Hedefim on yıl içinde kurumda proje yöneten biri olmak.",
+      "Babam öğretmendi, vatandaşa hizmet etmenin nasıl bir his olduğunu evde gördüm. Bu kurumun görev alanı tam ilgimi çeken alan. Önceki işimde müşteri hizmetlerinde çalıştım, o deneyimi buraya taşımak istiyorum. Uzun vadeli hedefim burada kalıcı olmak."
+    ],
+    "partial": [
+      "Kamu hizmeti vermek ve vatandaşa faydalı olmak istiyorum.",
+      "Kurumun görev alanını araştırdım ve ilgimi çekti, uzun vadede burada yükselmek istiyorum."
+    ],
+    "wrong": [
+      "Bilmiyorum, herkes kamuya girmek istiyor.",
+      "Kamu iyi bir yer, çalışmak isterim.",
+      "Açıkçası iş güvencesi ve rahat bir iş olduğu için; kamuda iş yükü azdır, çok çalışmak gerekmez."
+    ]
+  },
+  "Kamu hizmetinin temel ilkeleri nelerdir?": {
+    "good": [
+      "Dört ilke var: süreklilik, eşitlik, değişkenlik ve tarafsızlık. Süreklilik hizmetin durmamasıdır, örneğin hastanelerin gece de açık olması. Eşitlik, herkesin hizmetten ayrım görmeden yararlanmasıdır. Değişkenlik, hizmetin ihtiyaca göre uyarlanmasıdır. Tarafsızlık da memurun kişisel görüşünü işe katmamasıdır.",
+      "Kamu hizmeti kesintisiz olmalı; buna süreklilik deriz. Vatandaşlar arasında ayrım yapılmamalı, yani eşitlik. Değişen ihtiyaçlara göre hizmet güncellenmeli. Görevli tarafsız olmalı. Mesela elektrik dağıtımı grev yüzünden durdurulamaz.",
+      "Bildiğim kadarıyla süreklilik, eşitlik ve tarafsızlık ilkeleri. Su hizmetini örnek verirsem, su kesintisiz verilmeli, her mahalleye eşit verilmeli ve görevli kimseyi kayırmamalı."
+    ],
+    "partial": [
+      "Kamu hizmeti süreklilik ilkesine göre kesintisiz sunulmalıdır.",
+      "Eşitlik ve tarafsızlık ilkeleri vardır, kimseye ayrım yapılmaz."
+    ],
+    "wrong": [
+      "Bilmiyorum, ezberlemedim.",
+      "Kamu hizmeti vatandaşa iyi hizmet vermektir.",
+      "Kamu hizmetinin temel ilkesi kârlılıktır; kâr etmeyen kamu hizmeti kapatılmalıdır."
+    ]
+  },
+  "Amirin senden mevzuata aykırı olduğunu düşündüğün bir işlem yapmanı istedi. Ne yaparsın?": {
+    "good": [
+      "Önce kanunu ve yönetmeliği açıp gerçekten aykırı olup olmadığına bakarım. Aykırıysa işlemi yapmam ve amirime nazikçe bunu söylerim. Amirim ısrar edip talimatı yazılı olarak verirse işlemi yaparım; sorumluluk ona geçer. Ama suç olan bir emri asla yapmam.",
+      "657 sayılı Kanun'a göre hareket ederim. Mevzuatı kontrol eder, aykırılığı amirime bildiririm. Emir yazılı tekrarlanırsa yerine getiririm. Suç teşkil eden emri ise yerine getirmem, her şeyi kayıt altında tutarım.",
+      "Önceki işimde benzer bir şey oldu. Yönetmeliğe baktım, gerçekten aykırıydı. Amirime durumu anlattım ve yazılı talimat istedim. Yazışmaların bir kopyasını sakladım."
+    ],
+    "partial": [
+      "İlgili mevzuatı kontrol ederim, gerçekten aykırı mı bakarım.",
+      "Amirime aykırılığı bildirir, yazılı emir isterim."
+    ],
+    "wrong": [
+      "Bilmiyorum, öyle bir durumda kalmak istemem.",
+      "Amirimle iyi geçinmeye çalışırım, bir yolunu buluruz.",
+      "Amirin emri her zaman yerine getirilir; sorumluluk her durumda amire aittir, suç olsa bile."
+    ]
+  },
+  "Enflasyonun nedenleri nelerdir ve kamu politikasıyla nasıl mücadele edilir?": {
+    "good": [
+      "Talep üretimden hızlı artınca fiyatlar yükselir, buna talep enflasyonu denir. Enerji, hammadde ya da döviz pahalanınca da maliyet enflasyonu olur. İnsanlar fiyatların artacağını bekledikçe zam yapıyorlar, bu da enflasyonu kalıcılaştırıyor. Merkez bankası faizi artırarak talebi soğutur. Hükümet de harcamalarını kısar.",
+      "Demand-pull ve cost-push diye iki ana neden var: talep ve maliyet. Beklentiler de önemli. Para politikasında faiz artırımı ve sıkılaştırma yapılır. Maliye politikasında kamu harcaması disipline edilir, bütçe açığı azaltılır.",
+      "Mesela kur yükselince ithal girdiler pahalanıyor, maliyetler artıyor. Bir de herkes çok harcayınca talep artıyor. Bununla mücadelede merkez bankasının faiz kararları ve hükümetin maliye politikası birlikte çalışmalı."
+    ],
+    "partial": [
+      "Merkez bankası faizi artırarak enflasyonla mücadele eder.",
+      "Enflasyon talep artışından ve maliyetlerin yükselmesinden kaynaklanır."
+    ],
+    "wrong": [
+      "Bilmiyorum, ekonomi bilgim zayıf.",
+      "Enflasyon fiyatların artmasıdır, kötü bir şeydir.",
+      "Enflasyonla mücadelede en iyi yol faizi düşürmektir; faiz düştükçe fiyatlar da düşer."
+    ]
+  },
+  "Kurumun bir hizmetine yönelik şikayetler arttı. Bunu inceleyen bir rapor nasıl hazırlarsın?": {
+    "good": [
+      "İlk önce raporun neyi amaçladığını ve hangi tarihleri, hangi hizmeti kapsayacağını yazarım. CİMER ve çağrı merkezi kayıtlarından veri toplar, birim çalışanlarıyla görüşürüm. Şikayetleri gruplayıp her birinin kök nedenini bulurum. Her soruna sorumlusu ve süresi belli öneriler yazarım.",
+      "Scope'u belirlerim. Data topladıktan sonra şikayetleri kategorize ederim, root cause analizine geçerim. Öneriler somut olmalı, kim ne zaman yapacak belli olmalı. Rapor yönetici özeti, bulgular ve öneriler şeklinde olur.",
+      "Daha önce böyle bir rapor yazdım. Önce amacımı netleştirdim. Şikayet verisini çektim ve birkaç vatandaşla görüştüm. En çok şikayet randevu sistemindeydi; nedeni sistemin yavaşlığıydı. Raporu kısa bir özet ve bulgularla sundum."
+    ],
+    "partial": [
+      "Şikayet kayıtlarından veri toplayıp analiz ederim.",
+      "Şikayetlerin kök nedenini bulur ve öneriler yazarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, rapor yazmayı bilmiyorum.",
+      "Şikayetlere bakar, sonra bir rapor yazarım.",
+      "Şikayetlerin çoğu asılsızdır; raporda sadece hizmetin iyi olduğunu ve vatandaşların yanlış anladığını yazarım."
+    ]
+  },
+  "Uzmanlık tezinin konusunu nasıl seçersin ve jüriye nasıl savunursun?": {
+    "good": [
+      "Kurumun gerçekten çözmek istediği bir soruna bakarım, birimlerle konuşurum. Daha önce bu konuda ne yazıldığını tararım ki tekrar olmasın. Hangi veriyi nasıl analiz edeceğimi baştan belirlerim. Savunmada bulguları sade bir sunumla anlatır, sorulabilecek soruları önceden çalışırım.",
+      "Kurumun ihtiyacına odaklanırım. Literatür taraması yapıp özgün bir katkı ararım. Metodolojiyi net kurarım. Önerilerin uygulanabilir olmasına dikkat ederim. Jüri sorularına hazırlanırım.",
+      "Konuyu seçerken kendime soracağım şey şu: bu tez kurumun işine yarayacak mı? Sonra literatüre bakarım. Yöntemimi en başta belirlerim. Savunmada kısa ve net olurum, eleştirilere savunmacı değil açık yaklaşırım."
+    ],
+    "partial": [
+      "Kurumun ihtiyacı olan bir konu seçerim.",
+      "Literatürü tarayıp özgün bir konu seçerim ve savunmaya iyi hazırlanırım."
+    ],
+    "wrong": [
+      "Bilmiyorum, henüz düşünmedim.",
+      "İlgimi çeken bir konu seçerim ve çalışırım.",
+      "En kolay konuyu seçerim; daha önce yazılmış bir tezi biraz değiştirerek sunmak yeterlidir."
+    ]
+  },
+  "Merkezden yönetim ile yerinden yönetimin farkı nedir?": {
+    "good": [
+      "Merkezden yönetimde hizmetler bakanlıklar üzerinden, devletin tüzel kişiliği içinde yürür. Valilik gibi taşra birimlerinin merkez adına karar vermesine yetki genişliği denir. Yerinden yönetimde belediye gibi ayrı tüzel kişiliği olan birimler hizmeti kendisi sunar. Merkez bunları idari vesayetle denetler.",
+      "Merkezden yönetim bakanlık ve taşra teşkilatı demek. Yerinden yönetim ise belediyeler, il özel idareleri gibi yerel yönetimler. Yerinden yönetimin avantajı hız ve katılım, merkezinkiyse bütünlük. Merkez vesayet denetimi yapar.",
+      "Basitçe söylersem, merkezden yönetimde kararı Ankara'daki bakanlık verir, yerinden yönetimde belediye. Belediyenin avantajı yerel ihtiyacı daha iyi bilmesi. Merkezden yönetimin bir türü de yetki genişliği, valiliğin karar alabilmesi gibi."
+    ],
+    "partial": [
+      "Merkezden yönetimde kararları bakanlık alır.",
+      "Yerinden yönetimde belediyeler hizmet verir, merkez de idari vesayetle denetler."
+    ],
+    "wrong": [
+      "Bilmiyorum, bu konuyu çalışmadım.",
+      "Biri merkezde biri yerelde, aslında aynı şey.",
+      "Valilikler yerinden yönetim kuruluşudur ve kendi tüzel kişilikleri vardır."
+    ]
+  },
+  "İlçende bir sel felaketi oldu. İlk 24 saatte neler yaparsın?": {
+    "good": [
+      "Önce insanların hayatını kurtarmaya odaklanırım; sular altında kalan mahalleleri boşaltır, arama kurtarmayı başlatırım. AFAD, jandarma, sağlık ve belediyeyle bir kriz masası kurarım. Çadır, yemek, temiz su gibi ihtiyaçları organize ederim. Halka resmi açıklamalarla bilgi veririm.",
+      "Can güvenliği ilk sırada, tahliye yaparım. Koordinasyon merkezi kurar, AFAD ile çalışırım. Barınma ve gıda ihtiyaçlarını karşılarım. Hasar tespit ekiplerini sahaya gönderirim ki yardım doğru yere gitsin."
+    ],
+    "partial": [
+      "Önce insanları tahliye ederim, can güvenliği önemli.",
+      "AFAD ile koordinasyon kurar, halkı bilgilendiririm.",
+      "Böyle bir anda panik olmamak lazım. İlk iş insanları güvenli yere tahliye ederdim. Sonra tüm kurumları tek masada toplayıp koordinasyonu sağlardım. Sosyal medyada yanlış haber yayılmasın diye düzenli duyuru yapardım."
+    ],
+    "wrong": [
+      "Bilmiyorum, AFAD ne derse onu yaparım.",
+      "Durumu kontrol altına almaya çalışırım.",
+      "Önce hasar tespitini tamamlarım, arama kurtarmayı hasar raporu çıktıktan sonra başlatırım."
+    ]
+  },
+  "Motivasyonu düşük bir kamu ekibini nasıl yönettiğini bir örnekle anlatır mısın?": {
+    "good": [
+      "Bir önceki görevimde dosyaların biriktiği bir şubeye müdür olarak atandım, ekip çok isteksizdi. Herkesle tek tek oturup derdini dinledim. Birlikte bekleyen dosyaları iki ayda bitirme hedefi koyduk. İşleri adil dağıttım, çok çalışanları toplantıda takdir ettim. Sonunda biriken dosyaların %70'i bitti.",
+      "Belediyede bir ekip yönettim, motivasyon sıfırdı. Önce nedenlerini dinledim; iş yükü dengesizdi. İş bölümünü adil yaptım, net bir hedef koyduk. Başarıyı takdir ettim. Sonuç olarak şikayetler yarı yarıya azaldı.",
+      "Valilikte çalışırken ekibimde iki kişi bütün işi yapıyordu, diğerleri küsmüştü. Görev dağılımını adil yeniden yaptım, haftalık hedef koyduk. Herkesin emeğini görünür kıldım, takdir ettim. Üç ayın sonunda işlem süresi %30 düştü."
+    ],
+    "partial": [
+      "Ekibi dinlerim, motivasyonu neden düşük öğrenirim.",
+      "Ekibe net bir hedef koyar ve iyi çalışanları takdir ederim."
+    ],
+    "wrong": [
+      "Böyle bir tecrübem olmadı, bilmiyorum.",
+      "Ekibe motive olmalarını söylerim, iyi bir lider olurum.",
+      "Kamuda motivasyon önemli değildir; herkes zaten maaşını alıyor, sadece emir verip takip ederim."
+    ]
+  }
+}
