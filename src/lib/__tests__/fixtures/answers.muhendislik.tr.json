@@ -1,1 +1,658 @@
-{}
+{
+  "Yalın üretimdeki 7 israf türünden bildiklerini sayar mısın?": {
+    "good": [
+      "Müşteriye değer katmayan her şey israf sayılır. Bunlar: ihtiyaçtan fazla üretim yapmak, makinenin ya da operatörün boş beklemesi, malzemeyi gereksiz yere oradan oraya taşımak, depoda yığılan fazla stok, gereksiz işlem adımları, operatörün gereksiz hareketleri ve hatalı parça üretip yeniden işlemek.",
+      "Lean'de 7 waste var: overproduction yani aşırı üretim, waiting yani bekleme süreleri, transportation, inventory, motion, over-processing ve defects. Türkçesiyle taşıma, envanter fazlası, hareket ve kusurlu ürün.",
+      "Bizim fabrikada en çok gördüğüm, siparişten fazla üretip rafa koymaktı, sonra o rafta aylarca stok bekliyordu. Forkliftler parçaları üç kere yer değiştiriyordu, bu taşıma israfı. Bir de hurdaya çıkan parçalar vardı. Bekleme, gereksiz hareket ve fazla işlem de listede."
+    ],
+    "partial": [
+      "Mesela bekleme bir israftır, operatör makineyi beklerken değer üretilmez.",
+      "Fazla stok tutmak ve hatalı ürün üretmek israf sayılır, bir de bekleme var."
+    ],
+    "wrong": [
+      "Bilmiyorum açıkçası, hiç yalın üretimle çalışmadım.",
+      "Yalın üretim işleri daha verimli yapmakla ilgili, israfı azaltıp maliyeti düşürmeye çalışırız, herkesin dikkatli olması gerekir.",
+      "İsraf türleri reklam, pazarlama ve maaşlar gibi giderlerdir. Stok tutmak israf değil, aksine stok ne kadar fazla olursa o kadar iyidir."
+    ]
+  },
+  "Darboğaz (bottleneck) nedir, nasıl tespit edersin?": {
+    "good": [
+      "Darboğaz hattaki en yavaş istasyondur, tüm sistemin çıktısını o belirler. Bulmak için önünde iş biriken, kuyruk oluşan yere bakarım ve çevrim sürelerini ölçerim. Goldratt'ın kısıtlar teorisine göre önce bu kısıtı sonuna kadar kullanırım, sonra kapasitesini artırırım.",
+      "Bottleneck, kapasitesi en düşük olan adım. Genelde WIP'in yığıldığı makinenin önünde görürsün; utilization'ı yüzde yüze yakın olan odur. TOC'un beş adımıyla exploit, subordinate, elevate yaparım; gerekirse ikinci bir makine ekleyip hattı dengelerim.",
+      "Bizim depoda paketleme masası hep geride kalıyordu, arkasında koliler birikiyordu, işte darboğaz oydu. Süreleri kronometreyle ölçünce gördük. Oraya ikinci bir kişi koyup işi dengeledik, kısıt kalkınca bütün depo hızlandı."
+    ],
+    "partial": [
+      "Darboğaz, sürecin en yavaş adımıdır, bütün hız ona bağlıdır.",
+      "Darboğaz en düşük kapasiteli istasyondur; önünde ürünler beklediği için kuyruk oluşur, oradan anlarım."
+    ],
+    "wrong": [
+      "Bu konuda bir fikrim yok, daha önce duymadım.",
+      "Bir şeylerin yavaşladığı durumdur, ekip olarak konuşup çözeriz, herkes elinden geleni yapar.",
+      "Darboğaz hattın en hızlı makinesidir çünkü bütün iş ona yüklenir. Her istasyonu ayrı ayrı hızlandırırsak toplam çıktı da aynı oranda artar."
+    ]
+  },
+  "Bir montaj hattında çevrim süresi hedefin %20 üzerinde. Ne yaparsın?": {
+    "good": [
+      "İlk olarak sahaya gidip her istasyonda kronometreyle süre tutarım, nerede zaman kaybedildiğini görürüm. Bazı istasyonlara fazla iş düşmüşse işleri yeniden dağıtıp hattı dengelerim. Neden geç kaldığını 5 Neden ile sorgularım. Bulduğumuz en iyi yöntemi standart iş talimatına yazarız.",
+      "Önce time study yapıp cycle time'ları istasyon bazında çıkarırım, bir yamazumi chart ile line balancing yaparım. Setup süreleri uzunsa SMED uygularız. Root cause için fishbone diyagramı kullanırım.",
+      "Geçen sene tam böyle bir hatta çalıştım. Videoya çekip izledik, bir operatörün diğerlerinden çok daha fazla iş yaptığını gördük. İşleri paylaştırdık, ama asıl sorun vida makinesinin sürekli takılmasıydı; neden takılıyor diye arka arkaya sorup kök nedene indik. Sonra herkes aynı şekilde yapsın diye talimat hazırladık."
+    ],
+    "partial": [
+      "Önce istasyonların sürelerini ölçerim, hangisi uzun sürüyor görürüm.",
+      "Süreleri ölçer, sonra işleri istasyonlar arasında dengelerim."
+    ],
+    "wrong": [
+      "Emin değilim, sanırım bu üretim müdürünün işi.",
+      "Ekibe daha hızlı çalışmalarını söylerim, motivasyonu artırırım, gerekirse fazla mesai yaptırırım.",
+      "Çözüm basit, konveyör bandının hızını artırırım, çevrim süresi kendiliğinden kısalır. Ölçüm yapmaya gerek yok."
+    ]
+  },
+  "Bir fabrikada yalın dönüşüm programını nasıl başlatır ve kalıcı hale getirirsin?": {
+    "good": [
+      "Üst yönetimin arkasında durduğunu herkese göstermeden başlamam. Sonra değer akış haritası çıkarırım, israfları görünür yaparım. Tek bir hatta pilot uygulama yaparım, başarıyı görünce yayarım. Operatörleri kaizen çalışmalarına katarım ve kazanımları standart hale getirip denetimle sürdürürüm.",
+      "Önce top management buy-in alırım, sonra VSM çıkarırım. Bir model line seçip orada 5S ve kaizen event'leri yaparım. Sustain kısmı için standard work ve günlük gemba yürüyüşleri koyarım.",
+      "Bizde şöyle oldu: genel müdür bizzat sahiplendi, her ay sahaya geldi. Tüm fabrikaya birden değil, önce bir hatta deneme yaptık. İşçilerin önerilerini dinledik, küçük iyileştirmeleri hemen uyguladık. Bir de yapılan iyileştirmeler geri kaymasın diye her şeyi standart talimatlara yazdık."
+    ],
+    "partial": [
+      "Önce değer akış haritası çıkarırım ki israflar görünsün.",
+      "Üst yönetim desteği almadan başlamam, sonra bir pilot hatta başlar, çalışanları sürece katarım."
+    ],
+    "wrong": [
+      "Yalın dönüşüm hakkında çok bilgim yok, kitaplarda okudum sadece.",
+      "Herkesi toplayıp yalın olacağız derim, afiş asarız, motivasyon için toplantılar yaparız.",
+      "Yalın dönüşüm danışmanın işidir, bir danışman getirip her şeyi ona bırakırım. Çalışanlarla konuşmaya gerek yok, programı tüm fabrikaya aynı anda başlatırım."
+    ]
+  },
+  "Ekonomik sipariş miktarı (EOQ) ve emniyet stoğu nedir?": {
+    "good": [
+      "EOQ, sipariş verme maliyeti ile stok tutma maliyetinin toplamını en aza indiren sipariş miktarı. Emniyet stoğu ise talep beklenenden fazla gelirse ya da tedarikçi geç kalırsa diye tuttuğumuz tampon stok; ne kadar tutacağımızı istediğimiz hizmet seviyesine göre belirleriz.",
+      "EOQ formülü kök içinde 2DS bölü H; ordering cost ile holding cost'u dengeler. Safety stock da demand ve lead time variability'ye karşı tutulur, service level yüzde 95 dersen z değeri 1.65 olur.",
+      "Basitçe şöyle: çok sık sipariş verirsen sipariş masrafı patlar, çok büyük sipariş verirsen depoda para yatar. Ekonomik sipariş miktarı bu ikisinin ortası. Emniyet stoğu da tedarikçi gecikirse ya da talep aniden artarsa hattın durmaması için kenarda tuttuğun yedek."
+    ],
+    "partial": [
+      "EOQ, sipariş ve stok tutma maliyetlerini dengeleyen optimum sipariş miktarıdır.",
+      "Emniyet stoğu talepteki belirsizliğe karşı tutulan fazladan stoktur."
+    ],
+    "wrong": [
+      "EOQ'yu hatırlamıyorum, emniyet stoğunu da tam bilmiyorum.",
+      "Stokları iyi yönetmek için kullanılan şeyler, depo düzenli olursa sorun çıkmaz.",
+      "EOQ, depoya sığabilecek en büyük sipariş miktarıdır; ne kadar çok alırsak o kadar ucuza geliriz. Emniyet stoğu da süresi geçmiş ürünlerin tutulduğu stoktur."
+    ]
+  },
+  "Talep tahmini sürekli sapıyor ve hem stoksuz kalma hem fazla stok var. Ne yaparsın?": {
+    "good": [
+      "Önce tahminin ne kadar şaştığını ürün bazında MAPE ile ölçerim. Ürünleri ABC analizine göre gruplar, hızlı dönen ürünlerle az satanları ayrı ele alırım. Mevsimsel etkileri hesaba katan bir zaman serisi modeli kurarım ve satış ekibinin kampanya planlarını tahmine eklerim.",
+      "Forecast accuracy'yi bias ve MAPE ile takip ederim. SKU'ları ABC-XYZ ile segmentlere ayırırım, X grubu için exponential smoothing, Z için daha yüksek safety stock. Aylık S&OP toplantısında sales ve marketing'le uzlaşırız.",
+      "Bir önceki işimde tahminleri Excel'de geçen yılın aynı ayına bakarak yapıyorduk, tabii tutmuyordu. Önce her ürünün tahmin hatasını çıkardım, en çok yanıldığımız ürünler belli oldu. Bayram ve yaz gibi mevsimsel etkileri hesaba katan bir model kurduk. Asıl fark, satışçıların yapacağı kampanyaları önceden öğrenmeye başlayınca oldu."
+    ],
+    "partial": [
+      "Önce tahmin hatasını ölçerim, hangi ürünlerde sapma olduğunu görürüm.",
+      "Hatayı MAPE ile ölçer, satış ekibiyle kampanyaları konuşurum."
+    ],
+    "wrong": [
+      "Bilmiyorum, tahminler zaten hep tutmaz.",
+      "Daha dikkatli olmaya çalışırız, depoyu kontrol ederiz, gerekirse daha çok mal alırız.",
+      "Bunu çözmek için her ürünün stoğunu iki katına çıkarırım, böylece tahmin yapmaya gerek kalmaz."
+    ]
+  },
+  "Tek tedarikçiye bağımlı kritik bir parça için tedarik riskini nasıl yönetirsin?": {
+    "good": [
+      "Önce bu parça gelmezse üretimin kaç gün durduğunu, ciroya etkisini hesaplarım. Kısa vadede birkaç haftalık güvenlik stoğu tutarım. Paralelde ikinci bir tedarikçiyi kalifiye ederim. Mevcut tedarikçiyle kapasite garantili uzun vadeli bir sözleşme yaparım ve teslimat performansını yakından izlerim.",
+      "Single source riskini bir risk matrisiyle değerlendiririm. Dual sourcing için alternatif tedarikçi bulurum, buffer stock tutarım, supplier ile long-term agreement imzalarım. Supplier'ın finansallarını ve OTIF'ini monitor ederim.",
+      "Bunu bizzat yaşadım, Çin'den gelen bir çip yüzünden hat iki hafta durdu. Ondan sonra kenarda üç aylık emniyet stoğu tutmaya başladık, Avrupa'dan yedek bir tedarikçi onayladık, ana tedarikçiyle de daha sıkı bir anlaşma yaptık. Her ay teslimat performanslarını takip ediyoruz."
+    ],
+    "partial": [
+      "Hemen alternatif bir tedarikçi ararım, tek kaynağa bağlı kalmak tehlikeli.",
+      "Riskin etkisini hesaplar, bir miktar güvenlik stoğu tutarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, tedarikçiye güvenirim herhalde.",
+      "Tedarikçiyle iyi geçinmeye çalışırım, sorun çıkarsa o zaman bakarız.",
+      "Tek tedarikçi aslında en güvenli yoldur, başka tedarikçiye gerek yok; ne kadar az tedarikçi o kadar az risk demektir."
+    ]
+  },
+  "Kontrol grafikleri (SPC) ne işe yarar?": {
+    "good": [
+      "Kontrol grafikleri bir sürecin zamanla nasıl davrandığını takip etmeye yarar. Ortalamanın üç sigma üstüne ve altına limit çizilir; nokta bu sınırların dışına çıkarsa sıradan değişkenlik değil özel bir neden var demektir. Böylece hatalı ürün çıkmadan erkenden müdahale edilir.",
+      "SPC ile process'i real-time monitor ederiz. X-bar R chart'ta UCL ve LCL var; out of control point ya da 7 nokta trend görürsen special cause vardır. Common cause variation'a dokunmazsın, ama special cause'a hemen aksiyon alırsın.",
+      "Dolum makinesinde her saat beş şişe tartıp grafiğe işliyorduk, yani süreci sürekli izliyorduk. Çizgi alt sınıra yaklaşınca operatör daha ürün bozulmadan müdahale edip makineyi ayarlıyordu. Grafik, normal dalgalanmayla gerçek bir sorunu ayırt etmemizi sağlıyordu."
+    ],
+    "partial": [
+      "Kontrol grafikleri süreci zaman içinde izlemek için kullanılır.",
+      "Süreci izleriz, UCL ve LCL limitlerinin dışına çıkan noktalar alarm verir."
+    ],
+    "wrong": [
+      "Kontrol grafiklerini pek kullanmadım, ne işe yaradığını hatırlamıyorum.",
+      "Kaliteyi artırmak için kullanılan grafiklerdir, yönetime sunumlarda gösterilir.",
+      "Kontrol limitleri müşterinin verdiği tolerans sınırlarıdır; ürün bu limitlerin içindeyse her şey yolundadır, başka bir şeye bakmaya gerek yok."
+    ]
+  },
+  "Müşteri şikâyetleri iki ayda ikiye katlandı. DMAIC ile nasıl ilerlersin?": {
+    "good": [
+      "Define aşamasında problemi ve hedefi net yazarım, mesela şikâyeti yarıya indirmek. Measure'da şikâyetleri tür ve ürüne göre sayıp veri toplarım. Analyze'da Pareto ile en büyük iki üç kategoriyi bulur, kök nedene inerim. Improve'da çözümleri küçük bir pilotla denerim. Control'de göstergeleri takip edip kazanımı kalıcı yaparım.",
+      "Önce sorunu tanımlarım: hangi ürün, hangi müşteri, ne zamandan beri. Sonra şikâyet kayıtlarını ölçülebilir hale getiririm. Verileri analiz edip asıl nedenleri bulurum. Bu nedenlere yönelik iyileştirmeleri yapar, sonra bir kontrol planıyla geri dönmediğinden emin olurum.",
+      "Bizim çağrı merkezinde şikâyetler patlayınca şöyle yaptık: önce ne şikâyeti olduğunu netleştirdik, çoğu kargo gecikmesiydi. Son iki ayın kayıtlarını çektik, sayılara döktük. Gecikmenin asıl sebebinin tek bir depo olduğu çıktı. Depoyla süreci düzelttik, sonra her hafta şikâyet sayısını takip ettik ki tekrar artmasın."
+    ],
+    "partial": [
+      "Önce problemi tanımlarım, hangi şikâyetler artmış onu netleştiririm.",
+      "Problemi tanımlar, veri toplar, sonra pareto analizi yaparım."
+    ],
+    "wrong": [
+      "DMAIC'i duydum ama aşamalarını bilmiyorum.",
+      "Müşterilerle konuşur, özür diler, onları memnun etmeye çalışırız. Herkes daha dikkatli çalışır.",
+      "DMAIC'te ilk adım hemen çözümü uygulamaktır, veriye gerek yok, deneyimli biri sorunun ne olduğunu zaten bilir."
+    ]
+  },
+  "ISO 9001 belgesi olan ama müşteri şikayetleri artan bir şirkette kalite sistemini nasıl etkin hale getirirsin?": {
+    "good": [
+      "Belge duvarda asılı ama sistem kâğıt üstünde kalmış demektir. Önce şikayetleri Pareto ile sınıflandırıp en sık üç sorunu bulurum. Her sürecin gerçekten sorumlusu olan bir süreç sahibi atarım. Her ciddi şikayet için kök neden analizi yapıp düzeltici faaliyet açarım ve kapanıp kapanmadığını takip ederim. Çalışanlara eğitim verip kaliteyi herkesin işi haline getiririm.",
+      "ISO 9001 sertifikası compliance gösterir ama effectiveness'ı garanti etmez. Complaint data'yı Pareto'ya dökerim, her process için bir owner belirlerim, 8D ile CAPA açarım. Şikâyet oranı ve iç hata oranı gibi KPI'ları management review'da izlerim.",
+      "Önceki şirketimde tam bu vardı, denetimden önce herkes evrak düzeltiyordu, sonra her şey eskiye dönüyordu. Ben önce gelen şikâyetleri tek tek okuyup gruplara ayırdım. Her konunun bir sahibi olsun dedim. Aynı hata tekrar etmesin diye kök nedenine indik. Ayda bir şikâyet oranı gibi göstergeleri yönetimle birlikte gözden geçirdik."
+    ],
+    "partial": [
+      "Önce şikayetleri pareto ile analiz edip en büyük sorunları bulurum.",
+      "Şikayetleri sınıflandırır, kök neden bulup düzeltici faaliyet açar, çalışanlara eğitim veririm."
+    ],
+    "wrong": [
+      "ISO belgesi varsa sistem çalışıyordur, bilmiyorum başka ne yapılır.",
+      "Kaliteye daha çok önem veririz, herkes işini düzgün yapsın diye uyarırım.",
+      "ISO 9001 belgesi olduğu için sistem zaten etkin; şikayetler müşterilerin hatasıdır, yeni bir denetim firmasıyla belgeyi yenilemek yeterli."
+    ]
+  },
+  "Aktif, reaktif ve görünür güç arasındaki fark nedir? Güç faktörü neden önemlidir?": {
+    "good": [
+      "Aktif güç, motoru döndüren, ısıtan, gerçekten iş yapan güçtür ve watt ile ölçülür. Reaktif güç bobin ve kondansatörlerde gidip gelen, iş yapmayan kısımdır, birimi VAr. Görünür güç ikisinin vektörel toplamıdır, VA ile ifade edilir. Güç faktörü düşükse hat gereksiz akım taşır, kayıplar artar; bu yüzden kompanzasyon panosu kurulur.",
+      "P real power, Q reactive power, S apparent power; S kare eşittir P kare artı Q kare. Power factor cos phi'dir; endüktif yük çoksa cos phi düşer, kondansatör bankıyla düzeltiriz, yoksa elektrik idaresi ceza keser.",
+      "Fabrikada bunu faturada öğrendim: reaktif ceza geldi. Motorlar şebekeden manyetik alan için güç çekiyor ama bu iş yapmıyor. Faydalı iş gören kısım aktif güç, toplamı da görünür güç. Kompanzasyon panosu takınca ceza bitti, kablolar da daha az ısındı."
+    ],
+    "partial": [
+      "Aktif güç watt cinsinden, gerçekten iş yapan güçtür.",
+      "Aktif güç iş yapan güçtür, reaktif güç ise bobinlerde salınan iş yapmayan güçtür."
+    ],
+    "wrong": [
+      "Bunları karıştırıyorum, tam hatırlamıyorum.",
+      "Hepsi elektrikle ilgili güç türleri, tesisatta önemli, mühendisler hesaplıyor.",
+      "Reaktif güç de iş yapar ve sayaçta faydalı enerji olarak görünür. Güç faktörünün 1 olması kötü bir şeydir, düşük olması tasarruf sağlar."
+    ]
+  },
+  "Bir elektrik tesisatında koruma elemanları nelerdir?": {
+    "good": [
+      "Kısa devre ve aşırı yüke karşı sigorta ya da otomatik şalter kullanılır. İnsanı elektrik çarpmasına karşı koruyan kaçak akım rölesidir. Cihaz gövdelerinin topraklanması gerekir. Yıldırım ve ani gerilim yükselmelerine karşı da parafudr takılır.",
+      "Panoda MCB'ler overcurrent için, RCD yani 30 mA'lik kaçak akım koruması can güvenliği için kullanılır. Ground bağlantısı olmazsa RCD de doğru çalışmaz. Surge arrester, yani SPD de yıldırıma karşı konur.",
+      "Evde bile var bunlar: sigorta kutusu, banyo için kaçak akım rölesi, prizlerdeki toprak hattı. Sanayide bunlara bir de aşırı gerilim koruma ekleniyor."
+    ],
+    "partial": [
+      "Sigorta kullanılır, kısa devre olunca atar.",
+      "Sigortalar ve kaçak akım rölesi temel koruma elemanlarıdır."
+    ],
+    "wrong": [
+      "Bu konuyu hiç çalışmadım açıkçası.",
+      "Kabloların kaliteli olması ve tesisatın düzgün çekilmesi gerekir, usta işi olmalı.",
+      "Sigorta insanı elektrik çarpmasına karşı korur, kaçak akım rölesine gerek yoktur; topraklama da sadece büyük binalarda gerekir."
+    ]
+  },
+  "Bir fabrikada sık sık şalter atıyor. Arızayı nasıl tespit edersin?": {
+    "good": [
+      "Önce panoyu kilitleyip etiketleyerek güvenli çalışma koşulunu sağlarım. Şalterin hangi saatte, hangi makine çalışırken attığını not ederim. Pens ampermetreyle hat akımlarını ölçer, megerle izolasyon direncine bakarım. Sorun aşırı yük mü, bir motorun kalkış akımı mı, yoksa izolasyon kaçağı mı, ayırt ederim.",
+      "LOTO uygulayıp işe başlarım. Trip anlarını log'larım, hangi shift'te ve hangi load'da olduğuna bakarım. Clamp meter ile current'ı, megger ile insulation resistance'ı ölçerim. Overload, inrush current veya ground fault olabilir.",
+      "Böyle bir arızada ilk iş elektriği kesip kilit koyarım, kimse yanlışlıkla açmasın. Sonra vardiya amiriyle konuşup ne zaman attığını sorarım. Genelde büyük bir motor devreye girince atıyorsa kalkış akımı yüksektir, ölçünce anlaşılır."
+    ],
+    "partial": [
+      "Pens ampermetreyle akımı ölçerim.",
+      "Önce enerjiyi kesip güvenliği sağlar, sonra akımları ölçerim."
+    ],
+    "wrong": [
+      "Elektrikçiyi çağırırım, ben bilmem.",
+      "Şalteri tekrar kaldırırım, bir süre bakarız düzelir mi diye, olmazsa başka şey düşünürüz.",
+      "Şalter sık atıyorsa daha büyük amperli bir şalter takarım, sorun çözülür."
+    ]
+  },
+  "Yenilenebilir enerji payı artan bir şebekede kararlılığı nasıl sağlarsın?": {
+    "good": [
+      "Rüzgâr ve güneş hava durumuna bağlı, yani üretim değişken ve kesintili. O yüzden önce iyi bir üretim tahmini şart. Fazla enerjiyi depolayıp sonra veren batarya sistemleri kurarım. Hızlı devreye girebilen esnek santraller ve talep tarafı yönetimi eklerim. İletim hatlarını güçlendirip frekansı tutacak yardımcı hizmetleri planlarım.",
+      "Renewable penetration arttıkça inertia düşüyor, frequency stability zorlaşıyor. BESS ile fast frequency response sağlarım, demand response programları kurarım, iyi bir forecasting altyapısı oluştururum ve grid'i güçlendiririm.",
+      "Güneş öğlen bol, akşam sıfır; rüzgâr da keyfine göre esiyor. Bunu dengelemek için büyük batarya parkları koyardım, ertesi günün üretimini hava tahminleriyle önceden kestirirdim. Sanayi tüketicileriyle anlaşıp pik saatlerde yük azaltmalarını sağlardım. Bir de frekans düşerse saniyeler içinde devreye girecek rezervler tutardım."
+    ],
+    "partial": [
+      "Batarya ile enerji depolama sistemleri kurarım.",
+      "Üretim değişken olduğu için iyi tahmin yapar, batarya depolama eklerim."
+    ],
+    "wrong": [
+      "Bu konu benim alanım değil, bilmiyorum.",
+      "Şebekeyi sağlam tutmak için çok çalışmak gerekir, ekipmanların kaliteli olması lazım.",
+      "Yenilenebilir enerji kararlılığı zaten artırır, çünkü güneş ve rüzgâr sabit üretim yapar; depolamaya gerek yoktur."
+    ]
+  },
+  "Polling ile interrupt (kesme) arasındaki fark nedir?": {
+    "good": [
+      "Polling'de işlemci bir bayrağı döngü içinde durmadan sorgular; olay yoksa bile zaman ve enerji harcar. Interrupt'ta donanım olay olduğunda işlemciyi uyarır, kesme servis rutini çalışır, geri kalan zamanda işlemci başka işe bakar ya da uyur. Kesme rutinini kısa tutmak, uzun işleri ana döngüye bırakmak gerekir.",
+      "Polling busy-wait gibi; CPU sürekli register'ı okur. Interrupt-driven yaklaşımda ISR tetiklenir, CPU cycle israfı olmaz, low-power mode'a girebilirsin. ISR içinde printf, delay gibi şeyler koymazsın, sadece flag set edersin.",
+      "Polling'i kapıya her dakika gidip kargo geldi mi diye bakmaya benzetiyorum. Interrupt ise zil çalınca kalkmak. Zil sistemi daha verimli, çünkü arada başka işini yapabiliyorsun. Gömülü tarafta da zil çalınca yapılacak işi kısa tutmak lazım."
+    ],
+    "partial": [
+      "Polling'de bir değeri sürekli kontrol ederiz.",
+      "Interrupt'ta bir olay olunca donanım işlemciyi uyarır."
+    ],
+    "wrong": [
+      "Polling ne demek bilmiyorum.",
+      "İkisi de mikrodenetleyicide kullanılan yöntemler, projeye göre seçilir.",
+      "Polling her zaman interrupt'tan daha verimlidir, çünkü işlemci olayları kaçırmaz; ISR içinde istediğin kadar uzun işlem yapabilirsin."
+    ]
+  },
+  "UART, SPI ve I2C protokollerini karşılaştırır mısın?": {
+    "good": [
+      "UART saat hattı olmayan, iki cihaz arasında TX ve RX ile çalışan asenkron bir seri iletişim. SPI ayrı bir saat hattı ve her cihaz için chip select kullanır, en hızlısı odur. I2C sadece SDA ve SCL ile çalışır, cihazlar adresle seçilir ama daha yavaştır. Sıcaklık sensörlerini genelde I2C'ye, TFT ekranları SPI'a bağlarız.",
+      "UART point-to-point, baud rate'i iki taraf aynı ayarlamalı. SPI full-duplex, master-slave, CS pinleriyle çalışır, MHz seviyesinde hız. I2C multi-drop, 7-bit address, pull-up ister. Mesela GPS modülü UART, SD kart SPI, IMU I2C.",
+      "Debug için hep UART kullanırım, seri porttan log basarım. Hız gerektiğinde, mesela bir ekran sürerken SPI. Çok sayıda küçük sensörü aynı iki kabloya takmak istediğimde I2C."
+    ],
+    "partial": [
+      "UART asenkron bir seri iletişim protokolüdür.",
+      "SPI hızlıdır ve chip select kullanır, UART ise asenkrondur."
+    ],
+    "wrong": [
+      "Bunlar protokol isimleri ama aralarındaki farkı bilmiyorum.",
+      "Hepsi cihazların birbiriyle konuşmasını sağlıyor, hangisi uygunsa o seçilir.",
+      "I2C en hızlı protokoldür, SPI ise sadece iki hat kullanır ve adresleme yapar; UART senkron çalışır."
+    ]
+  },
+  "Pil ile çalışan bir cihazın pil ömrü beklenenin yarısı. Nasıl iyileştirirsin?": {
+    "good": [
+      "Önce cihazın aktif, beklemede ve gönderim anında ne kadar akım çektiğini ölçerim. İşlemciyi boştayken en derin uyku moduna sokarım. Kullanılmayan çevre birimlerini ve sensörlerin beslemesini kapatırım. Radyo en çok tüketen birimse veriyi toplayıp daha seyrek gönderirim.",
+      "Power profiler ile current consumption'ı çıkarırım, genelde sleep current mikroamper yerine miliamper seviyesinde çıkar. Deep sleep'e geçiş, peripheral'ların clock gating'i, BLE advertising interval'ını artırmak gibi şeylerle düzeltirim.",
+      "Bir sensör kartında bunu yaşadık; multimetreyle bakınca uyku modunda bile 2 mA çektiğini gördük. Meğer bir LED sürekli yanıyormuş ve GPS modülü hiç kapanmıyormuş. Onları kapattık, LoRa ile her dakika yerine on beş dakikada bir veri göndermeye başladık, pil ömrü üç katına çıktı."
+    ],
+    "partial": [
+      "İşlemciyi boşta uyku moduna alırım.",
+      "Önce akımı ölçer, sonra kullanılmayan çevre birimlerini kapatırım."
+    ],
+    "wrong": [
+      "Daha büyük pil takarım, başka bir şey bilmiyorum.",
+      "Kodu optimize ederim, daha iyi yazılım yazarım, cihaz daha az yorulur.",
+      "Pil ömrünü uzatmak için işlemcinin saat frekansını en yükseğe çıkarırım; cihaz sürekli açık kalırsa uykudan uyanma maliyeti olmaz, pil daha uzun gider."
+    ]
+  },
+  "Sahada binlerce cihazı olan bir üründe güvenli uzaktan güncelleme (OTA) mimarisini nasıl tasarlarsın?": {
+    "good": [
+      "Her firmware'i özel anahtarla imzalarım, cihaz yüklemeden önce imzayı doğrular. Flash'ta A ve B diye iki bölüm tutarım; yeni sürüm açılmazsa cihaz eski sürüme geri döner. Güncellemeyi önce yüzde birlik bir gruba, sonra kademeli olarak herkese açarım. İndirme yarıda kesilirse cihaz bozulmaz, kaldığı yerden devam eder. Hata oranlarını izleyip sorun varsa dağıtımı durdururum.",
+      "Secure boot ve code signing şart. A/B partition şeması kurarım, rollback mekanizması olur. Staged rollout ile canary grubundan başlarım. Power loss durumunda atomic swap yaparım. Telemetry ile success rate'i monitor ederim.",
+      "Eski şirketimde bir güncelleme yüzünden 500 cihaz tuğla oldu, oradan çok şey öğrendim. Artık her paket imzalı, cihaz kontrol etmeden yüklemiyor. Eski sürüm hep yedekte duruyor, açılmazsa ona dönüyor. Herkese birden değil, önce küçük bir test grubuna, sonra aşamalı olarak herkese atıyoruz. Elektrik kesilirse diye de yazma işlemini yarım kalsa bile cihazı bozmayacak şekilde yapıyoruz."
+    ],
+    "partial": [
+      "Firmware'i imzalarım, cihaz imzayı doğrulamadan yüklemez.",
+      "İmzalı imaj kullanır, iki bölümlü flash ile geri dönüş sağlarım."
+    ],
+    "wrong": [
+      "OTA hiç yapmadım, nasıl tasarlanır bilmiyorum.",
+      "Güncellemeyi sunucuya koyarım, cihazlar indirir, sorun olursa bakarız.",
+      "Güncellemeyi tüm cihazlara aynı anda gönderirim. İmzaya gerek yok çünkü bağlantı zaten şifreli."
+    ]
+  },
+  "Modülasyon nedir, AM ve FM arasındaki fark nedir?": {
+    "good": [
+      "Modülasyon, ses gibi bir bilgiyi yüksek frekanslı bir taşıyıcı dalganın üzerine bindirmektir. AM'de taşıyıcının genliği, FM'de frekansı bilgiye göre değiştirilir. FM gürültüden daha az etkilenir, ses kalitesi daha iyidir; buna karşılık daha geniş bant ister.",
+      "Baseband sinyali carrier üzerine bindirme işlemi. Amplitude modulation'da amplitude, frequency modulation'da frequency değişir. FM'in noise immunity'si daha iyi ama bandwidth ihtiyacı fazla.",
+      "Radyoda AM'de cızırtı çoktur, FM daha temiz çalar; sebebi AM'de bilginin sinyalin şiddetinde, FM'de frekansında taşınması. Parazit genliği bozar ama frekansı pek bozamaz."
+    ],
+    "partial": [
+      "FM'de sinyalin frekansı değişir.",
+      "AM'de taşıyıcının genliği değiştirilir."
+    ],
+    "wrong": [
+      "Modülasyonu hatırlamıyorum.",
+      "Radyolarla ilgili bir konu, sinyallerin gönderilmesinde kullanılır diye biliyorum.",
+      "AM'de frekans değiştirilir, FM'de genlik değiştirilir; AM gürültüye daha dayanıklıdır."
+    ]
+  },
+  "Kablosuz bir bağlantıda paket kaybı yüksek. Neyi kontrol edersin?": {
+    "good": [
+      "Önce alıcı tarafta RSSI ve SNR değerlerine bakarım; sinyal zayıf mı, gürültü mü yüksek? Spektrum analizörüyle aynı kanalı kullanan başka cihaz var mı kontrol ederim. Antenin yönüne, aradaki mesafeye ve beton duvar gibi engellere bakarım. Son olarak iletim gücü, veri hızı ve yeniden gönderim ayarlarını optimize ederim.",
+      "Link budget'ı kontrol ederim, RSSI düşükse fade margin yetersizdir. Wi-Fi ise 2.4 GHz'deki co-channel interference'a bakarım. Antenna alignment ve line of sight önemli. Retry count ve TX power'ı ayarlarım.",
+      "Depoda el terminalleri sürekli kopuyordu. Baktık, metal raflar engel oluyor, sinyal raflarda sekiyor. Bir de yan firmanın modemi aynı kanaldaymış. Kanalı değiştirdik, birkaç erişim noktası ekledik, sorun bitti."
+    ],
+    "partial": [
+      "Önce kanalda girişim olup olmadığına bakarım.",
+      "RSSI değerine bakıp sinyal gücünü kontrol ederim."
+    ],
+    "wrong": [
+      "Modemi kapatıp açarım, bilmiyorum başka.",
+      "Bağlantıyı düzeltmek için ayarlarla oynarım, internet sağlayıcısını ararım.",
+      "Paket kaybı varsa iletim gücünü sonuna kadar artırırım, her zaman çözüm budur; girişim diye bir şey kablosuzda önemli değildir."
+    ]
+  },
+  "Bir şehirde yeni bir mobil baz istasyonu ağı planlarken nelere dikkat edersin?": {
+    "good": [
+      "Önce şehrin topoğrafyasına ve binalara göre bir kapsama hedefi koyarım. Kalabalık meydanlar, AVM'ler gibi kullanıcı yoğunluğu yüksek yerlere kapasite için küçük hücreler eklerim. Komşu hücreler birbirini bozmasın diye frekans planı yaparım. Saha kirası ve elektrik maliyetini hesaba katarım. Kurulumdan sonra drive test ile ölçüp ağı optimize ederim.",
+      "Link budget ve propagation model ile coverage'ı çıkarırım. Traffic forecast'a göre capacity planning yaparım, hotspot'lara small cell. Frequency reuse ve interference yönetimi. Site acquisition ve TCO önemli. Rollout sonrası drive test ve KPI optimizasyonu.",
+      "Şehir merkezi ile kenar mahalleler aynı değil. Merkezde herkes aynı anda video izliyor, kapasite yetmez, orada istasyonları sık koymak lazım; kırsalda az istasyonla geniş alanı kapsamak yeter. İstasyonlar birbirine karışmasın diye frekansları dağıtırız. Çatı kiraları, belediye izinleri işin pahalı kısmı. Kurduktan sonra arabayla gezip ölçüm yapar, ayarları düzeltiriz."
+    ],
+    "partial": [
+      "Önce kapsama alanını hesaplarım, şehrin her yeri çeksin.",
+      "Kapsama ve kapasite ihtiyacını hesaplar, frekans planlaması yaparım."
+    ],
+    "wrong": [
+      "Bu işi hiç yapmadım, nereden başlanır bilmiyorum.",
+      "Mümkün olduğunca çok istasyon koyarım ki herkes memnun olsun.",
+      "Ne kadar çok istasyon o kadar iyi, girişim sorun olmaz; bütün istasyonlara aynı frekansı veririm ki kolay olsun."
+    ]
+  },
+  "Gerilme-şekil değiştirme (stress-strain) eğrisini açıklar mısın?": {
+    "good": [
+      "Eğrinin başında gerilme ile uzama doğru orantılıdır, Hooke yasası geçerlidir ve yükü kaldırınca parça eski haline döner. Akma noktasını geçince kalıcı deformasyon başlar. Eğrinin en tepe noktası malzemenin çekme dayanımıdır. Sonra boyun verme olur ve numune kopar; kopana kadar ne kadar uzadığı sünekliği gösterir.",
+      "Linear elastic region'da Young modulus eğimdir. Yield strength'ten sonra plastic deformation. UTS maksimum gerilme, necking ile fracture'a gider. Ductile malzemelerde plastik bölge uzun, brittle'da neredeyse yok.",
+      "Lastik gibi düşün: biraz çekersen bırakınca geri döner, bu elastik kısım. Daha çok çekersen artık geri dönmez, malzeme akmaya başlamış demektir. Bir noktadan sonra en çok taşıyabileceği yükü geçer, incelir ve kopar. Çelik kopmadan önce çok uzar, dökme demir ise neredeyse hiç uzamadan kırılır."
+    ],
+    "partial": [
+      "Başta elastik bölge var, Hooke yasası geçerli.",
+      "Elastik bölgeden sonra akma başlar, kalıcı şekil değişimi olur."
+    ],
+    "wrong": [
+      "Bu eğriyi derste görmüştük ama detayını unuttum.",
+      "Malzemenin ne kadar sağlam olduğunu gösteren bir grafik, testlerde çıkarılıyor.",
+      "Bu eğrinin tamamı doğrusaldır; akma noktası da malzemenin koptuğu noktadır."
+    ]
+  },
+  "Tolerans ve geçme (fit) türleri nelerdir?": {
+    "good": [
+      "Tolerans, bir ölçünün üretimde çıkabileceği izin verilen alt ve üst sınır farkıdır. Mil ile delik arasında her zaman boşluk kalıyorsa boşluklu geçme, mil delikten hep büyükse sıkı geçme olur, ikisi arasında kalırsa ara geçme. Dönen yataklarda boşluklu, rulman yuvasında sıkı geçme seçeriz.",
+      "ISO 286'ya göre H7/g6 clearance fit, H7/p6 interference fit, H7/k6 transition fit. Tolerance band IT sınıfına göre değişir.",
+      "Atölyede şöyle anlatırdık: mil deliğe elle rahat giriyorsa boşluklu geçme. Tokmakla ya da presle çakıyorsan sıkı geçme. Arada, bazen hafif zorlayarak giren duruma ara geçme denir. Tolerans da çizimdeki artı eksi değerlerdir."
+    ],
+    "partial": [
+      "Tolerans, bir ölçünün kabul edilebilir sapma aralığıdır.",
+      "Boşluklu geçme ve sıkı geçme var; birinde boşluk kalır, diğerinde pres gerekir."
+    ],
+    "wrong": [
+      "Geçme türlerini hiç duymadım.",
+      "Parçaların birbirine uygun olması gerekir, montajda sorun çıkmasın diye dikkat edilir.",
+      "Sıkı geçmede mil delikten küçüktür, boşluklu geçmede ise mil delikten büyüktür; tolerans ne kadar dar olursa o kadar iyidir."
+    ]
+  },
+  "Sahada bir mil sürekli kırılıyor. Nasıl incelersin?": {
+    "good": [
+      "Önce kırık parçayı alıp yüzeyine bakarım; plaj izleri varsa yorulma kırılmasıdır. Mile gelen gerçek yükleri ve gerilmeleri yeniden hesaplarım, özellikle kama yuvası gibi gerilme yığılan yerlere. Malzemenin sertliğini ve ısıl işlemini kontrol ettiririm. Gerekirse köşe radyusunu büyütür, daha uygun bir malzeme seçerim.",
+      "Fractography yaparım, beach mark'lar fatigue'ü gösterir. FEA ile stress concentration'ı incelerim, kama yuvası ve shoulder fillet kritik. Malzemenin hardness ve heat treatment raporunu kontrol ederim. Fillet radius'u artırıp shot peening öneririm.",
+      "Bir konveyör milinde aynısı oldu, hep aynı yerden, kama kanalının ucundan kırılıyordu. Kırık yüzeyde istiridye kabuğu gibi izler vardı, yorulmaydı. Kanalın köşesi keskin kesilmişti, oraya radyus verdik. Bir de kasnağın gerginliği mile fazla yük bindiriyordu, onu da düşürdük, bir daha kırılmadı."
+    ],
+    "partial": [
+      "Kırık yüzeyine bakarım, yorulma kırılması olabilir.",
+      "Kırık yüzeyini inceler, malzemenin sertliğini kontrol ederim."
+    ],
+    "wrong": [
+      "Yenisini takarım, ne olduğunu bilmiyorum.",
+      "Mili daha kaliteli bir firmadan alırım, ustalarla konuşurum.",
+      "Mil kırılıyorsa çapı yetmiyordur, sadece çapı iki katına çıkarırım; kırık yüzeyine bakmaya gerek yok."
+    ]
+  },
+  "Yeni bir ürünün maliyetini %15 düşürmen istendi. Tasarım tarafında nasıl yaklaşırsın?": {
+    "good": [
+      "Önce ürünün parça parça maliyet kırılımını çıkarırım, pareto ile en pahalı yüzde yirmilik parçaya odaklanırım. Değer mühendisliği çalışmasıyla her parçanın gerçekten ne işe yaradığını sorgularım. Parça sayısını azaltıp montajı kolaylaştırırım. Özel tasarım parçalar yerine katalog parçaları, daha ucuz malzemeler değerlendiririm. Her değişikliği testlerle doğrularım.",
+      "Cost breakdown'dan başlarım, BOM'daki en pahalı kalemleri bulurum. VA/VE workshop'ları yaparım, DFM/DFA ile part count'u düşürürüm. Off-the-shelf komponentlere geçerim. Değişiklikleri validation testleriyle onaylarım.",
+      "Bir beyaz eşya firmasında yaptık bunu. Önce hangi parça ne kadar tutuyor diye bir maliyet kırılımı çıkardık, sac gövde ile motor toplamın yarısıydı. Ekiple oturup her parçanın işlevini sorguladık, gereksiz bir braket tamamen kalktı. Gövdede daha ince sac kullanıp nervür ekledik, vidaları klipsle değiştirip montajı hızlandırdık. Her şeyi titreşim ve düşme testlerinden geçirdik, kalite düşmedi."
+    ],
+    "partial": [
+      "Önce maliyet kırılımını çıkarıp en pahalı parçaları bulurum.",
+      "Maliyet kırılımına bakar, değer mühendisliği yapar, montajı kolaylaştırırım."
+    ],
+    "wrong": [
+      "Tedarikçiden indirim isterim, tasarımla ilgili bir fikrim yok.",
+      "Daha ucuza mal etmek için elimizden geleni yaparız, ekip olarak düşünürüz.",
+      "Maliyeti düşürmek için et kalınlıklarını yarıya indiririm; testlere gerek yok, nasıl olsa müşteri farkı anlamaz."
+    ]
+  },
+  "Termodinamiğin birinci ve ikinci yasasını açıklar mısın?": {
+    "good": [
+      "Birinci yasa enerjinin korunumudur; enerji yoktan var olmaz, yok olmaz, sadece ısıdan işe ya da bir biçimden diğerine dönüşür. İkinci yasa entropinin kapalı bir sistemde arttığını söyler; ısı kendiliğinden sıcaktan soğuğa akar ve hiçbir ısı makinesi %100 verimle çalışamaz. Üst sınırı Carnot verimi belirler.",
+      "First law: ΔU = Q − W, energy conservation. Second law: entropy generation her zaman sıfırdan büyük ya da eşit; heat engine'in efficiency'si Carnot limitini aşamaz, o da 1 − Tc/Th.",
+      "Birincisi şu: enerji kaybolmaz, sadece şekil değiştirir; arabanın benzinindeki enerji harekete ve ısıya dönüşür. İkincisi de neden hiçbir motorun yüzde yüz verimli olamayacağını anlatıyor; enerjinin bir kısmı hep ısı olarak çevreye gider, düzensizlik artar. Sıcak kahve de bu yüzden kendiliğinden soğur, tersini hiç görmezsin."
+    ],
+    "partial": [
+      "Birinci yasa enerjinin korunumudur, enerji yoktan var edilemez.",
+      "Birinci yasa enerji korunumudur, ikinci yasa entropinin arttığını söyler."
+    ],
+    "wrong": [
+      "Termodinamik derslerini pek hatırlamıyorum.",
+      "Termodinamik ısı ve enerjiyle ilgilenen bir bilim dalı, makinelerde çok önemlidir.",
+      "İkinci yasaya göre iyi tasarlanmış bir makine %100 verimle çalışabilir; ısı da soğuktan sıcağa kendiliğinden akar."
+    ]
+  },
+  "Bir binanın ısınma maliyeti çok yüksek. Enerji verimliliği için ne önerirsin?": {
+    "good": [
+      "Önce termal kamerayla binayı tarayıp ısının nereden kaçtığını bulurum. Duvar ve çatı yalıtımı, çift cam pencere gibi iyileştirmeleri değerlendiririm. Eski kazanı yoğuşmalı kazan ya da ısı pompasıyla değiştirmeyi düşünürüm. Akıllı termostatla boş saatlerde sıcaklığı düşürürüm. Hepsini geri ödeme süresine göre sıralarım.",
+      "Energy audit ile heat loss'ları çıkarırım, thermography kullanırım. Envelope insulation, low-e cam, condensing boiler ya da heat pump. BMS ile scheduling yaparım. ROI ve payback period'a göre önceliklendiririm.",
+      "Annemlerin apartmanında yaptık bunu. Kış gecesi termal kamerayla baktık, çatı ve pencere kenarları kıpkırmızıydı. Çatıya taşyünü döşettik, pencerelerin fitillerini yeniledik. Eski kombiyi yoğuşmalı bir kombiyle değiştirdik ve gece kendiliğinden kısan bir oda termostatına bağladık. Yatırım iki kışta kendini geri ödedi."
+    ],
+    "partial": [
+      "Binanın yalıtımını iyileştiririm, pencereleri değiştiririm.",
+      "Termal kamerayla kayıpları bulur, yalıtım yapar, termostat takarım."
+    ],
+    "wrong": [
+      "Kaloriferleri kısarım, başka fikrim yok.",
+      "Herkesin daha tasarruflu olmasını isterim, kışın kalın giyinsinler.",
+      "Isınma maliyetini düşürmek için kazanı hiç kapatmadan en yüksek sıcaklıkta çalıştırırım, çünkü sürekli çalışan kazan daha az yakar; yalıtım ise sadece yazın işe yarar."
+    ]
+  },
+  "Bir tesisin enerji tüketimini azaltmak için nasıl bir program yürütürsün?": {
+    "good": [
+      "İşe sayaç verileriyle kapsamlı bir enerji etüdü yaparak başlarım, tüketimin nereye gittiğini çıkarırım. Kompresörler, kazanlar ve soğutma gibi en büyük tüketicilere odaklanırım. Atık ısı geri kazanımı, buhar hatlarının yalıtımı ve pompalara frekans konvertörü gibi projeleri listelerim. Bunları yatırım tutarı ve geri ödeme süresine göre sıralarım. ISO 50001 ile tüketimi aylık izleyip hedeflerle kıyaslarım.",
+      "Energy audit ve sub-metering ile baseline çıkarırım. Significant energy users'ı, yani compressed air ve chiller'ları belirlerim. VFD, heat recovery, leak detection projeleri. Payback'e göre önceliklendirme. EnPI'larla monitoring ve ISO 50001 sertifikası.",
+      "Bir tekstil fabrikasında enerji sorumlusuydum. İlk ay her bölüme sayaç taktırıp ölçüm yaptık; faturanın yarısı basınçlı hava kompresörlerinden çıktı. Hava kaçaklarını kapattık, kompresöre frekans kontrolü taktık, ılık atık suyun ısısını geri kazandık. Yatırımların geri ödemesi bir yıldan kısa sürdü, şimdi tüketimi her sabah panodan izliyoruz."
+    ],
+    "partial": [
+      "Önce bir enerji etüdü yapıp tüketimin dağılımını çıkarırım.",
+      "Ölçüm yapar, büyük tüketicileri bulur, atık ısıyı geri kazanırım."
+    ],
+    "wrong": [
+      "Işıkları kapatmalarını söylerim, başka bir şey bilmiyorum.",
+      "Herkese enerji tasarrufunun önemini anlatırım, afişler asarım.",
+      "Enerji tüketimini azaltmak için tüm motorları daha büyük motorlarla değiştiririm, büyük motor daha az enerji harcar; ölçüm yapmaya gerek yok."
+    ]
+  },
+  "Reaktif, önleyici ve kestirimci bakım arasındaki fark nedir?": {
+    "good": [
+      "Reaktif bakımda makine bozulunca tamir edilir. Önleyici bakımda belli aralıklarla, mesela her 500 saatte bir yağ değişimi gibi planlı işler yapılır. Kestirimci bakımda titreşim, sıcaklık gibi verileri izleyip arıza yaklaşırken müdahale edersin. Hangisini seçeceğin duruş maliyetine bağlıdır.",
+      "Run-to-failure, time-based ve condition-based maintenance. PdM'de vibration analysis, thermography, oil analysis kullanılır. Kritik olmayan ekipmanda run-to-failure mantıklı, downtime cost yüksekse PdM'e yatırım yaparsın.",
+      "Arabayla örnek vereyim: lastik patlayınca değiştirmek reaktif bakım. Her 10 bin kilometrede yağ değiştirmek önleyici. Motorun sesinden ya da bir sensörden bir sorun olacağını anlayıp önceden müdahale etmek kestirimci. Fabrikada hangisini seçeceğin, makine durunca ne kadar para kaybettiğine bağlı."
+    ],
+    "partial": [
+      "Reaktif bakım, arıza olduktan sonra yapılan bakımdır.",
+      "Önleyici bakım periyodik yapılır, kestirimci bakımda ise titreşim gibi veriler izlenir."
+    ],
+    "wrong": [
+      "Hepsi bakım işte, aralarında fark yok bence.",
+      "Makinelere iyi bakmak gerekir, temiz tutulmalı, usta bakmalı.",
+      "Kestirimci bakım, makine bozulduktan sonra arızanın nedenini tahmin etmektir; önleyici bakım ise arıza olunca yapılır."
+    ]
+  },
+  "Kritik bir pompa ayda iki kez arızalanıyor. Ne yaparsın?": {
+    "good": [
+      "Önce son aylardaki arıza kayıtlarını çıkarıp her seferinde neyin bozulduğuna bakarım. Kök neden analizi yaparak kavitasyon, hizasızlık ya da yağlama eksikliği gibi nedenleri araştırırım. Pompaya titreşim sensörü takıp durumunu izlerim. Sorun neyse kalıcı olarak çözer, pompa kritik olduğu için yedeğini hazır tutarım.",
+      "CMMS'ten failure history'yi çekip MTBF hesaplarım. RCA için 5 Whys ve fishbone kullanırım. Vibration ve bearing temperature monitoring kurarım. Genelde misalignment veya seal hatası çıkar; laser alignment ile düzeltirim.",
+      "Rafineride bir pompa sürekli salmastradan kaçırıyordu. Bakım defterine bakınca hep aynı şey değiştirilmiş, kimse nedenini sormamış. Kaplini kontrol ettik, motorla pompa arasında kaçıklık vardı. Lazerle hizaladık, haftalık titreşim ölçümü başlattık, bir yıldır arıza yok."
+    ],
+    "partial": [
+      "Pompaya titreşim ölçümü yaparım.",
+      "Arıza kayıtlarına bakar, kök neden analizi yaparım."
+    ],
+    "wrong": [
+      "Pompayı yenisiyle değiştiririm.",
+      "Bakım ekibine daha dikkatli olmalarını söylerim, pompaya daha sık bakarlar.",
+      "Ayda iki arıza bir pompa için normaldir, bir şey yapmaya gerek yok; arızalandıkça tamir ederiz."
+    ]
+  },
+  "Arıza kaynaklı duruşları azaltmak için bir tesisin bakım stratejisini nasıl dönüştürürsün?": {
+    "good": [
+      "Önce ekipmanları duruş etkisine göre kritiklik sırasına koyarım. En kritik makinelerde titreşim ve sıcaklık sensörleriyle kestirimci bakıma geçerim. İlerlemeyi OEE ve MTBF ile ölçerim. Kritik makinelerin yedek parçalarını stokta tutarım. Operatörlere temizlik, yağlama ve basit kontrolleri öğretip otonom bakımı başlatırım.",
+      "Asset criticality ranking yaparım, A sınıfı ekipmanlara condition monitoring kurarım. TPM yaklaşımıyla autonomous maintenance başlatırım. KPI olarak OEE, MTBF ve MTTR izlerim. Spare parts için min-max seviyeleri belirlerim.",
+      "Geldiğimde ekip itfaiyeci gibi çalışıyordu, hep arıza kovalıyordu. Önce hangi makine durursa fabrika durur, yani kritik olanları belirledik. O makinelere titreşim sensörü taktık, arızadan haftalar önce uyarı almaya başladık. Operatörler de vardiya başında makinelerini kendileri kontrol etmeye başladı. Bir yılda OEE yüzde 62'den 74'e çıktı."
+    ],
+    "partial": [
+      "Önce kritik ekipmanları belirlerim.",
+      "Kritik makinelerde kestirimci bakıma geçer, OEE ile başarıyı ölçerim."
+    ],
+    "wrong": [
+      "Daha fazla bakımcı işe alırım, bilmiyorum.",
+      "Bakım ekibiyle toplantı yapıp daha iyi çalışmamız gerektiğini söylerim.",
+      "Duruşları azaltmanın en iyi yolu tüm makinelere aynı sıklıkta periyodik bakım yapmaktır, kritiklik analizine gerek yoktur; operatörler makineye asla dokunmamalı."
+    ]
+  },
+  "Betonarmede beton ve çeliğin rolleri nelerdir?": {
+    "good": [
+      "Beton basınca çok dayanıklıdır ama çekmede zayıftır, kolay çatlar. Çekme gerilmelerini içindeki çelik donatı karşılar. İkisinin birlikte çalışmasını aderans, yani betonun donatıyı kavraması sağlar. Donatının etrafındaki paspayı da çeliği paslanmaya ve yangına karşı korur.",
+      "Concrete compressive strength'i yüksek, tensile strength'i düşük; o yüzden tension zone'a rebar koyarız. Bond sayesinde kompozit davranış oluşur. Cover yetersizse korozyon başlar, donatı şişer ve beton kabuk atar.",
+      "Şantiyede ustalara şöyle anlatıyorum: beton basınca, yani ezilmeye karşı güçlü, ama onu çekiştirirsen hemen çatlar. Demirler o çekmeyi taşıyor. Demirin betona iyi tutunması lazım, nervürlü demir bu yüzden. Demirin üstünde de yeterli beton örtüsü kalmalı ki paslanmasın."
+    ],
+    "partial": [
+      "Beton basınca dayanıklıdır.",
+      "Beton basıncı, çelik donatı da çekmeyi karşılar."
+    ],
+    "wrong": [
+      "İnşaat malzemelerini pek bilmiyorum.",
+      "Beton ve çelik birlikte binayı ayakta tutar, ikisi de çok önemli malzemelerdir.",
+      "Beton çekmeye çok dayanıklıdır, çelik ise basıncı taşır; paspayı sadece görüntü için bırakılır."
+    ]
+  },
+  "Depreme dayanıklı yapı tasarımında temel prensipler nelerdir?": {
+    "good": [
+      "Yapının deprem enerjisini yutabilmesi için sünek davranması gerekir, gevrek kırılmamalı. Kolonların kirişlerden güçlü olması, yani kuvvetli kolon zayıf kiriş ilkesi uygulanır. Planda ve yükseklikte düzenli, simetrik bir taşıyıcı sistem burulmayı ve yumuşak katı önler. Zemin koşulları mutlaka etüt edilir ve Türkiye Bina Deprem Yönetmeliği'ne uyulur.",
+      "Ductility, strong column weak beam, regular plan, soft story'den kaçınmak, soil-structure interaction ve TBDY 2018'e uyum.",
+      "Bir binayı depremde sallanan ama yıkılmayan bir ağaç gibi düşün; esneyip enerjiyi sönümlemesi lazım. Kolonlar kirişlerden güçlü olmalı, güçlü kolon zayıf kiriş diyoruz buna. Binanın bir tarafı ağır diğeri hafif olursa döner, bu yüzden simetri önemli. Bir de yumuşak zemine bina dikiyorsan zemin iyileştirmeden başlamamalısın."
+    ],
+    "partial": [
+      "Yapının sünek olması gerekir.",
+      "Yapı sünek olmalı, kuvvetli kolon zayıf kiriş ilkesi uygulanmalı ve zemin iyi incelenmeli."
+    ],
+    "wrong": [
+      "Deprem konusunu çok bilmiyorum, yönetmeliğe bakmak lazım herhalde.",
+      "Sağlam malzeme kullanmak ve iyi bir müteahhitle çalışmak gerekir.",
+      "Depreme dayanıklılık için en önemlisi binanın çok rijit ve ağır olmasıdır; kolonlar kirişlerden zayıf olabilir, zemin önemli değil."
+    ]
+  },
+  "Mevcut bir binada kolonlarda çatlaklar tespit edildi. Nasıl ilerlersin?": {
+    "good": [
+      "Önce kolonlara gidip çatlakların yönünü, genişliğini ve uzunluğunu ölçer, fotoğraflarım. Karot alıp betonun dayanımını, donatı tarayıcıyla donatının durumunu tespit ederim. Bu verilerle binanın performans analizini yaparım. Sonuca göre mantolama, karbon lifli sargı gibi güçlendirme ya da yıkım öneririm.",
+      "Visual inspection ile crack mapping yaparım, crack width gauge ile ölçerim. Core sample alıp beton basınç dayanımını belirlerim, ferroscan ile rebar tespiti. Pushover analizi ile performans değerlendirmesi, ardından jacketing veya CFRP wrapping ile retrofit.",
+      "Geçen yıl bir okulda tam bunu yaşadık. Çatlakların çapraz mı düşey mi olduğuna baktık, çapraz olanlar kesme hasarıydı. Laboratuvara karot numuneleri yolladık, beton beklenenden çok düşük çıktı. Statik hesapları yeniden yapınca kolonların yetersiz olduğu çıktı, kolonları betonarme mantoyla sardık."
+    ],
+    "partial": [
+      "Çatlakların genişliğini ve yerini ölçer, kayıt altına alırım.",
+      "Çatlakları inceler, karot alıp beton dayanımını test ederim."
+    ],
+    "wrong": [
+      "Çatlakları macunla kapatıp boyarız, bilmiyorum başka.",
+      "Bina sahibine bilgi verir, bir uzman çağırırız, gereken neyse yapılır.",
+      "Kolon çatlakları sadece sıva çatlağıdır, her zaman kozmetiktir; üstünü boyayıp kapatmak yeterli, teste gerek yok."
+    ]
+  },
+  "Mevcut bir binanın deprem performansını nasıl değerlendirir ve güçlendirme kararını nasıl verirsin?": {
+    "good": [
+      "Önce binada yerinde inceleme yapar, projeyle mevcut durumu karşılaştırırım; karot ve donatı tespiti yaparım. Karot sonuçlarından betonun gerçek dayanımını belirlerim. Bu verilerle yönetmeliğe göre bir performans analizi yaparım. Bina hedefi sağlamıyorsa betonarme perde eklemek ya da kolon mantolamak gibi güçlendirme seçeneklerine bakarım. Güçlendirmenin maliyeti yeni bina maliyetine yaklaşıyorsa yıkıp yeniden yapmayı öneririm.",
+      "Site survey, core test ve ferroscan ile malzeme ve donatı bilgisi toplarım. Concrete strength düşükse bu analizi doğrudan etkiler. Linear veya nonlinear pushover analysis ile performance level'i belirlerim. Retrofit için shear wall ya da jacketing; cost-benefit oranı kötüyse demolition öneririm.",
+      "Eski bir apartman için bu kararı vermiştim. Binayı gezdik, kolonlardan karot aldık, beton çok düşük çıktı, donatılar da paslıydı. Analiz sonucunda bina can güvenliği seviyesini sağlamıyordu. Güçlendirme fiyatı neredeyse yeni bina kadar tuttu, kat malikleriyle konuşup yıkım kararı aldık."
+    ],
+    "partial": [
+      "Önce yerinde inceleme yapıp karot alırım.",
+      "Karot alıp beton dayanımını belirler, sonra performans analizi yaparım."
+    ],
+    "wrong": [
+      "Binaya bakarım, eski görünüyorsa yıkılsın derim.",
+      "Mühendislerle konuşur, bina sahiplerini bilgilendirir, gerekenleri yaparız.",
+      "Bina yıllardır ayakta durduğuna göre depreme dayanıklıdır, analize gerek yok; güçlendirme her zaman yıkıp yapmaktan pahalıdır."
+    ]
+  },
+  "Kritik yol yöntemi (CPM) nedir?": {
+    "good": [
+      "CPM'de projedeki işleri ve hangi işin hangisinden sonra başlayabileceğini bir ağ şeklinde çizeriz. Başlangıçtan bitişe en uzun süren zincir kritik yoldur ve proje süresini belirler. Kritik yoldaki bir iş bir gün gecikirse proje de bir gün gecikir. Kritik olmayan işlerin bolluğu vardır, biraz kaysa da sorun olmaz.",
+      "Activity'leri predecessor ilişkileriyle network diagram'a dökeriz. Forward ve backward pass ile ES, EF, LS, LF hesaplanır. Total float'ı sıfır olan activity'ler critical path'i oluşturur. Schedule'ı bunun üzerinden takip ederiz.",
+      "Ev yaparken temeli atmadan duvar ören olmaz, her işin bir öncesi var. Bunları birbirine bağımlılıklarıyla sıralayınca en uzun zinciri buluyorsun, o kritik yol. O yoldaki bir iş bir gün kayarsa teslim de bir gün kayar. Diğer işlerde biraz esneme payın olur, onlara bolluk diyoruz."
+    ],
+    "partial": [
+      "Kritik yol, projedeki en uzun yoldur.",
+      "İşleri bağımlılıklarıyla ağ olarak çizer, en uzun yolu kritik yol olarak buluruz."
+    ],
+    "wrong": [
+      "CPM'yi hiç kullanmadım.",
+      "Projeyi zamanında bitirmek için kullanılan bir planlama yöntemi, yazılımlarla yapılıyor.",
+      "Kritik yol projedeki en kısa yoldur; kritik yoldaki işlerin bolluğu en fazladır, onlar rahatça kayabilir."
+    ]
+  },
+  "Proje 3 hafta gecikmede ve bütçe aşımı var. Ne yaparsın?": {
+    "good": [
+      "Önce gecikmenin nereden geldiğini, kritik yoldaki hangi işlerin kaydığını analiz ederim. Kritik işlere ek ekip koyar, gerekirse ikinci vardiya açar ya da bazı işleri paralel yürütürüm; her birinin maliyetini hesaplarım. Kazanılmış değer analiziyle bütçenin gidişatını izlerim. İşverene durumu dürüstçe anlatıp gerçekçi bir revize program sunarım.",
+      "Schedule'ı update edip critical path'teki slippage'ı bulurum. Crashing ve fast-tracking seçeneklerini cost-time trade-off ile kıyaslarım. EVM ile CPI ve SPI takip ederim. Client'a recovery plan sunarım.",
+      "Bir AVM projesinde böyle bir dönem yaşadık. Gecikmenin nedenini araştırınca kaba inşaat ekibinin yetersiz olduğunu gördük. Hafta sonları da çalışmaya başladık, bir taşeron daha aldık. Her hafta harcamaları planla karşılaştırdık. Yatırımcıya her cuma kısa bir rapor gönderdik, sürpriz yaşamasın diye."
+    ],
+    "partial": [
+      "Önce gecikmenin nedenini analiz ederim.",
+      "Kritik yolu analiz eder, ek ekip ve vardiyayla işleri hızlandırırım."
+    ],
+    "wrong": [
+      "Ekibe daha hızlı çalışın derim, başka ne yapılır bilmiyorum.",
+      "Durumu toparlamaya çalışırım, herkesle konuşur, elimizden geleni yaparız.",
+      "İşverene hiçbir şey söylemem, durumu gizlerim; gecikmeyi kapatmak için kalite kontrollerini ve testleri atlarız."
+    ]
+  },
+  "Proje bütçesini %20 aşma riski var. Ne yaparsın?": {
+    "good": [
+      "Önce bütçe sapmasını iş kalemi bazında açarım, aşım hangi kalemden geliyor bulurum. Kalan işlerde değer mühendisliği yapıp kaliteyi düşürmeyen alternatif malzeme ve yöntemler ararım. Kapsam artışı varsa sözleşmeye göre değişiklik talebi hazırlarım. İşvereni erkenden ve açıkça bilgilendiririm. Kazanılmış değer yöntemiyle maliyeti haftalık izlerim.",
+      "Cost report'ta variance analysis yaparım, hangi WBS kalemi aşmış görürüm. VE önerileri hazırlarım. Scope change varsa change order ya da claim süreci başlatırım. Client'la erken iletişim kurar, EVM ile CPI takibi yaparım.",
+      "Bir hastane projesinde demir fiyatları bir anda patladı, bütçe kaymaya başladı. Hangi kalemler aşıyor diye tek tek döktük, çoğu çelik ve elektrikti. Mimarla oturup aynı işi gören daha ucuz alternatifler bulduk. Fiyat artışı sözleşmede fiyat farkı maddesine giriyordu, onu talep ettik. İşvereni de baştan bilgilendirdik."
+    ],
+    "partial": [
+      "Önce hangi kalemde sapma olduğunu bulurum.",
+      "Sapmanın kaynağını bulur, alternatif çözümler arar, işvereni bilgilendiririm."
+    ],
+    "wrong": [
+      "Bütçe aşılırsa aşılır, yapacak bir şey yok.",
+      "Masrafları kısmaya çalışırım, herkes dikkatli harcasın derim.",
+      "Bütçeyi tutturmak için şartnamede yazan malzeme yerine işverene haber vermeden daha ucuz malzeme kullanırım."
+    ]
+  },
+  "Zemin etüdü neden yapılır, hangi deneyler kullanılır?": {
+    "good": [
+      "Zemin etüdü, binanın oturacağı zeminin taşıma gücünü, ne kadar oturacağını ve yeraltı suyunu öğrenip doğru temeli seçmek için yapılır. Arazide sondaj kuyuları açılır, SPT gibi deneylerle zeminin sıkılığı ölçülür. Alınan numuneler laboratuvarda elek analizi, kıvam limitleri ve kesme deneylerine tabi tutulur.",
+      "Bearing capacity ve settlement tahmini için yapılır. Borehole açılır, SPT N değerleri alınır, CPT de yapılabilir. Undisturbed sample'larla lab'da triaxial ve konsolidasyon testleri yapılır.",
+      "Bina nereye oturacak bilmeden temel tasarlayamazsın. Arsaya sondaj makinesini getirip delik açıyoruz, belli derinliklerde tokmak vurup kaç darbede ilerlediğini sayıyoruz, bu SPT. Çıkan topraktan torbalara örnek alıp laboratuvara yolluyoruz."
+    ],
+    "partial": [
+      "Zemin etüdü zeminin taşıma gücünü belirlemek için yapılır.",
+      "Sondaj yapılır ve SPT deneyi uygulanır."
+    ],
+    "wrong": [
+      "Zemin etüdü belediye istediği için yapılır, deneyleri bilmiyorum.",
+      "Binanın sağlam olması için yapılan bir çalışma, uzman firmalar yapıyor.",
+      "Zemin etüdü sadece çok katlı binalarda gerekir; yüzeyden biraz toprak alıp gözle kontrol etmek yeterli."
+    ]
+  },
+  "Zayıf ve yeraltı suyu yüksek bir zeminde temel tipi nasıl seçilir?": {
+    "good": [
+      "Üst tabakalar zayıfsa yükü derindeki sağlam tabakaya aktaran kazıklı temel düşünürüm. Yükler çok büyük değilse bütün yapıyı tek bir plak üzerinde taşıyan radye temel yükü geniş alana yayar. Bunun yerine ya da yanında jet grout gibi bir zemin iyileştirme yöntemi uygulanabilir. Yeraltı suyu için kazıda drenaj ve temelde su yalıtımı planlarım.",
+      "Bearing capacity yetersizse deep foundation, yani bored pile tercih ederim. Mat foundation da settlement'ı dengeler. Ground improvement için jet grouting veya stone column. Dewatering ve waterproofing şart.",
+      "Sahil kenarındaki bir projede bunu yaşadık, iki metre kazınca su çıkıyordu. Zemine 25 metrelik fore kazıklar çaktık, üstüne de kalın bir radye döktük. Kazı süresince pompalarla suyu çektik."
+    ],
+    "partial": [
+      "Kazıklı temel kullanırım, yükü sağlam tabakaya aktarırım.",
+      "Radye temel yaparım, yeraltı suyu için de drenaj koyarım."
+    ],
+    "wrong": [
+      "Temel tipini statikçi seçer, ben bilmem.",
+      "İyi bir temel yapmak lazım, sağlam malzeme kullanırız.",
+      "Zayıf zeminde yüzeysel tekil temel en iyisidir, yeraltı suyu temele zarar vermez, yalıtıma gerek yoktur."
+    ]
+  },
+  "Derin bir kazıda komşu binalara zarar verme riskini nasıl yönetirsin?": {
+    "good": [
+      "Önce sondajlarla iyi bir zemin etüdü yaptırıp zemin parametrelerini netleştiririm. Kazı derinliğine göre fore kazık ve ankrajlı bir iksa sistemi tasarlarım. Yeraltı suyu varsa drenaj ve su kesme perdesi planlarım. Kazıdan önce komşu binaların çatlaklarını fotoğraflarla tespit ettiririm. Kazı boyunca inklinometre ve deplasman ölçümleriyle iksayı izlerim, sınır aşılırsa işi durdururum.",
+      "Geotechnical investigation ile parametreleri belirlerim. Secant pile wall ve ground anchor ile shoring tasarımı. Dewatering planı. Pre-construction survey ile komşu binaların durumunu kayda alırım. Inclinometer ve settlement point'lerle monitoring.",
+      "İstanbul'da dar bir sokakta 4 bodrumlu bir kazı yaptık, iki yanında eski binalar vardı. Kazıdan önce yapılan sondajlar zeminin kumlu olduğunu gösterdi. Başlamadan önce o binaları tek tek gezip var olan çatlakları noterden tespit ettirdik. Çevreye kazıklar çakıp her kademede ankraj attık. Her gün binalardaki ölçüm noktalarını okuduk, bir milim fazla oynasa işi durdururduk."
+    ],
+    "partial": [
+      "Kazı çevresine ankrajlı bir iksa sistemi yaparım.",
+      "Zemin etüdü yapar, iksa tasarlar, inklinometreyle ölçüm alırım."
+    ],
+    "wrong": [
+      "Dikkatli kazarız, başka bir şey gelmiyor aklıma.",
+      "Komşularla iyi geçinmeye çalışırım, sorun olursa konuşuruz.",
+      "Kazıyı hızlıca tek seferde tam derinliğe indiririm, iksaya gerek yok çünkü zemin kendini taşır."
+    ]
+  }
+}
