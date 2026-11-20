@@ -1,0 +1,197 @@
+{
+  "REST API nedir? GET ve POST arasındaki farkı açıklar mısın?": {
+    "good": [
+      "REST, her şeyi kaynak olarak görüp URL'lerle adresleyen, HTTP üzerinden çalışan durumsuz bir yaklaşım. GET sadece veriyi çeker, sunucuda bir şey değiştirmez, kaç kez çağırırsan çağır sonuç aynı kalır. POST ise sunucuda yeni bir kayıt yaratır; iki kez gönderirsen iki kayıt oluşabilir.",
+      "Endpoint'ler üzerinden JSON alıp verdiğimiz bir API stili diyebilirim. Sunucu istemcinin önceki isteklerini hatırlamaz, her istek kendi başına yeterli bilgiyi taşır. GET ile listeyi getiririz, yan etkisi yoktur ve güvenle tekrarlanabilir. POST ile form verisini gönderip yeni bir sipariş oluştururuz.",
+      "RESTful API'de resource'lar URI ile tanımlanır ve HTTP verb'leriyle işlenir; server state tutmaz. GET read işlemidir, safe ve idempotent'tir. POST create için kullanılır, idempotent değildir."
+    ],
+    "partial": [
+      "GET veriyi okumak, POST ise veri göndermek için kullanılır. Mesela kullanıcı listesini GET ile alırız.",
+      "REST, HTTP üzerinden kaynaklara erişmeyi sağlayan bir mimari. GET okur, POST yazar.",
+      "GET okur POST yazar, ikisi de istek gönderir.",
+      "POST veri gönderir GET veri okur."
+    ],
+    "wrong": [
+      "REST bir veritabanı türüdür, verileri tablolarda saklar. Pek detayını bilmiyorum.",
+      "İkisi de aynı şey aslında, sadece isimleri farklı.",
+      "GET veri oluşturur, POST ise veriyi okur; ikisi de idempotenttir.",
+      "POST ile veriyi okuruz, GET ile veri oluştururuz."
+    ]
+  },
+  "Bir veritabanı sorgusu yavaş çalışıyor. Nasıl teşhis edip hızlandırırsın?": {
+    "good": [
+      "İlk iş sorgunun planına bakarım, EXPLAIN ANALYZE ile nerede vakit kaybettiğini görürüm. Tam tablo taraması varsa WHERE'deki alanlara index koyarım. Döngü içinde tek tek sorgu atılıyorsa bunları tek bir sorguda birleştiririm. Sık okunan sonuçları Redis'te tutarım.",
+      "Önce slow query log'a bakıp hangi sorgunun yavaş olduğunu bulurum, sonra execution plan'i incelerim. Eksik indeksleri eklerim, SELECT * yerine sadece gereken kolonları çekerim, N+1 problemi varsa eager loading kullanırım. Gerekirse sonucu cache'lerim ve iyileşmeyi tekrar ölçerim.",
+      "Sorguyu profile edip darboğazı bulurum; genelde eksik bir indeks çıkar. ORM'in arka planda yüzlerce küçük sorgu attığı durumlar olur, onları join'le tek sorguya indiririm. Değişmeyen veriler için bir önbellek katmanı eklerim."
+    ],
+    "partial": [
+      "Tabloya indeks eklerim, genelde yavaşlık bundan olur.",
+      "Sorgunun planına EXPLAIN ile bakar, eksik indeks varsa eklerim."
+    ],
+    "wrong": [
+      "Sunucuyu yeniden başlatırım, genelde düzelir.",
+      "Her kolona indeks eklerim, böylece bütün sorgular hızlanır.",
+      "Veritabanını değiştirip NoSQL'e geçerim çünkü SQL yavaştır."
+    ]
+  },
+  "Monolit ile mikroservis mimarisi arasında nasıl seçim yaparsın?": {
+    "good": [
+      "Takım küçükse ve ürün yeni başlıyorsa modüler bir monolit kurarım; tek deploy, kolay debug. Ekip büyüyüp her ekip kendi alanını bağımsız yayınlamak istediğinde ilgili modülleri adım adım servislere ayırırım. Mikroservisin ağ gecikmesi, izleme ve dağıtık hata ayıklama gibi bir operasyon yükü olduğunu unutmam.",
+      "Organizasyon yapısına bakarım: tek bir küçük takım için mikroservis gereksiz karmaşıklık getirir. Önce monolitle başlar, sınırları netleşen ve ayrı ölçeklenmesi gereken parçaları zamanla ayırırım. Servislerin ayrı ayrı deploy edilebilmesi büyük avantaj ama dağıtık sistemin bakım maliyeti yüksek.",
+      "Team size ve domain netliğine göre karar veririm. Startup aşamasında monolith daha hızlı; ileride independent deployment ve scaling ihtiyacı doğarsa strangler pattern ile yavaş yavaş servislere bölerim. Ama observability, network ve DevOps maliyetini hesaba katarım."
+    ],
+    "partial": [
+      "Mikroservislerde her servis bağımsız deploy edilir, monolitte her şey tek parçadır.",
+      "Küçük ekipte monolit, büyük ekipte mikroservis seçerim çünkü bağımsız çalışabilirler."
+    ],
+    "wrong": [
+      "Mikroservis her zaman daha iyidir, modern olan budur.",
+      "Monolit eski bir teknoloji, artık kimse kullanmıyor.",
+      "Hangisi daha ucuzsa onu seçerim."
+    ]
+  },
+  "Bir API’ye rate limiting (istek sınırlama) nasıl eklersin?": {
+    "good": [
+      "Her kullanıcıya ya da API anahtarına saniyede belli sayıda istek hakkı veririm; token bucket mantığıyla kova dolar, istekler token harcar. Birden fazla sunucu olduğu için sayaçları Redis'te tutarım. Limit aşılırsa 429 Too Many Requests ve ne zaman tekrar deneyeceğini söyleyen Retry-After başlığı dönerim.",
+      "Kayan zaman penceresi ile son bir dakikadaki istekleri sayarım. Sayaç tüm instance'ların göreceği ortak bir yerde, örneğin Redis'te durur. IP veya kullanıcı bazında limit koyar, aşanlara 429 döndürürüm.",
+      "API gateway seviyesinde, istemci başına leaky bucket ya da fixed window algoritmasıyla sınırlarım. Durumu dağıtık bir cache'te tutarım ki her node aynı sayıyı görsün. Sınırı aşan istemciye HTTP 429 dönerim."
+    ],
+    "partial": [
+      "Her IP'ye dakikada 100 istek hakkı veririm, fazlasını reddederim.",
+      "Token bucket algoritması kullanırım ve limit aşılınca 429 dönerim."
+    ],
+    "wrong": [
+      "Limit aşılınca 500 hatası dönerim ki istemci anlasın.",
+      "Sunucuya daha çok RAM eklerim, böylece istek sınırına gerek kalmaz.",
+      "Kullanıcıların çok istek atmasını engellemek için uygulamayı yavaşlatırım."
+    ]
+  },
+  "Günde 10 milyon istek alan bir URL kısaltma servisini nasıl tasarlarsın?": {
+    "good": [
+      "Önce okuma/yazma oranını netleştiririm, kısaltmalar çok okunur az yazılır. Kısa kodu artan bir sayacı base62'ye çevirerek üretirim. Kod-URL eşlemesini key-value bir depoda tutarım; popüler linkler Redis önbelleğinde. Yük dengeleyici arkasında durumsuz servisler ve okuma replikalarıyla yatayda ölçeklerim.",
+      "10 milyon istek günde yaklaşık saniyede 115 istek eder, çoğu yönlendirme yani okuma. Linke benzersiz bir ID verip base62 ile 7 karakterlik koda çeviririm. DynamoDB gibi bir NoSQL tabloda saklarım, sıcak linkleri cache'lerim. Trafik artarsa load balancer ve sharding ile büyürüm.",
+      "Gereksinim: kısa link üret, yönlendir, istatistik tut. Hash fonksiyonunun ilk karakterlerini kod yaparım, çakışmada yeniden denerim. Postgres'te bir eşleme tablosu, önünde CDN ve önbellek. Uygulama sunucularını yatay ölçekleyip veritabanını replikalarla rahatlatırım."
+    ],
+    "partial": [
+      "Uzun URL'yi hash'leyip kısa bir kod üretirim ve veritabanına kaydederim.",
+      "Redis'te kısa kod ile uzun URL'yi eşlerim, hızlı olur."
+    ],
+    "wrong": [
+      "Tek sunucu yeterli, 10 milyon çok büyük bir sayı değil.",
+      "Linkleri bir Excel dosyasında tutarım.",
+      "Bilmiyorum ama hazır bir servis kullanırım."
+    ]
+  },
+  "Replikasyon ile sharding arasındaki fark nedir?": {
+    "good": [
+      "Replikasyonda aynı veri birden fazla sunucuda kopyalanır; okumaları dağıtır ve bir sunucu düşerse diğeri devam eder. Ama ana sunucudan kopyalara gecikmeli aktarıldığı için kısa süre eski veri okunabilir. Sharding'de ise veri müşteri ID'si gibi bir anahtara göre farklı sunuculara bölünür; böylece yazma yükü de dağılır.",
+      "Replication, aynı datanın birden çok node'da tutulması; yüksek erişilebilirlik ve read scaling sağlar. Sharding, datayı partition key'e göre yatay bölmek; write scaling sağlar. Replication'da replication lag yüzünden eventual consistency sorunları olabilir.",
+      "Biri çoğaltma, diğeri parçalama. Çoğaltmada her sunucuda tüm veri var; okuma ölçeklenir ama senkronizasyon gecikmesi olur. Parçalamada her sunucu verinin bir dilimini tutar, hangi dilimin nerede olduğunu bir anahtar belirler."
+    ],
+    "partial": [
+      "Replikasyon verinin kopyasını tutar, sharding ise veriyi parçalara böler.",
+      "Sharding'de veri bir anahtara göre sunuculara dağıtılır."
+    ],
+    "wrong": [
+      "İkisi de aynı şey, sadece farklı veritabanları farklı isim veriyor.",
+      "Replikasyon veriyi parçalara böler, sharding ise yedek alır.",
+      "Sharding veritabanını şifrelemek demek."
+    ]
+  },
+  "Tarayıcıya bir URL yazdığında sayfa yüklenene kadar neler olur?": {
+    "good": [
+      "Önce alan adı DNS ile IP adresine çözülür. Sonra TCP bağlantısı, HTTPS ise TLS el sıkışması yapılır ve HTTP isteği gider. Gelen HTML ayrıştırılıp DOM, CSS'ten CSSOM oluşur; bunlar birleşip render ağacı çıkar, layout ve paint ile ekrana çizilir.",
+      "Tarayıcı önce önbelleğe, sonra DNS sunucusuna sorup IP'yi bulur. Sunucuyla bağlantı kurup sayfayı ister. HTML'i okuyup DOM ağacını kurar, stilleri uygular, öğelerin yerini hesaplar ve pikselleri boyar.",
+      "DNS lookup, TCP handshake, TLS, HTTP GET request; response gelince HTML parsing, DOM ve CSSOM, render tree, layout, paint ve composite."
+    ],
+    "partial": [
+      "DNS ile IP bulunur, sonra sunucuya istek atılır ve sayfa gelir.",
+      "HTML indirilir ve tarayıcı onu ekrana çizer."
+    ],
+    "wrong": [
+      "Bilgisayar internete bağlanır ve sayfa açılır.",
+      "Sayfa Google'dan indirilir.",
+      "DNS sayfanın HTML'ini indirir ve gösterir."
+    ]
+  },
+  "JavaScript’te let, const ve var arasındaki farklar nelerdir?": {
+    "good": [
+      "var fonksiyon kapsamlıdır, let ve const ise blok kapsamlıdır. var hoisting ile tanımlanmadan önce undefined olarak erişilebilir; let/const ise temporal dead zone'dadır. let yeniden atanabilir, const atanamaz. Ama const bir nesneyi tutuyorsa nesnenin içi değiştirilebilir, sadece referans sabittir.",
+      "var'ın scope'u fonksiyondur ve yukarı taşınır, bu yüzden if bloğundan sızar. let ve const süslü parantez içinde kalır. const'a ikinci kez değer veremezsin ama içindeki dizi ya da object'in elemanlarını değiştirebilirsin.",
+      "Kısaca: var function scoped ve hoisted, let block scoped ve reassign edilebilir, const block scoped ve reassign edilemez ama mutable objelerin property'leri değişebilir."
+    ],
+    "partial": [
+      "let ve const blok kapsamlıdır, var ise fonksiyon kapsamlıdır.",
+      "const ile tanımlanan değişken yeniden atanamaz, let yeniden atanabilir; var ise hoisting'e uğrar."
+    ],
+    "wrong": [
+      "let değişebilir, const değişmez, var eski yöntemdir.",
+      "const ile tanımlanan nesnenin hiçbir özelliği değiştirilemez, tamamen sabittir.",
+      "Üçü de aynı, sadece yazım farkı var."
+    ]
+  },
+  "Bir React uygulaması yavaşladı. Performansı nasıl iyileştirirsin?": {
+    "good": [
+      "Önce React DevTools Profiler ile hangi bileşenin gereksiz yere yeniden render olduğunu ölçerim. Pahalı hesaplamalar için useMemo, prop olarak geçen fonksiyonlar için useCallback ve React.memo kullanırım. Büyük sayfaları React.lazy ile parçalara ayırırım, uzun listelerde react-window gibi sanallaştırma kullanırım.",
+      "Profiler'da commit sürelerine bakarım. Gereksiz re-render'ları memoization ile keserim, state'i ihtiyacı olan bileşene indiririm. Bundle'ı route bazında bölerim, binlerce satırlık tabloyu virtualization ile sadece görünen kısmı çizecek şekilde yaparım.",
+      "Chrome performans sekmesiyle darboğazı bulurum. Context değiştiğinde tüm ağacın yeniden çizildiğini görürsem context'i bölerim. Dinamik import ile ilk yüklemeyi küçültürüm. Sonsuz kaydırmalı listede sadece ekrandaki öğeleri render ederim."
+    ],
+    "partial": [
+      "useMemo ve useCallback ile gereksiz render'ları engellerim.",
+      "Uzun listeleri sanallaştırırım ve React.lazy ile kodu bölerim."
+    ],
+    "wrong": [
+      "Her bileşeni React.memo ile sararım, her şeyi memo'larsam hız artar.",
+      "React yavaş, Angular'a geçeriz.",
+      "Daha güçlü bir bilgisayar alırım."
+    ]
+  },
+  "Web erişilebilirliği (a11y) için nelere dikkat edersin?": {
+    "good": [
+      "Semantik etiketler kullanırım: tıklanabilir şeyler için gerçek button, başlıklar için h1-h6. Görsellere anlamlı alt metin yazarım. Tüm etkileşimlerin klavyeyle, Tab ile yapılabildiğini ve focus'un görünür olduğunu kontrol ederim. Metin-arkaplan kontrastını WCAG'e göre ayarlarım, gerektiğinde ARIA rolleri eklerim.",
+      "Ekran okuyucu kullanan biri için görsellerin açıklaması, form alanlarının label'ı olmalı. Fareyi hiç kullanmadan sayfada gezilebilmeli. Renk körleri için sadece renge bağlı bilgi vermem, yeterli kontrast sağlarım. Native HTML elementlerini tercih ederim, yetmediğinde aria-label kullanırım.",
+      "WCAG standartlarına uyarım: doğru HTML yapısı, img'lerde alt attribute, tab sırası ve görünür odak, yeterli renk kontrastı, ARIA'yı sadece gerektiğinde."
+    ],
+    "partial": [
+      "Görsellere alt metin eklerim ve renk kontrastına dikkat ederim.",
+      "ARIA etiketleri eklerim."
+    ],
+    "wrong": [
+      "Siteyi mobil uyumlu yaparım, erişilebilirlik bu demek.",
+      "Her elemana ARIA eklerim, ne kadar çok o kadar iyi.",
+      "Yazıları büyük yaparım."
+    ]
+  },
+  "Core Web Vitals metrikleri nelerdir ve nasıl iyileştirirsin?": {
+    "good": [
+      "LCP en büyük içeriğin ne kadar sürede çizildiğini, INP kullanıcı etkileşimlerine ne kadar hızlı tepki verildiğini, CLS ise sayfadaki beklenmedik kaymaları ölçer. LCP için görselleri sıkıştırıp CDN'den sunarım, INP için ana thread'i bloklayan uzun JS işlerini bölerim, CLS için görsellere boyut veririm.",
+      "Largest Contentful Paint, Interaction to Next Paint ve Cumulative Layout Shift. Hero resmini önceden yükler, fontları optimize eder, ağır script'leri erteleyip ekranda zıplama yapan reklam alanlarına sabit yer ayırırım.",
+      "Google'ın sayfa deneyimi metrikleri: yüklenme hızı (LCP), tepkisellik (INP) ve görsel kararlılık (CLS). Önbellekleme, lazy loading ve kritik CSS ile iyileştiririm."
+    ],
+    "partial": [
+      "LCP sayfanın en büyük elemanının yüklenme süresidir, görselleri küçülterek iyileştiririm.",
+      "CLS sayfadaki kaymaları ölçer."
+    ],
+    "wrong": [
+      "CLS sayfanın yükleme hızını ölçer.",
+      "SEO puanı ve sayfa sayısı gibi metrikler.",
+      "Bilmiyorum, Lighthouse'a bakarım."
+    ]
+  },
+  "Büyük bir frontend projesinde state yönetimini nasıl kurgularsın?": {
+    "good": [
+      "State'i türüne göre ayırırım. API'den gelen veriyi React Query ile yönetirim; önbellek ve yeniden çekme onda. Form gibi bileşene özel durumu yerel useState'te tutarım. Tema, oturum gibi gerçekten paylaşılan az sayıda şey için Zustand veya Context kullanırım; gerekmedikçe global store'a bir şey koymam.",
+      "Sunucudan gelen veri ile UI durumu ayrı şeylerdir; ilki için SWR, ikincisi için mümkün olduğunca bileşenin kendi state'i. Uygulama genelinde lazım olanlar için Redux Toolkit kurarım ama store'u şişirmem.",
+      "Server state ve client state ayrımı yaparım. Remote data için TanStack Query, ekran içi state için local state, ortak state için hafif bir global store. Prop drilling çok derinleşmedikçe global'e taşımam."
+    ],
+    "partial": [
+      "Global state için Redux, bileşen içi state için useState kullanırım.",
+      "API verisini React Query ile çekerim."
+    ],
+    "wrong": [
+      "Her şeyi Redux'a koyarım, böylece her yerden erişilir.",
+      "State yönetimine gerek yok, props yeterli.",
+      "Değişkenleri window objesine koyarım."
+    ]
+  }
+}

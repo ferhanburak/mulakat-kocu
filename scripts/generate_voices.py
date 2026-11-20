@@ -138,7 +138,7 @@ async def main() -> None:
     for i in interviewers:
         texts = dict(questions)
         for lang in ("tr", "en"):
-            for line in [*i["intro"][lang], *i["ack"][lang], *i["ackGood"][lang], *i["ackWeak"][lang], i["outro"][lang], i["probe"][lang], i["probeExpand"][lang], i["probeResult"][lang]]:
+            for line in [*i["intro"][lang], *i["ack"][lang], *i["ackGood"][lang], *i["ackWeak"][lang], i["outro"][lang], i["probe"][lang], i["probeExpand"][lang], i["probeResult"][lang], i["probeDoubt"][lang]]:
                 texts[line] = lang
         for text, lang in texts.items():
             voice = i["voice"][lang]

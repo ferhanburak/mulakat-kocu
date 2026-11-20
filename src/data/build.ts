@@ -7,6 +7,11 @@ export type Question = {
   text: string;
   /** Each concept is hit when any of its stems appears in the answer. */
   concepts: { label: string; stems: string[] }[];
+  /**
+   * Common wrong claims. Each pattern is a phrase whose parts (split by "...") must appear
+   * in order inside one clause, e.g. "get ... oluşturur" for "GET creates data".
+   */
+  traps?: { label: string; patterns: string[] }[];
   ideal: string;
 };
 
@@ -26,9 +31,10 @@ export type Profession = {
 };
 
 /**
- * Compact question builder. Concepts are written as "Label: stem1, stem2".
+ * Compact question builder. Concepts are written as "Label: stem1, stem2"; traps (wrong
+ * claims) as "Label: pattern one; pattern two", where "..." in a pattern is a short gap.
  */
-export const q = (kind: QuestionKind, text: string, concepts: string[], ideal: string): Question => ({
+export const q = (kind: QuestionKind, text: string, concepts: string[], ideal: string, traps?: string[]): Question => ({
   id: '',
   kind,
   text,
@@ -37,6 +43,14 @@ export const q = (kind: QuestionKind, text: string, concepts: string[], ideal: s
     const [label, stems] = c.split(':');
     return { label: label.trim(), stems: stems.split(',').map((s) => s.trim()).filter(Boolean) };
   }),
+  ...(traps?.length
+    ? {
+        traps: traps.map((t) => {
+          const at = t.indexOf(':');
+          return { label: t.slice(0, at).trim(), patterns: t.slice(at + 1).split(';').map((s) => s.trim()).filter(Boolean) };
+        }),
+      }
+    : {}),
 });
 
 /** Behavioural questions shared by every track; one is appended to each unit. */

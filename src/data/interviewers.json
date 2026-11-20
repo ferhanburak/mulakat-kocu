@@ -87,6 +87,10 @@
       "tr": "Peki sonunda ne oldu? Bu çabanın sonucu neydi?",
       "en": "And how did it end? What came out of your effort?"
     },
+    "probeDoubt": {
+      "tr": "Bir noktada emin misin? İstersen bir daha düşünüp anlatabilirsin.",
+      "en": "Are you sure about one of those points? Feel free to think it over and explain again."
+    },
     "probeTopic": {
       "tr": "Peki şu konuya da değinir misin: {x}?",
       "en": "Could you also touch on this: {x}?"
@@ -198,6 +202,10 @@
       "tr": "Sonuç neydi? Bunu neyle ölçtün?",
       "en": "What was the outcome? How did you measure it?"
     },
+    "probeDoubt": {
+      "tr": "Burada teknik olarak hatalı bir şey var. Bir daha düşün, nasıl çalışıyor?",
+      "en": "Something there isn't technically right. Think again: how does it actually work?"
+    },
     "probeTopic": {
       "tr": "Peki şu taraf ne olacak: {x}? Onu nasıl ele alırsın?",
       "en": "And what about this: {x}? How would you handle it?"
@@ -308,6 +316,10 @@
     "probeResult": {
       "tr": "Sonuç ne? Rakam ver.",
       "en": "What was the result? Give me a number."
+    },
+    "probeDoubt": {
+      "tr": "Bu yanlış. Düzelt.",
+      "en": "That's wrong. Fix it."
     },
     "probeTopic": {
       "tr": "Şu eksik: {x}. Kısaca söyle.",

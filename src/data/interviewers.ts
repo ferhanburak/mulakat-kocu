@@ -35,6 +35,8 @@ export type Interviewer = {
   probeExpand: Bi;
   /** Follow-up when a behavioural answer never says how it turned out. */
   probeResult: Bi;
+  /** Follow-up when the answer makes a known wrong claim: push back without giving it away. */
+  probeDoubt: Bi;
   /** Follow-up naming a key point the answer missed; `{x}` is the point. */
   probeTopic: Bi;
   /** Added after a strong answer, naming one point it covered; `{x}` is the point. */
@@ -62,6 +64,7 @@ export const interviewerLines = (i: Interviewer, lang: Lang) => [
   i.probe[lang],
   i.probeExpand[lang],
   i.probeResult[lang],
+  i.probeDoubt[lang],
 ];
 
 export const verdictFor = (i: Interviewer, overall: number) => i.verdict[overall >= 75 ? 'high' : overall >= 60 ? 'mid' : 'low'];

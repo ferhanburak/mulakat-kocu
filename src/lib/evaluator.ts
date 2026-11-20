@@ -114,6 +114,19 @@ const hasAny = (text: string, stems: (string | RegExp)[], locale: string) => {
       : s.test(text),
   );
 };
+/**
+ * Whether a wrong-claim pattern appears: its parts in order, each starting a word, with short
+ * gaps that stay inside one clause (no . ! ? ; or comma in between).
+ */
+const hasTrap = (text: string, patterns: string[], locale: string) => {
+  const folded = fold(text, locale);
+  return patterns.some((p) => {
+    const parts = fold(p.toLocaleLowerCase(locale), locale).split('...').map((s) => s.trim()).filter(Boolean);
+    const body = parts.map(escapeRe).join('[^.!?;,]{0,30}?');
+    return new RegExp(`(^|[^a-z0-9çğıöşüâîû])${body}`).test(folded);
+  });
+};
+
 /** Whether `text` mentions a concept, matched the same way answers are scored. */
 export function mentions(text: string, stems: string[], lang: AnswerLang): boolean {
   const locale = RULES[lang].locale;
@@ -148,7 +161,10 @@ function scoreAnswer(q: Question, raw: string, lang: AnswerLang) {
 
   const covered = q.concepts.filter((cn) => hasAny(text, cn.stems, R.locale)).map((cn) => cn.label);
   const missing = q.concepts.filter((cn) => !hasAny(text, cn.stems, R.locale)).map((cn) => cn.label);
-  const icerik = clamp((covered.length / Math.max(1, q.concepts.length)) * 100);
+  const mistakes = (q.traps ?? []).filter((tr) => hasTrap(text, tr.patterns, R.locale)).map((tr) => tr.label);
+  // Each wrong claim costs as much as missing about half of the key points.
+  const content = Math.max(0, covered.length / Math.max(1, q.concepts.length) - mistakes.length * 0.5);
+  const icerik = clamp(content * 100);
 
   let yapi: number;
   if (q.kind === 'davranissal') {
@@ -180,7 +196,9 @@ function scoreAnswer(q: Question, raw: string, lang: AnswerLang) {
 
   let tip: string;
   const gaps = missing.slice(0, 2).join(', ');
-  if (wc < 25) tip = tt('Cevap çok kısa. Düşünceni 3–5 cümlede, gerekçesiyle anlat.', 'The answer is too short. Explain your thinking in 3–5 sentences, with your reasoning.');
+  if (mistakes.length > 0)
+    tip = tt(`Burada bir yanlış var: ${mistakes[0]}. Bunu düzeltmek cevabı çok güçlendirir.`, `There is a mistake here: ${mistakes[0]}. Fixing it would make the answer much stronger.`);
+  else if (wc < 25) tip = tt('Cevap çok kısa. Düşünceni 3–5 cümlede, gerekçesiyle anlat.', 'The answer is too short. Explain your thinking in 3–5 sentences, with your reasoning.');
   else if (missing.length > 0) tip = tt(`Şunlara değinseydin daha güçlü olurdu: ${gaps}.`, `It would be stronger if you had covered: ${gaps}.`);
   else if (q.kind === 'davranissal' && yapi < 75)
     tip = tt('Durum → Görev → Aksiyon → Sonuç sırasını belirgin kur, sonucu rakamla bitir.', 'Make the Situation → Task → Action → Result order clear, and end with a number.');
@@ -190,7 +208,7 @@ function scoreAnswer(q: Question, raw: string, lang: AnswerLang) {
   else tip = tt('Güçlü bir cevap. Daha kısa ve vurucu bir açılış cümlesiyle bir üst seviyeye çıkar.', 'A strong answer. A shorter, punchier opening sentence would take it to the next level.');
 
   const result = hasAny(text, R.star.sonuc, R.locale);
-  return { score, covered, missing, tip, cats: { icerik, yapi, netlik, somutluk }, fillerCount, wc, numbers, example, result };
+  return { score, covered, missing, mistakes, content, tip, cats: { icerik, yapi, netlik, somutluk }, fillerCount, wc, numbers, example, result };
 }
 
 /** Quick read of one answer (same rules as the report), for the interviewer's live reactions. */
@@ -200,6 +218,10 @@ export function answerSignals(q: Question, answer: string, lang: AnswerLang) {
     score: r.score,
     covered: r.covered,
     missing: r.missing,
+    /** Wrong claims the answer makes (see Question.traps). */
+    mistakes: r.mistakes,
+    /** Share of key points covered, 0..1, minus a penalty for each wrong claim. */
+    content: r.content,
     words: r.wc,
     /** Gives an example or a number. */
     concrete: r.example || r.numbers > 0,
