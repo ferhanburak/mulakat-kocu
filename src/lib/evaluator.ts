@@ -96,10 +96,11 @@ const startsWord = (text: string, stem: string) =>
   new RegExp(`(^|[^a-z0-9çğıöşüâîû])${escapeRe(stem)}`).test(text);
 /**
  * Turkish softens a final p/ç/t/k before a vowel suffix (önbellek → önbelleğe, kitap → kitabı),
- * so for longer Turkish stems the last letter is allowed to change.
+ * so for longer Turkish stems the last letter is allowed to change. English drops a final e
+ * before -ing/-ed (cache → caching, measure → measuring), so it may be left out there.
  */
 const variants = (stem: string, locale: string) =>
-  locale === 'tr-TR' && stem.length >= 5 && /[pçtk]$/.test(stem) && !stem.includes(' ') ? [stem, stem.slice(0, -1)] : [stem];
+  stem.length >= 5 && !stem.includes(' ') && (locale === 'tr-TR' ? /[pçtk]$/ : /e$/).test(stem) ? [stem, stem.slice(0, -1)] : [stem];
 /**
  * Turkish lower-cases a capital I to dotless ı, so acronyms written in capitals (KPI, API,
  * CI) would never match their stems. Dotted and dotless i are treated the same for matching.
@@ -189,6 +190,12 @@ function scoreAnswer(q: Question, raw: string, lang: AnswerLang) {
   else tip = tt('Güçlü bir cevap. Daha kısa ve vurucu bir açılış cümlesiyle bir üst seviyeye çıkar.', 'A strong answer. A shorter, punchier opening sentence would take it to the next level.');
 
   return { score, covered, missing, tip, cats: { icerik, yapi, netlik, somutluk }, fillerCount, wc };
+}
+
+/** Quick read of one answer (same rules as the report), for the interviewer's live reactions. */
+export function answerSignals(q: Question, answer: string, lang: AnswerLang) {
+  const r = scoreAnswer(q, answer, lang);
+  return { score: r.score, covered: r.covered, missing: r.missing, words: r.wc };
 }
 
 export async function evaluateSession(

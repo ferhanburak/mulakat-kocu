@@ -47,6 +47,30 @@
         "I see, thank you."
       ]
     },
+    "ackGood": {
+      "tr": [
+        "Harika bir cevap, çok net anlattın.",
+        "Çok güzel, tam da duymak istediğim şey.",
+        "Bunu çok iyi açıkladın, teşekkürler."
+      ],
+      "en": [
+        "Great answer, you explained that really clearly.",
+        "Lovely, that is exactly what I was hoping to hear.",
+        "You explained that really well, thank you."
+      ]
+    },
+    "ackWeak": {
+      "tr": [
+        "Teşekkürler. Bir sonraki soruda biraz daha detay verebilirsin.",
+        "Anladım, sorun değil. Devam edelim.",
+        "Tamam, acele etme. Bir sonrakine geçelim."
+      ],
+      "en": [
+        "Thank you. Feel free to give a bit more detail on the next one.",
+        "I see, that's okay. Let's keep going.",
+        "Okay, no rush. Let's move on to the next one."
+      ]
+    },
     "outro": {
       "tr": "Hepsi bu kadar, vakit ayırdığın için çok teşekkürler! Şimdi cevaplarına birlikte bakalım.",
       "en": "That's all, thank you so much for your time! Now let's look at your answers together."
@@ -54,6 +78,14 @@
     "probe": {
       "tr": "Biraz daha açar mısın? Somut bir örnek verebilir misin?",
       "en": "Could you expand a little? Can you give me a concrete example?"
+    },
+    "probeTopic": {
+      "tr": "Peki şu konuya da değinir misin: {x}?",
+      "en": "Could you also touch on this: {x}?"
+    },
+    "praise": {
+      "tr": "Özellikle şu kısım çok iyiydi: {x}.",
+      "en": "I especially liked this part: {x}."
     },
     "verdict": {
       "high": {
@@ -118,6 +150,30 @@
         "Alright, I follow your reasoning."
       ]
     },
+    "ackGood": {
+      "tr": [
+        "Teknik olarak sağlam bir cevap.",
+        "Doğru noktalara değindin.",
+        "İyi, gerekçelerin yerinde."
+      ],
+      "en": [
+        "Technically, that is a solid answer.",
+        "You hit the right points.",
+        "Good, your reasoning holds up."
+      ]
+    },
+    "ackWeak": {
+      "tr": [
+        "Bu biraz yüzeysel kaldı. Devam edelim.",
+        "Eksikler var ama şimdilik geçelim.",
+        "Bunu daha derin bekliyordum. Sıradaki soru."
+      ],
+      "en": [
+        "That stayed a bit shallow. Let's continue.",
+        "There are gaps, but let's move on for now.",
+        "I expected more depth there. Next question."
+      ]
+    },
     "outro": {
       "tr": "Teşekkürler, sorularım bu kadar. Değerlendirmeyi birazdan göreceksin.",
       "en": "Thanks, that's all my questions. You'll see the evaluation shortly."
@@ -125,6 +181,14 @@
     "probe": {
       "tr": "Peki neden bu yolu seçtin? Gerekçeni biraz açar mısın?",
       "en": "And why did you choose that approach? Can you explain your reasoning?"
+    },
+    "probeTopic": {
+      "tr": "Peki şu taraf ne olacak: {x}? Onu nasıl ele alırsın?",
+      "en": "And what about this: {x}? How would you handle it?"
+    },
+    "praise": {
+      "tr": "Şunu belirtmen önemliydi: {x}.",
+      "en": "It was important that you mentioned this: {x}."
     },
     "verdict": {
       "high": {
@@ -189,6 +253,30 @@
         "Okay. Next question."
       ]
     },
+    "ackGood": {
+      "tr": [
+        "İyi. Net ve yerinde.",
+        "Tamam, bu ikna edici.",
+        "Güzel. Devam."
+      ],
+      "en": [
+        "Good. Clear and to the point.",
+        "Okay, that's convincing.",
+        "Good. Moving on."
+      ]
+    },
+    "ackWeak": {
+      "tr": [
+        "Bu yetmez. Sıradaki.",
+        "Zayıf kaldı. Geçiyorum.",
+        "Daha somut olmalıydı. Devam."
+      ],
+      "en": [
+        "That's not enough. Next.",
+        "That was weak. Moving on.",
+        "That needed to be more concrete. Next."
+      ]
+    },
     "outro": {
       "tr": "Bu kadar. Sonuçlara bakalım.",
       "en": "That's it. Let's see the results."
@@ -196,6 +284,14 @@
     "probe": {
       "tr": "Uzun oldu. Bunu tek cümleyle özetle.",
       "en": "That was long. Sum it up in one sentence."
+    },
+    "probeTopic": {
+      "tr": "Şu eksik: {x}. Kısaca söyle.",
+      "en": "This is missing: {x}. Keep it short."
+    },
+    "praise": {
+      "tr": "Şu kısım iyiydi: {x}.",
+      "en": "This part was good: {x}."
     },
     "verdict": {
       "high": {

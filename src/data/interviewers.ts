@@ -20,10 +20,18 @@ export type Interviewer = {
   intro: Bi<string[]>;
   /** Said after an answer, before the next question. */
   ack: Bi<string[]>;
+  /** Said after a strong answer. */
+  ackGood: Bi<string[]>;
+  /** Said after a weak answer. */
+  ackWeak: Bi<string[]>;
   /** Said after the last answer. */
   outro: Bi;
   /** Follow-up asked once per question when the answer misses what this character cares about. */
   probe: Bi;
+  /** Follow-up naming a key point the answer missed; `{x}` is the point. */
+  probeTopic: Bi;
+  /** Added after a strong answer, naming one point it covered; `{x}` is the point. */
+  praise: Bi;
   /** One-line verdict on the report, by score band. */
   verdict: Record<'high' | 'mid' | 'low', Bi>;
 };
@@ -38,7 +46,14 @@ export const findInterviewer = (id: string | undefined) => INTERVIEWERS.find((i)
 export const lineFor = (lines: string[], seed: number) => lines[Math.abs(seed) % lines.length];
 
 /** Every line a character can say in a language. */
-export const interviewerLines = (i: Interviewer, lang: Lang) => [...i.intro[lang], ...i.ack[lang], i.outro[lang], i.probe[lang]];
+export const interviewerLines = (i: Interviewer, lang: Lang) => [
+  ...i.intro[lang],
+  ...i.ack[lang],
+  ...i.ackGood[lang],
+  ...i.ackWeak[lang],
+  i.outro[lang],
+  i.probe[lang],
+];
 
 const REASONING: Record<Lang, RegExp> = {
   tr: /çünkü|bu yüzden|bu nedenle|bu sebeple|sebebi|nedeni|amacıyla|için|böylece|dolayı/,

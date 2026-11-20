@@ -16,11 +16,12 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Bar, FadeIn, GradientIcon, Ionicons, T, colors, fonts, goBack, notify, shade, shadow, tap, type IconName, themedStyles } from '@/components/ui';
 import { SignupPrompt } from '@/components/SignupPrompt';
-import { findInterviewer, lineFor, needsProbe } from '@/data/interviewers';
+import { findInterviewer } from '@/data/interviewers';
 import { findUnit, type QuestionKind } from '@/data/professions';
 import { useAccess } from '@/lib/access';
 import { evaluateSession } from '@/lib/evaluator';
 import { sessionQuestions } from '@/lib/interview';
+import { followUpFor, reactionTo } from '@/lib/reactions';
 import { pick, upper, useLang, useT, type Bi } from '@/lib/i18n';
 import { speak, stopSpeaking } from '@/lib/voice';
 import { TIMED_BONUS_XP, TIMED_SECONDS, useStore } from '@/lib/store';
@@ -57,7 +58,7 @@ export default function SessionScreen() {
   // The character's question set for this unit (in the app language).
   const questions = useMemo(() => sessionQuestions(unitId, interviewer.id), [unitId, interviewer.id, appLang]); // eslint-disable-line react-hooks/exhaustive-deps
   /** Follow-ups by question index: first answer, the interviewer's question, and the reply. */
-  const [followUps, setFollowUps] = useState<Record<number, { first: string; reply?: string }>>({});
+  const [followUps, setFollowUps] = useState<Record<number, { first: string; probe: string; reply?: string }>>({});
   const scroll = useRef<ComponentRef<typeof ScrollView>>(null);
   /** Seconds left for the current answer in timed mode. */
   const [left, setLeft] = useState(TIMED_SECONDS);
@@ -67,17 +68,18 @@ export default function SessionScreen() {
     speak(text, lang, { interviewer: interviewer.id, onDone: () => setSpeakingId((id) => (id === bubbleId ? null : id)) });
   };
   const intro = interviewer.intro[lang][0];
-  const ackFor = (i: number) => lineFor(interviewer.ack[lang], i - 1);
+  /** The interviewer's reaction to answer `i - 1`, before question `i`. */
+  const ackFor = (i: number) => reactionTo(interviewer, questions[i - 1], answers[i - 1] ?? '', lang, i - 1);
 
   // Read each newly revealed question aloud; stop talking when leaving the screen.
   useEffect(() => {
     if (!voice || shownCount === 0) return;
     const q = questions[shownCount - 1];
     // The interviewer opens (or reacts to the last answer) and then asks the question.
-    const lead = shownCount === 1 ? intro : ackFor(shownCount - 1);
+    const lead = shownCount === 1 ? [intro] : ackFor(shownCount - 1);
     // Starts speech (an external system); its state update only marks which bubble is playing.
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (q) say(q.id, [lead, q.text]);
+    if (q) say(q.id, [...lead, q.text]);
   }, [shownCount]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => () => stopSpeaking(), []);
 
@@ -114,9 +116,10 @@ export default function SessionScreen() {
     const text = draft.trim();
     setDraft('');
     // First answer to a question: the character may follow up once before moving on.
-    if (!force && !probing && !followUps[current] && needsProbe(interviewer.id, text, lang)) {
-      setFollowUps((f) => ({ ...f, [current]: { first: text } }));
-      if (voice) say(`probe-${current}`, interviewer.probe[lang]);
+    const probe = !force && !probing && !followUps[current] ? followUpFor(interviewer, questions[current], text, lang) : null;
+    if (probe) {
+      setFollowUps((f) => ({ ...f, [current]: { first: text, probe } }));
+      if (voice) say(`probe-${current}`, probe);
       return;
     }
     const full = probing ? `${followUps[current].first} ${text}` : text;
@@ -247,7 +250,7 @@ export default function SessionScreen() {
 
         {questions.slice(0, shownCount).map((q, i) => (
           <View key={q.id}>
-            {i > 0 && <Bubble who="ai">{ackFor(i)}</Bubble>}
+            {i > 0 && <Bubble who="ai">{ackFor(i).join(' ')}</Bubble>}
             <Bubble
               who="ai"
               kind={q.kind}
@@ -265,7 +268,7 @@ export default function SessionScreen() {
             {followUps[i] ? (
               <>
                 <Bubble who="me">{followUps[i].first || timeUp}</Bubble>
-                <Bubble who="ai">{interviewer.probe[lang]}</Bubble>
+                <Bubble who="ai">{followUps[i].probe}</Bubble>
                 {followUps[i].reply !== undefined && <Bubble who="me">{followUps[i].reply || timeUp}</Bubble>}
               </>
             ) : (
