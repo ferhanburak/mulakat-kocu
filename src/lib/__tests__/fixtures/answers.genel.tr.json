@@ -1,1 +1,354 @@
-{}
+{
+  "Kendinizi kısaca tanıtır mısınız?": {
+    "good": [
+      "Bilgisayar mühendisliğinden 2021'de mezun oldum, şu an bir e-ticaret firmasında backend geliştirici olarak çalışıyorum. Üç yıllık deneyimimde ödeme altyapısı üzerinde çalıştım ve sipariş hatalarını %40 azalttım. Bu pozisyona başvurmamın sebebi sizin ölçeğiniz ve ürün odaklı yapınız.",
+      "Şu an bir SaaS startup'ında product analyst'im, iki yıldır dashboard'lar ve A/B test'ler üzerinde çalışıyorum. Kurduğum churn raporu sayesinde retention'ı %8 artırdık. Bu rolde daha büyük data set'leriyle çalışabileceğim için başvurdum.",
+      "Kısaca anlatayım: üniversitede işletme okudum, mezun olduktan sonra bir lojistik firmasında operasyon tarafında başladım. Orada geçen dört yılda depo süreçlerini baştan kurdum, teslimat süresini iki günden bire indirdik; bunu başardığım için ekip liderliğine geçtim. Sizin şirketinizin büyüme hızı beni çok çekiyor, o yüzden buradayım."
+    ],
+    "partial": [
+      "Şu an bir bankada müşteri temsilcisi olarak çalışıyorum, işimi seviyorum ve insanlarla iletişimim iyidir.",
+      "Endüstri mühendisliği mezunuyum ve iki yıldır bir fabrikada planlama tarafında çalışıyorum. Üretim planlarını hazırlıyor, tedarikçilerle koordinasyonu yürütüyorum."
+    ],
+    "wrong": [
+      "Bilmiyorum, ne anlatayım ki, sorun neyse sorun.",
+      "Ben sakin, güler yüzlü ve çalışkan biriyim. İnsanlarla iyi anlaşırım, boş zamanlarımda kitap okur, yürüyüş yaparım.",
+      "Her şey CV'mde yazıyor zaten, oradan okursanız görürsünüz; tekrar anlatmaya gerek yok bence."
+    ]
+  },
+  "Neden şirketimizde çalışmak istiyorsunuz?": {
+    "good": [
+      "Uygulamanızı iki yıldır kullanıyorum ve müşteri şikayetlerine bu kadar hızlı dönmeniz beni etkiledi; şeffaf bir kültürünüz olduğunu da çalışanlarınızdan duydum. Kariyer hedefim büyük ölçekli ürünlerde çalışmak. Önceki işimdeki ödeme sistemleri deneyimimle ekibinize hızla katkı sağlayabilirim.",
+      "Sustainability tarafındaki değerleriniz ve yeşil lojistik projeleriniz benim için çok anlamlı. Kendi gelişimim açısından da tam aradığım ortam bu. Supply chain'de dört yıllık tecrübem var, bunu ekibinize katabilirim diye düşünüyorum.",
+      "Açıkçası arkadaşım burada çalışıyor, sürekli ekip kültürünüzden ve öğrenmeye verdiğiniz destekten bahsediyor. Ben de kariyerimde mentorluk alabileceğim bir yer arıyorum. Satış tarafında kurduğum müşteri ilişkileriyle size çok şey katabilirim."
+    ],
+    "partial": [
+      "Şirketinizin ürünlerini çok beğeniyorum, sektörde lider olduğunuzu biliyorum.",
+      "Büyük bir marka olmanız ve kurumsal kültürünüz beni çekiyor. Ayrıca burada kariyer gelişimimin daha hızlı olacağını düşünüyorum."
+    ],
+    "wrong": [
+      "Bilmiyorum, iş arıyordum, ilanı gördüm başvurdum.",
+      "Evime yakın olduğu için ve maaşların iyi olduğunu duyduğum için başvurdum.",
+      "Aslında herhangi bir şirket olabilirdi, benim için fark etmez; önemli olan bir işe girmek."
+    ]
+  },
+  "En büyük zayıf yönünüz nedir?": {
+    "good": [
+      "Detaylara fazla takılıp işleri yavaşlattığımı bir yöneticimin geri bildirimiyle fark ettim. Şimdi her işe başlamadan önce ne kadar detay gerektiğini netleştiriyor, kendime süre sınırı koyuyorum. Son çeyrekte teslimlerimin hepsi zamanında oldu, artık daha dengeli çalışıyorum.",
+      "Public speaking konusunda zorlanıyordum, sunumlarda çok heyecanlanıyordum. Bir sprint review'da takıldığımda bunu fark ettim ve bir sunum eğitimine yazıldım. Şimdi her ay ekip toplantısında bir demo yapıyorum, eskisine göre çok daha iyi durumdayım.",
+      "Açık konuşayım, hayır demekte zorlanan biriyim; herkesin işini üstlenip kendi işimi geciktiriyordum. Takım arkadaşım bir gün bunu söyleyince fark ettim. O günden beri işleri önceliklendirmek için bir liste kullanıyor, kapasitemi açıkça söylüyorum. Artık üstlendiğim her işi zamanında bitiriyorum."
+    ],
+    "partial": [
+      "Bazen sabırsız olabiliyorum, işlerin hızlı ilerlemesini istiyorum.",
+      "Excel'de ileri seviye formüllerde zorlanıyordum, bu yüzden şu an online bir kursla çalışıyorum."
+    ],
+    "wrong": [
+      "Bilmiyorum, pek zayıf yönüm yok aslında.",
+      "Herkesin bir eksiği vardır ama ben genelde her şeyi idare ederim, sorun olmaz.",
+      "En büyük zayıf yönüm mükemmeliyetçi olmam, işimi fazla iyi yapıyorum; bu yüzden bu bir zayıflık sayılmaz."
+    ]
+  },
+  "Mevcut işinizden neden ayrılmak istiyorsunuz?": {
+    "good": [
+      "Mevcut şirketimde çok şey öğrendim, ekibime de minnettarım. Ama üç yıldır aynı ürün üzerindeyim ve daha fazla sorumluluk alabileceğim bir rol arıyorum. Sizin pozisyonunuz bana yeni bir alanda büyüme şansı veriyor.",
+      "Şu anki işimde mentorlarım sayesinde bambaşka bir seviyeye geldim, bunun için gerçekten teşekkür borçluyum. Ancak şirket küçük olduğu için kariyer gelişimimin bir tavanı var. Daha büyük ölçekli projelerde liderlik üstlenmek istiyorum.",
+      "Açıkçası oradan kaçmıyorum, aksine iyi bir dönem geçirdim ve değerli deneyimler kazandım. Sadece kendimi yeni bir sektörde denemek, farklı problemlerle büyümek istiyorum. Burası da bunun için doğru yer gibi görünüyor."
+    ],
+    "partial": [
+      "Daha fazla gelişebileceğim bir yer arıyorum.",
+      "Mevcut işimde çok şey öğrendim, ekibimi seviyorum. Sadece biraz değişiklik zamanı geldi diye düşünüyorum."
+    ],
+    "wrong": [
+      "Bilmiyorum, sıkıldım galiba.",
+      "Yöneticim berbat biri, sürekli bağırıyor ve şirket de çalışanlarına hiç değer vermiyor; bir an önce kurtulmak istiyorum.",
+      "Maaş düşük, yol uzun, mesai çok; artık katlanamıyorum."
+    ]
+  },
+  "Neden sizi işe almalıyız?": {
+    "good": [
+      "İlanda dijital pazarlama, bütçe yönetimi ve raporlama arıyorsunuz; son üç yılda bu üçünü de bizzat yürüttüm. Yönettiğim kampanyalarda müşteri edinme maliyetini %25 düşürdüm. Ayrıca tasarım ekibiyle aynı dili konuşabiliyorum, bu da beni diğer adaylardan farklı kılıyor. Özetle ilk aydan sonuç getirecek biriyim.",
+      "Job description'daki gereksinimlerin neredeyse hepsini karşılıyorum: React, TypeScript ve test yazma. Son projemde sayfa yüklenme süresini %40 azalttık. Bunun yanında junior'lara mentorluk yaptım, ekibe teknik olmayan bir katkım da var. Kısaca, hem kod yazan hem de ekibi büyüten biriyim.",
+      "Aradığınız kişi sahada müşteriyle konuşabilen bir satışçı; ben de tam olarak bunu yapıyorum. Geçen yıl bölgemde hedefin %120'sine ulaştım. Bir de iki dil biliyorum, bu yurtdışı müşterilerinizde fark yaratır. Kısacası hazır bir çözüm getiriyorum."
+    ],
+    "partial": [
+      "Çünkü çok çalışkanım ve öğrenmeye açığım, ekibinize uyum sağlarım.",
+      "İlanda istediğiniz deneyime sahibim. Örneğin geçen yıl yönettiğim projede maliyetleri %10 düşürdük."
+    ],
+    "wrong": [
+      "Bilmiyorum, siz karar verin.",
+      "Bence ben iyi bir adayım, gerisini siz değerlendirirsiniz, çok bir şey söylemeye gerek yok.",
+      "Çünkü bu işi ancak ben yapabilirim, diğer adayların hiçbiri benim kadar iyi değildir, buna eminim."
+    ]
+  },
+  "Bize sormak istediğiniz bir soru var mı?": {
+    "good": [
+      "Evet. Bu pozisyonda ilk üç ayda benden ne bekliyorsunuz, başarıyı neyle ölçüyorsunuz? Ekip nasıl bir düzende çalışıyor, uzaktan mı ofisten mi? Bir de bu süreçte bundan sonraki adım ne olacak?",
+      "Birkaç sorum var. Bu rolde ilk 90 günde neyi başarmış olmamı istersiniz? Ekibin günlük çalışma şekli nasıl, stand-up'lar, code review süreci gibi? Şirket içinde eğitim bütçesi ya da konferans desteği var mı?",
+      "Merak ettiğim şu: bu pozisyonu bir önceki kişi neden bıraktı ve sizce bu rolde başarılı biri ne yapar? Takım kültürünü nasıl tarif edersiniz? Son olarak, karar sürecinin ne zaman tamamlanacağını öğrenebilir miyim?"
+    ],
+    "partial": [
+      "Evet, ekip kaç kişiden oluşuyor?",
+      "Ekip nasıl çalışıyor, yöneticim kim olacak? Bir de süreç ne zaman sonuçlanır?"
+    ],
+    "wrong": [
+      "Yok, her şey açık, teşekkürler.",
+      "Hayır, aklıma bir şey gelmiyor, siz her şeyi anlattınız zaten.",
+      "Evet, maaşı ne zaman yatırıyorsunuz ve izin kaç gün? Benim için tek önemli soru bu."
+    ]
+  },
+  "Tell me about yourself.": {
+    "good": [
+      "I graduated in economics three years ago and I currently work as a financial analyst at a retail company. I have built the monthly forecasting model there and it reduced our budget errors by 15 percent. I am applying because this role lets me work on bigger strategic decisions.",
+      "So, I'm a frontend developer, I work at a small agency right now. I have about four years of experience with React and I have shipped more than ten client projects. Last year I improved our page speed scores a lot and increased conversions by 20%. Your company builds products at scale, and that's exactly what I want next.",
+      "Right now I am a final year student and I work part time in customer support. During my internship I led a project that cut response times in half. I really like solving problems for people, which is why this position caught my eye."
+    ],
+    "partial": [
+      "I am currently a teacher and I like working with people.",
+      "I graduated last year and I have two years of experience from internships and freelance projects in marketing."
+    ],
+    "wrong": [
+      "I don't know, what do you want to hear?",
+      "I am a friendly and hard working person. I like reading books and travelling with my friends.",
+      "Everything is on my CV, so you can just read it there; I don't need to repeat it."
+    ]
+  },
+  "Why do you want to work for our company?": {
+    "good": [
+      "I have used your app for years and I really like your mission of making banking simple. My goal is to work on products that millions of people use. With my background in payments I can contribute to your team quickly.",
+      "Your culture of ownership and your open values are what attracted me. I have a strong interest in climate tech, and you are leading that space. I believe I can bring my experience in data engineering and add value from the first month.",
+      "A friend who works here told me about the learning culture, and I have read your engineering blog. I want to work on hard scaling problems. I think my experience running large systems can help your platform team."
+    ],
+    "partial": [
+      "Your products are great and you are a big company.",
+      "I like your culture and I think I can grow here and reach my goals."
+    ],
+    "wrong": [
+      "I don't know, I just need a job.",
+      "Because the office is close to my home and the salary is good.",
+      "Honestly any company would be fine for me, it does not matter which one."
+    ]
+  },
+  "What is your greatest weakness?": {
+    "good": [
+      "I used to struggle with public speaking. After a presentation went badly, my manager gave me feedback, and I realized I needed to work on it. I joined a speaking course and I practise every month in team demos. Now I feel much more confident and my last presentation went well.",
+      "My weakness is that I find it hard to say no, so I take on too much. I realized this when I missed a deadline last year. Since then I have been working on prioritising with a simple task list. Now I deliver on time and my workload is much better.",
+      "I'm not good at giving critical feedback to teammates. A colleague told me I was too soft in reviews. So I'm practising with a simple framework for feedback. It has improved, and my reviews are clearer now."
+    ],
+    "partial": [
+      "Sometimes I am impatient.",
+      "I struggle with time management, so I am working on it with a planner."
+    ],
+    "wrong": [
+      "I don't really have any weakness.",
+      "Everyone has some problems but I usually manage everything fine.",
+      "My greatest weakness is that I am a perfectionist, I work too hard, so it is not really a weakness at all."
+    ]
+  },
+  "What are your salary expectations?": {
+    "good": [
+      "Based on my research of the market for this role and my experience, I am looking for a range between 60 and 70 thousand. I am flexible depending on the total package and benefits. What budget do you have for the position?",
+      "I checked a few salary surveys and the typical range in the market is X to Y. I would expect to be near the middle of that range. I am open to discuss the whole package, including bonus and remote work. Could you share the budget for this role?",
+      "From what I have seen in the market, something between X and Y feels fair for this level. I'm flexible on the exact number if the benefits are good. May I ask what range you had in mind for the role?"
+    ],
+    "partial": [
+      "I would like something between X and Y.",
+      "I did some research on the market. I am flexible, so we can talk about it."
+    ],
+    "wrong": [
+      "I don't know, whatever you give.",
+      "Money is not important for me, any salary is fine.",
+      "I want exactly 100 thousand and I will not accept anything less, there is nothing to discuss."
+    ]
+  },
+  "Why should we hire you?": {
+    "good": [
+      "You are looking for someone who can manage key accounts and grow them. I have done that for three years and delivered 30 percent growth in my portfolio. I also speak German, which is unique for your team in Europe.",
+      "The job post says you need strong SQL and dashboarding skills. That is my daily work, and last year I delivered a reporting system that saved the team ten hours a week. I am also different because I can explain data to non technical people.",
+      "Your requirements match my background very well. In my last job I achieved the highest customer satisfaction score in the region. I also bring experience from two different industries."
+    ],
+    "partial": [
+      "Because I am hard working and a fast learner.",
+      "I have the skills you need and I fit what you are looking for."
+    ],
+    "wrong": [
+      "I don't know, it is your decision.",
+      "I think I am a good candidate, you can decide the rest.",
+      "Because I am the best candidate you will ever meet, nobody else can do this job."
+    ]
+  },
+  "Tell me about a time you disagreed with a colleague. How did you handle it?": {
+    "good": [
+      "In my previous team we had a project with a tight deadline, and a colleague wanted to rewrite the whole module. I first listened to understand his perspective. Then I proposed a meeting to compare a rewrite with small fixes. In the end we agreed on the smaller fix and delivered on time.",
+      "At my last job, a designer and I disagreed about a checkout screen. I asked her to explain her view and tried to understand her concerns. I suggested we run a quick A/B test instead of arguing. The test resolved it, and we shipped her version.",
+      "Once in our team a senior colleague wanted to skip testing for a release. I listened to why, it was pressure from sales. We discussed it with the lead and I suggested a short smoke test. As a result we delivered on the same day and nothing broke."
+    ],
+    "partial": [
+      "I usually listen to the other person and try to understand them.",
+      "In a project with my team a colleague and I disagreed about priorities, and I suggested we discuss it with our manager."
+    ],
+    "wrong": [
+      "I don't know, I never disagree with anyone.",
+      "I just do what I am told, so it is not a problem for me.",
+      "I simply ignore colleagues who disagree with me and do it my way, because I am usually right."
+    ]
+  },
+  "Tell me about a mistake you made and what you learned from it.": {
+    "good": [
+      "Last year I sent a client report with wrong numbers because I did not double check the data. It was my fault, so I called the client, apologised and fixed the report the same day. I learned that a quick review saves a lot of trouble. Since then I use a checklist before sending any report.",
+      "In my first job I missed a deadline because I did not ask for help early. I took responsibility and we solved it by working on the weekend. The lesson was to raise problems early. Now I share risks with my manager as soon as I see them.",
+      "Once I deployed a change on a Friday without testing it properly, and the site went down. I owned it, rolled back within twenty minutes and wrote a short report. I learned to respect the release process. Since then I never deploy without the full test suite."
+    ],
+    "partial": [
+      "I made a mistake once in a report but I fixed it quickly.",
+      "I once forgot to send an email to a customer. I learned that I need to be more careful."
+    ],
+    "wrong": [
+      "I don't really make mistakes.",
+      "Everyone makes mistakes sometimes, it is normal, life goes on.",
+      "I made a mistake once but it was really my manager's fault because he gave me bad instructions, so there was nothing to learn."
+    ]
+  },
+  "Where do you see yourself in five years?": {
+    "good": [
+      "In five years I want to grow into a senior engineer and lead a small team. I would like to keep learning about system design. I can see that happening here, because this role has clear growth paths.",
+      "I hope to develop deep expertise in digital marketing and become the expert people come to. I'd also like to mentor new people. Your company invests in its people, so I see myself here.",
+      "My plan is to learn as much as possible in the first years and then lead projects on my own. I want to do that in this company, since the role matches my long term goals."
+    ],
+    "partial": [
+      "I want to learn and develop myself.",
+      "In five years I want to be a team lead and an expert in my field."
+    ],
+    "wrong": [
+      "I don't know, I don't plan that far.",
+      "Maybe somewhere else, we will see what happens.",
+      "In five years I will have my own business, so this job is only a short stop for me."
+    ]
+  },
+  "Maaş beklentiniz nedir?": {
+    "good": [
+      "Piyasadaki benzer pozisyonları araştırdım; deneyimime göre net 60 ile 70 bin arası bir aralık bekliyorum. Yan haklar ve primle toplam paketi birlikte değerlendirmek isterim. Bu konuda esnek olabilirim.",
+      "Kariyer sitelerindeki maaş verilerine ve sektördeki arkadaşlarımın aldıklarına baktım. Bu tecrübe seviyesi için X ile Y arası makul görünüyor. Sağlık sigortası, yemek kartı gibi benefit'ler de hesaba girerse rakamı konuşabiliriz.",
+      "Açık söyleyeyim, emsal pozisyonlara bakınca bu rol için X-Y bandı adil geliyor. Prim sistemi ve uzaktan çalışma imkanı varsa rakamda biraz esneyebilirim."
+    ],
+    "partial": [
+      "Net 50 ile 60 bin arası bir rakam bekliyorum.",
+      "Piyasayı araştırdım, buna göre bir beklentim var ama esnek olabilirim, konuşabiliriz."
+    ],
+    "wrong": [
+      "Bilmiyorum, ne verirseniz.",
+      "Para benim için önemli değil, herhangi bir maaş olur.",
+      "Tam olarak 100 bin istiyorum, bir lira aşağısını kabul etmem, pazarlık da yapmam."
+    ]
+  },
+  "Mevcut maaşınızı öğrenebilir miyim?": {
+    "good": [
+      "Mevcut maaşımı paylaşmak yerine bu rolün sorumluluklarına odaklanmayı tercih ederim. Bu pozisyon için beklentim X ile Y arasında. Bu rakamın rolün getireceği katkıyla uyumlu olduğunu düşünüyorum.",
+      "Kibarca söylemek gerekirse, şu anki ücretim farklı bir rol ve farklı bir şirket için belirlendi. O yüzden sizinle bu rol için beklentimi konuşmak daha doğru olur; X civarında bir rakam düşünüyorum. Bu rolün sorumluluğu daha büyük, değerlendirmeyi de buna göre yapmak isterim.",
+      "Onu paylaşmamayı tercih ederim, çünkü bence asıl önemli olan bu işte yaratacağım değer. Beklentimi söyleyebilirim: Y civarı."
+    ],
+    "partial": [
+      "Bu rol için beklentim X ile Y arasında.",
+      "Paylaşmak yerine başka bir konuya odaklanmayı tercih ederim."
+    ],
+    "wrong": [
+      "Bilmiyorum, söylesem mi bilemedim.",
+      "Tabii, şu an aldığım rakam belli, onu söyleyeyim, siz de ona göre bir şey yaparsınız.",
+      "Mevcut maaşımı biraz yüksek söylerim, nasılsa kontrol edemezsiniz; bu yüzden 90 bin diyelim."
+    ]
+  },
+  "Teklifimiz beklentinizin altında. Ne düşünüyorsunuz?": {
+    "good": [
+      "Öncelikle teklifiniz için teşekkür ederim, bu rol için gerçekten heyecanlıyım. Ancak beş yıllık deneyimim ve piyasa verileri X tutarının daha uygun olduğunu gösteriyor. Maaşta esneklik yoksa yan haklar ya da altı ay sonra bir performans değerlendirmesi konuşabiliriz. Ortak bir noktada buluşabileceğimize inanıyorum.",
+      "Teklif için çok teşekkürler, şirkete katılmak istiyorum. Yalnız benzer rollerde piyasa ortalaması biraz daha yukarıda, o yüzden bir karşı teklif yapmak isterim. Belki sign-on bonus ya da haftada iki gün uzaktan çalışma ile aradaki farkı kapatabiliriz. Ortada bir yerde uzlaşabiliriz diye düşünüyorum.",
+      "Açıkçası teklifi aldığıma memnun oldum ama beklentimin biraz altında kaldı. Önceki işimdeki sorumluluklarımı düşününce Y daha makul geliyor. Eğitim bütçesi veya prim gibi kalemler de tabloyu değiştirebilir."
+    ],
+    "partial": [
+      "Teşekkür ederim, biraz düşünmem lazım.",
+      "Teklifiniz için teşekkürler. Deneyimime göre biraz daha yüksek bir rakam bekliyordum."
+    ],
+    "wrong": [
+      "Bilmiyorum, ne diyeceğimi bilemedim.",
+      "Peki, olur, ne verirseniz kabul ederim.",
+      "Bu teklif hakaret gibi; ya beklentimi verirsiniz ya da hemen giderim, başka teklifim zaten var."
+    ]
+  },
+  "İstifa ettiğinizde mevcut şirketiniz karşı teklif yaptı. Nasıl karar verirsiniz?": {
+    "good": [
+      "Önce neden ayrılmak istediğimi hatırlarım. Eğer mesele sadece maaş değil de gelişim veya kültürse, para bunu çözmez. Uzun vadede kariyerime hangisinin daha iyi geleceğine bakarım. Kararımı iki tarafa da teşekkür ederek net bir dille iletirim.",
+      "İlk olarak istifa sebebime dönerim; çoğu zaman sorun ücret değil, öğrenme ve büyüme alanıdır. Karşı teklif sadece rakamı artırıyorsa o sebep olduğu gibi duruyor demektir. Beş yıl sonrası için hangi yolun beni daha ileri götüreceğine bakarım. Sonra kararımı profesyonelce açıklar, köprüleri yakmam.",
+      "Bir dakika durup kendime ayrılma nedenimi sorarım. Para güzel ama kültür ve gelişim fırsatı değişmiyorsa birkaç ay sonra aynı yere dönerim. Kariyer hedefime bakarak karar veririm."
+    ],
+    "partial": [
+      "Neden ayrılmak istediğime bakarım.",
+      "Neden ayrıldığımı düşünürüm ve sadece maaşa bakmam, gelişim fırsatlarını da tartarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, duruma göre.",
+      "Hangisi daha çok verirse oraya giderim, gerisi önemli değil.",
+      "Karşı teklifi hemen kabul ederim çünkü daha fazla para her zaman doğru karardır."
+    ]
+  },
+  "İş deneyiminiz yok. Neden sizi seçmeliyiz?": {
+    "good": [
+      "Profesyonel deneyimim yok ama okulda üç gerçek proje geliştirdim. Örneğin bitirme projemde bir kütüphane için rezervasyon sistemi yaptık ve 300 öğrenci kullandı. Yeni bir aracı kısa sürede kendi kendime öğrenebiliyorum. Bu rolde öğrenmeye ve katkı sağlamaya çok istekliyim.",
+      "Öğrenci kulübünde etkinlik koordinatörlüğü yaptım, 500 kişilik bir kariyer günü organize ettik. Python'ı YouTube ve dokümantasyonla kendim öğrendim, şimdi küçük otomasyonlar yazıyorum. Bu işe gerçekten çok hevesliyim.",
+      "Deneyim azlığını kabul ediyorum ama gönüllü olarak bir STK'nın sosyal medyasını yönettim ve takipçi sayısını bir yılda ikiye katladım. Hızlı öğrenen biriyim; mesela Figma'yı iki haftada öğrendim. Bu pozisyon için motivasyonum çok yüksek."
+    ],
+    "partial": [
+      "Çok istekliyim ve çalışmaya hazırım.",
+      "Okulda birkaç proje yaptım ve yeni şeyleri hızlı öğrenirim."
+    ],
+    "wrong": [
+      "Bilmiyorum, bir şans verin işte.",
+      "Gençim, enerjim var, gerisi zamanla olur.",
+      "Deneyim aslında hiç önemli değil, diploma her şeyi gösterir; o yüzden deneyim sormanıza gerek yok."
+    ]
+  },
+  "Okulda bir takım projesinde yaşadığınız bir zorluğu anlatır mısınız?": {
+    "good": [
+      "Üçüncü sınıfta bir yazılım dersinde dört kişilik takımdık ve bir arkadaşımız kendi kısmını son haftaya kadar getirmedi. Takıma işleri yeniden paylaşmayı önerdim, eksik kısmın yarısını da ben üstlendim. Her akşam on dakikalık kısa görüşmeler yaptık. Sonuçta projeyi zamanında teslim ettik ve AA aldık.",
+      "Pazarlama dersindeki grup projemizde iki arkadaş konsept konusunda anlaşmazlık yaşadı. Ben iki fikri de küçük bir ankette test etmeyi önerdim ve anketi hazırladım. Veriler bir fikri öne çıkardı, herkes ona razı oldu. Sonuç olarak sunumu zamanında yaptık, hocadan da övgü aldık.",
+      "Bitirme projemizde sensörlerin tedariki gecikti, takım panikledi. Ben alternatif bir tedarikçi buldum ve simülasyonla ilerlemeyi önerdim. Proje teslim tarihinden bir gün önce bitti."
+    ],
+    "partial": [
+      "Bir takım projesinde arkadaşlar işini yapmadı, zor oldu.",
+      "Bir derste takım projesinde gecikme yaşadık ve ben eksik kısmı üstlendim."
+    ],
+    "wrong": [
+      "Bilmiyorum, hep tek başıma çalıştım.",
+      "Takım projeleri genelde zor olur, herkes farklıdır, idare ettik işte.",
+      "Hiç zorluk yaşamadım çünkü bütün projeyi tek başıma yaptım, diğerleri sadece ismini yazdı."
+    ]
+  },
+  "Not ortalamanız neden düşük?": {
+    "good": [
+      "Dürüst olmak gerekirse ilk yıllarda derslere yeterince odaklanmadım. Üçüncü sınıftan itibaren yarı zamanlı çalışmaya başladım, bu yüzden zamanım kısıtlıydı. Yine de iki sertifika aldım ve bir stajda canlıya çıkan bir proje yaptım. Bu süreç bana zaman yönetimini öğretti.",
+      "Haklısınız, ortalamam yüksek değil, bunu kabul ediyorum. Ailemin işinde çalışmak zorunda kaldığım için okula daha az vakit ayırabildim. Ama o dönemde müşteri yönetimi ve muhasebe tarafında gerçek sorumluluklar aldım. Artık hem iş hem öğrenme tarafını dengeleyebiliyorum.",
+      "Açıkçası ilk iki yıl bölümüme ısınamadım, notlarım da düştü. Sonra kendi ilgimi bulup kodlamaya yöneldim ve GitHub'da birkaç proje yayınladım. Bana neyi sevdiğimi bulmanın önemini öğretti."
+    ],
+    "partial": [
+      "Okul döneminde çalışıyordum, o yüzden ortalamam düştü.",
+      "Dürüst olmak gerekirse ilk yıllarda derslere odaklanmadım ama son yıllarda düzelttim."
+    ],
+    "wrong": [
+      "Bilmiyorum, hocalar zor not veriyordu.",
+      "Not ortalaması çok da önemli bir şey değil bence, geçelim.",
+      "Ortalamamın düşük olması tamamen hocaların suçu, bana hep haksızlık yaptılar."
+    ]
+  },
+  "İlk iş teklifini değerlendirirken nelere bakarsın? Birden fazla teklifin olsa nasıl karar verirsin?": {
+    "good": [
+      "İlk işte en çok ne öğreneceğime ve bana bir mentor verilip verilmeyeceğine bakarım. Mülakatta tanıştığım ekip ve yöneticinin tavrı benim için çok önemli. Ücret ve yan hakları piyasayla karşılaştırırım ama tek kriter yapmam. Şirketin ve sektörün geleceğini araştırırım. Birden fazla teklif olursa uzun vadeli kariyer hedefime en çok hangisi yaklaştırıyorsa onu seçerim.",
+      "Benim için learning curve en önemlisi, yani gerçekten öğrenebilecek miyim. Takım ve yönetici kim, onlarla rahat çalışabilir miyim ona bakarım. Maaş ve benefit'ler de tabii ki önemli. Birden fazla teklifte küçük bir tablo yapıp puanlarım, kariyer hedefime uyanı seçerim.",
+      "Bir arkadaşım ilk işinde sadece paraya bakıp mutsuz oldu, ben o yüzden önce ekibe ve yöneticime bakarım. Ne kadar öğreneceğim ve şirketin hangi sektörde büyüdüğü de önemli. Ücreti piyasayla kıyaslarım. Birden çok teklif varsa uzun vadede beni nereye götüreceğine göre karar veririm."
+    ],
+    "partial": [
+      "Maaşa ve yan haklara bakarım.",
+      "Öğrenme fırsatına ve ekibe bakarım, bir de maaşa."
+    ],
+    "wrong": [
+      "Bilmiyorum, ilk gelen teklifi kabul ederim.",
+      "Hangisi daha prestijli görünüyorsa ona giderim, gerisi önemli değil.",
+      "Sadece maaşa bakarım, en yüksek parayı veren şirket her zaman en iyi seçimdir."
+    ]
+  }
+}

@@ -1,1 +1,50 @@
-{}
+{
+  "Bir ekip arkadaşınla fikir ayrılığı yaşadığın bir durumu ve nasıl çözdüğünü anlatır mısın?": {
+    "good": [
+      "Geçen yıl bir projede, teslimden iki hafta önce bir arkadaşım raporlama modülünü baştan yazmak istedi, ben ise küçük düzeltmelerle ilerlemeyi savunuyordum. Önce onu sonuna kadar dinledim, neden endişeli olduğunu anlamaya çalıştım. Sonra kısa bir toplantı ayarlayıp iki seçeneğin maliyetini yan yana koymayı önerdim. Sonunda küçük düzeltmede anlaştık, yeniden yazımı bir sonraki çeyreğe aldık ve zamanında teslim ettik.",
+      "Ekipte bir tasarımcı arkadaşla checkout ekranı üzerine anlaşamadık. Onun bakış açısını anlamak için birebir bir call yaptık, kullanıcıdan gelen şikayetleri bana gösterdi. Ben de tartışmak yerine A/B test yapmayı önerdim. Test sonucu onun versiyonu kazandı, konu da tatlıya bağlandı.",
+      "Bir keresinde satış ekibinden bir arkadaş müşteriye bizim yetiştiremeyeceğimiz bir tarih söylemişti, aramızda gerginlik oldu. Kahve içerken konuştuk, onun hedef baskısını dinledim ve empati kurdum. Birlikte müşteriye yeni bir plan sunduk; müşteri kabul etti ve iş çözüldü."
+    ],
+    "partial": [
+      "Genelde karşı tarafı dinlerim ve onu anlamaya çalışırım.",
+      "Bir projede ekip arkadaşımla öncelikler konusunda fikir ayrılığı yaşadık, ben de konuyu yöneticimizle konuşmayı önerdim."
+    ],
+    "wrong": [
+      "Bilmiyorum, ben kimseyle tartışmam.",
+      "Fikir ayrılıkları olur, normaldir, insanlar farklıdır sonuçta.",
+      "Fikir ayrılığında genelde ben haklı olurum, o yüzden karşı tarafı dinlemeden kendi bildiğimi yaparım."
+    ]
+  },
+  "Başarısız olduğun bir işi ve bundan ne öğrendiğini anlatır mısın?": {
+    "good": [
+      "Bir kampanya lansmanında hedef kitleyi yanlış belirledim, bütçenin yarısı boşa gitti. Hata benimdi, yöneticime açıkça söyledim ve kampanyayı durdurduk. Buradan veriye bakmadan karar vermemem gerektiğini öğrendim. O günden beri her kampanyadan önce küçük bir test yayını yapıyorum.",
+      "İlk takım liderliğimde bir sprint'i tamamen kaçırdık çünkü işleri yanlış tahmin etmiştim. Sorumluluğu üstlendim, retro'da ekibe dürüstçe anlattım. Tahminlerde ekibin fikrini almadığımı fark ettim. Artık planlamayı planning poker ile birlikte yapıyoruz.",
+      "Üniversitede bir yarışmaya katıldık ve son gece her şeyi yetiştirmeye çalışırken çöktük, elendik. Açıkçası planı ben yapmıştım, bu benim başarısızlığımdı. Bana işleri parçalara bölmenin önemini öğretti. Sonrasında her projede haftalık ara teslimler koyuyorum."
+    ],
+    "partial": [
+      "Bir projede başarısız oldum ama çok şey öğrendim.",
+      "Bir sunumda hata yaptım, rakamları yanlış verdim; bu benim sorumluluğumdu."
+    ],
+    "wrong": [
+      "Bilmiyorum, aklıma bir şey gelmiyor.",
+      "Herkes bazen başarısız olur, önemli olan devam etmek bence.",
+      "Hiç başarısız olmadım, çünkü yaptığım her işi her zaman başarıyla bitiririm."
+    ]
+  },
+  "Neden bu pozisyona başvurdun ve kendini 3 yıl sonra nerede görüyorsun?": {
+    "good": [
+      "Ürününüzü bir süredir kullanıyorum ve bu rol tam olarak benim deneyimimle örtüşüyor. Veri analizi ve raporlama tarafında güçlüyüm. Üç yıl içinde bu alanda uzmanlaşıp küçük bir ekibe liderlik etmeyi hedefliyorum.",
+      "Bu pozisyonun ilanını görünce çok heyecanlandım, çünkü fintech tarafında çalışmak istiyorum. İki yıllık backend tecrübem ve problem çözme becerim burada işe yarar. Üç yıl sonra kendimi senior bir mühendis olarak, junior'lara mentorluk yaparken görüyorum.",
+      "Şirketinizin sürdürülebilirlik projeleri benim için çok anlamlı. Saha deneyimim ve insanlarla iletişim yetkinliğim bu role çok uygun. İleride proje yöneticisi olarak büyümek istiyorum."
+    ],
+    "partial": [
+      "Şirketinizi çok beğeniyorum.",
+      "Şirketiniz büyük ve tanınmış, burada güçlü bir deneyim kazanacağımı düşünüyorum."
+    ],
+    "wrong": [
+      "Bilmiyorum, iş lazımdı başvurdum.",
+      "Maaş iyi gibi duruyordu, gerisini zaman gösterir.",
+      "Aslında bu iş geçici, birkaç ay sonra kendi işimi kuracağım için burada uzun kalmayı düşünmüyorum."
+    ]
+  }
+}

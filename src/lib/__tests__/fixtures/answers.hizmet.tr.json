@@ -1,1 +1,324 @@
-{}
+{
+  "Merkez bankası faiz artırdığında ekonomide ve bankacılıkta neler olur?": {
+    "good": [
+      "Politika faizi yükselince bankaların fonlama maliyeti artar, krediler pahalanır ve kredi talebi düşer. Tüketim yavaşlar, bu da enflasyonu aşağı çekmeyi amaçlar. Mevduat getirisi arttığı için insanlar daha çok tasarruf eder. Ayrıca yabancı yatırımcı için TL varlıklar cazip hale gelir, kur üzerindeki baskı azalabilir. Bankaların net faiz marjı ise mevduatın krediden hızlı mı yavaş mı yeniden fiyatlandığına bağlı.",
+      "Faiz artışı demek borçlanmanın pahalı olması demek; konut ve taşıt kredisi kullanımı hemen düşer. Talep daralınca fiyat artışları yavaşlar. Mevduata yüksek oran verildiği için para bankada tutulur. Carry trade ile hot money girişi olabilir, döviz kuru sakinleşir.",
+      "Bir bankada çalışırken bunu birebir yaşadık: faiz yükselince müşteriler kredi başvurularını erteledi, harcamalar azaldı ve enflasyon beklentisi gevşedi. Mevduat tarafında ise vadeli hesaplara ciddi bir akış oldu. Kısa vadeli mevduatla fonlandığımız için marjımız önce daraldı, sonra krediler yeniden fiyatlanınca toparlandı."
+    ],
+    "partial": [
+      "Faiz artınca krediler pahalanır, insanlar daha az kredi çeker.",
+      "Krediler pahalanır ve talep düşer, bu da enflasyonu düşürür. Bir de mevduat faizleri artar."
+    ],
+    "wrong": [
+      "Bilmiyorum, ekonomiyle pek ilgilenmiyorum.",
+      "Ekonomide bazı şeyler değişir, piyasalar etkilenir, herkes bundan etkilenir.",
+      "Faiz artınca piyasaya daha çok para girer, harcamalar hızlanır ve ekonomi canlanır; yani bu aslında büyümeyi destekler."
+    ]
+  },
+  "Bir bankanın bilançosunda temel kalemler nelerdir?": {
+    "good": [
+      "Aktifte en büyük kalem verilen kredilerdir, yanında devlet tahvili gibi menkul kıymetler ve nakit/likit varlıklar durur. Pasifte ana kaynak müşteri mevduatıdır, ardından diğer borçlanmalar ve özkaynak gelir. Özkaynağın risk ağırlıklı varlıklara oranı sermaye yeterlilik rasyosunu verir.",
+      "Asset tarafında loan portföyü ve securities, liability tarafında deposit'ler var. Bir de equity yani özkaynak. Regülatör, sermaye yeterliliği oranıyla bankanın ne kadar risk alabileceğine bakar. Likidite tamponu için de nakit ve merkez bankası rezervleri tutulur.",
+      "Basitçe şöyle düşünüyorum: banka mevduat toplar, bunu kredi olarak dağıtır; arada kalan parayı tahvil gibi menkullere ya da nakde koyar. Ortakların koyduğu sermaye de özkaynak olarak durur. Riskli varlıklar büyüdükçe sermaye yeterliliğini korumak için daha fazla özkaynak gerekir."
+    ],
+    "partial": [
+      "Bilançoda krediler ve mevduatlar olur.",
+      "Aktifte krediler, pasifte mevduat ve özkaynak bulunur."
+    ],
+    "wrong": [
+      "Bilmiyorum, bilanço okumayı hiç öğrenmedim.",
+      "Bankanın parası ve borçları yazar, gelir gider gibi şeyler.",
+      "Bankanın bilançosunda mevduatlar aktiftedir çünkü bankanın elindeki paradır, krediler ise pasifte borç olarak durur."
+    ]
+  },
+  "Bir şube, bölgedeki rakiplerine göre daha az kredi kullandırıyor. Nedenini nasıl analiz edersin?": {
+    "good": [
+      "Önce şubenin kredi hacmini ve pazar payını bölgedeki rakiplerle ve kendi bölge ortalamamızla karşılaştırırım. Sonra bireysel, KOBİ ve ticari segmentlerde farkın nerede açıldığına bakarım. Başvurudan onaya kadar geçen süre uzun mu, faiz fiyatlamamız rakiplerden yüksek mi, bunları ayırırım. Bulgulara göre hedefli müşteri ziyaretleri ve kampanyalardan oluşan bir aksiyon planı çıkarırım.",
+      "İlk iş datayı çekerim: başvuru sayısı, onay oranı, kullandırım tutarı; bunları benchmark şubelerle kıyaslarım. Sorun KOBİ'de mi bireyselde mi, ona göre bakarım. Belki approval süreci yavaş, belki pricing rekabetçi değil. Sonra bir action plan yaparım, mesela sahada müşteri ziyaretlerini artırırım.",
+      "Bir keresinde benzer bir durumda şube müdürüyle oturduk; rakam olarak rakiplerin gerisinde olduğumuz belliydi. Esnaf müşterilerde çok başvuru kaybettiğimizi gördük, çünkü onay süremiz bir haftayı buluyordu. Süreci hızlandırıp esnaf ziyaret programı başlattık."
+    ],
+    "partial": [
+      "Rakiplerin faiz oranlarına bakarım, bizimkiler yüksekse düşürürüm.",
+      "Şubenin verilerini rakiplerle karşılaştırırım ve hangi müşteri segmentinde geride kaldığımızı bulurum."
+    ],
+    "wrong": [
+      "Bilmiyorum, belki şube çalışanları tembeldir.",
+      "Bazı şubeler iyi gider bazıları kötü, zamanla düzelir diye düşünüyorum.",
+      "Daha az kredi vermek her zaman iyidir çünkü az kredi az risk demektir, bu yüzden analiz etmeye gerek yok."
+    ]
+  },
+  "Bir bankanın dijital kanallara geçişinde şube ağının rolü ne olmalı?": {
+    "good": [
+      "Para transferi, fatura ödeme gibi basit işlemler zaten mobil uygulamaya geçti. Bu yüzden müşterileri segmentlere ayırıp kimin gerçekten şubeye ihtiyaç duyduğuna bakmak lazım. Şubeler yatırım, kredi ve KOBİ finansmanı gibi karmaşık konularda danışmanlık noktası olmalı. Şube sayısı ve formatı maliyet ve verimlilik verisine göre küçültülmeli. Çalışanlara da satış yerine danışmanlık yetkinliği kazandıran eğitimler verilmeli.",
+      "Bence şube artık transaction merkezi değil, advisory merkezi olmalı. Dijital ve mobil kanallar günlük işleri alır; şubede ise mortgage, yatırım gibi kompleks ürünlerde danışman desteği verilir. Segment bazlı düşünürsek yaşlı müşteriler ve KOBİ'ler için şube hâlâ önemli. Maliyet tarafında da küçük formatlı şubelerle verimlilik artar.",
+      "Annemin bankası yakın zamanda şubesini kapattı ve çok zorlandı; buradan şunu çıkarıyorum: dijital iyi ama herkes aynı değil. Bazı müşteri segmentleri için şube kalmalı, ama gişe yerine danışman odaklı olmalı. Personel de bu yeni role göre yeniden eğitilmeli."
+    ],
+    "partial": [
+      "Şubeler azalmalı, her şey mobile geçmeli.",
+      "Basit işlemler dijitale geçmeli, şubeler de daha karmaşık konularda danışmanlık vermeli."
+    ],
+    "wrong": [
+      "Bilmiyorum, ben genelde şubeye gitmiyorum.",
+      "Şubeler önemli, dijital de önemli, ikisi birlikte olmalı bence.",
+      "Şube ağına artık hiç gerek yok, bankalar bütün şubeleri hemen kapatmalı; müşterilerin tamamı zaten dijitalde."
+    ]
+  },
+  "Bir firmaya kredi verirken nelere bakarsın?": {
+    "good": [
+      "İlk olarak bilanço, gelir tablosu ve nakit akış tablosunu incelerim. Asıl sorum şu: firmanın işletme nakdi bu krediyi geri ödemeye yetiyor mu? Borçluluk ve likidite oranlarına, kaldıraç seviyesine bakarım. Sektörün durumunu, ortakların ve yönetimin geçmişini, istihbarat raporlarını değerlendiririm. Teminatı ikinci yol olarak görürüm, kararı ona dayandırmam.",
+      "Financial statement'larla başlarım, EBITDA ve net borç / EBITDA gibi rasyolara bakarım. Free cash flow'un borç servisini karşılayıp karşılamadığı en kritik nokta. Sektör riskini ve management kalitesini de değerlendiririm. Sonra ipotek ya da kefalet gibi teminat yapısına bakarım.",
+      "Bir müşterimde ciro çok iyi görünüyordu ama nakit akışı negatifti; alacakları tahsil edemiyordu. O yüzden her zaman önce nakdin krediyi ödeyip ödeyemeyeceğine bakarım. Borç oranları, sektörün gidişatı ve firma sahiplerinin piyasadaki itibarı da önemli."
+    ],
+    "partial": [
+      "Firmanın teminatına bakarım, ipotek varsa kredi veririm.",
+      "Bilançosuna ve borçluluk oranlarına bakarım, bir de teminat isterim."
+    ],
+    "wrong": [
+      "Bilmiyorum, sanırım firmanın büyüklüğüne bakılır.",
+      "Firma güvenilir mi değil mi ona bakarım, içime sinerse veririm.",
+      "Teminat yeterliyse başka bir şeye bakmaya gerek yok, ipotek varsa kredi her zaman güvenlidir."
+    ]
+  },
+  "Kredi kullandırdığın bir firmanın ödemeleri gecikmeye başladı. Ne yaparsın?": {
+    "good": [
+      "Erken uyarı sinyali olarak ciddiye alır, firmayı hemen arayıp yüz yüze görüşme isterim. Gecikmenin nedenini anlamaya çalışırım: geçici bir tahsilat sorunu mu, yoksa kalıcı bir iş kaybı mı? Geçiciyse vadeyi uzatan bir yeniden yapılandırma planı öneririm. Kalıcıysa teminatları gözden geçirip gerekirse hukuki süreci başlatırım.",
+      "Early warning sistemimiz gecikmeyi gösterir göstermez müşteriyi ziyaret ederim. Güncel mizan ve nakit akışını isteyip sorunun kaynağını bulurum. Nakit sıkışıklığı geçiciyse restructuring yaparız, ödeme planını yeniden kurarız. Durum kötüyse teminatları ve legal seçenekleri değerlendiririz.",
+      "Geçen yıl bir tekstil firmasında bunu yaşadım: iki taksit üst üste gecikti. Patronla görüştüm, büyük bir müşterisinin ödemesini geciktirdiğini öğrendim. Altı aylık ödemesiz dönemle bir yapılandırma yaptık ve firma toparlandı."
+    ],
+    "partial": [
+      "Firmayı arayıp neden geciktiğini sorarım.",
+      "Gecikmeyi takip ederim ve firmayla görüşüp nedenini öğrenirim."
+    ],
+    "wrong": [
+      "Bilmiyorum, yöneticime sorarım.",
+      "Biraz beklerim, belki kendiliğinden düzelir.",
+      "İlk gecikmede hemen icra takibi başlatıp teminatı paraya çeviririm, müşteriyle konuşmaya gerek yok."
+    ]
+  },
+  "Kredi portföyünde tek bir sektöre yoğunlaşma riski gördün. Ne önerirsin?": {
+    "good": [
+      "Önce o sektörün toplam portföy içindeki payını ve en büyük müşterilere ne kadar yoğunlaştığını ölçerim. Talep düşüşü ya da kur şoku gibi senaryolarla stres testi yapıp olası kaybı hesaplarım. Sektör için bir limit önerir, yeni kredileri başka sektörlere yönlendiririm. Bu sektördeki kredileri daha sıkı fiyatlar, teminat şartlarını güçlendiririm. Sonuçları kredi komitesine raporla sunarım.",
+      "Concentration analizinden başlarım: sektörün payı ne, top 10 müşteri ne kadarını oluşturuyor. Sonra bir stres test senaryosu kurarım, mesela sektörde %20 ciro kaybı. Sektörel limit koyarım, risk primi yüksek fiyatlama yaparım. Bulguları risk komitesine sunarım.",
+      "İnşaat sektöründe portföyün üçte biri olduğunu fark etseydim, önce bunun ne kadar riskli olduğunu kötü senaryolarla test ederdim. Yeni kredilere bir üst sınır getirir, ekibi diğer sektörlere yönlendirirdim. Durumu yönetime raporlardım."
+    ],
+    "partial": [
+      "O sektöre daha fazla kredi vermeyi durdururum.",
+      "Sektörün portföydeki payını ölçer, bir stres testi yaparım."
+    ],
+    "wrong": [
+      "Bilmiyorum, böyle bir şeyle karşılaşmadım.",
+      "Yoğunlaşma olabilir, sektör iyi gidiyorsa sorun olmaz.",
+      "Tek bir sektöre yoğunlaşmak aslında iyidir çünkü o sektörü çok iyi tanırız, risk tam tersine azalır."
+    ]
+  },
+  "Şubeye gelen bir müşteriye yeni bir kredi kartı nasıl önerirsin?": {
+    "good": [
+      "Önce müşteriye birkaç soru sorarak harcama alışkanlıklarını ve ne aradığını anlarım. Sık seyahat ediyorsa mil kazandıran kartı, market harcaması çoksa puan veren kartı öne çıkarırım. Yıllık kart ücretini ve gecikme faizini açıkça söylerim. Kararı ona bırakırım, ısrar etmem.",
+      "Müşterinin ihtiyacını anlamadan ürün satmam; ne kadar harcıyor, taksit kullanıyor mu, bunu öğrenirim. Ona en uygun kartın avantajlarını, örneğin cashback kampanyasını anlatırım. Ücretleri ve faizi şeffaf şekilde paylaşırım. Baskı yapmadan düşünmesi için broşür veririm.",
+      "Geçen ay bir öğretmen müşterimiz geldi, sohbet ederken çocuklarının okul masraflarını taksitle ödemek istediğini anlattı. Ona taksit avantajı olan kartımızı önerdim, kart aidatını da en baştan söyledim. Kararı ona bıraktım, ertesi hafta gelip başvurdu."
+    ],
+    "partial": [
+      "Kartın kampanyalarını ve avantajlarını anlatırım.",
+      "Müşterinin ihtiyacını sorar, ona uygun kartı öneririm."
+    ],
+    "wrong": [
+      "Bilmiyorum, kartı veririm işte.",
+      "Kartı anlatırım, beğenirse alır beğenmezse almaz.",
+      "Müşteriye kartın tamamen ücretsiz olduğunu söylerim, aidatı sonra öğrenir; önemli olan satışı kapatmak."
+    ]
+  },
+  "Kartından izinsiz işlem yapıldığını söyleyen sinirli bir müşteri geldi. Ne yaparsın?": {
+    "good": [
+      "Müşteriyi sakin bir şekilde karşılar, sözünü kesmeden dinlerim ve endişesini anladığımı söylerim. İlk iş kartı bloke edip yeni harcamaları durdururum. Şüpheli işlemler için itiraz kaydı açarım. Sürecin kaç gün süreceğini ve sonraki adımları anlatır, gelişmeleri ona bildiririm.",
+      "Önce empati kurarım, 'haklısınız, çok can sıkıcı' derim. Kartı hemen kapatırım ki yeni fraud işlem olmasın. Sonra chargeback sürecini başlatırım, müşteriye kayıt numarasını veririm. Ne zaman dönüş yapılacağını söyler, takibini yaparım.",
+      "Bir keresinde bağıran bir müşteri geldi; oturttum, su ikram ettim ve dinledim. Kartını o an iptal ettik, yenisini sipariş ettik. İşlemlere itiraz ettik ve ona bir hafta içinde bilgi vereceğimi söyledim, söylediğim gün aradım."
+    ],
+    "partial": [
+      "Müşteriyi sakinleştirmeye çalışırım.",
+      "Müşteriyi dinler, kartını hemen bloke ederim."
+    ],
+    "wrong": [
+      "Bilmiyorum, çağrı merkezini aramasını söylerim.",
+      "Müşterinin sinirlenmemesi gerektiğini, böyle şeylerin olabileceğini söylerim.",
+      "Kartın şifresi müşteride olduğuna göre işlemleri kendisi yapmıştır, bu yüzden itiraz kabul edilmez derim."
+    ]
+  },
+  "Ekibindeki müşteri temsilcilerinin satış hedeflerini, müşteri memnuniyetinden ödün vermeden nasıl yükseltirsin?": {
+    "good": [
+      "Önceki şubemde hedefler artınca şikayetler de artmıştı, satışla memnuniyet arasında denge kurmam gerekiyordu. Temsilcilerle müşteri ihtiyacını önce soran bir görüşme akışı oluşturdum. Her temsilcinin görüşmelerini dinleyip birebir koçluk ve geri bildirim verdim. Performans karnesine satışın yanında NPS'i de ekledim. Altı ayda satış %12 arttı, başarıları ekip toplantısında takdir ettim.",
+      "Ekibe ürün itmek yerine needs-based selling yaklaşımını anlattım. Haftada bir her temsilciyle bir müşteri görüşmesine girip gözlem yaptım, sonra coaching verdim. KPI'lara müşteri şikayet sayısını da koydum ki sadece satış ödüllendirilmesin. İyi örnekleri her pazartesi toplantısında takdir ettim.",
+      "Bir dönem ekibim hedefe ulaşmak için müşterilere istemedikleri ürünleri satmaya başlamıştı, şikayetler patladı. Oturup hedefleri memnuniyetle birlikte değerlendireceğimizi söyledim. Rol çalışmalarıyla müşteriyi dinlemeyi pratik ettik, ben de geri bildirim verdim. Üç ayda şikayetler yarıya indi, satış da düşmedi."
+    ],
+    "partial": [
+      "Ekibe daha çok satış yapmalarını söylerim ve prim veririm.",
+      "Temsilcilere birebir koçluk yapar, görüşmelerine geri bildirim veririm."
+    ],
+    "wrong": [
+      "Bilmiyorum, hedefler yukarıdan gelir.",
+      "Ekip çalışkan olursa hedefler zaten tutar, ekstra bir şey yapmaya gerek yok.",
+      "Hedef tutturmak için her müşteriye her ürünü satmalarını isterim, müşteri memnuniyeti satıştan sonra gelir."
+    ]
+  },
+  "Neden kabin memuru olmak istiyorsunuz?": {
+    "good": [
+      "İnsanlarla iletişim kurmayı ve onlara iyi bir yolculuk yaşatmayı seviyorum. Örneğin önceki işimde otel resepsiyonunda çalışırken misafir memnuniyeti ödülü aldım. Kabin memurluğunun önce emniyet, sonra hizmet olduğunu biliyorum. Vardiyalı çalışmaya ve ekip işine kolayca uyum sağlarım.",
+      "Customer service tarafında üç yıllık deneyimim var ve misafire dokunmayı gerçekten seviyorum. Bu meslekte asıl sorumluluğun safety olduğunun, acil durumlarda yolcuları korumak olduğunun farkındayım. Takım çalışmasına ve değişken programlara uygun biriyim.",
+      "Küçükken ilk uçuşumda bir kabin memurunun korkan bir çocuğu nasıl sakinleştirdiğini görmüştüm, o an aklıma girdi. Yolculara güven vermek, onlara hizmet etmek bana çok anlamlı geliyor. Güvenlik prosedürlerinin bu işin temeli olduğunu biliyorum. Farklı kültürden insanlarla iletişimim de çok iyidir."
+    ],
+    "partial": [
+      "Seyahat etmeyi çok seviyorum, dünyayı gezmek istiyorum.",
+      "Yolculara hizmet etmeyi seviyorum ve insanlarla iletişimim güçlü."
+    ],
+    "wrong": [
+      "Bilmiyorum, maaşı iyi diye duydum.",
+      "Bedava uçak bileti ve otelde kalmak çok hoşuma gidiyor.",
+      "Kabin memurunun işi sadece yemek ve içecek servisi yapmak, bu da bence kolay ve keyifli bir iş."
+    ]
+  },
+  "Uçuşta bir yolcu emniyet kemerini takmayı reddediyor. Ne yaparsın?": {
+    "good": [
+      "Önce yolcuya nazik bir dille kemerin neden zorunlu olduğunu, özellikle türbülansta onu korumak için olduğunu açıklarım. Itiraz ederse sakinliğimi koruyarak kuralı tekrar hatırlatırım. Yine de reddederse durumu kıdemli kabin memuruna bildiririm, o da gerekirse kaptanı bilgilendirir. Bu sırada çevredeki yolcuları rahatsız etmemeye özen gösteririm.",
+      "Kibarca yanına gidip 'güvenliğiniz için kemerinizi bağlamanız gerekiyor' derim, bunun bir regülasyon olduğunu anlatırım. Hâlâ takmazsa purser'a haber veririm, gerekirse captain devreye girer. Diğer yolcuların önünde tartışmaya sokmam, ses tonumu düşük tutarım.",
+      "Bir keresinde uyumak istediği için kemeri takmayan bir yolcu vardı. Gülümseyerek battaniyenin üstünden takabileceğini, böylece uyandırmayacağımızı söyledim. Takmasaydı amirime söyleyecektim. Etrafı germeden çözdük."
+    ],
+    "partial": [
+      "Yolcuyu uyarırım, takmasını isterim.",
+      "Kibarca kemerin emniyet için zorunlu olduğunu açıklarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, onun tercihi diye düşünürüm.",
+      "Bir şey demem, yetişkin insan sonuçta, istemiyorsa takmasın.",
+      "Yolcu takmak istemiyorsa sorun değil, kemer kuralı sadece kalkış sırasında geçerlidir, uçuş boyunca önemli değil."
+    ]
+  },
+  "Uçuşta bir yolcu fenalaşıyor. Nasıl hareket edersin?": {
+    "good": [
+      "İlk olarak yolcunun bilincini ve nefes alıp almadığını kontrol ederim, eğitimime uygun ilk yardımı başlatırım. Ekip arkadaşlarımı ve kaptanı hemen bilgilendiririm. Gerekirse uçakta doktor ya da sağlık görevlisi olup olmadığını anons ederiz, oksijen tüpünü ve ilk yardım kitini getiririz. Olayı prosedüre göre rapor ederim.",
+      "Yolcunun yanına gidip responsive mi, solunumu var mı bakarım. Diğer crew'a haber veririm, kokpite bilgi geçeriz. 'Uçakta doktor var mı' anonsu yapılır. First aid kit ve oksijenle müdahale ederiz, sonra da olay raporu yazarım.",
+      "Bir uçuşta yaşlı bir yolcu bayıldı. Hemen yanına gittim, nabzını ve nefesini kontrol ettim, arkadaşım da kaptana haber verdi. Anons yaptık, yolcular arasında bir hemşire çıktı. Oksijen verdik, yolcu kendine geldi ve inişte ambulans bekliyordu."
+    ],
+    "partial": [
+      "Hemen yanına gidip ilk yardım yaparım.",
+      "Yolcunun bilincini kontrol ederim ve kaptana haber veririm."
+    ],
+    "wrong": [
+      "Bilmiyorum, çok panik olurum.",
+      "Biraz su veririm, dinlenirse geçer herhalde.",
+      "Uçakta yapılacak bir şey yok, kaptan hemen en yakın havalimanına iner; kabin ekibi müdahale etmez."
+    ]
+  },
+  "Kabin amiri olarak uçuş sırasında ekibindeki iki memur arasında gerginlik var. Ne yaparsın?": {
+    "good": [
+      "Bir uçuşta iki arkadaşımızın servis sırasında birbirine sert konuştuğunu fark ettim. İlk önceliğim emniyetin ve misafir deneyiminin etkilenmemesiydi. Her biriyle galeride ayrı ayrı, sakin bir şekilde konuştum. Uçuşun kalanında görev dağılımını değiştirip ikisini farklı bölümlere aldım. Uçuş sonrası debrief'te konuyu birlikte konuştuk ve kısa bir rapor yazdım.",
+      "Önce safety'yi düşünürüm; ekip içi gerginlik prosedürleri aksatmamalı. İki memurla ayrı ayrı, yolcuların görmediği bir yerde sakince konuşurum. Gerekirse pozisyonlarını değiştiririm. İndikten sonra üçümüz oturup konuşuruz, ciddi bir durumsa raporlarım.",
+      "Önceliğim her zaman emniyettir, gerginlik kabin prosedürlerini etkilememeli. İki arkadaşı ayrı ayrı galeriye çağırıp sakin bir şekilde dinlerim. Gerekirse görevlerini değiştirir, birini başka bir kabin bölümüne alırım. Uçuş sonrası debrief'te konuyu birlikte konuşur, gerekiyorsa durumu rapor ederim."
+    ],
+    "partial": [
+      "İkisiyle konuşup barıştırırım.",
+      "İkisiyle ayrı ayrı sakin şekilde konuşurum.",
+      "Geçen yaz uzun bir uçuşta iki arkadaş arasında gerilim vardı. Ben ikisiyle de ayrı ayrı konuştum, birini ön kabine aldım ve görevleri yeniden paylaştırdım. İnişten sonra konuyu konuştuk ve çözdük."
+    ],
+    "wrong": [
+      "Bilmiyorum, kendi aralarında çözsünler.",
+      "Bu tür şeyler olur, karışmam; profesyonel insanlar sonuçta.",
+      "İkisini yolcuların önünde uyarıp tartışmayı hemen orada bitiririm, herkes kimin haklı olduğunu görsün."
+    ]
+  },
+  "CRM (Crew Resource Management) nedir, neden önemlidir?": {
+    "good": [
+      "CRM, yani ekip kaynak yönetimi, kokpit ve kabindeki tüm insan, bilgi ve ekipman kaynaklarını etkin kullanmayı amaçlayan bir yaklaşım. Açık iletişim, iş yükü paylaşımı, durumsal farkındalık ve ortak karar vermeyi içerir. Kazaların çoğunda insan hatası rol oynadığı için uçuş emniyeti açısından kritik.",
+      "Crew Resource Management, pilotların ve ekibin birbiriyle iletişim kurma ve karar alma biçimini düzenleyen bir eğitim ve kültür. Herkes gördüğünü açıkça söyleyebilmeli, kaptan da ekibi dinlemeli. Situational awareness'ı korumak ve hatayı erken yakalamak için var, çünkü kazaların büyük kısmı human error kaynaklı.",
+      "Tenerife kazası gibi olaylar hiyerarşinin ve kötü iletişimin ne kadar tehlikeli olduğunu gösterdi; CRM bunun üzerine doğdu. Kısaca ekipteki herkesin sesli konuştuğu, kararın birlikte verildiği bir çalışma şekli. Amaç insan hatalarını yakalayıp kazayı önlemek."
+    ],
+    "partial": [
+      "CRM ekip kaynak yönetimidir, ekibin birlikte çalışması demek.",
+      "CRM ekip kaynak yönetimidir, kokpitte açık iletişimi sağlar."
+    ],
+    "wrong": [
+      "Bilmiyorum, duymadım.",
+      "Bir tür yönetim sistemi galiba, şirketlerde kullanılıyor.",
+      "CRM müşteri ilişkileri yönetimidir, havayollarının yolcu bilgilerini tuttuğu bir yazılımdır."
+    ]
+  },
+  "Kaptan pilotun yanlış bir karar verdiğini düşünüyorsun. Ne yaparsın?": {
+    "good": [
+      "Endişemi saygılı ama net bir dille, gördüğüm göstergeye ve prosedüre dayanarak söylerim. Kaptan duymazsa daha doğrudan bir ifadeyle tekrar ederim. Emniyet doğrudan tehlikedeyse CRM gereği ısrarcı olurum; rütbe emniyetin önüne geçmez.",
+      "Önce kaptana 'Captain, airspeed düşüyor, stabilize değiliz' gibi somut bir veriyle sesli olarak söylerim. Tonum saygılı ama açık olur. Cevap gelmezse tekrar ederim ve go-around önerisini net şekilde söylerim. Safety risk varsa ısrar ederim.",
+      "Simülatör eğitiminde bunu çalıştık: kaptan yanlış pisti seçti. Ben checklist'e ve ATC talimatına işaret ederek hatayı dile getirdim. Saygımı korudum ama konu emniyet olduğu için geri adım atmadım."
+    ],
+    "partial": [
+      "Kaptana durumu söylerim.",
+      "Kaptana saygılı bir şekilde endişemi söylerim."
+    ],
+    "wrong": [
+      "Bilmiyorum, kaptan ne derse o.",
+      "Kaptan daha deneyimli, o yüzden muhtemelen haklıdır diye düşünür beklerim.",
+      "Kaptan her zaman haklıdır, yardımcı pilot olarak itiraz etmek hiyerarşiye aykırıdır; sessiz kalırım."
+    ]
+  },
+  "Kaptan olarak yardımcı pilotun bir hatanı söylemekten çekindiğini fark ettin. Ne yaparsın?": {
+    "good": [
+      "Bir uçuşta yardımcı pilotun yükseklik sapmamı geç söylediğini fark ettim. Sonraki brifingde her şeyi sesli söylemesini açıkça istedim, ona bu konuda cesaret verdim. CRM'e göre kokpitte hiyerarşi emniyetin önüne geçmemeli. Uçuş sonrası ona geri bildirim verdim ve onun da bana geri bildirim vermesini istedim. Hatamı kabul ederek örnek oldum.",
+      "Preflight briefing'de 'bir şey görürsen hemen söyle, rütbe önemli değil' derim. CRM prensiplerini birlikte hatırlarız. Uçuştan sonra debrief'te ona feedback veririm, kendisinin de bana feedback vermesini isterim. Kendi hatamı açıkça kabul edersem o da rahatlar.",
+      "Uçuş öncesi brifingde ekibe açıkça 'bir hata görürseniz hemen söyleyin' derim ve bunun CRM'in temel ilkesi olduğunu hatırlatırım. Yardımcı pilotu bu konuda cesaretlendiririm. Uçuştan sonra kendi hatamı kabul edip ona geri bildirim veririm, onun da bana geri bildirim vermesini isterim."
+    ],
+    "partial": [
+      "Ona çekinmemesini söylerim.",
+      "Brifingde açık iletişim konusunda onu cesaretlendiririm.",
+      "Genç bir F/O ile uçarken bir checklist adımını atladığımı fark etmiş ama söylememişti. İndikten sonra ona teşekkür ettim, hatamı kabul ettim ve bir dahakine çekinmeden söylemesini istedim. Bir sonraki uçuşta kendisi ilk o konuştu."
+    ],
+    "wrong": [
+      "Bilmiyorum, bir şey yapmam.",
+      "Söylemiyorsa demek ki önemli değildir, üstünde durmam.",
+      "Kaptan olarak hata yapmam zaten, yardımcı pilotun beni düzeltmesine gerek yok."
+    ]
+  },
+  "Rezervasyonu olmasına rağmen oda bulunamayan bir misafirle nasıl ilgilenirsin?": {
+    "good": [
+      "Önce misafirden içtenlikle özür dilerim ve sorunu üstlenirim, suçu sisteme atmam. Hemen alternatif sunarım: bir üst kategori oda ya da mümkün değilse anlaşmalı yakın bir otel ve ücretsiz transfer. Yaşattığımız sıkıntı için akşam yemeği ikramı veya indirim öneririm. Ertesi gün misafiri arayıp takip eder, yöneticimi de bilgilendiririm.",
+      "Misafire 'çok özür dileriz, bu bizim hatamız' derim. Overbooking olduysa ya upgrade veririm ya da partner otele walk ederim, taksi parasını biz öderiz. Compensation olarak bir gece ücretsiz ya da spa kuponu veririm. Sonra misafirle follow-up yaparım.",
+      "Bir akşam yorgun bir aile geldi, odaları satılmıştı. Hemen özür diledim, çocuklara meyve suyu ikram ettim ve yakındaki kardeş otelimizde süit ayarladım. Müdürümüz ertesi sabah onları arayıp bir sonraki konaklamada indirim teklif etti."
+    ],
+    "partial": [
+      "Misafirden özür dilerim.",
+      "Özür diler, ona başka bir otelde oda ayarlarım."
+    ],
+    "wrong": [
+      "Bilmiyorum, müdürü çağırırım.",
+      "Yapacak bir şey yok, oda yoksa yok; misafire bekleyip beklemeyeceğini sorarım.",
+      "Misafire rezervasyonun bizim sistemde görünmediğini, sorunun onun acentesinde olduğunu söyler, başka yere gitmesini isterim."
+    ]
+  },
+  "Misafir yorumlarında temizlik puanı düşüyor. Ne yaparsın?": {
+    "good": [
+      "Önce yorumları tek tek analiz eder, şikayetlerin hangi kat ve odalarda, hangi konularda yoğunlaştığını çıkarırım. Kat hizmetleri ekibiyle oturup kök nedeni konuşurum; personel mi eksik, oda başına süre mi yetmiyor? Bir kontrol listesi ve rastgele oda denetimleri başlatırım. Puanı haftalık takip ederim.",
+      "Booking ve TripAdvisor review'larını export edip temizlikle ilgili şikayetleri kategorilere ayırırım. Housekeeping şefiyle root cause'a bakarız, belki yeni personelin eğitimi eksiktir. Checklist ve spot check'lerle süreci sıkılaştırırız, skoru her hafta ölçeriz.",
+      "Bir otelde bunu yaşadık: yorumlarda banyo temizliği sürekli geçiyordu. Housekeeping'le konuştuk, ekipte iki kişi eksikti ve odalara 15 dakika düşüyordu. Ek eleman aldık, her odaya kontrol listesi koyduk ve iki ayda puan yükseldi."
+    ],
+    "partial": [
+      "Temizlik personelini uyarırım.",
+      "Yorumları analiz edip en çok hangi konuda şikayet olduğunu bulurum."
+    ],
+    "wrong": [
+      "Bilmiyorum, temizlik benim işim değil.",
+      "Bazen puanlar düşer, misafirler hep şikayet eder, zamanla düzelir.",
+      "Olumsuz yorumları sildiririm ya da çalışanlarımıza olumlu yorum yazdırırım, böylece puan hemen yükselir."
+    ]
+  },
+  "Otelin misafir değerlendirme puanı son aylarda düşüyor. Nasıl bir eylem planı yaparsın?": {
+    "good": [
+      "Önce son üç ayın yorumlarını okuyup tekrar eden temaları çıkarırım. Şikayetleri departman bazında ayırırım; kahvaltı mı, check-in mi, temizlik mi, kök neden nerede onu bulurum. Hızlı çözülecek şeyler için hemen aksiyon alır, sorunlu departmanlarda personel eğitimi planlarım. Olumsuz yorumlara kişisel ve çözüm odaklı yanıt veririm. Puanı her hafta takip edip ekiple paylaşırım.",
+      "Review data'sını kategorize ederim, hangi konular sık geçiyor bakarım. Her departman müdürüyle root cause toplantısı yaparım. Quick win'leri hemen uygularım, mesela check-in süresini kısaltmak. Front office ve F&B için training planlarım. Kötü yorumlara 24 saat içinde cevap verir, skoru haftalık izlerim.",
+      "Geçen sezon bizim otelde puan 8.9'dan 8.1'e düştü. Yorumlarda gürültü ve geç check-in öne çıkıyordu. Resepsiyon ekibine eğitim verdik, sessiz katlar oluşturduk. Her olumsuz yoruma müdür imzalı cevap yazdık ve haftalık takip ettik; dört ayda 8.7'ye çıktık."
+    ],
+    "partial": [
+      "Personele eğitim veririm.",
+      "Yorumları okuyup hangi departmanda sorun olduğunu bulurum."
+    ],
+    "wrong": [
+      "Bilmiyorum, sezon bitince düzelir.",
+      "Fiyatları düşürürüm, misafirler daha memnun olur herhalde.",
+      "Puanı yükseltmenin en hızlı yolu sahte olumlu yorumlar yazdırmaktır, gerçek sorunlara bakmaya gerek yok."
+    ]
+  }
+}
