@@ -1,7 +1,7 @@
 import { findInterviewer } from '@/data/interviewers';
 import { findUnit } from '@/data/professions';
 import { setLang } from '@/lib/i18n';
-import { followUpFor, reactionTo } from '@/lib/reactions';
+import { followUpFor, probeKind, reactionTo } from '@/lib/reactions';
 
 jest.mock('@react-native-async-storage/async-storage', () =>
   // jest.mock factories run before imports, so the mock has to be required here.
@@ -53,5 +53,47 @@ describe('interviewer reactions in English', () => {
     const lines = reactionTo(findInterviewer('uzman'), q, answer, 'en', 0);
     expect(findInterviewer('uzman').ackGood.en).toContain(lines[0]);
     expect(lines[1]).toMatch(/^It was important that you mentioned this: .+\.$/);
+  });
+});
+
+describe('follow-up questions', () => {
+  beforeAll(() => setLang('tr'));
+  const rest = () => findUnit('backend-1')!.unit.questions[0];
+  const behavioural = () => findUnit('backend-1')!.unit.questions.find((x) => x.kind === 'davranissal')!;
+  // Covers the key points of the REST question in few words, with no example or number.
+  const SHORT_COMPLETE = 'REST durumsuz, HTTP kaynaklarıyla çalışır; GET okur, POST oluşturur, GET idempotenttir.';
+
+  it('Elif asks for an example only when there is none', () => {
+    expect(probeKind('ik', rest(), SHORT_COMPLETE, 'tr')).toBe('own');
+    expect(probeKind('ik', rest(), `${SHORT_COMPLETE} Örneğin sipariş listesi GET ile gelir.`, 'tr')).toBe('expand');
+  });
+
+  it('Elif does not follow up on a full, concrete answer', () => {
+    expect(probeKind('ik', rest(), COMPLETE + ' Örneğin bir projede 3 servisi böyle tasarladık.', 'tr')).toBeNull();
+  });
+
+  it('Kerem asks why only when there is no reasoning', () => {
+    expect(probeKind('uzman', rest(), COMPLETE, 'tr')).toBe('own');
+    expect(probeKind('uzman', rest(), `${COMPLETE} Bunu tercih ederim çünkü önbelleklemeyi kolaylaştırır.`, 'tr')).toBeNull();
+  });
+
+  it('Murat asks for a summary when it runs long', () => {
+    expect(probeKind('yonetici', rest(), `${COMPLETE} `.repeat(4), 'tr')).toBe('own');
+  });
+
+  it('asks how a behavioural story ended when it never says', () => {
+    const story =
+      'Bir projede ekip arkadaşımla kapsam konusunda anlaşamadık. Onu dinledim, bakış açısını anlamaya çalıştım ' +
+      've bir toplantı önerdim; iki seçeneği birlikte konuştuk ve maliyetlerini masaya koyduk.';
+    expect(probeKind('ik', behavioural(), story, 'tr')).toBe('result');
+    expect(probeKind('ik', behavioural(), `${story} Sonuç olarak anlaştık ve işi zamanında teslim ettik.`, 'tr')).toBeNull();
+  });
+
+  it('never leaves the {x} placeholder in a question', () => {
+    for (const id of ['ik', 'uzman', 'yonetici'] as const) {
+      const text = followUpFor(findInterviewer(id), rest(), 'Bilmiyorum, iki uygulama konuşur.', 'tr');
+      expect(text).toBeTruthy();
+      expect(text).not.toContain('{x}');
+    }
   });
 });

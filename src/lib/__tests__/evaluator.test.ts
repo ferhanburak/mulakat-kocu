@@ -1,4 +1,4 @@
-import { findInterviewer, needsProbe, verdictFor } from '@/data/interviewers';
+import { findInterviewer, verdictFor } from '@/data/interviewers';
 import { findUnit, professions } from '@/data/professions';
 import { evaluateSession } from '@/lib/evaluator';
 import { setLang } from '@/lib/i18n';
@@ -113,15 +113,6 @@ describe('interviewer characters', () => {
     expect(uzman.map((q) => q.id)).toContain('backend-2-0'); // deeper question from the next unit
     expect(yonetici.map((q) => q.id)).toContain('backend-3-0'); // from the most senior unit
     expect(uzman.every((q) => q.kind !== 'davranissal')).toBe(true);
-  });
-
-  it('follow up according to their style', () => {
-    expect(needsProbe('ik', 'Kısa bir cevap.', 'tr')).toBe(true);
-    expect(needsProbe('uzman', 'İndeks eklerim.', 'tr')).toBe(true);
-    expect(needsProbe('uzman', 'İndeks eklerim çünkü tam tablo taraması var.', 'tr')).toBe(false);
-    expect(needsProbe('uzman', 'I add an index because of the full scan.', 'en')).toBe(false);
-    expect(needsProbe('yonetici', 'kelime '.repeat(95), 'tr')).toBe(true);
-    expect(needsProbe('yonetici', 'Kısa ve net.', 'tr')).toBe(false);
   });
 
   it('pick a verdict by score band', () => {

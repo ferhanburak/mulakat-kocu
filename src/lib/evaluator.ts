@@ -189,13 +189,23 @@ function scoreAnswer(q: Question, raw: string, lang: AnswerLang) {
     tip = lang === 'en' ? `Cut down on filler words (${fillerCount} like “um/like/basically”).` : `Dolgu kelimeleri azalt (${fillerCount} adet “yani/işte/şey”).`;
   else tip = tt('Güçlü bir cevap. Daha kısa ve vurucu bir açılış cümlesiyle bir üst seviyeye çıkar.', 'A strong answer. A shorter, punchier opening sentence would take it to the next level.');
 
-  return { score, covered, missing, tip, cats: { icerik, yapi, netlik, somutluk }, fillerCount, wc };
+  const result = hasAny(text, R.star.sonuc, R.locale);
+  return { score, covered, missing, tip, cats: { icerik, yapi, netlik, somutluk }, fillerCount, wc, numbers, example, result };
 }
 
 /** Quick read of one answer (same rules as the report), for the interviewer's live reactions. */
 export function answerSignals(q: Question, answer: string, lang: AnswerLang) {
   const r = scoreAnswer(q, answer, lang);
-  return { score: r.score, covered: r.covered, missing: r.missing, words: r.wc };
+  return {
+    score: r.score,
+    covered: r.covered,
+    missing: r.missing,
+    words: r.wc,
+    /** Gives an example or a number. */
+    concrete: r.example || r.numbers > 0,
+    /** Says how things turned out (the R of STAR). */
+    result: r.result,
+  };
 }
 
 export async function evaluateSession(

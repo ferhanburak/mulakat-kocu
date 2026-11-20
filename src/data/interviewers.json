@@ -79,6 +79,14 @@
       "tr": "Biraz daha açar mısın? Somut bir örnek verebilir misin?",
       "en": "Could you expand a little? Can you give me a concrete example?"
     },
+    "probeExpand": {
+      "tr": "Güzel bir örnek. Biraz daha açar mısın, orada sen tam olarak ne yaptın?",
+      "en": "Nice example. Could you expand a bit? What exactly did you do there?"
+    },
+    "probeResult": {
+      "tr": "Peki sonunda ne oldu? Bu çabanın sonucu neydi?",
+      "en": "And how did it end? What came out of your effort?"
+    },
     "probeTopic": {
       "tr": "Peki şu konuya da değinir misin: {x}?",
       "en": "Could you also touch on this: {x}?"
@@ -182,6 +190,14 @@
       "tr": "Peki neden bu yolu seçtin? Gerekçeni biraz açar mısın?",
       "en": "And why did you choose that approach? Can you explain your reasoning?"
     },
+    "probeExpand": {
+      "tr": "Bunu biraz daha teknik detayla açar mısın?",
+      "en": "Could you go into a bit more technical detail?"
+    },
+    "probeResult": {
+      "tr": "Sonuç neydi? Bunu neyle ölçtün?",
+      "en": "What was the outcome? How did you measure it?"
+    },
     "probeTopic": {
       "tr": "Peki şu taraf ne olacak: {x}? Onu nasıl ele alırsın?",
       "en": "And what about this: {x}? How would you handle it?"
@@ -284,6 +300,14 @@
     "probe": {
       "tr": "Uzun oldu. Bunu tek cümleyle özetle.",
       "en": "That was long. Sum it up in one sentence."
+    },
+    "probeExpand": {
+      "tr": "Çok genel kaldı. Somut ol.",
+      "en": "Too general. Be specific."
+    },
+    "probeResult": {
+      "tr": "Sonuç ne? Rakam ver.",
+      "en": "What was the result? Give me a number."
     },
     "probeTopic": {
       "tr": "Şu eksik: {x}. Kısaca söyle.",
