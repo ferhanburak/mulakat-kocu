@@ -22,8 +22,8 @@
         "pitch": "+0Hz"
       },
       "en": {
-        "name": "en-US-AvaNeural",
-        "rate": "-4%",
+        "name": "en-US-JennyNeural",
+        "rate": "+0%",
         "pitch": "+0Hz"
       }
     },
@@ -133,8 +133,8 @@
         "pitch": "+6Hz"
       },
       "en": {
-        "name": "en-US-BrianNeural",
-        "rate": "-2%",
+        "name": "en-US-AndrewMultilingualNeural",
+        "rate": "+0%",
         "pitch": "+0Hz"
       }
     },
@@ -244,9 +244,9 @@
         "pitch": "-16Hz"
       },
       "en": {
-        "name": "en-US-ChristopherNeural",
-        "rate": "+4%",
-        "pitch": "-2Hz"
+        "name": "en-GB-RyanNeural",
+        "rate": "+0%",
+        "pitch": "+0Hz"
       }
     },
     "intro": {
