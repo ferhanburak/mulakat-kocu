@@ -31,7 +31,7 @@ function questionsByText(): Map<string, Question> {
   return map;
 }
 
-describe('practice answers (Turkish)', () => {
+describe('MLK-MOB-004 practice answers (Turkish)', () => {
   beforeAll(() => setLang('tr'));
 
   it.each(Object.keys(ANSWER_SETS))('land in their expected group: %s', (set) => {

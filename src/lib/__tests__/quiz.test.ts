@@ -20,7 +20,7 @@ const countBy = (items: QuizItem[]) => {
   return c;
 };
 
-describe.each(['tr', 'en'] as const)('quick practice (%s)', (lang) => {
+describe.each(['tr', 'en'] as const)('MLK-MOB-006 quick practice (%s)', (lang) => {
   beforeAll(() => setLang(lang));
 
   it('generates every new practice type across the catalogue', () => {

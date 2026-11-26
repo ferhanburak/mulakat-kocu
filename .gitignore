@@ -42,3 +42,6 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# test-hub results (npm run test:hub)
+test-results/

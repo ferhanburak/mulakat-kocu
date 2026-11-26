@@ -13,7 +13,7 @@ const COMPLETE =
   'REST, kaynakları URL ile tanımlayan durumsuz (stateless) bir mimaridir. HTTP metodlarıyla çalışır. ' +
   'GET veri okur ve idempotenttir; POST yeni kaynak oluşturur, tekrar gönderilirse yeni kayıt oluşabilir.';
 
-describe('interviewer reactions', () => {
+describe('MLK-MOB-007 interviewer reactions', () => {
   beforeAll(() => setLang('tr'));
   const q = () => findUnit('backend-1')!.unit.questions[0];
   const elif = findInterviewer('ik');
@@ -41,7 +41,7 @@ describe('interviewer reactions', () => {
   });
 });
 
-describe('interviewer reactions in English', () => {
+describe('MLK-MOB-007 interviewer reactions in English', () => {
   beforeAll(() => setLang('en'));
   afterAll(() => setLang('tr'));
 
@@ -56,7 +56,7 @@ describe('interviewer reactions in English', () => {
   });
 });
 
-describe('follow-up questions', () => {
+describe('MLK-MOB-007 follow-up questions', () => {
   beforeAll(() => setLang('tr'));
   const rest = () => findUnit('backend-1')!.unit.questions[0];
   const behavioural = () => findUnit('backend-1')!.unit.questions.find((x) => x.kind === 'davranissal')!;

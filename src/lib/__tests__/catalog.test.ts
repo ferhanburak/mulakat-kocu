@@ -10,7 +10,7 @@ jest.mock('@react-native-async-storage/async-storage', () =>
 
 const tracks = () => professions.flatMap((p) => p.tracks.map((t) => ({ p, t })));
 
-describe.each(['tr', 'en'] as const)('catalogue (%s)', (lang) => {
+describe.each(['tr', 'en'] as const)('MLK-MOB-005 catalogue (%s)', (lang) => {
   beforeAll(() => setLang(lang));
 
   it('has unique unit and question ids', () => {
