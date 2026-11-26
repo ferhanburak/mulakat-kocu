@@ -66,9 +66,16 @@ describeDb('MLK-MOB-002 RLS keeps every profile private to its owner', () => {
     expect(code).toBe(DENIED);
   });
 
+  // There is no delete policy, so RLS removes no rows (Supabase's default
+  // grants may still allow the statement itself). Accounts go through
+  // delete_my_account instead.
   it('does not let a user delete profiles directly', async () => {
-    const code = await as(db, alice, () => errorCode(db.query('delete from public.profiles where id = $1', [alice])));
-    expect(code).toBe(DENIED);
+    const deleted = await as(db, alice, async () =>
+      (await db.query('delete from public.profiles where id = any($1)', [[alice, bob]])).rowCount,
+    );
+    expect(deleted).toBe(0);
+    const { rows } = await db.query('select count(*)::int as n from public.profiles where id = any($1)', [[alice, bob]]);
+    expect(rows).toEqual([{ n: 2 }]);
   });
 
   it('gives signed-out (anon) clients no access at all', async () => {
