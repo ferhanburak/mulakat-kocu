@@ -17,7 +17,7 @@ async function score(unitId: string, index: number, answer: string) {
   return { report, fb: report.answers[0] };
 }
 
-describe('Turkish answers', () => {
+describe('MLK-MOB-004 Turkish answers', () => {
   beforeAll(() => setLang('tr'));
 
   it('credits every concept of a complete answer', async () => {
@@ -43,7 +43,7 @@ describe('Turkish answers', () => {
   });
 });
 
-describe('English answers', () => {
+describe('MLK-MOB-004 English answers', () => {
   beforeAll(() => setLang('en'));
   afterAll(() => setLang('tr'));
 
@@ -84,7 +84,7 @@ describe('English answers', () => {
   });
 });
 
-describe('English catalogue', () => {
+describe('MLK-MOB-005 English catalogue', () => {
   beforeAll(() => setLang('en'));
   afterAll(() => setLang('tr'));
 
@@ -101,7 +101,7 @@ describe('English catalogue', () => {
   });
 });
 
-describe('interviewer characters', () => {
+describe('MLK-MOB-007 interviewer characters', () => {
   beforeAll(() => setLang('tr'));
 
   it('give each character its own question set', () => {
